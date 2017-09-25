@@ -4,11 +4,13 @@ import { Component } from '@angular/core';
   selector: 'app',
   styles: [],
   template: `
+  <!--  -->
 
   <app-header></app-header>
   <router-outlet></router-outlet>
   <footer>Copyright ...</footer>
   
+  <!--  -->
   `
 })
 export class AppComponent {

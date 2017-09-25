@@ -3,9 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-page',
   template: `
+    <!--  -->
 
     <p>page Works!</p>
-    
+  
+    <!--  -->    
   `,
   styles: []
 })
