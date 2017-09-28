@@ -7,17 +7,21 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule } from '@angular/material';
 
+import { GlobalsService } from 'globals.service';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
+import { ErrorModule } from './error/error.module';
 import { HomeModule } from './home/home.module';
-import { PageModule } from './page/page.module';
+import { ShopModule } from './shop/shop.module';
+import { OrderModule } from './order/order.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,11 +31,18 @@ import { PageModule } from './page/page.module';
     MatToolbarModule,
     MatIconModule,
 
+    ErrorModule,
     HomeModule,
-    PageModule
+    ShopModule,
+    OrderModule,
 
   ],
-  providers: [],
+  providers: [GlobalsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private globals: GlobalsService) {
+    globals.title = window.document.title;
+
+  }
+}
