@@ -15,4 +15,17 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 
 body {
   font-family: sans-serif;
+  background: #eee;
+}
+
+md-card {
+	margin: 20px auto;
+}
+
+md-card.small {
+	max-width: 550px;
+}
+
+md-card.full {
+	padding: 0;
 }

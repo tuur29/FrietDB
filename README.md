@@ -1,26 +1,27 @@
 # FrietDB
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.3.
+This web app shows the menu and more info about 'frituren' in the Ghent area.
+
+## API Keys
+
+You will have to add a file called `/src/keys.service.ts` with the necessary api keys. The file should look like this:
+
+```
+import { Injectable } from '@angular/core';
+@Injectable() 
+export class KeysService {
+  apiKey : string = "<PASTE_API_KEY_HERE>";
+}
+```
+You will need a [Google Maps Javascript API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 

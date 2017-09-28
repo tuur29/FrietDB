@@ -1,17 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import { MapModule } from '../map/map.module';
+
 import { HomeComponent } from './home.component';
+import { MapComponent } from '../map/map.component';
+import { LoginComponent } from '../login/login.component';
 
+import { MatIconModule,MatButtonModule, MatCardModule,MatAutocompleteModule,MatInputModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatButtonModule } from '@angular/material';
 
 @NgModule({
   imports: [
   	RouterModule,
     CommonModule,
+
+    MapModule,
+
+    MatIconModule,
     MatButtonModule,
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatAutocompleteModule,
   ],
-  declarations: [HomeComponent]
+  declarations: [
+  	HomeComponent,
+    LoginComponent,
+    MapComponent,
+  ]
 })
 export class HomeModule { }
