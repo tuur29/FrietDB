@@ -12,6 +12,7 @@ import { GlobalsService } from 'globals.service';
 
       <span class="spacer"></span>
 
+      <app-searchshop [inline]="true"></app-searchshop>
       <a routerLink="order">Order</a>
     </md-toolbar>
 
@@ -30,6 +31,16 @@ import { GlobalsService } from 'globals.service';
 
     .spacer {
       flex: 1 1 auto;
+    }
+
+    .spacer ~ * {
+      font-size: 16px;
+    }
+
+    app-searchshop {
+      margin-right: 20px;
+      font-size: 14px !important;
+        align-self: flex-end;
     }
     
 `]

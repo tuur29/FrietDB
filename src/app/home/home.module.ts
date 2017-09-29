@@ -3,28 +3,27 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { MapModule } from '../map/map.module';
+import { SearchShopModule } from '../searchshop/searchshop.module';
 
 import { HomeComponent } from './home.component';
 import { LoginComponent } from '../login/login.component';
 
-import { MatIconModule,MatButtonModule,MatCardModule,MatAutocompleteModule,MatInputModule } from '@angular/material';
+import { MatCardModule,MatButtonModule,MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 
 @NgModule({
   imports: [
   	RouterModule,
     CommonModule,
     
-    MapModule,
-
-    MatIconModule,
-    MatButtonModule,
     MatCardModule,
+    MatButtonModule,
+    MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule,
-    MatAutocompleteModule,
+
+    MapModule,
+    SearchShopModule,
   ],
   declarations: [
     HomeComponent,
