@@ -1,3 +1,5 @@
+// TODO: Share functionality (send email?, copy markdown to clipboard?, native smartphone share)
+
 import { Component, OnInit } from '@angular/core';
 import { DialogsService } from '../dialogs/dialogs.service';
 import { GreaterThanPipe } from './filter-snacks.pipe';

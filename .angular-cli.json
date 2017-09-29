@@ -55,6 +55,9 @@
   },
   "defaults": {
     "styleExt": "scss",
+    "build": {
+      "deleteOutputPath": false
+    },
     "component": {
       "inlineStyle": true,
       "inlineTemplate": true

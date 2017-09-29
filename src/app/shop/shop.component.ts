@@ -1,3 +1,6 @@
+// TODO: Break very long snack names
+// TODO: Load ratings & price/quality from third party api (link & min number of reviews)
+
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DialogsService } from '../dialogs/dialogs.service';

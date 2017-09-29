@@ -1,12 +1,17 @@
-// TODO: Logged in -> Add & edit shops  (Expansion Panels)
-// TODO: Ask for account (+- register) form
+// TODO: Add & edit shops (new page with expansion Panels, add link on shop page)
+// TODO: Review edits (list) -> all inputs disabled except accept or deny
+// TODO: Ask for account (+- register) form -> popup
 // TODO: Loading spinner
 
 // TODO: Better logo (puntzak) & Favicon
 // TODO: Gather real testdata
+// TODO: Add meta tags & Simple style loading message
+// TODO: Fake homepage (menu & intro text) -> faster loading
+// TODO: Load big vendor packages from CDN (package)
+// TODO: Add limited API key to Github Pages (obfuscated?)
 
-// TODO: Snackbar everywhere accessible for showing errors
-// TODO: Snack image wall -> toggle for order page ("graphic search")
+// TODO: MatSnackbar everywhere accessible for showing errors
+// TODO: Snack image wall -> toggle for order page (most picked or top via cookie)
 // TODO: Heatmap card with most frituren in de buurt
 
 import { Component } from '@angular/core';
