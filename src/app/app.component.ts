@@ -4,7 +4,6 @@
 
 // TODO: Better logo (puntzak) & Favicon
 // TODO: Gather real testdata
-// TODO: First release & Github Pages (remove from gitignore)
 
 // TODO: Snackbar everywhere accessible for showing errors
 // TODO: Snack image wall -> toggle for order page ("graphic search")
