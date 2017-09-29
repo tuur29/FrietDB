@@ -12,7 +12,7 @@ import { GlobalsService } from 'globals.service';
     </md-card>
 
     <md-card class="small search">
-      <app-searchshop></app-searchshop>
+      <app-searchshop [shops]="shops"></app-searchshop>
     </md-card>
 
     <md-card class="full">
@@ -31,6 +31,45 @@ import { GlobalsService } from 'globals.service';
 export class HomeComponent implements OnInit {
 
   title: string;
+
+  shops: any[] = [
+    {
+      id: 1,
+      name: 'Frietshop',
+      street: 'Straat1',
+      number: '41',
+      municipality: "Gemeente",
+      lat: 51.673858,
+      lng: 7.815982,
+    },
+    {
+      id: 2,
+      name: 'Frietshop',
+      street: 'Straat2',
+      number: '334',
+      municipality: "Gemeente",
+      lat: 51.373858,
+      lng: 7.215982,
+    },
+    {
+      id: 3,
+      name: 'Frituur Nadine',
+      street: 'Straat3',
+      number: '2',
+      municipality: "Gemeente",
+      lat: 51.723858,
+      lng: 7.895982,
+    },
+    {
+      id: 4,
+      name: 'Langs de waterkant',
+      street: 'Straat4',
+      number: '55',
+      municipality: "Gemeente",
+      lat: 51.925,
+      lng: 8,
+    }
+  ];
 
   constructor(private globals: GlobalsService) {
     this.title = globals.title;

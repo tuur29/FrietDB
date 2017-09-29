@@ -1,6 +1,4 @@
-// TODO: Request browser location and center map there
-
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-map',
@@ -35,24 +33,51 @@ import { Component, Input, OnInit } from '@angular/core';
 
   `]
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit,OnChanges {
 
   @Input()
   shops: any[] = [];
 
   @Input()
-  lat: number = 51.723858;
+  lat: number;
 
   @Input()
-  lng: number = 7.895982;
+  lng: number;
 
   @Input()
   zoom: number = 8;
 
   constructor() {
+
   }
 
-  ngOnInit() {
+  setDefaultPosition() {
+    if (this.lat === undefined || this.lng === undefined) {
+      this.lat = 51.723858;
+      this.lng = 7.895982;
+    }
+  }
+
+  ngOnInit() {}
+
+  ngOnChanges() {
+
+    if (navigator.geolocation && (this.lat === undefined || this.lng === undefined)) {
+      
+      var that = this;
+      navigator.geolocation.getCurrentPosition(function(position) {
+        that.lat = position.coords.latitude;
+        that.lng = position.coords.longitude;
+
+      }, function() {
+        console.log('Failed to get location');
+        that.setDefaultPosition();
+      });
+      
+    } else {
+      this.setDefaultPosition();
+    }
+
   }
 
   infoWindowOpened = null;
