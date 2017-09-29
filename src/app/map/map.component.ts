@@ -1,31 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+// TODO: Request browser location and center map there
+
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-map',
   template: `
 
-    <md-card class="full">
-      <agm-map [latitude]="51.723858" [longitude]="7.895982" [zoom]="8">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
 
+      <agm-marker
+        *ngFor="let shop of shops"
+        (markerClick)="clickedMarker(shop.id, infoWindow)"
+        [latitude]="shop.lat"
+        [longitude]="shop.lng">
 
-        <agm-marker
-          *ngFor="let shop of shops"
-          (markerClick)="clickedMarker(shop.id, infoWindow)"
-          [latitude]="shop.lat"
-          [longitude]="shop.lng">
+        <agm-info-window #infoWindow>
+          <a [routerLink]="'/shop/'+shop.id">
+            <strong>{{shop.name}}</strong><br>
+            {{shop.street}} {{shop.number}},<br>
+            {{shop.municipality}}
+          </a>
+        </agm-info-window>
 
-          <agm-info-window #infoWindow>
-            <a [routerLink]="'/shop/'+shop.id">
-              <strong>{{shop.name}}</strong><br>
-              {{shop.location}}
-            </a>
-          </agm-info-window>
+      </agm-marker>
 
-        </agm-marker>
-
-
-      </agm-map>
-    </md-card>
+    </agm-map>
 
   `,
   styles: [`
@@ -38,36 +37,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
-  shops: any[] = [
-    {
-      id: 1,
-      name: 'Frietshop',
-      location: 'Straat, Gemeente',
-      lat: 51.673858,
-      lng: 7.815982,
-    },
-    {
-      id: 2,
-      name: 'Frietshop',
-      location: 'Straat1, Gemeente',
-      lat: 51.373858,
-      lng: 7.215982,
-    },
-    {
-      id: 3,
-      name: 'Frituur Nadine',
-      location: 'Straat2, Gemeente',
-      lat: 51.723858,
-      lng: 7.895982,
-    },
-    {
-      id: 4,
-      name: 'Langs de waterkant',
-      location: 'Straat, Gemeente',
-      lat: 51.925,
-      lng: 8,
-    }
-  ];
+  @Input()
+  shops: any[] = [];
+
+  @Input()
+  lat: number = 51.723858;
+
+  @Input()
+  lng: number = 7.895982;
+
+  @Input()
+  zoom: number = 8;
 
   constructor() {
   }

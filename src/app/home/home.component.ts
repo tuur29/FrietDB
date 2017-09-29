@@ -18,7 +18,7 @@ import 'rxjs/add/operator/map';
       <p>Begin je zoektocht naar de beste frituur en/of snacks door hieronder te zoeken of op de kaart een frituur te selecteren.</p>
     </md-card>
 
-    <md-card class="small">
+    <md-card class="small search">
       <form class="shop-form">
         <md-form-field color="accent" class="full-width">
           <input mdInput placeholder="Naam frituur" aria-label="Naam frituur" [mdAutocomplete]="auto" [formControl]="shopCtrl">
@@ -26,22 +26,23 @@ import 'rxjs/add/operator/map';
           <md-autocomplete #auto="mdAutocomplete">
             <md-option (onSelectionChange)="openShop(shop.id)" *ngFor="let shop of filteredShops | async" [value]="shop.name">
               <span>{{ shop.name }}</span> |
-              <small>Locatie: {{shop.location}}</small>
+              <small>{{shop.street}} {{shop.municipality}}</small>
             </md-option>
           </md-autocomplete>
         </md-form-field>
       </form>
     </md-card>
 
-    <app-map></app-map>
+    <md-card class="full">
+      <app-map [shops]="shops"></app-map>
+    </md-card>
+
     <app-login></app-login>
     
   `,
   styles: [`
 
-    .full-width {
-      width: 100%;
-    }
+
     
   `]
 })
@@ -55,22 +56,38 @@ export class HomeComponent implements OnInit {
     {
       id: 1,
       name: 'Frietshop',
-      location: 'Straat, Gemeente',
+      street: 'Straat1',
+      number: '41',
+      municipality: "Gemeente",
+      lat: 51.673858,
+      lng: 7.815982,
     },
     {
       id: 2,
       name: 'Frietshop',
-      location: 'Straat1, Gemeente',
+      street: 'Straat2',
+      number: '334',
+      municipality: "Gemeente",
+      lat: 51.373858,
+      lng: 7.215982,
     },
     {
       id: 3,
       name: 'Frituur Nadine',
-      location: 'Straat2, Gemeente',
+      street: 'Straat3',
+      number: '2',
+      municipality: "Gemeente",
+      lat: 51.723858,
+      lng: 7.895982,
     },
     {
       id: 4,
       name: 'Langs de waterkant',
-      location: 'Straat, Gemeente',
+      street: 'Straat4',
+      number: '55',
+      municipality: "Gemeente",
+      lat: 51.925,
+      lng: 8,
     }
   ];
 
@@ -86,7 +103,8 @@ export class HomeComponent implements OnInit {
   filterShops(query: string) {
     return this.shops.filter(shop =>
       shop.name.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
-      shop.location.toLowerCase().indexOf(query.toLowerCase()) > -1
+      shop.street.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
+      shop.municipality.toLowerCase().indexOf(query.toLowerCase()) > -1
     );
   }
 

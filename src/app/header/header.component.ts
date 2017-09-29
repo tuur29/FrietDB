@@ -7,7 +7,7 @@ import { GlobalsService } from 'globals.service';
   
     <md-toolbar color="primary">
 
-      <md-icon>explore</md-icon>
+      <md-icon>restaurant_menu</md-icon>
       <a routerLink="/">{{title}}</a>
 
       <span class="spacer"></span>

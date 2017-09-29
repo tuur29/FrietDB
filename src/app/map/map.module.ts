@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MapComponent } from './map.component';
 import { AgmCoreModule } from '@agm/core';
-import { MatCardModule } from '@angular/material';
 
 @NgModule({
   imports: [
   	CommonModule,
+  	RouterModule,
   	AgmCoreModule,
-  	MatCardModule,
   ],
-  exports: [AgmCoreModule],
-  declarations: []
+  exports: [AgmCoreModule, MapComponent],
+  declarations: [MapComponent]
 })
 export class MapModule { }

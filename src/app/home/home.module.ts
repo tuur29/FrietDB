@@ -5,10 +5,9 @@ import { CommonModule } from '@angular/common';
 import { MapModule } from '../map/map.module';
 
 import { HomeComponent } from './home.component';
-import { MapComponent } from '../map/map.component';
 import { LoginComponent } from '../login/login.component';
 
-import { MatIconModule,MatButtonModule, MatCardModule,MatAutocompleteModule,MatInputModule } from '@angular/material';
+import { MatIconModule,MatButtonModule,MatCardModule,MatAutocompleteModule,MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -16,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
   	RouterModule,
     CommonModule,
-
+    
     MapModule,
 
     MatIconModule,
@@ -28,9 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
   ],
   declarations: [
-  	HomeComponent,
+    HomeComponent,
     LoginComponent,
-    MapComponent,
   ]
 })
 export class HomeModule { }
