@@ -1,3 +1,5 @@
+// TODO: Hide edit list buttons on print view
+
 import { Component, OnInit } from '@angular/core';
 
 import { GreaterThanPipe } from './filter-snacks.pipe';

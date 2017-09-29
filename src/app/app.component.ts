@@ -1,13 +1,23 @@
+// TODO: Logged in -> Add & edit shops 
+// TODO: Ask for account (register) form
+// TODO: Better logo (puntzak)
+// TODO: Gather real testdata
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app',
   template: `
 
-    <app-header></app-header>
-    <div class="container">
-      <router-outlet></router-outlet>
-      <footer>Copyright ...</footer>
+    <div class="mat-typography">
+
+      <app-header></app-header>
+      
+      <div class="container">
+        <router-outlet></router-outlet>
+        <footer>Copyright © 2017 Tuur Lievens.</footer>
+      </div>
+
     </div>
   
   `,
