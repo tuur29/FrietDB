@@ -1,8 +1,14 @@
-// TODO: Logged in -> Add & edit shops 
-// TODO: Ask for account (register) form
-// TODO: Better logo (puntzak)
+// TODO: Logged in -> Add & edit shops  (Expansion Panels)
+// TODO: Ask for account (+- register) form
+// TODO: Loading spinner
+
+// TODO: Better logo (puntzak) & Favicon
 // TODO: Gather real testdata
 // TODO: First release & Github Pages (remove from gitignore)
+
+// TODO: Snackbar everywhere accessible for showing errors
+// TODO: Snack image wall -> toggle for order page ("graphic search")
+// TODO: Heatmap card with most frituren in de buurt
 
 import { Component } from '@angular/core';
 

@@ -1,4 +1,4 @@
-// TODO: Don't load separate shops variable
+// TODO: Better name for Order page
 
 import { Component, Input, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
@@ -15,7 +15,7 @@ import { GlobalsService } from 'globals.service';
       <span class="spacer"></span>
 
       <app-searchshop [shops]="shops" [inline]="true"></app-searchshop>
-      <a routerLink="order">Order</a>
+      <a routerLink="order">Bestelling</a>
     </md-toolbar>
 
   `,

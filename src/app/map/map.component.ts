@@ -12,7 +12,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
         [latitude]="shop.lat"
         [longitude]="shop.lng">
 
-        <agm-info-window #infoWindow>
+        <agm-info-window #infoWindow [isOpen]="shop.infoWindowOpened">
           <a [routerLink]="'/shop/'+shop.id">
             <strong>{{shop.name}}</strong><br>
             {{shop.street}} {{shop.number}},<br>
@@ -48,7 +48,6 @@ export class MapComponent implements OnInit,OnChanges {
   zoom: number = 8;
 
   constructor() {
-
   }
 
   setDefaultPosition() {
@@ -62,6 +61,8 @@ export class MapComponent implements OnInit,OnChanges {
 
   ngOnChanges() {
 
+    this.shops.forEach(function(s) { s.infoWindowOpened = false });
+
     if (navigator.geolocation && (this.lat === undefined || this.lng === undefined)) {
       
       var that = this;
@@ -70,12 +71,16 @@ export class MapComponent implements OnInit,OnChanges {
         that.lng = position.coords.longitude;
 
       }, function() {
-        console.log('Failed to get location');
         that.setDefaultPosition();
       });
       
     } else {
       this.setDefaultPosition();
+    }
+
+    if (this.shops.length == 1) {
+      this.shops[0].infoWindowOpened = true;
+      this.lat = this.lat + 0.003;
     }
 
   }

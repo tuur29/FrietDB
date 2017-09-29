@@ -1,7 +1,5 @@
-// TODO: Hide edit list buttons on print view
-
 import { Component, OnInit } from '@angular/core';
-
+import { DialogsService } from '../dialogs/dialogs.service';
 import { GreaterThanPipe } from './filter-snacks.pipe';
 
 import {Router,NavigationStart} from '@angular/router'
@@ -11,7 +9,6 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
 import {MdOptionSelectionChange} from '@angular/material';
-
 
 @Component({
   selector: 'app-order',
@@ -25,21 +22,31 @@ import {MdOptionSelectionChange} from '@angular/material';
      <md-card class="small search">
       <form class="snacks-form">
         <md-form-field color="accent" class="full-width">
+
+          <button md-icon-button mdPrefix>
+            <md-icon>search</md-icon>
+          </button>
+
           <input mdInput placeholder="Snack" aria-label="Snack" [mdAutocomplete]="auto" [formControl]="snackCtrl">
-          <md-icon mdSuffix>search</md-icon>
+
+          <button *ngIf="snackCtrl.value" mdSuffix md-icon-button aria-label="Reset" (click)="snackCtrl.reset()">
+          <md-icon>close</md-icon>
+        </button>
+          
           <md-autocomplete #auto="mdAutocomplete">
             <md-option (onSelectionChange)="pickSnack($event,snack.id)" *ngFor="let snack of filteredSnacks | async | orderBy: ['name']" [value]="snack.name">
-                <span>{{ snack.name }}</span> |
+                <span>{{snack.name}}</span>
               <small>{{snack.type}}</small>
             </md-option>
           </md-autocomplete>
+
         </md-form-field>
       </form>
     </md-card>
 
     <div *ngIf="snacksAdded">
 
-      <md-card class="list">
+      <md-card class="list small">
         <h2>Bestelling</h2>
         <md-list>
 
@@ -49,7 +56,11 @@ import {MdOptionSelectionChange} from '@angular/material';
 
               <md-icon mdListIcon>check_box</md-icon>
               <span *ngIf="snack.count > 0">
-                {{snack.name}}: {{snack.count}}
+                {{snack.count}}x 
+                <span (click)="openDialog(snack)" class="link">
+                  {{snack.name}}
+                  <md-icon *ngIf="snack.image || snack.link">open_in_new</md-icon>
+                </span>
               </span>
 
               <span class="spacer"></span>
@@ -88,7 +99,7 @@ import {MdOptionSelectionChange} from '@angular/material';
   styles: [`
 
     @media print {
-      md-card:not(.list), md-card.list md-card-actions {
+      md-card:not(.list), md-card.list md-card-actions, md-card.list button, .link md-icon {
         display: none;
       }
     }
@@ -100,8 +111,14 @@ import {MdOptionSelectionChange} from '@angular/material';
     .right {
       float: right;
     }
-    .spacer {
-      flex: 1 1 auto;
+
+    .link  {
+      cursor: pointer;
+    }
+
+    .link md-icon {
+      font-size: 1.25em;
+      vertical-align: sub;
     }
 
   `]
@@ -119,37 +136,37 @@ export class OrderComponent implements OnInit {
       id: 1,
       name: 'Hamburger',
       type: 'Snack',
-      count: 0,
+      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
     },
     {
       id: 2,
       name: 'Klein pakje',
       type: 'Frieten',
-      count: 0,
     },
     {
       id: 3,
       name: 'Sate',
       type: 'Snack',
-      count: 0,
+      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
     },
     {
       id: 4,
       name: 'Lucifer',
       type: 'Snack',
-      count: 0,
+      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
+      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
     },
     {
       id: 5,
       name: 'Joppie',
       type: 'Saus',
-      count: 0,
+      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
+      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
     },
     {
       id: 6,
       name: 'Ketchup',
       type: 'Saus',
-      count: 0,
     }
   ];
 
@@ -174,7 +191,13 @@ export class OrderComponent implements OnInit {
     },
   ];
 
-  constructor(private r: Router, private greaterThanPipe: GreaterThanPipe) {
+  constructor(
+    private r: Router,
+    private greaterThanPipe: GreaterThanPipe,
+    private dialogsService: DialogsService) {
+
+    this.snacks.forEach(function(s) { s.count = 0 });
+
     this.snackCtrl = new FormControl();
     this.filteredSnacks = this.snackCtrl.valueChanges
       .startWith(null)
@@ -198,8 +221,6 @@ export class OrderComponent implements OnInit {
   }
 
   pickSnack(event, id: number) {
-    
-    console.log(event)
 
     if (event.source.selected) {
       this.snacksAdded = true;
@@ -214,6 +235,11 @@ export class OrderComponent implements OnInit {
 
     // request and reload filtered shops
 
+  }
+
+  openDialog(snack) {
+    if (snack.image || snack.link)
+      this.dialogsService.snackinfo(snack.id);
   }
 
   resetOrder() {

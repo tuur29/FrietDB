@@ -14,9 +14,15 @@ import 'rxjs/add/operator/map';
     <form class="shop-form">
       <md-form-field color="accent" class="full-width" [floatPlaceholder]="inline?'never':''">
 
-        <input mdInput placeholder="Zoek frituur" aria-label="Zoek frituur" [mdAutocomplete]="auto" [formControl]="shopCtrl">
+        <button md-icon-button mdPrefix>
+          <md-icon>search</md-icon>
+        </button>
 
-        <md-icon mdSuffix>search</md-icon>
+        <input mdInput placeholder="Zoek naar een frituur" aria-label="Zoek naar een frituur" [mdAutocomplete]="auto" [formControl]="shopCtrl">
+
+        <button *ngIf="shopCtrl.value" mdSuffix md-icon-button aria-label="Reset" (click)="shopCtrl.reset()">
+          <md-icon>close</md-icon>
+        </button>
 
         <md-autocomplete #auto="mdAutocomplete">
           <md-option (onSelectionChange)="openShop(shop.id)" *ngFor="let shop of filteredShops | async" [value]="shop.name">

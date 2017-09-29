@@ -7,9 +7,11 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule } from '@angular/material';
 
+import { MarkdownModule } from 'angular2-markdown';
 import { AgmCoreModule } from '@agm/core';
 import { LAZY_MAPS_API_CONFIG } from '@agm/core/services';
 
+import { DialogsModule } from './dialogs/dialogs.module';
 import { GlobalsService } from 'globals.service';
 import { KeysService } from 'keys.service';
 
@@ -32,10 +34,12 @@ import { OrderModule } from './order/order.module';
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot(),
+    MarkdownModule.forRoot(),
 
     MatToolbarModule,
     MatIconModule,
 
+    DialogsModule,
     SearchShopModule,
     ErrorModule,
     HomeModule,
@@ -46,7 +50,7 @@ import { OrderModule } from './order/order.module';
     GlobalsService,
     {provide: LAZY_MAPS_API_CONFIG, useClass: KeysService},
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(private globals: GlobalsService) {
