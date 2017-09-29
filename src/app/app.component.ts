@@ -2,6 +2,7 @@
 // TODO: Ask for account (register) form
 // TODO: Better logo (puntzak)
 // TODO: Gather real testdata
+// TODO: First release & Github Pages (remove from gitignore)
 
 import { Component } from '@angular/core';
 

@@ -15,9 +15,8 @@ import { KeysService } from 'keys.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-
 import { MapComponent } from './map/map.component';
-import { MapModule } from './map/map.module';
+import { SearchShopComponent } from './searchshop/searchshop.component';
 
 import { ErrorModule } from './error/error.module';
 import { HomeModule } from './home/home.module';
