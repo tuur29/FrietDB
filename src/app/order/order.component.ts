@@ -89,9 +89,6 @@ import {MdOptionSelectionChange} from '@angular/material';
       md-card:not(.list), md-card.list md-card-actions {
         display: none;
       }
-      md-card.list{
-        box-shadow: none;
-      }
     }
 
     md-list-item span {
