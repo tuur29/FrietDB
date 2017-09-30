@@ -1,11 +1,8 @@
-// TODO: Share functionality (send email?, copy markdown to clipboard?, native smartphone share)
-// TODO: Prevent reload with alert when snacks added
-
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DialogsService } from '../dialogs/dialogs.service';
 import { GreaterThanPipe } from './filter-snacks.pipe';
 
-import {Router,NavigationStart} from '@angular/router'
+import {Router,NavigationStart} from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -22,6 +19,21 @@ import {MdOptionSelectionChange} from '@angular/material';
       <p>Met deze tool kan je makkelijk de dichtste frituur vinden waar ze al jouw favoriete snacks hebben. Als extraatje kan je ook een handig briefje afdrukken om mee te nemen naar de frituur!</p>
     </md-card>
 
+    <md-grid-list cols="3" rowHeight="5:3" gutterSize="7" class="quickpick">
+      <md-grid-tile *ngFor="let snack of (snacks | filterBy: ['favorite']: true | sample: 6) ">
+
+        <button md-raised-button
+          (click)="pickSnack(snack.id)"
+          [style.backgroundImage]="'url('+ snack.image +')'"
+          [mdTooltip]="snack.name+' toevoegen'"
+          mdTooltipPosition="below"
+          color="accent">
+          <span *ngIf="!snack.image">{{snack.name}}</span>
+        </button>
+
+      </md-grid-tile>
+    </md-grid-list>
+
      <md-card class="small search">
       <form class="snacks-form">
         <md-form-field color="accent" class="full-width">
@@ -37,7 +49,7 @@ import {MdOptionSelectionChange} from '@angular/material';
         </button>
           
           <md-autocomplete #auto="mdAutocomplete">
-            <md-option (onSelectionChange)="pickSnack($event,snack.id)" *ngFor="let snack of filteredSnacks | async | orderBy: ['name']" [value]="snack.name">
+            <md-option (onSelectionChange)="pickSnack(snack.id,$event)" *ngFor="let snack of filteredSnacks | async | orderBy: ['name']" [value]="snack.name">
                 <span>{{snack.name}}</span>
               <small>{{snack.type}}</small>
             </md-option>
@@ -87,7 +99,7 @@ import {MdOptionSelectionChange} from '@angular/material';
         </md-list>
         <md-card-actions>
           <button md-button (click)="print()">PRINT</button>
-          <button md-button>SHARE</button>
+          <button md-button (click)="email()">EMAIL</button>
           <button md-button class="right" color="warn" (click)="resetOrder()">RESET</button>
         </md-card-actions>
       </md-card>
@@ -105,6 +117,21 @@ import {MdOptionSelectionChange} from '@angular/material';
       md-card:not(.list), md-card.list md-card-actions, md-card.list button, .link md-icon {
         display: none;
       }
+    }
+
+    /* .quickpick {
+      max-width: 600px;
+      margin: 0 auto;
+    } */
+
+    .quickpick button {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-size: 1.5em;
     }
 
     md-list-item span {
@@ -128,6 +155,8 @@ import {MdOptionSelectionChange} from '@angular/material';
 })
 export class OrderComponent implements OnInit {
 
+  private confirmText: string = "Je bestelling wordt niet opgeslagen, ben je zeker dat je naar een andere pagina wilt gaan?";
+
   snacksAdded = false;
   selectedValue: string;
   router: Router;
@@ -139,7 +168,8 @@ export class OrderComponent implements OnInit {
       id: 1,
       name: 'Hamburger',
       type: 'Snack',
-      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
+      image: 'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg',
+      favorite: true
     },
     {
       id: 2,
@@ -156,8 +186,9 @@ export class OrderComponent implements OnInit {
       id: 4,
       name: 'Lucifer',
       type: 'Snack',
-      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
+      image: 'http://www.vanhoofonline.be/uploads/Producten/MoraLucifer.gif',
       link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
+      favorite: true
     },
     {
       id: 5,
@@ -170,6 +201,7 @@ export class OrderComponent implements OnInit {
       id: 6,
       name: 'Ketchup',
       type: 'Saus',
+      favorite: true
     }
   ];
 
@@ -205,16 +237,22 @@ export class OrderComponent implements OnInit {
     this.filteredSnacks = this.snackCtrl.valueChanges
       .startWith(null)
       .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
-   
+
     this.router = r;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart)
         if (event.url != "/order" && this.router.url == "/order")
           if (this.snacksAdded)
-            if (!confirm("Je bestelling wordt niet opgeslagen, ben je zeker dat je naar een andere pagina wilt gaan?"))
+            if (!confirm(this.confirmText))
               this.router.navigate(['/order']);
     });
 
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  beforeunloadHandler(event) {
+    if (this.snacksAdded)
+      return false;
   }
 
   filterSnacks(query: string) {
@@ -223,9 +261,9 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  pickSnack(event, id: number) {
+  pickSnack(id: number, event?) {
 
-    if (event.source.selected) {
+    if (event === undefined || event.source.selected) {
       this.snacksAdded = true;
       this.snacks.find(s=>s.id===id).count++;
 
@@ -261,6 +299,17 @@ export class OrderComponent implements OnInit {
 
   print() {
     window.print();
+  }
+
+  email() {
+    let link: string = '\n\n';
+
+    this.greaterThanPipe.transform(this.snacks,"count",0).forEach(function(s){
+
+      link += '\t- '+s.count+'x '+s.name+'\n';
+    });
+
+    window.open('mailto:?subject=Lijst%20frieten&body='+encodeURIComponent(link+'\n'));
   }
 
   ngOnInit() {

@@ -8,7 +8,7 @@ import { MapModule } from '../map/map.module';
 import { NgPipesModule } from 'ngx-pipes';
 import { GreaterThanPipe, LessThanPipe } from './filter-snacks.pipe';
 
-import { MatIconModule,MatButtonModule,MatCardModule,MatAutocompleteModule,MatInputModule,MatListModule } from '@angular/material';
+import { MatIconModule,MatButtonModule,MatCardModule,MatAutocompleteModule,MatInputModule,MatListModule,MatGridListModule,MatTooltipModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -20,6 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
     MapModule,
     
+    MatTooltipModule,
+    MatGridListModule,
     MatIconModule,
     MatButtonModule,
     MatListModule,

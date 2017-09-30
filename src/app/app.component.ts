@@ -5,7 +5,6 @@
 // TODO: Add & edit shops (new page with expansion Panels, add link on shop page)
 // TODO: Review edits (list) -> all inputs disabled except accept or deny
 // TODO: Ask for account (+- register) form -> popup
-// TODO: Snack image wall -> toggle for order page (most picked or top via cookie)
 // TODO: Heatmap card with most frituren in de buurt
 
 import { Component } from '@angular/core';
