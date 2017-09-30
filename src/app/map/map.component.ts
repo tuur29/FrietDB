@@ -1,6 +1,7 @@
 // TODO: Smart define zoom level based on most results visible
 
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { GlobalsService } from 'globals.service';
 import { MapsAPILoader,GoogleMapsAPIWrapper } from '@agm/core';
 
 declare var google: any;
@@ -42,6 +43,8 @@ declare var google: any;
 })
 export class MapComponent implements OnInit,OnChanges {
 
+  // variables
+
   @Input() shops: any[] = [];
   @Input() markers: boolean = true;
   @Input() heatmap: boolean = false;
@@ -51,10 +54,12 @@ export class MapComponent implements OnInit,OnChanges {
   @Input() zoom: number = 8;
 
   constructor(
+    private globals: GlobalsService,
     private mapsAPILoader: MapsAPILoader,
-    private googleMapsAPIWrapper: GoogleMapsAPIWrapper
+    private googleMapsAPIWrapper: GoogleMapsAPIWrapper,
   ) { }
 
+  // add heatmap
   onMapLoad(map) {
 
     if (this.heatmap) {
@@ -73,10 +78,11 @@ export class MapComponent implements OnInit,OnChanges {
 
   }
 
+  // get default map center when location permission denied & not on shop page
   setDefaultPosition() {
     if (this.lat === undefined || this.lng === undefined) {
-      this.lat = 51.723858;
-      this.lng = 7.895982;
+      this.lat = this.globals.defaultLat;
+      this.lng = this.globals.defaultLng;
     }
   }
 
@@ -85,8 +91,7 @@ export class MapComponent implements OnInit,OnChanges {
 
   ngOnChanges() {
 
-    this.shops.forEach(function(s) { s.infoWindowOpened = false });
-
+    // Ask for location permission
     if (navigator.geolocation && (this.lat === undefined || this.lng === undefined)) {
       
       var that = this;
@@ -102,12 +107,17 @@ export class MapComponent implements OnInit,OnChanges {
       this.setDefaultPosition();
     }
 
+    // Open info window if only one marker displayed
+    this.shops.forEach(function(s) { s.infoWindowOpened = false });
+
     if (this.shops.length == 1) {
       this.shops[0].infoWindowOpened = true;
       this.lat = this.lat + 0.003;
     }
 
   }
+
+  // Open infowindow on marker click
 
   infoWindowOpened = null;
 

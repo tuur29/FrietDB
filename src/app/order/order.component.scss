@@ -1,0 +1,37 @@
+@media print {
+  md-card:not(.list), md-card.list md-card-actions, md-card.list button, .link md-icon {
+    display: none;
+  }
+}
+
+/* .quickpick {
+  max-width: 600px;
+  margin: 0 auto;
+} */
+
+.quickpick button {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 1.5em;
+}
+
+md-list-item span {
+  margin: 5px;
+}
+
+.right {
+  float: right;
+}
+
+.link  {
+  cursor: pointer;
+}
+
+.link md-icon {
+  font-size: 1.25em;
+  vertical-align: sub;
+}

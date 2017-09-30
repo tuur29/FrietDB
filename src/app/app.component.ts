@@ -2,7 +2,6 @@
 // TODO: Gather real testdata
 // TODO: Loading spinner
 
-// TODO: Break apart larger pages into html file
 // TODO: Add & edit shops (new page with expansion Panels, add link on shop page)
 // TODO: Review edits (list) -> all inputs disabled except accept or deny
 

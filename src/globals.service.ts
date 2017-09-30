@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
 export class GlobalsService {
 	title: string;
 
+  defaultLat: number = 51.723858;
+  defaultLng: number = 7.895982;
+
   // Temporary static data
   shops: any[] = [
   {
