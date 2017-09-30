@@ -15,23 +15,24 @@ import { MdDialogRef } from '@angular/material';
       <md-form-field color="accent">
         <input type="email" required mdInput placeholder="E-mailadres">
       </md-form-field>
+    
+      <div md-dialog-actions>
+        <button type="submit" md-raised-button color="accent">
+          <md-icon>send</md-icon> Verstuur
+        </button>
 
-      <button type="submit" md-raised-button color="accent">
-        <md-icon>send</md-icon> Verstuur
-      </button>
+        <span class="spacer"></span>
+
+        <button md-button md-dialog-close color="warn">SLUITEN</button>
+      </div>
 
     </form>
-    
-    <div md-dialog-actions>
-      <span class="spacer"></span>
-      <button md-button md-dialog-close color="warn">SLUITEN</button>
-    </div>
 
   `,
   styles: [`
 
-    form button {
-      margin-top: 20px;
+    .spacer {
+      width: 10px;
     }
 
     form button md-icon {
