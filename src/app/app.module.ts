@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
 import { SearchShopModule } from './searchshop/searchshop.module';
+import { HeatmapModule } from './heatmap/heatmap.module';
 import { ErrorModule } from './error/error.module';
 import { HomeModule } from './home/home.module';
 import { ShopModule } from './shop/shop.module';
@@ -34,7 +35,10 @@ import { OrderModule } from './order/order.module';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    AgmCoreModule.forRoot({apiKey: environment.mapskey}),
+    AgmCoreModule.forRoot({
+      apiKey: environment.mapskey,
+      libraries: ["visualization"]
+    }),
     MarkdownModule.forRoot(),
 
     MatToolbarModule,
@@ -44,13 +48,14 @@ import { OrderModule } from './order/order.module';
     MessagesModule,
     SearchShopModule,
     
+    HeatmapModule,
     ErrorModule,
     HomeModule,
     ShopModule,
     OrderModule,
   ],
   providers: [
-    GlobalsService,
+    GlobalsService
   ],
   bootstrap: [AppComponent],
 })

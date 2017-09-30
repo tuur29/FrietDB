@@ -105,7 +105,7 @@ import {MdOptionSelectionChange} from '@angular/material';
       </md-card>
 
       <md-card class="full">
-        <app-map [shops]="filteredShops"></app-map>
+        <app-map [shops]="filteredShops" [heatmap]="true"></app-map>
       </md-card>
 
     </div>

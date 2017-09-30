@@ -1,26 +1,33 @@
+// TODO: Smart define zoom level based on most results visible
+
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { MapsAPILoader,GoogleMapsAPIWrapper } from '@agm/core';
+
+declare var google: any;
 
 @Component({
   selector: 'app-map',
   template: `
 
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="onMapLoad($event)">
 
-      <agm-marker
-        *ngFor="let shop of shops"
-        (markerClick)="clickedMarker(shop.id, infoWindow)"
-        [latitude]="shop.lat"
-        [longitude]="shop.lng">
+      <ng-container *ngIf="markers">
+        <agm-marker
+          *ngFor="let shop of shops"
+          (markerClick)="clickedMarker(shop.id, infoWindow)"
+          [latitude]="shop.lat"
+          [longitude]="shop.lng">
 
-        <agm-info-window #infoWindow [isOpen]="shop.infoWindowOpened">
-          <a [routerLink]="'/shop/'+shop.id">
-            <strong>{{shop.name}}</strong><br>
-            {{shop.street}} {{shop.number}},<br>
-            {{shop.municipality}}
-          </a>
-        </agm-info-window>
+          <agm-info-window #infoWindow [isOpen]="shop.infoWindowOpened">
+            <a [routerLink]="'/shop/'+shop.id">
+              <strong>{{shop.name}}</strong><br>
+              {{shop.street}} {{shop.number}},<br>
+              {{shop.municipality}}
+            </a>
+          </agm-info-window>
 
-      </agm-marker>
+        </agm-marker>
+      </ng-container>
 
     </agm-map>
 
@@ -35,19 +42,35 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit,OnChanges {
 
-  @Input()
-  shops: any[] = [];
+  @Input() shops: any[] = [];
+  @Input() markers: boolean = true;
+  @Input() heatmap: boolean = false;
+  
+  @Input() lat: number;
+  @Input() lng: number;
+  @Input() zoom: number = 8;
 
-  @Input()
-  lat: number;
+  constructor(
+    private mapsAPILoader: MapsAPILoader,
+    private googleMapsAPIWrapper: GoogleMapsAPIWrapper
+  ) { }
 
-  @Input()
-  lng: number;
+  onMapLoad(map) {
 
-  @Input()
-  zoom: number = 8;
+    if (this.heatmap) {
 
-  constructor() {
+      let data = this.shops.map(function(s) {
+        return new google.maps.LatLng(s.lat, s.lng);
+      });
+
+      let heatmap = new google.maps.visualization.HeatmapLayer({
+        data: data,
+        radius: 35,
+        opacity: 0.7,
+        map: map
+      });
+    }
+
   }
 
   setDefaultPosition() {
@@ -57,7 +80,8 @@ export class MapComponent implements OnInit,OnChanges {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   ngOnChanges() {
 

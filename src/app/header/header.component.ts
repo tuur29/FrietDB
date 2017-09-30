@@ -16,12 +16,13 @@ import { GlobalsService } from 'globals.service';
 
       <app-searchshop [shops]="shops" [inline]="true"></app-searchshop>
       <a routerLink="order">Bestelling</a>
+      <a routerLink="heatmap">Heatmap</a>
     </md-toolbar>
 
   `,
   styles: [`
 
-    @media (max-width: 500px) {
+    @media (max-width: 550px) {
       app-searchshop {
         display: none;
       }
