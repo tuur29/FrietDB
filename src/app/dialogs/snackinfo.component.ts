@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
+import { GlobalsService } from 'globals.service';
 
 @Component({
   selector: 'app-snackinfo',
@@ -32,15 +33,14 @@ export class SnackInfoDialog implements OnInit {
 
   public reqId: number;
 
-  snack = {
-      id: 7,
-      name: 'Kipkorn',
-      type: 'Snack',
-      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
-      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-  };
+  snack;
 
-  constructor(public dialogRef: MdDialogRef<SnackInfoDialog>) { }
+  constructor(
+    private globals: GlobalsService,
+    public dialogRef: MdDialogRef<SnackInfoDialog>
+  ) {
+    this.snack = globals.snacks[0];
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

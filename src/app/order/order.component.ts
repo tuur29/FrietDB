@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { GlobalsService } from 'globals.service';
 import { DialogsService } from '../dialogs/dialogs.service';
 import { GreaterThanPipe } from './filter-snacks.pipe';
 
@@ -157,79 +158,23 @@ export class OrderComponent implements OnInit {
 
   private confirmText: string = "Je bestelling wordt niet opgeslagen, ben je zeker dat je naar een andere pagina wilt gaan?";
 
-  snacksAdded = false;
-  selectedValue: string;
+  snacksAdded: boolean = false;
   router: Router;
 
   snackCtrl: FormControl;
   filteredSnacks: Observable<any[]>;
-  snacks: any[] = [
-    {
-      id: 1,
-      name: 'Hamburger',
-      type: 'Snack',
-      image: 'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg',
-      favorite: true
-    },
-    {
-      id: 2,
-      name: 'Klein pakje',
-      type: 'Frieten',
-    },
-    {
-      id: 3,
-      name: 'Sate',
-      type: 'Snack',
-      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-    },
-    {
-      id: 4,
-      name: 'Lucifer',
-      type: 'Snack',
-      image: 'http://www.vanhoofonline.be/uploads/Producten/MoraLucifer.gif',
-      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-      favorite: true
-    },
-    {
-      id: 5,
-      name: 'Joppie',
-      type: 'Saus',
-      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
-      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-    },
-    {
-      id: 6,
-      name: 'Ketchup',
-      type: 'Saus',
-      favorite: true
-    }
-  ];
+  snacks: any[];
 
-  filteredShops: any[] = [
-    {
-      id: 2,
-      name: 'Frietshop',
-      street: 'Straat2',
-      number: '334',
-      municipality: "Gemeente",
-      lat: 51.373858,
-      lng: 7.215982,
-    },
-    {
-      id: 3,
-      name: 'Frituur Nadine',
-      street: 'Straat3',
-      number: '2',
-      municipality: "Gemeente",
-      lat: 51.723858,
-      lng: 7.895982,
-    },
-  ];
+  filteredShops: any[];
 
   constructor(
     private r: Router,
+    private globals: GlobalsService,
     private greaterThanPipe: GreaterThanPipe,
     private dialogsService: DialogsService) {
+
+    this.filteredShops = globals.shops;
+    this.snacks = globals.snacks;
 
     this.snacks.forEach(function(s) { s.count = 0 });
 

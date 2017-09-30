@@ -1,9 +1,9 @@
-// TODO: Break very long snack names
 // TODO: Load ratings & price/quality from third party api (link & min number of reviews)
 
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DialogsService } from '../dialogs/dialogs.service';
+import { GlobalsService } from 'globals.service';
 
 @Component({
   selector: 'app-shop',
@@ -115,69 +115,17 @@ export class ShopComponent implements OnInit, OnDestroy {
   private subroute: any;
   private reqId: any;
 
-  shop = {
-    id: 1,
-    name: 'Frituur Patat',
-    image: 'http://www.frituurlatem.be/fotos/header.jpg',
-    description: `
-    Frituur Patat serveert een groot assortiment gefrituurde snacks. Wij zijn de enige in Oostakker die bovendien échte Bicky burgers maakt. Bekijk onze frieten en snacks.
+  shop;
+  snacks: any[];
 
-    Wij hebben in huis:
-    - Frieten
-    - Snacks
-    - Belegde broodjes
-    - Wamre schotels
-    `,
-    street: 'Eeenheeelelaaangeestraaatnaaam',
-    number: '1',
-    municipality: "Gemeente",
-    telephone: '04 00 00 00 00',
-    email: 'friet@shop.be',
-    website: 'www.frituurpatat.be',
-    lat: 51.4,
-    lng: 7.9,
-  };
-
-  snacks: any[] = [
-    {
-      id: 1,
-      name: 'Hamburger',
-      type: 'Snack',
-    },
-    {
-      id: 2,
-      name: 'Klein pakje',
-      type: 'Frieten',
-    },
-    {
-      id: 3,
-      name: 'Sate',
-      type: 'Snack',
-      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
-      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-    },
-    {
-      id: 4,
-      name: 'Eenheellangesnacknaam',
-      type: 'Snack',
-      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-    },
-    {
-      id: 5,
-      name: 'Joppie',
-      type: 'Saus',
-      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
-    },
-    {
-      id: 6,
-      name: 'Ketchup',
-      type: 'Saus',
-      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
-      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-    }
-  ];
-
-  constructor(private route: ActivatedRoute, private dialogsService: DialogsService) { }
+  constructor(
+    private globals: GlobalsService,
+    private route: ActivatedRoute,
+    private dialogsService: DialogsService,
+  ) {
+    this.shop = globals.shops[0];
+    this.snacks = globals.snacks;
+  }
 
   ngOnInit() {
     this.subroute = this.route.params.subscribe(params => {
