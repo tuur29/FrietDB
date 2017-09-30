@@ -18,12 +18,21 @@ You will need a [Google Maps Javascript API key](https://developers.google.com/m
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Build
+## Build & Deploy
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-When publishing to Github Pages you should use this command: `ng build --prod --base-href "https://USERNAME.github.io/REPOSITORY_NAME/"`
-Next you should push your dist/ folder to the gh-pages branch with: `git subtree push --prefix dist origin gh-pages`. Also don't forget to remove your api keys in the generated main.js file (search for "api")!
+When building for Github Pages you should build with add: `--base-href "https://USERNAME.github.io/REPOSITORY_NAME/"`.
+
+To publish it, remove `/dist` from `.gitignore`, make a local commit and push to the gh-pages branch with:
+
+```
+$ git push origin `git subtree split --prefix dist master`:gh-pages --force
+```
+
+Lastly undo the edit in `.gitignore` and reset your master branch with `git reset HEAD~`.
+
+[More Info](http://clontz.org/blog/2014/05/08/git-subtree-push-for-deployment/)
 
 ## Further help
 
