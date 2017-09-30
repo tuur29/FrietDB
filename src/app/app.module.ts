@@ -19,7 +19,9 @@ import { GlobalsService } from 'globals.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
+import { LoginModule } from './login/login.module';
 import { SearchShopModule } from './searchshop/searchshop.module';
+
 import { HeatmapModule } from './heatmap/heatmap.module';
 import { ErrorModule } from './error/error.module';
 import { HomeModule } from './home/home.module';
@@ -47,6 +49,7 @@ import { OrderModule } from './order/order.module';
     DialogsModule,
     MessagesModule,
     SearchShopModule,
+    LoginModule,
     
     HeatmapModule,
     ErrorModule,

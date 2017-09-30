@@ -19,7 +19,9 @@ import { GlobalsService } from 'globals.service';
       <app-map [shops]="shops"></app-map>
     </md-card>
 
-    <app-login></app-login>
+    <md-card>
+      <app-login></app-login>
+    </md-card>
     
   `,
   styles: [`

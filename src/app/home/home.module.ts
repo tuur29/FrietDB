@@ -3,13 +3,12 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { MapModule } from '../map/map.module';
+import { LoginModule } from '../login/login.module';
 import { SearchShopModule } from '../searchshop/searchshop.module';
 
 import { HomeComponent } from './home.component';
-import { LoginComponent } from '../login/login.component';
 
-import { MatCardModule,MatButtonModule,MatInputModule } from '@angular/material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -17,17 +16,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     
     MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
 
+    LoginModule,
     MapModule,
     SearchShopModule,
   ],
   declarations: [
     HomeComponent,
-    LoginComponent,
   ]
 })
 export class HomeModule { }

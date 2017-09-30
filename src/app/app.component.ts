@@ -4,7 +4,6 @@
 
 // TODO: Add & edit shops (new page with expansion Panels, add link on shop page)
 // TODO: Review edits (list) -> all inputs disabled except accept or deny
-// TODO: Ask for account (+- register) form -> popup
 
 import { Component } from '@angular/core';
 

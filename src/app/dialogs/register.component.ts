@@ -1,0 +1,69 @@
+import { Component, OnInit } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
+
+@Component({
+  selector: 'app-register',
+  template: `
+
+    <h1 md-dialog-title>Registreer</h1>
+    <form class="register-form">
+
+      <md-form-field color="accent">
+        <input type="text" required mdInput placeholder="Naam">
+      </md-form-field>
+
+      <md-form-field color="accent">
+        <input type="email" required mdInput placeholder="E-mailadres">
+      </md-form-field>
+
+      <button type="submit" md-raised-button color="accent">
+        <md-icon>send</md-icon> Verstuur
+      </button>
+
+    </form>
+    
+    <div md-dialog-actions>
+      <span class="spacer"></span>
+      <button md-button md-dialog-close color="warn">SLUITEN</button>
+    </div>
+
+  `,
+  styles: [`
+
+    form button {
+      margin-top: 20px;
+    }
+
+    form button md-icon {
+      font-size: 22px;
+      margin-right: 5px;
+    }
+
+    md-form-field {
+      display: block;
+    }
+
+  `]
+})
+export class RegisterDialog implements OnInit {
+
+  public reqId: number;
+
+  snack = {
+      id: 7,
+      name: 'Kipkorn',
+      type: 'Snack',
+      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
+      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
+  };
+
+  constructor(public dialogRef: MdDialogRef<RegisterDialog>) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  ngOnInit() {
+  }
+
+}
