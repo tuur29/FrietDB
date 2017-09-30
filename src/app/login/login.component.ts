@@ -39,7 +39,7 @@ import { DialogsService } from '../dialogs/dialogs.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private dialogsService: DialogsService) { }
+  constructor(public dialogsService: DialogsService) { }
 
   ngOnInit() {
   }
