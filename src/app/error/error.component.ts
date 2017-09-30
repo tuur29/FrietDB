@@ -1,3 +1,5 @@
+// TODO: Show login form & stop redirect if access denied
+
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { MessagesService } from '../messages/messages.service';
