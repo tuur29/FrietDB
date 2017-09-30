@@ -1,5 +1,3 @@
-// TODO: Smart define zoom level based on most results visible
-
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
 import { MapsAPILoader,GoogleMapsAPIWrapper } from '@agm/core';
@@ -53,20 +51,34 @@ export class MapComponent implements OnInit,OnChanges {
   @Input() lng: number;
   @Input() zoom: number = 8;
 
+  private waitForBoundsCalc: boolean = false;
+
   constructor(
     private globals: GlobalsService,
     private mapsAPILoader: MapsAPILoader,
     private googleMapsAPIWrapper: GoogleMapsAPIWrapper,
   ) { }
 
-  // add heatmap
   onMapLoad(map) {
 
-    if (this.heatmap) {
+    // parse coords to Google Coords
+    let data = this.shops.map(function(s) {
+      return new google.maps.LatLng(s.lat, s.lng);
+    });
 
-      let data = this.shops.map(function(s) {
-        return new google.maps.LatLng(s.lat, s.lng);
-      });
+    // zoom and center map to see all markers
+    if (this.shops.length > 1) {
+
+      let bounds = new google.maps.LatLngBounds();
+      for (var i = 0; i < data.length; i++)
+        bounds.extend(data[i]);
+
+      map.fitBounds(bounds);
+
+    }
+
+    // add heatmap
+    if (this.heatmap) {
 
       let heatmap = new google.maps.visualization.HeatmapLayer({
         data: data,
@@ -78,11 +90,19 @@ export class MapComponent implements OnInit,OnChanges {
 
   }
 
-  // get default map center when location permission denied & not on shop page
   setDefaultPosition() {
     if (this.lat === undefined || this.lng === undefined) {
-      this.lat = this.globals.defaultLat;
-      this.lng = this.globals.defaultLng;
+
+      if ( (this.markers || this.heatmap) && this.shops.length > 1) {
+        // algorith happens in onMapLoad
+        this.waitForBoundsCalc = true;
+
+      } else {
+        // get default map center when location permission denied & not on shop page & no markers visible
+        this.lat = this.globals.defaultLat;
+        this.lng = this.globals.defaultLng;
+
+      }
     }
   }
 
