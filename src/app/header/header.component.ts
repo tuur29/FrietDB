@@ -21,6 +21,12 @@ import { GlobalsService } from 'globals.service';
   `,
   styles: [`
 
+    @media (max-width: 500px) {
+      app-searchshop {
+        display: none;
+      }
+    }
+
     md-toolbar a {
       margin: 0 5px;
       color: black;
