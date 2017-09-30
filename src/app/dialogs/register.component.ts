@@ -47,16 +47,6 @@ import { MdDialogRef } from '@angular/material';
 })
 export class RegisterDialog implements OnInit {
 
-  public reqId: number;
-
-  snack = {
-      id: 7,
-      name: 'Kipkorn',
-      type: 'Snack',
-      image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
-      link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-  };
-
   constructor(public dialogRef: MdDialogRef<RegisterDialog>) { }
 
   onNoClick(): void {
