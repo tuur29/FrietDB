@@ -9,7 +9,7 @@
 
     <button md-raised-button
       (click)="pickSnack(snack.id)"
-      [style.backgroundImage]="'url('+ snack.image +')'"
+      [style.backgroundImage]="snack.image?'url('+ snack.image +')':''"
       [mdTooltip]="snack.name+' toevoegen'"
       mdTooltipPosition="below"
       color="accent">
@@ -37,8 +37,7 @@
       
       <md-autocomplete #auto="mdAutocomplete">
         <md-option (onSelectionChange)="pickSnack(snack.id,$event)" *ngFor="let snack of filteredSnacks | async | orderBy: ['name']" [value]="snack.name">
-            <span>{{snack.name}}</span>
-          <small>{{snack.type}}</small>
+            <span>{{snack.name}}</span> | <small>{{snack.type}}</small>
         </md-option>
       </md-autocomplete>
 
