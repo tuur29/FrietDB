@@ -20,6 +20,8 @@ import { GlobalsService } from 'globals.service';
     </md-card>
 
     <md-card>
+      <h2>Wil je deze database helpen uitbreiden?</h2>
+      <p>Helaas voeg ik momenteel enkel handmatig nieuwe gebruikers toe.<br>Stuur me een mailtje en dan bezorg ik je zo spoedig mogelijk je inloggegevens.</p>
       <app-login></app-login>
     </md-card>
     

@@ -4,9 +4,6 @@ import { DialogsService } from '../dialogs/dialogs.service';
 @Component({
   selector: 'app-login',
   template: `
-    
-      <h2>Wil je deze database helpen uitbreiden?</h2>
-      <p>Helaas voeg ik momenteel enkel handmatig nieuwe gebruikers toe.<br>Stuur me een mailtje en dan bezorg ik je zo spoedig mogelijk je inloggegevens.</p>
 
       <form class="login-form">
 
