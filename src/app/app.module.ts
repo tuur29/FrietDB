@@ -4,17 +4,17 @@ import { NgModule } from '@angular/core';
 import { routes } from './app.routing';
 import { RouterModule } from '@angular/router';
 
+import { environment } from '../environments/environment';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule } from '@angular/material';
 
 import { MarkdownModule } from 'angular2-markdown';
 import { AgmCoreModule } from '@agm/core';
-import { LAZY_MAPS_API_CONFIG } from '@agm/core/services';
 
 import { DialogsModule } from './dialogs/dialogs.module';
 import { MessagesModule } from './messages/messages.module';
 import { GlobalsService } from 'globals.service';
-import { KeysService } from 'keys.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -34,7 +34,7 @@ import { OrderModule } from './order/order.module';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    AgmCoreModule.forRoot(),
+    AgmCoreModule.forRoot({apiKey: environment.mapskey}),
     MarkdownModule.forRoot(),
 
     MatToolbarModule,
@@ -51,7 +51,6 @@ import { OrderModule } from './order/order.module';
   ],
   providers: [
     GlobalsService,
-    {provide: LAZY_MAPS_API_CONFIG, useClass: KeysService},
   ],
   bootstrap: [AppComponent],
 })

@@ -4,14 +4,13 @@ This web app shows the menu and more info about 'frituren' in the Ghent area.
 
 ## API Keys
 
-You will have to add a file called `/src/keys.service.ts` with the necessary api keys. The file should look like this:
+You will have to add 2 files called `/src/environments/environment(.prod).ts` with the necessary api keys. The files should look like this:
 
 ```
-import { Injectable } from '@angular/core';
-@Injectable() 
-export class KeysService {
-  apiKey : string = "<PASTE_API_KEY_HERE>";
-}
+export const environment = {
+  production: true,
+  mapskey: "<PASTE_PRODUCION_API_KEY>"
+};
 ```
 You will need a [Google Maps Javascript API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 

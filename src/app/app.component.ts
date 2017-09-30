@@ -7,8 +7,6 @@
 // TODO: Gather real testdata
 // TODO: Add meta tags & Simple style loading message
 // TODO: Fake homepage (menu & intro text) -> faster loading
-// TODO: Load big vendor packages from CDN (package)
-// TODO: Add limited API key to Github Pages (obfuscated?)
 
 // TODO: Snack image wall -> toggle for order page (most picked or top via cookie)
 // TODO: Heatmap card with most frituren in de buurt
