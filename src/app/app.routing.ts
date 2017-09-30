@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './shop/shop.component';
 import { OrderComponent } from './order/order.component';
 import { HeatmapComponent } from './heatmap/heatmap.component';
+import { EditShopComponent } from './editshop/editshop.component';
+import { EditsListComponent } from './editslist/editslist.component';
 
 export const routes: Routes = [
 
@@ -19,6 +21,18 @@ export const routes: Routes = [
   {
    path: 'heatmap',
    component : HeatmapComponent
+  },
+  {
+   path: 'edit',
+   component : EditShopComponent,
+  },
+  {
+   path: 'edit/:id',
+   component : EditShopComponent,
+  },
+  {
+   path: 'listedits',
+   component : EditsListComponent
   },
   {
     path: '',

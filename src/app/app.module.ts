@@ -22,6 +22,8 @@ import { HeaderComponent } from './header/header.component';
 import { LoginModule } from './login/login.module';
 import { SearchShopModule } from './searchshop/searchshop.module';
 
+import { EditShopModule } from './editshop/editshop.module';
+import { EditsListModule } from './editslist/editslist.module';
 import { HeatmapModule } from './heatmap/heatmap.module';
 import { ErrorModule } from './error/error.module';
 import { HomeModule } from './home/home.module';
@@ -51,6 +53,8 @@ import { OrderModule } from './order/order.module';
     SearchShopModule,
     LoginModule,
     
+    EditsListModule,
+    EditShopModule,
     HeatmapModule,
     ErrorModule,
     HomeModule,

@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 import { SnackInfoDialog } from './snackinfo.component';
+import { EditSnackDialog } from './editsnack.component';
 import { RegisterDialog } from './register.component';
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -14,6 +15,16 @@ export class DialogsService {
         let dialogRef: MdDialogRef<SnackInfoDialog>;
 
         dialogRef = this.dialog.open(SnackInfoDialog);
+        dialogRef.componentInstance.reqId = reqId;
+
+        return dialogRef.afterClosed();
+    }
+
+    public editsnack(reqId: number): Observable<boolean> {
+
+        let dialogRef: MdDialogRef<EditSnackDialog>;
+
+        dialogRef = this.dialog.open(EditSnackDialog);
         dialogRef.componentInstance.reqId = reqId;
 
         return dialogRef.afterClosed();

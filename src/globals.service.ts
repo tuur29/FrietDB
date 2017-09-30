@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 
 @Injectable() 
 export class GlobalsService {
+
+  auth = {
+    token: "",
+    isadmin: true,
+  }
+
 	title: string;
 
   defaultLat: number = 51.723858;

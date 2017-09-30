@@ -1,3 +1,5 @@
+// TODO: Show edit shop link when logged in
+// TODO: Show edit snacks popups when logged in
 // TODO: Load ratings & price/quality from third party api (link & min number of reviews)
 
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';

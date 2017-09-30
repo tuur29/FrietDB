@@ -1,3 +1,5 @@
+// TODO: Show edit snacks popups when logged in
+
 import { Component, HostListener, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
 import { DialogsService } from '../dialogs/dialogs.service';
