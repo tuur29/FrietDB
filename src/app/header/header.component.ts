@@ -9,7 +9,7 @@ import { GlobalsService } from 'globals.service';
   
     <md-toolbar color="primary">
 
-      <md-icon>restaurant_menu</md-icon>
+      <img src="assets/logo.svg" alt="Logo" width="35" height="35">
       <a routerLink="/">{{title}}</a>
 
       <span class="spacer"></span>
