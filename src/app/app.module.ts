@@ -12,6 +12,7 @@ import { AgmCoreModule } from '@agm/core';
 import { LAZY_MAPS_API_CONFIG } from '@agm/core/services';
 
 import { DialogsModule } from './dialogs/dialogs.module';
+import { MessagesModule } from './messages/messages.module';
 import { GlobalsService } from 'globals.service';
 import { KeysService } from 'keys.service';
 
@@ -40,7 +41,9 @@ import { OrderModule } from './order/order.module';
     MatIconModule,
 
     DialogsModule,
+    MessagesModule,
     SearchShopModule,
+    
     ErrorModule,
     HomeModule,
     ShopModule,

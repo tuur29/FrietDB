@@ -10,7 +10,6 @@
 // TODO: Load big vendor packages from CDN (package)
 // TODO: Add limited API key to Github Pages (obfuscated?)
 
-// TODO: MatSnackbar everywhere accessible for showing errors
 // TODO: Snack image wall -> toggle for order page (most picked or top via cookie)
 // TODO: Heatmap card with most frituren in de buurt
 
