@@ -1,3 +1,5 @@
+// TODO Incorporate edit type (shop, snack) into routes? Or use popup for snack?
+
 import { Routes } from '@angular/router';
 
 import { ErrorComponent } from './error/error.component';
@@ -23,15 +25,23 @@ export const routes: Routes = [
    component : HeatmapComponent
   },
   {
-   path: 'edit',
+   path: 'edit/shop',
    component : EditShopComponent,
   },
   {
-   path: 'edit/:id',
+   path: 'edit/shop/:id',
    component : EditShopComponent,
   },
+  // {
+  //  path: 'edit/snack',
+  //  component : EditSnackComponent,
+  // },
+  // {
+  //  path: 'edit/snack/:id',
+  //  component : EditSnackComponent,
+  // },
   {
-   path: 'listedits',
+   path: 'edits',
    component : EditsListComponent
   },
   {
