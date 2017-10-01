@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SnackInfoDialog } from './snackinfo.component';
+import { EditSnackDialog } from './editsnack.component';
 import { RegisterDialog } from './register.component';
 
 @NgModule({
@@ -17,10 +18,12 @@ import { RegisterDialog } from './register.component';
     ],
     exports: [
         SnackInfoDialog,
+        EditSnackDialog,
         RegisterDialog,
     ],
     declarations: [
         SnackInfoDialog,
+        EditSnackDialog,
         RegisterDialog,
     ],
     providers: [
@@ -28,6 +31,7 @@ import { RegisterDialog } from './register.component';
     ],
     entryComponents: [
         SnackInfoDialog,
+        EditSnackDialog,
         RegisterDialog,
     ],
 })

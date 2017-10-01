@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
   title: string;
   shops: any[];
 
-  constructor(private globals: GlobalsService) {
+  constructor(public globals: GlobalsService) {
     this.title = globals.title;
     this.shops = globals.shops;
   }
