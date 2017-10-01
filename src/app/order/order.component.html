@@ -53,14 +53,14 @@
     <h2>Bestelling</h2>
     <md-list>
 
-      <div *ngFor="let group of (addedSnacks | groupByImpure:'type' | pairs) ; let last = last">
+      <ng-container *ngFor="let group of (addedSnacks | groupByImpure:'type' | pairs) ; let last = last">
         <h3 md-subheader>{{group[0]}}</h3>
         <md-list-item *ngFor="let snack of group[1]">
 
           <md-icon mdListIcon>check_box</md-icon>
           <span *ngIf="snack.count > 0">
             {{snack.count}}x 
-            <span (click)="openDialog(snack)" class="link">
+            <span (click)="openDialog(snack)" class="link" aria-label="Meer info" mdTooltip="Meer info">
               {{snack.name}}
               <md-icon *ngIf="snack.image || snack.link">open_in_new</md-icon>
             </span>
@@ -68,13 +68,13 @@
 
           <span class="spacer"></span>
 
-          <button md-icon-button aria-label="1 toevoegen" (click)="editSnackCount(snack.id,snack.count+1)">
+          <button md-icon-button aria-label="1 toevoegen" mdTooltip="1 toevoegen" (click)="editSnackCount(snack.id,snack.count+1)">
             <md-icon>add</md-icon>
           </button>
-          <button md-icon-button aria-label="1 aftrekken" (click)="editSnackCount(snack.id,snack.count-1)">
+          <button md-icon-button aria-label="1 aftrekken" mdTooltip="1 aftrekken" (click)="editSnackCount(snack.id,snack.count-1)">
             <md-icon>remove</md-icon>
           </button>
-          <button md-icon-button aria-label="Verwijderen" color="warn" (click)="editSnackCount(snack.id,0)">
+          <button md-icon-button aria-label="Verwijderen" mdTooltip="Verwijderen" color="warn" (click)="editSnackCount(snack.id,0)">
             <md-icon>delete</md-icon>
           </button>
 
@@ -82,7 +82,7 @@
         <div *ngIf="!last">
           <md-divider></md-divider>
         </div>
-      </div>
+      </ng-container>
 
     </md-list>
     <md-card-actions>
