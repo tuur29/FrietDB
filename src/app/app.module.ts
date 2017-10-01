@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { routes } from './app.routing';
 import { RouterModule } from '@angular/router';
+import { WebStorageModule } from 'ngx-store';
 
 import { environment } from '../environments/environment';
 
@@ -39,6 +40,7 @@ import { OrderModule } from './order/order.module';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    WebStorageModule,
     AgmCoreModule.forRoot({
       apiKey: environment.mapskey,
       libraries: ["visualization"]

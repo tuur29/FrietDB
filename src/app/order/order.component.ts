@@ -3,9 +3,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
 import { DialogsService } from '../dialogs/dialogs.service';
-import { GreaterThanPipe } from './filter-snacks.pipe';
 
-import {Router,NavigationStart} from '@angular/router';
+import { LocalStorage, WebstorableArray } from 'ngx-store';
+
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -21,45 +21,27 @@ import {MdOptionSelectionChange} from '@angular/material';
 export class OrderComponent implements OnInit {
 
   // variables
-  private confirmText: string = "Je bestelling wordt niet opgeslagen, ben je zeker dat je naar een andere pagina wilt gaan?";
-
-  snacksAdded: boolean = false;
-  router: Router;
-
+  snacks: any[];
   snackCtrl: FormControl;
   filteredSnacks: Observable<any[]>;
-  snacks: any[];
+
+  @LocalStorage() addedSnacks: WebstorableArray<any> = <any>[];
 
   filteredShops: any[];
 
   constructor(
-    private r: Router,
     private globals: GlobalsService,
-    private greaterThanPipe: GreaterThanPipe,
     private dialogsService: DialogsService) {
 
     // get globals
     this.filteredShops = globals.shops;
     this.snacks = globals.snacks;
 
-    // add count property
-    this.snacks.forEach(function(s) { s.count = 0 });
-
     // filter snacks on search
     this.snackCtrl = new FormControl();
     this.filteredSnacks = this.snackCtrl.valueChanges
       .startWith(null)
       .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
-
-    // prompt when navigating away when snacks added
-    this.router = r;
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart)
-        if (event.url != "/order" && this.router.url == "/order")
-          if (this.snacksAdded)
-            if (!confirm(this.confirmText))
-              this.router.navigate(['/order']);
-    });
 
   }
 
@@ -69,19 +51,19 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  // prompt when navigating away when snacks added
-  @HostListener('window:beforeunload', ['$event'])
-  beforeunloadHandler(event) {
-    if (this.snacksAdded)
-      return false;
-  }
-
   // click snack in search or fav grid list
   pickSnack(id: number, event?) {
 
     if (event === undefined || event.source.selected) {
-      this.snacksAdded = true;
-      this.snacks.find(s=>s.id===id).count++;
+
+      let alreadyAddedSnack = this.addedSnacks.find(s=>s.id===id);
+      if (alreadyAddedSnack) {
+        this.editSnackCount(alreadyAddedSnack.id, alreadyAddedSnack.count+1);
+      } else {
+        let countedSnack = this.snacks.find(s=>s.id===id);
+        countedSnack.count = 1;
+        this.addedSnacks.push(countedSnack);
+      }
 
       let ctrl = this.snackCtrl;
       setTimeout(function() {
@@ -100,17 +82,21 @@ export class OrderComponent implements OnInit {
   }
 
   resetOrder() {
-    this.snacks.forEach(function(s) { s.count = 0 });
-    this.snacksAdded = false;
+    this.addedSnacks = <any>[];
     this.snackCtrl.reset();
   }
 
   editSnackCount(id:number, count: number) {
-    if (count < 0) count = 0;
-    this.snacks.find(s=>s.id===id).count = count;
-
-    if (this.greaterThanPipe.transform(this.snacks,"count",0).length < 1 )
-      this.snacksAdded = false;
+    if (count <= 0) {
+      this.addedSnacks.splice(
+        this.addedSnacks.indexOf(
+          this.addedSnacks.find(s=>s.id===id)
+        )
+      , 1);
+    } else {
+      this.addedSnacks.find(s=>s.id===id).count = count;
+    }
+    this.addedSnacks.save();
   }
 
   // share order
@@ -121,8 +107,7 @@ export class OrderComponent implements OnInit {
   email() {
     let link: string = '\n\n';
 
-    this.greaterThanPipe.transform(this.snacks,"count",0).forEach(function(s){
-
+    this.addedSnacks.forEach(function(s){
       link += '\t- '+s.count+'x '+s.name+'\n';
     });
 

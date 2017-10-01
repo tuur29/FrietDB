@@ -1,5 +1,5 @@
 @media print {
-  md-card:not(.list), md-card.list md-card-actions, md-card.list button, .link md-icon {
+  md-card:not(.list), md-card.list md-card-actions, md-card.list button, .link md-icon, md-grid-list {
     display: none;
   }
 }
