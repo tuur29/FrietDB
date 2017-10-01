@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 export class GlobalsService {
 
   auth = {
-    token: "",
-    isadmin: true,
+    token: "temp",
+    admin: true,
   }
 
 	title: string;
@@ -14,6 +14,35 @@ export class GlobalsService {
   defaultLng: number = 7.895982;
 
   // Temporary static data
+  editslist: any[] = [
+    {
+      id: 1,
+      timestamp: 1506881435,
+      type: "shop",
+      item: {
+        id: 5,
+        name: "Frituur Patat"
+      },
+      user: {
+        id: 2,
+        name: "Patrick"
+      }
+    },
+    {
+      id: 1,
+      timestamp: 15068000,
+      type: "snack",
+      item: {
+        id: 1,
+        name: "KipKorn"
+      },
+      user: {
+        id: 5,
+        name: "Annelore"
+      }
+    }
+  ];
+
   shops: any[] = [
   {
   	id: 1,

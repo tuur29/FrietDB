@@ -18,6 +18,7 @@ import { GlobalsService } from 'globals.service';
       <app-searchshop [shops]="shops" [inline]="true"></app-searchshop>
       <a routerLink="order">Bestelling</a>
       <a routerLink="heatmap">Heatmap</a>
+      <a routerLink="edits" *ngIf="globals.auth.admin && globals.auth.token">Aanpassingen</a>
     </md-toolbar>
 
   `,

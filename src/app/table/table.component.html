@@ -1,0 +1,53 @@
+<md-table #table [dataSource]="dataSource">
+
+  <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+  <md-row md-ripple
+    *mdRowDef="let row; columns: displayedColumns"
+    [routerLink]="'/edit/'+row.type+'/'+row.item.id"
+  ></md-row>
+
+
+  <!-- itemName Column -->
+  <ng-container mdColumnDef="itemName">
+    <md-header-cell *mdHeaderCellDef> Naam frituur </md-header-cell>
+    <md-cell *mdCellDef="let row">
+      <span mdTooltip="Bekijk aanpassing">{{row.item.name}}</span>
+    </md-cell>
+  </ng-container>
+
+  <!-- userName Column -->
+  <ng-container mdColumnDef="userName">
+    <md-header-cell *mdHeaderCellDef> Naam gebruiker </md-header-cell>
+    <md-cell *mdCellDef="let row"> {{row.user.name}} </md-cell>
+  </ng-container>
+
+  <!-- timestamp Column -->
+  <ng-container mdColumnDef="timestamp">
+    <md-header-cell *mdHeaderCellDef> Tijdstip </md-header-cell>
+    <md-cell *mdCellDef="let row"> {{formatDate(row.timestamp)}} </md-cell>
+  </ng-container>
+
+  <!-- buttons Column -->
+  <ng-container mdColumnDef="buttons">
+    <md-header-cell *mdHeaderCellDef> Acties </md-header-cell>
+    <md-cell *mdCellDef="let row; let i=index"> 
+      
+      <button (mousedown)="$event.stopPropagation()" (click)="accept(i,$event)" md-icon-button color="accent" mdTooltip="Goedkeuren">
+        <md-icon aria-label="Goedkeuren">check</md-icon>
+      </button>
+
+      <button (mousedown)="$event.stopPropagation()" (click)="remove(i,$event)" md-icon-button color="warn" mdTooltip="Verwijderen">
+        <md-icon aria-label="Verwijderen">delete_forever</md-icon>
+      </button>
+
+    </md-cell>
+  </ng-container>
+
+</md-table>
+
+<md-paginator #paginator
+  [length]="database.data.length"
+  [pageIndex]="0"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]">
+</md-paginator>
