@@ -45,7 +45,7 @@
   </form>
 </md-card>
 
-<div *ngIf="addedSnacks.length">
+<ng-container *ngIf="addedSnacks.length">
 
   <!-- Order List -->
 
@@ -53,7 +53,7 @@
     <h2>Bestelling</h2>
     <md-list>
 
-      <ng-container *ngFor="let group of (addedSnacks | groupByImpure:'type' | pairs) ; let last = last">
+      <ng-container *ngFor="let group of (addedSnacks | groupBy:'type' | pairs) ; let last = last">
         <h3 md-subheader>{{group[0]}}</h3>
         <md-list-item *ngFor="let snack of group[1]">
 
@@ -79,9 +79,9 @@
           </button>
 
         </md-list-item>
-        <div *ngIf="!last">
+        <ng-container *ngIf="!last">
           <md-divider></md-divider>
-        </div>
+        </ng-container>
       </ng-container>
 
     </md-list>
@@ -98,4 +98,4 @@
     <app-map [shops]="filteredShops" [heatmap]="true"></app-map>
   </md-card>
 
-</div>
+</ng-container>

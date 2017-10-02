@@ -1,5 +1,4 @@
 // TODO: Show edit snacks popups when logged in
-// TODO: Fix tooltips not showing because in md-list-item
 
 import { Component, HostListener, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
