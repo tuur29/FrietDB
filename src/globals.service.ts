@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class GlobalsService {
 
   auth = {
-    token: "temp",
+    token: "",
     admin: true,
   }
 

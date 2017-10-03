@@ -1,5 +1,4 @@
 // TODO: Better name for Order page
-// TODO: Add links for new shop (loggedin) & editslist (admin)
 
 import { Component, Input, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
