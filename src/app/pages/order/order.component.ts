@@ -11,7 +11,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
-import {MdOptionSelectionChange} from '@angular/material';
+import {MatOptionSelectionChange} from '@angular/material';
 
 @Component({
   selector: 'app-order',

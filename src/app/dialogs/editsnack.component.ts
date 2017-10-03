@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { GlobalsService } from 'globals.service';
 
 @Component({
   selector: 'app-editsnack',
   template: `
 
-    <h1 md-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
+    <h1 mat-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
     
     <p>FORM HERE</p>
 
-    <div md-dialog-actions>
+    <div mat-dialog-actions>
       <span class="spacer"></span>
-      <button md-button md-dialog-close color="warn">SLUITEN</button>
+      <button mat-button mat-dialog-close color="warn">SLUITEN</button>
     </div>
 
   `,
@@ -28,7 +28,7 @@ export class EditSnackDialog implements OnInit {
 
   constructor(
     private globals: GlobalsService,
-    public dialogRef: MdDialogRef<EditSnackDialog>
+    public dialogRef: MatDialogRef<EditSnackDialog>
   ) {
     this.snack = globals.snacks[0];
   }

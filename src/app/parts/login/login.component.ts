@@ -7,31 +7,31 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 
       <form class="login-form">
 
-        <md-form-field color="accent">
-          <input type="email" mdInput required placeholder="E-mailadres">
-        </md-form-field>
+        <mat-form-field color="accent">
+          <input type="email" matInput required placeholder="E-mailadres">
+        </mat-form-field>
 
-        <md-form-field color="accent">
-          <input type="password" mdInput required placeholder="Wachtwoord">
-        </md-form-field>
+        <mat-form-field color="accent">
+          <input type="password" matInput required placeholder="Wachtwoord">
+        </mat-form-field>
 
-        <button type="submit" md-raised-button color="accent">
-          <md-icon>lock_outline</md-icon> Login
+        <button type="submit" mat-raised-button color="accent">
+          <mat-icon>lock_outline</mat-icon> Login
         </button>
 
-        <button md-raised-button (click)="dialogsService.register()">Registreer</button>
+        <button mat-raised-button (click)="dialogsService.register()">Registreer</button>
 
       </form>
 
   `,
   styles: [`
 
-    button md-icon {
+    button mat-icon {
       font-size: 22px;
       margin-right: 2px;
     }
 
-    md-form-field, button {
+    mat-form-field, button {
       margin: 0 10px;
     }
 

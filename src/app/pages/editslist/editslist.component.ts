@@ -8,15 +8,15 @@ import { GlobalsService } from 'globals.service';
   selector: 'app-editslist',
   template: `
     
-    <md-card>
+    <mat-card>
       <h1>Goed te keuren aanpassingen aan Frituren</h1>
       <app-table [data]="shopEdits"></app-table>
-    </md-card>
+    </mat-card>
 
-    <md-card>
+    <mat-card>
       <h1>Goed te keuren aanpassingen aan Snacks</h1>
       <app-table [data]="snackEdits"></app-table>
-    </md-card>
+    </mat-card>
 
   `,
   styles: []

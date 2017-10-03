@@ -12,26 +12,26 @@ import 'rxjs/add/operator/map';
   template: `
     
     <form class="shop-form">
-      <md-form-field color="accent" class="full-width" [floatPlaceholder]="inline?'never':''">
+      <mat-form-field color="accent" class="full-width" [floatPlaceholder]="inline?'never':''">
 
-        <button md-icon-button mdPrefix>
-          <md-icon>search</md-icon>
+        <button mat-icon-button matPrefix>
+          <mat-icon>search</mat-icon>
         </button>
 
-        <input mdInput placeholder="Zoek naar een frituur" aria-label="Zoek naar een frituur" [mdAutocomplete]="auto" [formControl]="shopCtrl">
+        <input matInput placeholder="Zoek naar een frituur" aria-label="Zoek naar een frituur" [matAutocomplete]="auto" [formControl]="shopCtrl">
 
-        <button *ngIf="shopCtrl.value" mdSuffix md-icon-button aria-label="Reset" (click)="shopCtrl.reset()">
-          <md-icon>close</md-icon>
+        <button *ngIf="shopCtrl.value" matSuffix mat-icon-button aria-label="Reset" (click)="shopCtrl.reset()">
+          <mat-icon>close</mat-icon>
         </button>
 
-        <md-autocomplete #auto="mdAutocomplete">
-          <md-option (onSelectionChange)="openShop(shop.id)" *ngFor="let shop of filteredShops | async" [value]="shop.name">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option (onSelectionChange)="openShop(shop.id)" *ngFor="let shop of filteredShops | async" [value]="shop.name">
             <span>{{ shop.name }}</span> |
             <small>{{shop.street}} {{shop.municipality}}</small>
-          </md-option>
-        </md-autocomplete>
+          </mat-option>
+        </mat-autocomplete>
 
-      </md-form-field>
+      </mat-form-field>
     </form>
 
   `,

@@ -6,12 +6,12 @@ import { MessagesService } from '../../messages/messages.service';
   selector: 'app-error',
   template: `
 
-    <md-card>
+    <mat-card>
       <h1>Error</h1>
       <p>Het ziet er naar uit dat je geen toegang hebt tot deze pagina, gelieve je hieronder eerst in te loggen. </p>
       <p><a routerLink="/">Terug naar homepagina</a></p>
       <app-login></app-login>
-    </md-card>
+    </mat-card>
 
     
   `,

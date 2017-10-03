@@ -4,18 +4,18 @@
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { Database, EditsDataSource } from './data.provider';
 
-import {MdPaginator} from '@angular/material';
+import {MatPaginator} from '@angular/material';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styles: [`
 
-    [md-ripple] {
+    [mat-ripple] {
       position: relative;
     }
 
-    md-row {
+    mat-row {
       cursor: pointer;
     }
 
@@ -29,7 +29,7 @@ export class TableComponent implements OnInit {
   database: Database;
   dataSource: EditsDataSource | null;
 
-  @ViewChild(MdPaginator) paginator: MdPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor() {
   }

@@ -2,17 +2,17 @@ import { Observable } from 'rxjs/Rx';
 import { SnackInfoDialog } from './snackinfo.component';
 import { EditSnackDialog } from './editsnack.component';
 import { RegisterDialog } from './register.component';
-import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DialogsService {
 
-    constructor(private dialog: MdDialog) { }
+    constructor(private dialog: MatDialog) { }
 
     public snackinfo(reqId: number): Observable<boolean> {
 
-        let dialogRef: MdDialogRef<SnackInfoDialog>;
+        let dialogRef: MatDialogRef<SnackInfoDialog>;
 
         dialogRef = this.dialog.open(SnackInfoDialog);
         dialogRef.componentInstance.reqId = reqId;
@@ -22,7 +22,7 @@ export class DialogsService {
 
     public editsnack(reqId: number): Observable<boolean> {
 
-        let dialogRef: MdDialogRef<EditSnackDialog>;
+        let dialogRef: MatDialogRef<EditSnackDialog>;
 
         dialogRef = this.dialog.open(EditSnackDialog);
         dialogRef.componentInstance.reqId = reqId;
@@ -32,7 +32,7 @@ export class DialogsService {
 
     public register(): Observable<boolean> {
 
-        let dialogRef: MdDialogRef<RegisterDialog>;
+        let dialogRef: MatDialogRef<RegisterDialog>;
 
         dialogRef = this.dialog.open(RegisterDialog);
 

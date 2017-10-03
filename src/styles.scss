@@ -31,19 +31,19 @@ a:visited {
 	color: mat-color($app-accent, A400);
 }
 
-md-card {
+mat-card {
 	margin: 20px auto;
 }
 
-md-card.small {
+mat-card.small {
 	max-width: 550px;
 }
 
-md-card.full {
+mat-card.full {
 	padding: 0;
 }
 
-md-card.search {
+mat-card.search {
 	padding-top: 10px;
 	padding-bottom: 5px;
 }
@@ -57,7 +57,7 @@ md-card.search {
 }
 
 @media print {
-	md-card {
+	mat-card {
 		box-shadow: none !important;
 	}
 }

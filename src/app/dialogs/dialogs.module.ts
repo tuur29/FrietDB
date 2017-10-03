@@ -1,5 +1,5 @@
 import { DialogsService } from './dialogs.service';
-import { MdDialogModule,MdInputModule,MdIconModule,MdButtonModule  } from '@angular/material';
+import { MatDialogModule,MatInputModule,MatIconModule,MatButtonModule  } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,10 +11,10 @@ import { RegisterDialog } from './register.component';
     imports: [
         CommonModule,
         
-        MdDialogModule,
-        MdIconModule,
-        MdInputModule,
-        MdButtonModule,
+        MatDialogModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule,
     ],
     exports: [
         SnackInfoDialog,

@@ -1,104 +1,104 @@
-<md-accordion>
+<mat-accordion>
 
   <!-- Pick shop -->
-  <md-expansion-panel [expanded]="step === 0" (opened)="setStep(0)"  hideToggle="true">
-    <md-expansion-panel-header>
-      <md-panel-title>
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)"  hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
         Frituur
-      </md-panel-title>
-      <md-panel-description>
+      </mat-panel-title>
+      <mat-panel-description>
         Welke frituur wil je aanpassen?
-        <md-icon>search</md-icon>
-      </md-panel-description>
-    </md-expansion-panel-header>
+        <mat-icon>search</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-    <md-form-field>
-      <input mdInput placeholder="ID">
-    </md-form-field>
+    <mat-form-field>
+      <input matInput placeholder="ID">
+    </mat-form-field>
 
-    <md-action-row>
-      <button md-button color="accent" (click)="nextStep()">Volgende</button>
-    </md-action-row>
-  </md-expansion-panel>
+    <mat-action-row>
+      <button mat-button color="accent" (click)="nextStep()">Volgende</button>
+    </mat-action-row>
+  </mat-expansion-panel>
 
   <!-- General Info (title, descr, image) -->
-  <md-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
-    <md-expansion-panel-header>
-      <md-panel-title>
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
         Informatie
-      </md-panel-title>
-      <md-panel-description>
+      </mat-panel-title>
+      <mat-panel-description>
         Pas de algemene informatie aan
-        <md-icon>info_outline</md-icon>
-      </md-panel-description>
-    </md-expansion-panel-header>
+        <mat-icon>info_outline</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-    <md-form-field>
-      <input mdInput placeholder="Naam">
-    </md-form-field>
-    <md-form-field>
-      <input mdInput placeholder="Beschrijving">
-    </md-form-field>
-    <md-form-field>
-      <input mdInput placeholder="Foto url">
-    </md-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Naam">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Beschrijving">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Foto url">
+    </mat-form-field>
 
-    <md-action-row>
-      <button md-button (click)="prevStep()">Vorige</button>
-      <button md-button color="accent" (click)="nextStep()">Volgende</button>
-    </md-action-row>
-  </md-expansion-panel>
+    <mat-action-row>
+      <button mat-button (click)="prevStep()">Vorige</button>
+      <button mat-button color="accent" (click)="nextStep()">Volgende</button>
+    </mat-action-row>
+  </mat-expansion-panel>
 
   <!-- More Info (details, map coords) -->
-  <md-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
-    <md-expansion-panel-header>
-      <md-panel-title>
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
         Details
-      </md-panel-title>
-      <md-panel-description>
+      </mat-panel-title>
+      <mat-panel-description>
         Geef meer details over de frituur
-        <md-icon>map</md-icon>
-      </md-panel-description>
-    </md-expansion-panel-header>
+        <mat-icon>map</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-    <md-form-field>
-      <input mdInput placeholder="Adres">
-    </md-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Adres">
+    </mat-form-field>
 
-    <md-form-field>
-      <input mdInput placeholder="Gegevens">
-    </md-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Gegevens">
+    </mat-form-field>
 
-    <md-form-field>
-      <input mdInput placeholder="Coordinaten map">
-    </md-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Coordinaten map">
+    </mat-form-field>
 
-    <md-action-row>
-      <button md-button (click)="prevStep()">Vorige</button>
-      <button md-button color="accent" (click)="nextStep()">Volgende</button>
-    </md-action-row>
-  </md-expansion-panel>
+    <mat-action-row>
+      <button mat-button (click)="prevStep()">Vorige</button>
+      <button mat-button color="accent" (click)="nextStep()">Volgende</button>
+    </mat-action-row>
+  </mat-expansion-panel>
 
   <!-- Snacks -->
-  <md-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true">
-    <md-expansion-panel-header>
-      <md-panel-title>
+  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
         Snacks
-      </md-panel-title>
-      <md-panel-description>
+      </mat-panel-title>
+      <mat-panel-description>
         Welke snacks bied deze frituur aan?
-        <md-icon>restaurant_menu</md-icon>
-      </md-panel-description>
-    </md-expansion-panel-header>
+        <mat-icon>restaurant_menu</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-    <md-form-field>
-      <input mdInput placeholder="Country">
-    </md-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Country">
+    </mat-form-field>
 
-    <md-action-row>
-      <button md-button (click)="prevStep()">Vorige</button>
-      <button md-button color="accent" (click)="nextStep()">Volgende</button>
-    </md-action-row>
-  </md-expansion-panel>
+    <mat-action-row>
+      <button mat-button (click)="prevStep()">Vorige</button>
+      <button mat-button color="accent" (click)="nextStep()">Volgende</button>
+    </mat-action-row>
+  </mat-expansion-panel>
 
-</md-accordion>
+</mat-accordion>

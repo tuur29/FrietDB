@@ -1,5 +1,5 @@
 @media print {
-  md-card:not(.list), md-card.list md-card-actions, md-card.list button, .link md-icon, md-grid-list {
+  mat-card:not(.list), mat-card.list mat-card-actions, mat-card.list button, .link mat-icon, mat-grid-list {
     display: none;
   }
 }
@@ -19,7 +19,7 @@
   font-size: 1.5em;
 }
 
-md-list-item span {
+mat-list-item span {
   margin: 5px;
 }
 
@@ -31,7 +31,7 @@ md-list-item span {
   cursor: pointer;
 }
 
-.link md-icon {
+.link mat-icon {
   font-size: 1.25em;
   vertical-align: sub;
 }

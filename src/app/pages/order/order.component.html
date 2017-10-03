@@ -1,101 +1,101 @@
-<md-card class="small">
+<mat-card class="small">
   <h1>Maak je bestelling</h1>
   <p>Met deze tool kan je makkelijk de dichtste frituur vinden waar ze al jouw favoriete snacks hebben. Als extraatje kan je ook een handig briefje afdrukken om mee te nemen naar de frituur!</p>
-</md-card>
+</mat-card>
 
 <!-- Favorite Snacks Image Grid -->
-<md-grid-list cols="3" rowHeight="5:3" gutterSize="7" class="quickpick">
-  <md-grid-tile *ngFor="let snack of (snacks | filterBy: ['favorite']: true | sample: 6) ">
+<mat-grid-list cols="3" rowHeight="5:3" gutterSize="7" class="quickpick">
+  <mat-grid-tile *ngFor="let snack of (snacks | filterBy: ['favorite']: true | sample: 6) ">
 
-    <button md-raised-button
+    <button mat-raised-button
       (click)="pickSnack(snack.id)"
       [style.backgroundImage]="snack.image?'url('+ snack.image +')':''"
-      [mdTooltip]="snack.name+' toevoegen'"
-      mdTooltipPosition="below"
+      [matTooltip]="snack.name+' toevoegen'"
+      matTooltipPosition="below"
       color="accent">
       <span *ngIf="!snack.image">{{snack.name}}</span>
     </button>
 
-  </md-grid-tile>
-</md-grid-list>
+  </mat-grid-tile>
+</mat-grid-list>
 
 <!-- Autocomplete snack search box -->
 
-<md-card class="small search">
+<mat-card class="small search">
   <form class="snacks-form">
-    <md-form-field color="accent" class="full-width">
+    <mat-form-field color="accent" class="full-width">
 
-      <button md-icon-button mdPrefix>
-        <md-icon>search</md-icon>
+      <button mat-icon-button matPrefix>
+        <mat-icon>search</mat-icon>
       </button>
 
-      <input mdInput placeholder="Snack" aria-label="Snack" [mdAutocomplete]="auto" [formControl]="snackCtrl">
+      <input matInput placeholder="Snack" aria-label="Snack" [matAutocomplete]="auto" [formControl]="snackCtrl">
 
-      <button *ngIf="snackCtrl.value" mdSuffix md-icon-button aria-label="Reset" (click)="snackCtrl.reset()">
-      <md-icon>close</md-icon>
+      <button *ngIf="snackCtrl.value" matSuffix mat-icon-button aria-label="Reset" (click)="snackCtrl.reset()">
+      <mat-icon>close</mat-icon>
     </button>
       
-      <md-autocomplete #auto="mdAutocomplete">
-        <md-option (onSelectionChange)="pickSnack(snack.id,$event)" *ngFor="let snack of filteredSnacks | async | orderBy: ['name']" [value]="snack.name">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option (onSelectionChange)="pickSnack(snack.id,$event)" *ngFor="let snack of filteredSnacks | async | orderBy: ['name']" [value]="snack.name">
             <span>{{snack.name}}</span> | <small>{{snack.type}}</small>
-        </md-option>
-      </md-autocomplete>
+        </mat-option>
+      </mat-autocomplete>
 
-    </md-form-field>
+    </mat-form-field>
   </form>
-</md-card>
+</mat-card>
 
 <ng-container *ngIf="addedSnacks.length">
 
   <!-- Order List -->
 
-  <md-card class="list small">
+  <mat-card class="list small">
     <h2>Bestelling</h2>
-    <md-list>
+    <mat-list>
 
       <ng-container *ngFor="let group of (addedSnacks | groupBy:'type' | pairs) ; let last = last">
-        <h3 md-subheader>{{group[0]}}</h3>
-        <md-list-item *ngFor="let snack of group[1]">
+        <h3 mat-subheader>{{group[0]}}</h3>
+        <mat-list-item *ngFor="let snack of group[1]">
 
-          <md-icon mdListIcon>check_box</md-icon>
+          <mat-icon matListIcon>check_box</mat-icon>
           <span *ngIf="snack.count > 0">
             {{snack.count}}x 
-            <span (click)="openDialog(snack)" class="link" aria-label="Meer info" mdTooltip="Meer info">
+            <span (click)="openDialog(snack)" class="link" aria-label="Meer info" matTooltip="Meer info">
               {{snack.name}}
-              <md-icon *ngIf="snack.image || snack.link">open_in_new</md-icon>
+              <mat-icon *ngIf="snack.image || snack.link">open_in_new</mat-icon>
             </span>
           </span>
 
           <span class="spacer"></span>
 
-          <button md-icon-button aria-label="1 toevoegen" mdTooltip="1 toevoegen" (click)="editSnackCount(snack.id,snack.count+1)">
-            <md-icon>add</md-icon>
+          <button mat-icon-button aria-label="1 toevoegen" matTooltip="1 toevoegen" (click)="editSnackCount(snack.id,snack.count+1)">
+            <mat-icon>add</mat-icon>
           </button>
-          <button md-icon-button aria-label="1 aftrekken" mdTooltip="1 aftrekken" (click)="editSnackCount(snack.id,snack.count-1)">
-            <md-icon>remove</md-icon>
+          <button mat-icon-button aria-label="1 aftrekken" matTooltip="1 aftrekken" (click)="editSnackCount(snack.id,snack.count-1)">
+            <mat-icon>remove</mat-icon>
           </button>
-          <button md-icon-button aria-label="Verwijderen" mdTooltip="Verwijderen" color="warn" (click)="editSnackCount(snack.id,0)">
-            <md-icon>delete</md-icon>
+          <button mat-icon-button aria-label="Verwijderen" matTooltip="Verwijderen" color="warn" (click)="editSnackCount(snack.id,0)">
+            <mat-icon>delete</mat-icon>
           </button>
 
-        </md-list-item>
+        </mat-list-item>
         <ng-container *ngIf="!last">
-          <md-divider></md-divider>
+          <mat-divider></mat-divider>
         </ng-container>
       </ng-container>
 
-    </md-list>
-    <md-card-actions>
-      <button md-button (click)="print()">PRINT</button>
-      <button md-button (click)="email()">EMAIL</button>
-      <button md-button class="right" color="warn" (click)="resetOrder()">RESET</button>
-    </md-card-actions>
-  </md-card>
+    </mat-list>
+    <mat-card-actions>
+      <button mat-button (click)="print()">PRINT</button>
+      <button mat-button (click)="email()">EMAIL</button>
+      <button mat-button class="right" color="warn" (click)="resetOrder()">RESET</button>
+    </mat-card-actions>
+  </mat-card>
 
   <!-- Map -->
 
-  <md-card class="full">
+  <mat-card class="full">
     <app-map [shops]="filteredShops" [heatmap]="true"></app-map>
-  </md-card>
+  </mat-card>
 
 </ng-container>

@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-register',
   template: `
 
-    <h1 md-dialog-title>Registreer</h1>
+    <h1 mat-dialog-title>Registreer</h1>
     <form class="register-form">
 
-      <md-form-field color="accent">
-        <input type="text" required mdInput placeholder="Naam">
-      </md-form-field>
+      <mat-form-field color="accent">
+        <input type="text" required matInput placeholder="Naam">
+      </mat-form-field>
 
-      <md-form-field color="accent">
-        <input type="email" required mdInput placeholder="E-mailadres">
-      </md-form-field>
+      <mat-form-field color="accent">
+        <input type="email" required matInput placeholder="E-mailadres">
+      </mat-form-field>
     
-      <div md-dialog-actions>
-        <button type="submit" md-raised-button color="accent">
-          <md-icon>send</md-icon> Verstuur
+      <div mat-dialog-actions>
+        <button type="submit" mat-raised-button color="accent">
+          <mat-icon>send</mat-icon> Verstuur
         </button>
 
         <span class="spacer"></span>
 
-        <button md-button md-dialog-close color="warn">SLUITEN</button>
+        <button mat-button mat-dialog-close color="warn">SLUITEN</button>
       </div>
 
     </form>
@@ -35,12 +35,12 @@ import { MdDialogRef } from '@angular/material';
       width: 10px;
     }
 
-    form button md-icon {
+    form button mat-icon {
       font-size: 22px;
       margin-right: 5px;
     }
 
-    md-form-field {
+    mat-form-field {
       display: block;
     }
 
@@ -48,7 +48,7 @@ import { MdDialogRef } from '@angular/material';
 })
 export class RegisterDialog implements OnInit {
 
-  constructor(public dialogRef: MdDialogRef<RegisterDialog>) { }
+  constructor(public dialogRef: MatDialogRef<RegisterDialog>) { }
 
   onNoClick(): void {
     this.dialogRef.close();

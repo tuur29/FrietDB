@@ -8,7 +8,7 @@ import { WebStorageModule } from 'ngx-store';
 import { environment } from '../environments/environment';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatIconModule } from '@angular/material';
+import { NoConflictStyleCompatibilityMode, MatToolbarModule, MatIconModule } from '@angular/material';
 
 import { MarkdownModule } from 'angular2-markdown';
 import { AgmCoreModule } from '@agm/core';
@@ -39,6 +39,7 @@ import { OrderModule } from './pages/order/order.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NoConflictStyleCompatibilityMode,
     RouterModule.forRoot(routes),
     WebStorageModule,
     AgmCoreModule.forRoot({

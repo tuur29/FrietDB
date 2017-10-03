@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { GlobalsService } from 'globals.service';
 
 @Component({
@@ -7,17 +7,17 @@ import { GlobalsService } from 'globals.service';
   template: `
 
     <img [src]="snack.image" *ngIf="snack.image">
-    <h1 md-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
+    <h1 mat-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
     
-    <div md-dialog-actions>
+    <div mat-dialog-actions>
       
-      <a md-icon-button *ngIf="snack.link" [href]="snack.link">
-        <md-icon>open_in_new</md-icon>
+      <a mat-icon-button *ngIf="snack.link" [href]="snack.link">
+        <mat-icon>open_in_new</mat-icon>
         Meer Info
       </a>
 
       <span class="spacer"></span>
-      <button md-button md-dialog-close color="warn">SLUITEN</button>
+      <button mat-button mat-dialog-close color="warn">SLUITEN</button>
     </div>
 
   `,
@@ -37,7 +37,7 @@ export class SnackInfoDialog implements OnInit {
 
   constructor(
     private globals: GlobalsService,
-    public dialogRef: MdDialogRef<SnackInfoDialog>
+    public dialogRef: MatDialogRef<SnackInfoDialog>
   ) {
     this.snack = globals.snacks[0];
   }

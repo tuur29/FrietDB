@@ -8,7 +8,7 @@ import { GlobalsService } from 'globals.service';
   selector: 'app-header',
   template: `
   
-    <md-toolbar color="primary">
+    <mat-toolbar color="primary">
 
       <img src="assets/logo.svg" alt="Logo" width="35" height="35">
       <a routerLink="/">{{title}}</a>
@@ -19,7 +19,7 @@ import { GlobalsService } from 'globals.service';
       <a routerLink="order">Bestelling</a>
       <a routerLink="heatmap">Heatmap</a>
       <a routerLink="edits" *ngIf="globals.auth.admin && globals.auth.token">Aanpassingen</a>
-    </md-toolbar>
+    </mat-toolbar>
 
   `,
   styles: [`
@@ -30,13 +30,13 @@ import { GlobalsService } from 'globals.service';
       }
     }
 
-    md-toolbar a {
+    mat-toolbar a {
       margin: 0 5px;
       color: black;
       text-decoration: none;
     }
 
-    md-toolbar a:hover, md-toolbar a:active, md-toolbar a:focus {
+    mat-toolbar a:hover, mat-toolbar a:active, mat-toolbar a:focus {
       text-decoration: underline;
     }
 

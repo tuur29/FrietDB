@@ -2,7 +2,7 @@
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
-import {MdPaginator} from '@angular/material';
+import {MatPaginator} from '@angular/material';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
@@ -33,7 +33,7 @@ export class Database {
 
 // handles pagination, sorting & filtering
 export class EditsDataSource extends DataSource<any> {
-  constructor(private _database: Database, private _paginator: MdPaginator) {
+  constructor(private _database: Database, private _paginator: MatPaginator) {
     super();
   }
 
