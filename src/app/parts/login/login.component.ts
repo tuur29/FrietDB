@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { GlobalsService } from 'globals.service';
@@ -49,6 +49,8 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 })
 export class LoginComponent implements OnInit {
 
+  @Input() redirect : string;
+
   constructor(
     public globals: GlobalsService,
     public dialogsService: DialogsService,
@@ -60,6 +62,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.globals.auth.token = "temp";
+    if (this.redirect)
+      this.router.navigate([this.redirect]);
   }
 
   logout() {

@@ -1,7 +1,7 @@
 // TODO: Review edits (shops & snacks)
-// TODO: Redirect to error when not admin
 
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GlobalsService } from 'globals.service';
 
 @Component({
@@ -26,7 +26,10 @@ export class EditsListComponent implements OnInit {
   shopEdits: any[] = [];
   snackEdits: any[] = [];
 
-  constructor(private globals: GlobalsService) {
+  constructor(
+    private globals: GlobalsService,
+    private router: Router,
+  ) {
 
     this.shopEdits = globals.editslist.filter(edit =>
       edit.type == "shop"
@@ -39,6 +42,8 @@ export class EditsListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.globals.auth.token || !this.globals.auth.admin)
+      this.router.navigate(['error', 403, "edits"]);
   }
 
 }

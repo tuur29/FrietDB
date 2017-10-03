@@ -44,9 +44,14 @@ export const routes: Routes = [
    path: 'edits',
    component : EditsListComponent
   },
+  
   {
     path: '',
     component : HomeComponent
+  },
+  {
+    path: 'error/:status/:redirect',
+    component: ErrorComponent
   },
   {
     path: '**',

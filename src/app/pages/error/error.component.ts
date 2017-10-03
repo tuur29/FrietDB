@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 import { MessagesService } from '../../messages/messages.service';
 
 @Component({
@@ -8,39 +8,51 @@ import { MessagesService } from '../../messages/messages.service';
 
     <mat-card>
       <h1>Error</h1>
-      <p>Het ziet er naar uit dat je geen toegang hebt tot deze pagina, gelieve je hieronder eerst in te loggen. </p>
+      <p>Het ziet er naar uit dat je geen toegang hebt tot deze pagina, gelieve je hieronder eerst in te loggen.</p>
       <p><a routerLink="/">Terug naar homepagina</a></p>
-      <app-login></app-login>
+      <app-login [redirect]="redirecturl"></app-login>
     </mat-card>
-
     
   `,
   styles: [`
 
   `]
 })
-export class ErrorComponent implements OnInit {
-  
-  private status: number = 404;
+export class ErrorComponent implements OnInit, OnDestroy {
+
+  redirecturl: string = "/";
+  private subroute: any;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private messagesService: MessagesService
   ) {
 
-    if (this.status != 403) {
+  }
 
-      let old = this.router.url;
-      this.messagesService.send("Er ging iets fout.","OPNIEUW").subscribe(params => {
-        this.router.navigate([old]);
-      });
+  ngOnInit() {
 
-      this.router.navigate(['/']);
+    this.subroute = this.route.params.subscribe(params => {
+      let status = +params.status; // (+) converts string 'id' to a number
+      if (status != 403) {
 
-    }
+        let old = this.router.url;
+        this.messagesService.send("Er ging iets fout.","OPNIEUW").subscribe(params => {
+          this.router.navigate([old]);
+        });
+        this.router.navigate(['/']);
+
+      } else {
+        this.redirecturl = params.redirect;
+      }
+
+    });
 
   }
 
-  ngOnInit() {}
+  ngOnDestroy() {
+    this.subroute.unsubscribe();
+  }
 
 }
