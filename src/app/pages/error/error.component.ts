@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import { MessagesService } from '../messages/messages.service';
+import { MessagesService } from '../../messages/messages.service';
 
 @Component({
   selector: 'app-error',

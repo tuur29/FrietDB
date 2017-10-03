@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogsService } from '../dialogs/dialogs.service';
+import { DialogsService } from '../../dialogs/dialogs.service';
 
 @Component({
   selector: 'app-login',

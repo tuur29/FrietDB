@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ErrorComponent } from './error.component';
 
 import { MatCardModule } from '@angular/material';
-import { LoginModule } from '../login/login.module';
+import { LoginModule } from '../../parts/login/login.module';
 
 @NgModule({
   imports: [

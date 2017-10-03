@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { EditsListComponent } from './editslist.component';
 
 import { MatCardModule } from '@angular/material';
-import { TableModule } from '../table/table.module';
-import { TableComponent } from '../table/table.component';
+import { TableModule } from '../../parts/table/table.module';
+import { TableComponent } from '../../parts/table/table.component';
 
 @NgModule({
   imports: [

@@ -2,13 +2,13 @@
 
 import { Routes } from '@angular/router';
 
-import { ErrorComponent } from './error/error.component';
-import { HomeComponent } from './home/home.component';
-import { ShopComponent } from './shop/shop.component';
-import { OrderComponent } from './order/order.component';
-import { HeatmapComponent } from './heatmap/heatmap.component';
-import { EditShopComponent } from './editshop/editshop.component';
-import { EditsListComponent } from './editslist/editslist.component';
+import { ErrorComponent } from './pages/error/error.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ShopComponent } from './pages/shop/shop.component';
+import { OrderComponent } from './pages/order/order.component';
+import { HeatmapComponent } from './pages/heatmap/heatmap.component';
+import { EditShopComponent } from './pages/editshop/editshop.component';
+import { EditsListComponent } from './pages/editslist/editslist.component';
 
 export const routes: Routes = [
 

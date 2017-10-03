@@ -2,7 +2,7 @@
 
 import { Component, HostListener, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
-import { DialogsService } from '../dialogs/dialogs.service';
+import { DialogsService } from '../../dialogs/dialogs.service';
 
 import { LocalStorage, WebstorableArray } from 'ngx-store';
 

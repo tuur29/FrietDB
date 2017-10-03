@@ -4,7 +4,7 @@
 
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DialogsService } from '../dialogs/dialogs.service';
+import { DialogsService } from '../../dialogs/dialogs.service';
 import { GlobalsService } from 'globals.service';
 
 @Component({

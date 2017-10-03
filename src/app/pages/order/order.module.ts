@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OrderComponent } from './order.component';
 
-import { MapModule } from '../map/map.module';
+import { MapModule } from '../../parts/map/map.module';
 
 import { NgPipesModule } from 'ngx-pipes';
 

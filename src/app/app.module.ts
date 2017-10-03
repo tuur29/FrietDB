@@ -18,18 +18,18 @@ import { MessagesModule } from './messages/messages.module';
 import { GlobalsService } from 'globals.service';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 
-import { LoginModule } from './login/login.module';
-import { SearchShopModule } from './searchshop/searchshop.module';
+import { HeaderComponent } from './parts/header/header.component';
+import { LoginModule } from './parts/login/login.module';
+import { SearchShopModule } from './parts/searchshop/searchshop.module';
 
-import { EditShopModule } from './editshop/editshop.module';
-import { EditsListModule } from './editslist/editslist.module';
-import { HeatmapModule } from './heatmap/heatmap.module';
-import { ErrorModule } from './error/error.module';
-import { HomeModule } from './home/home.module';
-import { ShopModule } from './shop/shop.module';
-import { OrderModule } from './order/order.module';
+import { EditShopModule } from './pages/editshop/editshop.module';
+import { EditsListModule } from './pages/editslist/editslist.module';
+import { HeatmapModule } from './pages/heatmap/heatmap.module';
+import { ErrorModule } from './pages/error/error.module';
+import { HomeModule } from './pages/home/home.module';
+import { ShopModule } from './pages/shop/shop.module';
+import { OrderModule } from './pages/order/order.module';
 
 @NgModule({
   declarations: [
