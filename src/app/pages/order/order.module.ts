@@ -5,30 +5,22 @@ import { OrderComponent } from './order.component';
 
 import { MapModule } from '../../parts/map/map.module';
 
-import { NgPipesModule } from 'ngx-pipes';
-
-import { MatIconModule,MatButtonModule,MatCardModule,MatAutocompleteModule,MatInputModule,MatListModule,MatGridListModule,MatTooltipModule } from '@angular/material';
+import { MaterialModule } from '../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgPipesModule } from 'ngx-pipes';
 
 
 @NgModule({
   imports: [
   	RouterModule,
     CommonModule,
+    
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgPipesModule,
 
     MapModule,
-    
-    MatTooltipModule,
-    MatGridListModule,
-    MatIconModule,
-    MatButtonModule,
-    MatListModule,
-    MatCardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatAutocompleteModule,
   ],
   declarations: [
     OrderComponent,

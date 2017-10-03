@@ -2,17 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditShopComponent } from './editshop.component';
 
-import { MatButtonModule,MatIconModule,MatTooltipModule,MatInputModule,MatExpansionModule  } from '@angular/material';
+import { MaterialModule } from '../../material.module';
 
 @NgModule({
   imports: [
     CommonModule,
-
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatInputModule,
-    MatExpansionModule
+	MaterialModule
   ],
   declarations: [EditShopComponent]
 })

@@ -1,22 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from './table.component';
 import { RouterModule } from '@angular/router';
+import { TableComponent } from './table.component';
 
-import { MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule, MatTooltipModule,MatRippleModule  } from '@angular/material';
-
+import { MaterialModule } from '../../material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
 
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatRippleModule
+    MaterialModule,
   ],
   exports: [TableComponent],
   declarations: [TableComponent],

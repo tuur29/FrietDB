@@ -3,14 +3,15 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ErrorComponent } from './error.component';
 
-import { MatCardModule } from '@angular/material';
+import { MaterialModule } from '../../material.module';
+
 import { LoginModule } from '../../parts/login/login.module';
 
 @NgModule({
   imports: [
   	RouterModule,
     CommonModule,
-    MatCardModule,
+    MaterialModule,
     LoginModule,
   ],
   declarations: [ErrorComponent]

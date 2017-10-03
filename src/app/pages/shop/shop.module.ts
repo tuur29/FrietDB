@@ -7,7 +7,7 @@ import { MapModule } from '../../parts/map/map.module';
 
 import { MarkdownModule } from 'angular2-markdown';
 import { NgPipesModule } from 'ngx-pipes';
-import { MatIconModule,MatButtonModule,MatCardModule,MatListModule,MatGridListModule,MatDialogModule } from '@angular/material';
+import { MaterialModule } from '../../material.module';
 
 @NgModule({
   imports: [
@@ -15,15 +15,9 @@ import { MatIconModule,MatButtonModule,MatCardModule,MatListModule,MatGridListMo
     CommonModule,
     NgPipesModule,
     MarkdownModule,
+    MaterialModule,
 
     MapModule,
-
-    MatIconModule,
-    MatButtonModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatDialogModule,
   ],
   exports: [MarkdownModule],
   declarations: [ShopComponent],

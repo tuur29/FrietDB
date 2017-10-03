@@ -1,12 +1,13 @@
 import { MessagesService } from './messages.service';
-import { MatSnackBarModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { MaterialModule } from '../material.module';
 
 @NgModule({
     imports: [
         CommonModule,    
-        MatSnackBarModule,
+        MaterialModule
     ],
     exports: [
 
