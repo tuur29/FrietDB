@@ -8,22 +8,16 @@ import { WebStorageModule } from 'ngx-store';
 import { environment } from '../environments/environment';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NoConflictStyleCompatibilityMode } from '@angular/material';
-import { MaterialModule } from './material.module';
-
 
 import { MarkdownModule } from 'angular2-markdown';
 import { AgmCoreModule } from '@agm/core';
 
+import { AppComponent } from './app.component';
+import { HeaderModule } from './parts/header/header.module';
+
+import { GlobalsService } from 'globals.service';
 import { DialogsModule } from './dialogs/dialogs.module';
 import { MessagesModule } from './messages/messages.module';
-import { GlobalsService } from 'globals.service';
-
-import { AppComponent } from './app.component';
-
-import { HeaderComponent } from './parts/header/header.component';
-import { LoginModule } from './parts/login/login.module';
-import { SearchShopModule } from './parts/searchshop/searchshop.module';
 
 import { EditShopModule } from './pages/editshop/editshop.module';
 import { EditsListModule } from './pages/editslist/editslist.module';
@@ -34,17 +28,15 @@ import { ShopModule } from './pages/shop/shop.module';
 import { OrderModule } from './pages/order/order.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+
     BrowserAnimationsModule,
-    NoConflictStyleCompatibilityMode,
-    MaterialModule,
+
     RouterModule.forRoot(routes),
     WebStorageModule,
+
     AgmCoreModule.forRoot({
       apiKey: environment.mapskey,
       libraries: ["visualization"]
@@ -53,8 +45,8 @@ import { OrderModule } from './pages/order/order.module';
 
     DialogsModule,
     MessagesModule,
-    SearchShopModule,
-    LoginModule,
+    
+    HeaderModule,
     
     EditsListModule,
     EditShopModule,
