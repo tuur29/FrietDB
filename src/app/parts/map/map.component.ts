@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
 import { MapsAPILoader,GoogleMapsAPIWrapper } from '@agm/core';
 
-declare var google: any;
+declare let google: any;
 
 @Component({
   selector: 'app-map',
@@ -51,7 +51,7 @@ export class MapComponent implements OnInit,OnChanges {
   @Input() lng: number;
   @Input() zoom: number = 8;
 
-  private waitForBoundsCalc: boolean = false;
+  waitForBoundsCalc: boolean = false;
 
   constructor(
     private globals: GlobalsService,
@@ -70,7 +70,7 @@ export class MapComponent implements OnInit,OnChanges {
     if (this.shops.length > 1) {
 
       let bounds = new google.maps.LatLngBounds();
-      for (var i = 0; i < data.length; i++)
+      for (let i = 0; i < data.length; i++)
         bounds.extend(data[i]);
 
       map.fitBounds(bounds);
@@ -114,13 +114,12 @@ export class MapComponent implements OnInit,OnChanges {
     // Ask for location permission
     if (navigator.geolocation && (this.lat === undefined || this.lng === undefined)) {
       
-      var that = this;
-      navigator.geolocation.getCurrentPosition(function(position) {
-        that.lat = position.coords.latitude;
-        that.lng = position.coords.longitude;
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
 
-      }, function() {
-        that.setDefaultPosition();
+      }, () => {
+        this.setDefaultPosition();
       });
       
     } else {

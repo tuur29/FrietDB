@@ -21,7 +21,7 @@ import { MessagesService } from '../../messages/messages.service';
 export class ErrorComponent implements OnInit, OnDestroy {
 
   redirecturl: string = "/";
-  private subroute: any;
+  subroute: any;
 
   constructor(
     private router: Router,

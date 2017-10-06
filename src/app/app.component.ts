@@ -3,7 +3,6 @@
 // TODO: Loading spinner
 // TODO: Move logic to ngOnInit()
 // TODO: Make edit snack page/dialog?
-// TODO: Refactor to typescript (arrow fn instea of that = this...)
 
 import { Component } from '@angular/core';
 

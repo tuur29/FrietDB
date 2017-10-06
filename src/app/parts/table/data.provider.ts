@@ -15,14 +15,13 @@ export class Database {
   constructor(data: any[]) {
 
     // put data into system
-    let that = this;
-    data.forEach(function(d){
-      const copiedData = that.data.slice();
+    data.forEach((d) => {
+      const copiedData = this.data.slice();
 
       // temporary use same test data
       for (let i=0;i<50;i++)
         copiedData.push(d);
-      that.dataChange.next(copiedData);
+      this.dataChange.next(copiedData);
     });
   }
 

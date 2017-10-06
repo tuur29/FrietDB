@@ -33,7 +33,7 @@ export class SnackInfoDialog implements OnInit {
 
   public reqId: number;
 
-  snack;
+  snack: object;
 
   constructor(
     private globals: GlobalsService,

@@ -49,7 +49,7 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 })
 export class LoginComponent implements OnInit {
 
-  @Input() redirect : string;
+  @Input() redirect: string;
 
   constructor(
     public globals: GlobalsService,

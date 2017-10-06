@@ -14,8 +14,8 @@ import { GlobalsService } from 'globals.service';
 })
 export class ShopComponent implements OnInit, OnDestroy {
 
-  private subroute: any;
-  private reqId: any;
+  subroute: any;
+  reqId: any;
 
   shop;
   snacks: any[];
