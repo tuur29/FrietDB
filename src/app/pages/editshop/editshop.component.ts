@@ -2,6 +2,7 @@
 // TODO: Skip first step if id is set
 // TODO: Auto fill forms
 // TODO: Disable all inputs and show review buttons when admin
+// TODO: Send accept/deny events to seperate component?
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';

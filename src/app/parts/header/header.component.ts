@@ -1,5 +1,3 @@
-// TODO: Better name for Order page
-
 import { Component, Input, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
 

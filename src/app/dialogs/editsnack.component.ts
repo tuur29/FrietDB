@@ -1,4 +1,5 @@
 // TODO: Add edit snack UI
+// TODO: Send accept/deny events to seperate component?
 
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';

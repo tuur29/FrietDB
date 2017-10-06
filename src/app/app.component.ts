@@ -1,7 +1,6 @@
 // TODO: Try AOT compiling faster loading
 // TODO: Gather real testdata
 // TODO: Loading spinner
-// TODO: Make edit snack page/dialog?
 
 import { Component } from '@angular/core';
 

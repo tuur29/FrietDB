@@ -1,5 +1,3 @@
-// TODO: Review edits (shops & snacks)
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalsService } from 'globals.service';

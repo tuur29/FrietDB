@@ -1,5 +1,6 @@
 // TODO: Add filter & sort to table. See: https://stackoverflow.com/questions/45327703/angular-2-material-implementing-sort-filter-and-pagination
 // TODO: Checking or removing item from list should update list
+// TODO: Send accept/deny events to seperate component?
 
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { Database, EditsDataSource } from './data.provider';
