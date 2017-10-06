@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class GlobalsService {
 
   auth = {
-    token: "",
+    token: "temp",
     admin: true,
   }
 
@@ -141,4 +141,7 @@ export class GlobalsService {
   	type: 'Saus',
   	favorite: true
   }];
+
+  snacktypes: string[] = ["Snack","Frieten","Saus","Drank","Andere"];
+
 }

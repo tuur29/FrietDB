@@ -72,7 +72,7 @@
               {{snack.name}}
             </ng-template>
 
-            <span *ngIf="globals.auth.token && globals.auth.admin" (click)="dialogsService.snackinfo(snack.id)" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
+            <span *ngIf="globals.auth.token && globals.auth.admin" (click)="dialogsService.editsnack(snack.id)" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
               <mat-icon>edit</mat-icon>
             </span>
 
