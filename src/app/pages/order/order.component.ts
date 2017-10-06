@@ -1,5 +1,3 @@
-// TODO: Show edit snacks popups when logged in
-
 import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
@@ -30,8 +28,8 @@ export class OrderComponent implements OnInit {
   filteredShops: any[];
 
   constructor(
-    private globals: GlobalsService,
-    private dialogsService: DialogsService) {
+    public globals: GlobalsService,
+    public dialogsService: DialogsService) {
 
     // get globals
     this.filteredShops = globals.shops;
@@ -74,11 +72,6 @@ export class OrderComponent implements OnInit {
 
     // todo request and reload filtered shops
 
-  }
-
-  openDialog(snack) {
-    if (snack.image || snack.link)
-      this.dialogsService.snackinfo(snack.id);
   }
 
   resetOrder() {

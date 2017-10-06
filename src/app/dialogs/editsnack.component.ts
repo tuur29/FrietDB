@@ -1,3 +1,5 @@
+// TODO: Add edit snack UI
+
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { GlobalsService } from 'globals.service';

@@ -6,7 +6,12 @@
   <mat-card-content class="floaty-grid">
 
       <div>
-        <h1>{{shop.name}}</h1>
+        <h1>
+          {{shop.name}}
+          <a *ngIf="globals.auth.token && globals.auth.admin" [routerLink]="'/edit/shop/'+shop.id" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
+              <mat-icon>edit</mat-icon>
+            </a>
+        </h1>
         <markdown>{{shop.description}}</markdown>
       </div>
 
@@ -50,9 +55,22 @@
 
       <mat-list>
         <mat-list-item *ngFor="let snack of group[1]">
-          <div (click)="openDialog(snack)" class="link">
-            <span>{{snack.name}}</span>
-            <mat-icon *ngIf="snack.image || snack.link">open_in_new</mat-icon>
+          <div (click)="dialogsService.show(snack)" class="link">          
+            <ng-container *ngIf="snack.image || snack.link;else onlyname">
+              <span (click)="dialogsService.snackinfo(snack.id)" class="link" aria-label="Meer info" matTooltip="Meer info">
+                {{snack.name}}
+                <mat-icon>open_in_new</mat-icon>
+              </span>
+            </ng-container>
+
+            <ng-template #onlyname>
+              {{snack.name}}
+            </ng-template>
+
+            <span *ngIf="globals.auth.token && globals.auth.admin" (click)="dialogsService.snackinfo(snack.id)" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
+              <mat-icon>edit</mat-icon>
+            </span>
+
           </div>
         </mat-list-item>
       </mat-list>

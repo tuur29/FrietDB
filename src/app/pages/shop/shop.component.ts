@@ -1,5 +1,3 @@
-// TODO: Show edit shop link when logged in
-// TODO: Show edit snacks popups when logged in
 // TODO: Load ratings & price/quality from third party api (link & min number of reviews)
 
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
@@ -21,9 +19,9 @@ export class ShopComponent implements OnInit, OnDestroy {
   snacks: any[];
 
   constructor(
-    private globals: GlobalsService,
+    public globals: GlobalsService,
     private route: ActivatedRoute,
-    private dialogsService: DialogsService,
+    public dialogsService: DialogsService,
   ) {
     this.shop = globals.shops[0];
     this.snacks = globals.snacks;
@@ -37,11 +35,6 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subroute.unsubscribe();
-  }
-
-  openDialog(snack) {
-    if (snack.image || snack.link)
-      this.dialogsService.snackinfo(snack.id);
   }
 
 }

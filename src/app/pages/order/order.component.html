@@ -58,12 +58,24 @@
         <mat-list-item *ngFor="let snack of group[1]">
 
           <mat-icon matListIcon>check_box</mat-icon>
-          <span *ngIf="snack.count > 0">
+          <span>
             {{snack.count}}x 
-            <span (click)="openDialog(snack)" class="link" aria-label="Meer info" matTooltip="Meer info">
+
+            <ng-container *ngIf="snack.image || snack.link;else onlyname">
+              <span (click)="dialogsService.snackinfo(snack.id)" class="link" aria-label="Meer info" matTooltip="Meer info">
+                {{snack.name}}
+                <mat-icon>open_in_new</mat-icon>
+              </span>
+            </ng-container>
+
+            <ng-template #onlyname>
               {{snack.name}}
-              <mat-icon *ngIf="snack.image || snack.link">open_in_new</mat-icon>
+            </ng-template>
+
+            <span *ngIf="globals.auth.token && globals.auth.admin" (click)="dialogsService.snackinfo(snack.id)" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
+              <mat-icon>edit</mat-icon>
             </span>
+
           </span>
 
           <span class="spacer"></span>
