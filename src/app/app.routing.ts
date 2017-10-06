@@ -1,4 +1,4 @@
-// TODO Incorporate edit type (shop, snack) into routes? Or use popup for snack?
+// TODO Redirect /edit/snack/:id to /edits and show dialog
 
 import { Routes } from '@angular/router';
 
