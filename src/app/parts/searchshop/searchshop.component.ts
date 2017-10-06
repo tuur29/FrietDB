@@ -41,17 +41,17 @@ export class SearchShopComponent implements OnInit {
 
   @Input() inline: boolean = false;
 
-  shopCtrl: FormControl;
+  shopCtrl: FormControl = new FormControl();
   filteredShops: Observable<any[]>;
 
   @Input() shops: any[];
 
-  constructor(private router: Router) {
+  constructor(private router: Router) { }
 
-    this.shopCtrl = new FormControl();
+  ngOnInit() {
     this.filteredShops = this.shopCtrl.valueChanges
-        .startWith(null)
-        .map(shop => shop ? this.filterShops(shop) : this.shops.slice());
+      .startWith(null)
+      .map(shop => shop ? this.filterShops(shop) : this.shops.slice());
   }
 
   filterShops(query: string) {
@@ -64,9 +64,6 @@ export class SearchShopComponent implements OnInit {
 
   openShop(id: number) {
     this.router.navigate(['/shop',id]);
-  }
-
-  ngOnInit() {
   }
 
 }

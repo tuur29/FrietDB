@@ -22,7 +22,7 @@ export class OrderComponent implements OnInit {
 
   // variables
   snacks: any[];
-  snackCtrl: FormControl;
+  snackCtrl: FormControl = new FormControl();
   filteredSnacks: Observable<any[]>;
 
   @LocalStorage() addedSnacks: WebstorableArray<any> = <any>[];
@@ -36,19 +36,19 @@ export class OrderComponent implements OnInit {
     // get globals
     this.filteredShops = globals.shops;
     this.snacks = globals.snacks;
-
-    // filter snacks on search
-    this.snackCtrl = new FormControl();
-    this.filteredSnacks = this.snackCtrl.valueChanges
-      .startWith(null)
-      .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
-
   }
 
+  // filter snacks on search
   filterSnacks(query: string) {
     return this.snacks.filter(snack =>
       snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1
     );
+  }
+
+  ngOnInit() {
+    this.filteredSnacks = this.snackCtrl.valueChanges
+      .startWith(null)
+      .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
   }
 
   // click snack in search or fav grid list
@@ -112,9 +112,6 @@ export class OrderComponent implements OnInit {
     });
 
     window.open('mailto:?subject=Lijst%20frieten&body='+encodeURIComponent(link+'\n'));
-  }
-
-  ngOnInit() {
   }
 
 }
