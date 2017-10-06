@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+// TODO: Show error when email field incorrectly formatted
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 
 @Component({
@@ -6,18 +8,18 @@ import { MatDialogRef } from '@angular/material';
   template: `
 
     <h1 mat-dialog-title>Registreer</h1>
-    <form class="register-form">
+    <form #form>
 
       <mat-form-field color="accent">
-        <input type="text" required matInput placeholder="Naam">
+        <input type="text" [(ngModel)]="name" name="name" required matInput placeholder="Naam">
       </mat-form-field>
 
       <mat-form-field color="accent">
-        <input type="email" required matInput placeholder="E-mailadres">
+        <input type="email" [(ngModel)]="email" name="email" required matInput placeholder="E-mailadres">
       </mat-form-field>
     
       <div mat-dialog-actions>
-        <button type="submit" mat-raised-button color="accent">
+        <button type="submit" (click)="send()" mat-raised-button color="accent">
           <mat-icon>send</mat-icon> Verstuur
         </button>
 
@@ -48,10 +50,22 @@ import { MatDialogRef } from '@angular/material';
 })
 export class RegisterDialog implements OnInit {
 
+  name: string;
+  email: string;
+
+  @ViewChild('form') form;
+
   constructor(public dialogRef: MatDialogRef<RegisterDialog>) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  send() {
+    if (this.form.nativeElement.checkValidity()) {
+      console.log("sending",this.name,this.email);
+      this.dialogRef.close();
+    }
   }
 
   ngOnInit() {

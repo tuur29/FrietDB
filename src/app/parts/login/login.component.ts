@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+// TODO: Show error when email field incorrectly formatted
+
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { GlobalsService } from 'globals.service';
@@ -9,13 +11,13 @@ import { DialogsService } from '../../dialogs/dialogs.service';
   template: `
 
       <!-- Login form -->
-      <form class="login-form" *ngIf="!globals.auth.token">
+      <form #form *ngIf="!globals.auth.token">
         <mat-form-field color="accent">
-          <input type="email" matInput required placeholder="E-mailadres">
+          <input type="email" [(ngModel)]="email" name="email" matInput required placeholder="E-mailadres">
         </mat-form-field>
 
         <mat-form-field color="accent">
-          <input type="password" matInput required placeholder="Wachtwoord">
+          <input type="password" [(ngModel)]="password" name="password" matInput required placeholder="Wachtwoord">
         </mat-form-field>
 
         <button type="submit" mat-raised-button color="accent" (click)="login()">
@@ -23,7 +25,9 @@ import { DialogsService } from '../../dialogs/dialogs.service';
         </button>
 
         <button mat-raised-button (click)="dialogsService.register()">Registreer</button>
+
       </form>
+
 
       <!-- Edit buttons -->
       <div *ngIf="globals.auth.token">
@@ -50,6 +54,10 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 export class LoginComponent implements OnInit {
 
   @Input() redirect: string;
+  @ViewChild('form') form;
+
+  email: string;
+  password: string;
 
   constructor(
     public globals: GlobalsService,
@@ -61,9 +69,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.globals.auth.token = "temp";
-    if (this.redirect)
-      this.router.navigate([this.redirect]);
+    if (this.form.nativeElement.checkValidity()) {
+      this.globals.auth.token = this.email+this.password;
+      if (this.redirect)
+        this.router.navigate([this.redirect]);
+    }
   }
 
   logout() {

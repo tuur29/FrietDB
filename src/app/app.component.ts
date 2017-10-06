@@ -1,7 +1,6 @@
 // TODO: Try AOT compiling faster loading
 // TODO: Gather real testdata & Make data interfaces
 // TODO: Loading spinner
-// TODO: Use OnSubmit event for forms instead onclick button -> validation
 
 import { Component } from '@angular/core';
 

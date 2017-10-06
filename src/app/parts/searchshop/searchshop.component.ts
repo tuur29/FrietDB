@@ -11,20 +11,20 @@ import 'rxjs/add/operator/map';
   selector: 'app-searchshop',
   template: `
     
-    <form class="shop-form">
+    <form>
       <mat-form-field color="accent" class="full-width" [floatPlaceholder]="inline?'never':''">
 
         <button mat-icon-button matPrefix>
           <mat-icon>search</mat-icon>
         </button>
 
-        <input matInput placeholder="Zoek naar een frituur" aria-label="Zoek naar een frituur" [matAutocomplete]="auto" [formControl]="shopCtrl">
+        <input matInput placeholder="Zoek naar een frituur" aria-label="Zoek naar een frituur" [matAutocomplete]="autocomplete" [formControl]="shopCtrl">
 
         <button *ngIf="shopCtrl.value" matSuffix mat-icon-button aria-label="Reset" (click)="shopCtrl.reset()">
           <mat-icon>close</mat-icon>
         </button>
 
-        <mat-autocomplete #auto="matAutocomplete">
+        <mat-autocomplete #autocomplete="matAutocomplete">
           <mat-option (onSelectionChange)="openShop(shop.id)" *ngFor="let shop of filteredShops | async" [value]="shop.name">
             <span>{{ shop.name }}</span> |
             <small>{{shop.street}} {{shop.municipality}}</small>
