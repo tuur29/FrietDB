@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { GlobalsService } from 'globals.service';
 import { EditsService } from '../edits.service';
@@ -9,7 +9,7 @@ import { EditsService } from '../edits.service';
 
     <h1 mat-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
     
-    <form class="edit-form">
+    <form #form>
 
       <mat-form-field color="accent">
         <input type="text" [(ngModel)]="snack.name" name="name" required matInput placeholder="Naam">
@@ -32,7 +32,7 @@ import { EditsService } from '../edits.service';
     </form>
 
     <div mat-dialog-actions>
-      <button (click)="editsService.savesnack(snack)" mat-raised-button color="accent">
+      <button type="submit" (click)="onSubmit()" mat-raised-button color="accent">
         <mat-icon>save</mat-icon> Opslaan
       </button>
       <span class="spacer"></span>
@@ -63,6 +63,8 @@ export class EditSnackDialog implements OnInit {
   reqId: number;
   snack: any;
 
+  @ViewChild('form') form;
+
   constructor(
     public globals: GlobalsService,
     public editsService: EditsService,
@@ -73,6 +75,13 @@ export class EditSnackDialog implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  onSubmit() {
+    if (this.form.nativeElement.checkValidity()) {
+      this.editsService.savesnack(this.snack);
+      this.dialogRef.close();
+    }
   }
 
   ngOnInit() {

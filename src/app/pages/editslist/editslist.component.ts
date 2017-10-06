@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DialogsService } from '../../dialogs/dialogs.service';
 import { GlobalsService } from 'globals.service';
 
 @Component({
@@ -26,8 +27,16 @@ export class EditsListComponent implements OnInit {
 
   constructor(
     private globals: GlobalsService,
+    private route: ActivatedRoute,
+    public dialogsService: DialogsService,
     private router: Router,
   ) {
+
+    if (router.url.indexOf("/edit/snack") > -1 && route.snapshot.params['id']) {
+      this.dialogsService.editsnack(route.snapshot.params['id']).subscribe(() => {
+        this.router.navigate(['edits']);
+      });
+    }
 
     this.shopEdits = globals.editslist.filter(edit =>
       edit.type == "shop"

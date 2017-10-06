@@ -1,5 +1,3 @@
-// TODO Redirect /edit/snack/:id to /edits and show dialog
-
 import { Routes } from '@angular/router';
 
 import { ErrorComponent } from './pages/error/error.component';
@@ -16,14 +14,17 @@ export const routes: Routes = [
    path: 'shop/:id',
    component : ShopComponent
   },
+
   {
    path: 'order',
    component : OrderComponent
   },
+
   {
    path: 'heatmap',
    component : HeatmapComponent
   },
+
   {
    path: 'edit/shop',
    component : EditShopComponent,
@@ -32,23 +33,25 @@ export const routes: Routes = [
    path: 'edit/shop/:id',
    component : EditShopComponent,
   },
-  // {
-  //  path: 'edit/snack',
-  //  component : EditSnackComponent,
-  // },
-  // {
-  //  path: 'edit/snack/:id',
-  //  component : EditSnackComponent,
-  // },
+  {
+   path: 'edit/snack',
+   component : EditsListComponent,
+  },
+  {
+   path: 'edit/snack/:id',
+   component : EditsListComponent
+  },
+
   {
    path: 'edits',
    component : EditsListComponent
   },
-  
+
   {
     path: '',
     component : HomeComponent
   },
+
   {
     path: 'error/:status/:redirect',
     component: ErrorComponent
