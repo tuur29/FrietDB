@@ -31,9 +31,8 @@ import { GlobalsService } from 'globals.service';
 })
 export class SnackInfoDialog implements OnInit {
 
-  public reqId: number;
-
-  snack: object;
+  reqId: number;
+  snack: any;
 
   constructor(
     private globals: GlobalsService,
