@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { HeaderModule } from './parts/header/header.module';
 
 import { GlobalsService } from 'globals.service';
+import { EditsService } from './edits.service';
 import { DialogsModule } from './dialogs/dialogs.module';
 import { MessagesModule } from './messages/messages.module';
 
@@ -58,6 +59,7 @@ import { OrderModule } from './pages/order/order.module';
   ],
   providers: [
     GlobalsService,
+    EditsService,
   ],
   bootstrap: [AppComponent],
 })

@@ -2,11 +2,12 @@
 // TODO: Skip first step if id is set
 // TODO: Auto fill forms
 // TODO: Disable all inputs and show review buttons when admin
-// TODO: Send accept/deny events to seperate component?
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GlobalsService } from 'globals.service';
+import { EditsService } from '../../edits.service';
+
 
 @Component({
   selector: 'app-editshop',
@@ -27,16 +28,19 @@ import { GlobalsService } from 'globals.service';
 })
 export class EditShopComponent implements OnInit, OnDestroy {
 
-  private subroute: any;
-
+  subroute: any;
   id: number;
   step = 0;
+  shop: any;
 
   constructor(
     private globals: GlobalsService,
+    public editsService: EditsService,
     private route: ActivatedRoute,
     private router: Router,
-  ) { }
+  ) {
+    this.shop = globals.shops[0];
+  }
 
   ngOnInit() {
     this.subroute = this.route.params.subscribe(params => {

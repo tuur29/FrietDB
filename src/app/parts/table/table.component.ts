@@ -1,11 +1,11 @@
 // TODO: Add filter & sort to table. See: https://stackoverflow.com/questions/45327703/angular-2-material-implementing-sort-filter-and-pagination
 // TODO: Checking or removing item from list should update list
-// TODO: Send accept/deny events to seperate component?
 
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { Database, EditsDataSource } from './data.provider';
 
 import {MatPaginator} from '@angular/material';
+import { EditsService } from '../../edits.service';
 
 @Component({
   selector: 'app-table',
@@ -32,7 +32,7 @@ export class TableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() {
+  constructor(public editsService: EditsService,) {
   }
 
   ngOnInit() {
@@ -47,11 +47,13 @@ export class TableComponent implements OnInit {
   accept(index: number, event) {
     event.stopPropagation();
     this.database.remove(index);
+    this.editsService.accept(index);
   }
 
   remove(index: number, event) {
     event.stopPropagation();
     this.database.remove(index);
+    this.editsService.remove(index);
   }
 
 }

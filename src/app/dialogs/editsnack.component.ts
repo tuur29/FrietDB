@@ -1,8 +1,7 @@
-// TODO: Send accept/deny events to seperate component?
-
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { GlobalsService } from 'globals.service';
+import { EditsService } from '../edits.service';
 
 @Component({
   selector: 'app-editsnack',
@@ -33,7 +32,7 @@ import { GlobalsService } from 'globals.service';
     </form>
 
     <div mat-dialog-actions>
-      <button type="submit" mat-raised-button color="accent">
+      <button (click)="editsService.savesnack(snack)" mat-raised-button color="accent">
         <mat-icon>save</mat-icon> Opslaan
       </button>
       <span class="spacer"></span>
@@ -66,6 +65,7 @@ export class EditSnackDialog implements OnInit {
 
   constructor(
     public globals: GlobalsService,
+    public editsService: EditsService,
     public dialogRef: MatDialogRef<EditSnackDialog>
   ) {
     this.snack = globals.snacks[0];

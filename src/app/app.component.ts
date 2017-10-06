@@ -1,5 +1,5 @@
 // TODO: Try AOT compiling faster loading
-// TODO: Gather real testdata
+// TODO: Gather real testdata & Make data interfaces
 // TODO: Loading spinner
 
 import { Component } from '@angular/core';
