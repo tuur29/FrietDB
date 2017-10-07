@@ -2,7 +2,6 @@
 // TODO: Gather real testdata & Make data interfaces (default add http to urls)
 // TODO: Loading spinner
 // TODO: Switch material theme primary & accent colors -> remove accent definitions
-// TODO: Move table part to editslist folder
 
 import { Component } from '@angular/core';
 
