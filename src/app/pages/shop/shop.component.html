@@ -8,7 +8,7 @@
       <div>
         <h1>
           {{shop.name}}
-          <a *ngIf="globals.auth.token && globals.auth.admin" [routerLink]="'/edit/shop/'+shop.id" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
+          <a *ngIf="globals.auth.token" [routerLink]="'/edit/shop/'+shop.id" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
               <mat-icon>edit</mat-icon>
             </a>
         </h1>
@@ -44,7 +44,7 @@
   <app-map [shops]="[shop]" [lat]="shop.lat" [lng]="shop.lng" [zoom]="13"></app-map>
 </mat-card>
 
-<!-- Svailible snacks -->
+<!-- Availible snacks -->
 <mat-card>
   <h2>Aanbod</h2>
   <div class="floaty-grid">
@@ -67,7 +67,7 @@
               {{snack.name}}
             </ng-template>
 
-            <span *ngIf="globals.auth.token && globals.auth.admin" (click)="dialogsService.editsnack(snack.id)" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
+            <span *ngIf="globals.auth.token" (click)="dialogsService.editsnack(snack.id)" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
               <mat-icon>edit</mat-icon>
             </span>
 
