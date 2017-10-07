@@ -6,8 +6,8 @@ import { GlobalsService } from 'globals.service';
 import { EditsService } from '../../edits.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 

@@ -4,7 +4,7 @@
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { Database, EditsDataSource } from './data.provider';
 
-import {MatPaginator} from '@angular/material';
+import { MatPaginator } from '@angular/material';
 import { EditsService } from '../../edits.service';
 
 @Component({

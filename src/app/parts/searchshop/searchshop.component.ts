@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 import { GlobalsService } from 'globals.service';
 
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 

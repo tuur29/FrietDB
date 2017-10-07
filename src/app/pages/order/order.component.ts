@@ -4,12 +4,12 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 
 import { LocalStorage, WebstorableArray } from 'ngx-store';
 
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
-import {MatOptionSelectionChange} from '@angular/material';
+import { MatOptionSelectionChange } from '@angular/material';
 
 @Component({
   selector: 'app-order',

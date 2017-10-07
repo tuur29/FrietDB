@@ -1,8 +1,8 @@
 
-import {DataSource} from '@angular/cdk/collections';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
-import {MatPaginator} from '@angular/material';
+import { DataSource } from '@angular/cdk/collections';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { MatPaginator } from '@angular/material';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
