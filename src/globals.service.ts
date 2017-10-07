@@ -43,6 +43,54 @@ export class GlobalsService {
     }
   ];
 
+  snacks: any[] = [
+  {
+    id: 0,
+    name: 'Kipkorn',
+    type: 'Snack',
+    image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
+    link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
+  },
+  {
+    id: 1,
+    name: 'Hamburger',
+    type: 'Snack',
+    image: 'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg',
+    favorite: true
+  },
+  {
+    id: 2,
+    name: 'Klein pakje',
+    type: 'Frieten',
+  },
+  {
+    id: 3,
+    name: 'Sate',
+    type: 'Snack',
+    link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
+  },
+  {
+    id: 4,
+    name: 'Lucifer',
+    type: 'Snack',
+    image: 'http://www.vanhoofonline.be/uploads/Producten/MoraLucifer.gif',
+    link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
+    favorite: true
+  },
+  {
+    id: 5,
+    name: 'Joppie',
+    type: 'Saus',
+    image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
+    link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
+  },
+  {
+    id: 6,
+    name: 'Ketchup',
+    type: 'Saus',
+    favorite: true
+  }];
+
   shops: any[] = [
   {
   	id: 1,
@@ -63,6 +111,7 @@ Wij hebben in huis:
   	website: 'http://www.frituurpatat.be',
   	lat: 51.4,
   	lng: 7.9,
+    snacks: this.snacks,
   },
   {
   	id: 2,
@@ -90,54 +139,6 @@ Wij hebben in huis:
   	municipality: "Gemeente",
   	lat: 51.925,
   	lng: 8,
-  }];
-
-  snacks: any[] = [
-  {
-  	id: 0,
-  	name: 'Kipkorn',
-  	type: 'Snack',
-  	image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
-  	link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-  },
-  {
-  	id: 1,
-  	name: 'Hamburger',
-  	type: 'Snack',
-  	image: 'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg',
-  	favorite: true
-  },
-  {
-  	id: 2,
-  	name: 'Klein pakje',
-  	type: 'Frieten',
-  },
-  {
-  	id: 3,
-  	name: 'Sate',
-  	type: 'Snack',
-  	link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-  },
-  {
-  	id: 4,
-  	name: 'Lucifer',
-  	type: 'Snack',
-  	image: 'http://www.vanhoofonline.be/uploads/Producten/MoraLucifer.gif',
-  	link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-  	favorite: true
-  },
-  {
-  	id: 5,
-  	name: 'Joppie',
-  	type: 'Saus',
-  	image: 'https://www.mora.nl/media/image/007201_1030854-kipkorn-5st-r.png',
-  	link: 'https://www.mora.nl/1087/producten/snacks/kip/kipkorn-originals.html',
-  },
-  {
-  	id: 6,
-  	name: 'Ketchup',
-  	type: 'Saus',
-  	favorite: true
   }];
 
   snacktypes: string[] = ["Snack","Frieten","Saus","Drank","Andere"];

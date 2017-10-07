@@ -12,9 +12,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   subroute: any;
   reqId: any;
-
-  shop;
-  snacks: any[];
+  shop: any;
 
   constructor(
     public globals: GlobalsService,
@@ -22,7 +20,6 @@ export class ShopComponent implements OnInit, OnDestroy {
     public dialogsService: DialogsService,
   ) {
     this.shop = globals.shops[0];
-    this.snacks = globals.snacks;
   }
 
   ngOnInit() {

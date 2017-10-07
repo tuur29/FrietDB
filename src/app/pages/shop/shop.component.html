@@ -49,13 +49,13 @@
   <h2>Aanbod</h2>
   <div class="floaty-grid">
 
-    <div *ngFor="let group of (snacks | groupBy:'type' | pairs)">
+    <div *ngFor="let group of (shop.snacks | groupBy:'type' | pairs)">
 
       <h2 mat-subheader>{{group[0]}}</h2>
 
       <mat-list>
         <mat-list-item *ngFor="let snack of group[1]">
-          <div (click)="dialogsService.show(snack)" class="link">          
+          <div class="link">          
             <ng-container *ngIf="snack.image || snack.link;else onlyname">
               <span (click)="dialogsService.snackinfo(snack.id)" class="link" aria-label="Meer info" matTooltip="Meer info">
                 {{snack.name}}
