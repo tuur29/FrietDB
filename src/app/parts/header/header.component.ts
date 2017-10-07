@@ -12,7 +12,7 @@ import { GlobalsService } from 'globals.service';
 
       <span class="spacer"></span>
 
-      <app-searchshop [shops]="shops" [inline]="true"></app-searchshop>
+      <app-searchshop [inline]="true"></app-searchshop>
       <a routerLink="order">Bestelling</a>
       <a routerLink="heatmap">Heatmap</a>
       <a routerLink="edits" *ngIf="globals.auth.admin && globals.auth.token">Aanpassingen</a>
@@ -56,11 +56,9 @@ import { GlobalsService } from 'globals.service';
 export class HeaderComponent implements OnInit {
 
   title: string;
-  shops: any[];
 
   constructor(public globals: GlobalsService) {
     this.title = globals.title;
-    this.shops = globals.shops;
   }
 
   ngOnInit() {

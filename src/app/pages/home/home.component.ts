@@ -12,7 +12,7 @@ import { GlobalsService } from 'globals.service';
     </mat-card>
 
     <mat-card class="small search">
-      <app-searchshop [shops]="shops"></app-searchshop>
+      <app-searchshop></app-searchshop>
     </mat-card>
 
     <mat-card class="full">

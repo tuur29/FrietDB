@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import {Router} from "@angular/router";
+import { GlobalsService } from 'globals.service';
 
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
@@ -44,9 +45,14 @@ export class SearchShopComponent implements OnInit {
   shopCtrl: FormControl = new FormControl();
   filteredShops: Observable<any[]>;
 
-  @Input() shops: any[];
+  shops: any[];
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private globals: GlobalsService,
+  ) {
+    this.shops = globals.shops;
+  }
 
   ngOnInit() {
     this.filteredShops = this.shopCtrl.valueChanges
