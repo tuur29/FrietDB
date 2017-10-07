@@ -28,7 +28,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
   @ViewChild('form') form;
 
   constructor(
-    private globals: GlobalsService,
+    public globals: GlobalsService,
     public editsService: EditsService,
     public dialogsService: DialogsService,
     private route: ActivatedRoute,
