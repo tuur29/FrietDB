@@ -1,3 +1,6 @@
+// TODO: Disable form and hide save button when admin
+// TODO: Type doesnt save
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { GlobalsService } from 'globals.service';
