@@ -22,7 +22,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-When building for Github Pages you should build with add: `--base-href "https://USERNAME.github.io/REPOSITORY_NAME/"`.
+### Github Pages
+
+When building for Github Pages you should build with add: `--base-href "https://USERNAME.github.io/REPOSITORY_NAME/"`. Next, rename the index.html file to `404.html`
 
 To publish it, remove `/dist` from `.gitignore`, make a local commit and push to the gh-pages branch with:
 
