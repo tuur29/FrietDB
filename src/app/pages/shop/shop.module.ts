@@ -8,6 +8,7 @@ import { MapModule } from '../../parts/map/map.module';
 import { MarkdownModule } from 'angular2-markdown';
 import { NgPipesModule } from 'ngx-pipes';
 import { MaterialModule } from '../../material.module';
+import { RemoveProtocolPipe } from './removeprotocol.pipe';
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { MaterialModule } from '../../material.module';
     MapModule,
   ],
   exports: [MarkdownModule],
-  declarations: [ShopComponent],
+  declarations: [ShopComponent,RemoveProtocolPipe],
 })
 export class ShopModule { }

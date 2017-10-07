@@ -31,7 +31,7 @@
         </mat-list-item>
         <mat-list-item>
           <mat-icon>link</mat-icon>
-          <a href="http://{{shop.website}}">{{shop.website}}</a>
+          <a [href]="shop.website">{{shop.website | removeProtocol}}</a>
         </mat-list-item>
 
       </mat-list>

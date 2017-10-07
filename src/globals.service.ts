@@ -48,21 +48,19 @@ export class GlobalsService {
   	id: 1,
   	name: 'Frituur Patat',
   	image: 'http://www.frituurlatem.be/fotos/header.jpg',
-  	description: `
-  	Frituur Patat serveert een groot assortiment gefrituurde snacks. Wij zijn de enige in Oostakker die bovendien échte Bicky burgers maakt. Bekijk onze frieten en snacks.
+  	description: `Frituur Patat serveert een groot assortiment gefrituurde snacks. Wij zijn de enige in Oostakker die bovendien échte Bicky burgers maakt. Bekijk onze frieten en snacks.
 
-  	Wij hebben in huis:
-  	- Frieten
-  	- Snacks
-  	- Belegde broodjes
-  	- Warme schotels
-  	`,
+Wij hebben in huis:
+- Frieten
+- Snacks
+- Belegde broodjes
+- Warme schotels`,
   	street: 'Eeenheeelelaaangeestraaatnaaam',
   	number: '1',
   	municipality: "Gemeente",
   	telephone: '04 00 00 00 00',
   	email: 'friet@shop.be',
-  	website: 'www.frituurpatat.be',
+  	website: 'http://www.frituurpatat.be',
   	lat: 51.4,
   	lng: 7.9,
   },
