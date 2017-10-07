@@ -22,11 +22,11 @@ import { EditsService } from '../edits.service';
       </mat-select>
 
       <mat-form-field color="accent" class="full">
-        <input type="text" [(ngModel)]="snack.image" name="image" matInput placeholder="Foto URL">
+        <input type="url" [(ngModel)]="snack.image" name="image" matInput placeholder="Foto URL">
       </mat-form-field>
 
       <mat-form-field color="accent" class="full">
-        <input type="text" [(ngModel)]="snack.link" name="link" matInput placeholder="Meer Info URL">
+        <input type="url" [(ngModel)]="snack.link" name="link" matInput placeholder="Meer Info URL">
       </mat-form-field>
 
     </form>

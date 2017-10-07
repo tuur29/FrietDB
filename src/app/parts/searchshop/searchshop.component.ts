@@ -19,7 +19,7 @@ import 'rxjs/add/operator/map';
           <mat-icon>search</mat-icon>
         </button>
 
-        <input matInput placeholder="Zoek naar een frituur" aria-label="Zoek naar een frituur" [matAutocomplete]="autocomplete" [formControl]="shopCtrl">
+        <input type="search" matInput placeholder="Zoek naar een frituur" aria-label="Zoek naar een frituur" [matAutocomplete]="autocomplete" [formControl]="shopCtrl">
 
         <button *ngIf="shopCtrl.value" matSuffix mat-icon-button aria-label="Reset" (click)="shopCtrl.reset()">
           <mat-icon>close</mat-icon>
