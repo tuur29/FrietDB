@@ -75,8 +75,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
       if (!alreadyAddedSnack) {
         let newSnack = this.snacks.find(s=>s.id===id);
         this.shop.snacks.push(newSnack);
-        // force update shop.snacks
-        this.shop.snacks = this.shop.snacks.slice();
+        this.updateSnacksList();
       }
 
       setTimeout(() => {
@@ -104,6 +103,17 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   prevStep() {
     this.step--;
+  }
+
+  newSnack() {
+    this.dialogsService.editsnack(undefined).subscribe(() => {
+      this.updateSnacksList();
+    });
+  }
+
+  // force update shop.snacks
+  updateSnacksList() {
+    this.shop.snacks = this.shop.snacks.slice();
   }
 
   save() {

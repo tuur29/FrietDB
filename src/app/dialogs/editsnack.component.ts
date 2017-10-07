@@ -1,6 +1,3 @@
-// TODO: Disable form and hide save button when admin
-// TODO: Type doesnt save
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { GlobalsService } from 'globals.service';
@@ -14,30 +11,43 @@ import { EditsService } from '../edits.service';
     
     <form #form>
 
-      <mat-form-field color="accent">
-        <input type="text" [(ngModel)]="snack.name" name="name" required matInput placeholder="Naam">
-      </mat-form-field>
+      <fieldset [disabled]="editId" >
+        <mat-form-field color="accent">
+          <input type="text" [(ngModel)]="snack.name" name="name" required matInput placeholder="Naam">
+        </mat-form-field>
 
-      <mat-select color="accent" required placeholder="Type" [(ngModel)]="snack.type" name="type">
-        <mat-option *ngFor="let type of globals.snacktypes" [value]="snack.type">
-          {{type}}
-        </mat-option>
-      </mat-select>
+        <mat-select [disabled]="editId" color="accent" required placeholder="Type" [(ngModel)]="snack.type" name="type">
+          <mat-option *ngFor="let type of globals.snacktypes" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </fieldset>
 
-      <mat-form-field color="accent" class="full">
-        <input type="url" [(ngModel)]="snack.image" name="image" matInput placeholder="Foto URL">
-      </mat-form-field>
+      <fieldset [disabled]="globals.auth.admin" >
+        <mat-form-field color="accent" class="full">
+          <input type="url" [(ngModel)]="snack.image" name="image" matInput placeholder="Foto URL">
+        </mat-form-field>
 
-      <mat-form-field color="accent" class="full">
-        <input type="url" [(ngModel)]="snack.link" name="link" matInput placeholder="Meer Info URL">
-      </mat-form-field>
+        <mat-form-field color="accent" class="full">
+          <input type="url" [(ngModel)]="snack.link" name="link" matInput placeholder="Meer Info URL">
+        </mat-form-field>
+      </fieldset>
 
     </form>
 
     <div mat-dialog-actions>
-      <button type="submit" (click)="onSubmit()" mat-raised-button color="accent">
-        <mat-icon>save</mat-icon> Opslaan
-      </button>
+      <ng-container *ngIf="globals.auth.admin; else savebtn">
+          <button type="submit" mat-button mat-raised-button color="warn" (click)="editsService.remove(editId); dialogRef.close()"><mat-icon>delete_forever</mat-icon>Verwijderen</button>
+          <button type="submit" mat-button mat-raised-button color="warn" (click)="editsService.accept(editId); dialogRef.close()"><mat-icon>check</mat-icon>Goedkeuren</button>
+        </ng-container>
+
+        <ng-template #savebtn>
+          <button type="submit" (click)="save()" mat-raised-button color="accent">
+            <mat-icon>save</mat-icon>Opslaan
+          </button>
+        </ng-template>
+
+
       <span class="spacer"></span>
       <button mat-button mat-dialog-close color="warn">SLUITEN</button>
     </div>
@@ -49,6 +59,11 @@ import { EditsService } from '../edits.service';
       display: block;
       margin-top: 5px;
       margin-bottom: 5px;
+    }
+
+    fieldset {
+      border: none;
+      padding: 0;
     }
 
     form, .full {
@@ -63,7 +78,7 @@ import { EditsService } from '../edits.service';
 })
 export class EditSnackDialog implements OnInit {
 
-  reqId: number;
+  editId: number;
   snack: any;
 
   @ViewChild('form') form;
@@ -80,7 +95,7 @@ export class EditSnackDialog implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit() {
+  save() {
     if (this.form.nativeElement.checkValidity()) {
       this.editsService.savesnack(this.snack);
       this.dialogRef.close();

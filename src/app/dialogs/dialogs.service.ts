@@ -20,12 +20,12 @@ export class DialogsService {
         return dialogRef.afterClosed();
     }
 
-    public editsnack(reqId: number): Observable<boolean> {
+    public editsnack(editId: number): Observable<boolean> {
 
         let dialogRef: MatDialogRef<EditSnackDialog>;
 
         dialogRef = this.dialog.open(EditSnackDialog);
-        dialogRef.componentInstance.reqId = reqId;
+        dialogRef.componentInstance.editId = editId;
 
         return dialogRef.afterClosed();
     }
