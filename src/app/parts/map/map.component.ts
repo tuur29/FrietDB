@@ -62,7 +62,7 @@ export class MapComponent implements OnInit,OnChanges {
   onMapLoad(map) {
 
     // parse coords to Google Coords
-    let data = this.shops.map(function(s) {
+    let data = this.shops.map((s) => {
       return new google.maps.LatLng(s.lat, s.lng);
     });
 

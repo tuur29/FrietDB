@@ -63,10 +63,9 @@ export class OrderComponent implements OnInit {
         this.addedSnacks.push(countedSnack);
       }
 
-      let ctrl = this.snackCtrl;
-      setTimeout(function() {
-        ctrl.reset({value:"",disabled:true});
-        ctrl.enable();
+      setTimeout(() => {
+        this.snackCtrl.reset({value:"",disabled:true});
+        this.snackCtrl.enable();
       },1);
     }
 
@@ -100,7 +99,7 @@ export class OrderComponent implements OnInit {
   email() {
     let link: string = '\n\n';
 
-    this.addedSnacks.forEach(function(s){
+    this.addedSnacks.forEach((s) => {
       link += '\t- '+s.count+'x '+s.name+'\n';
     });
 
