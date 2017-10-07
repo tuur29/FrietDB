@@ -18,7 +18,7 @@ declare let google: any;
           [longitude]="shop.lng">
 
           <agm-info-window #infoWindow [isOpen]="shop.infoWindowOpened">
-            <a [routerLink]="'/shop/'+shop.id">
+            <a [routerLink]="'/shop/'+shop.id" class="dark">
               <strong>{{shop.name}}</strong><br>
               {{shop.street}} {{shop.number}},<br>
               {{shop.municipality}}

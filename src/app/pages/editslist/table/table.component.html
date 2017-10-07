@@ -32,7 +32,7 @@
     <mat-header-cell *matHeaderCellDef> Acties </mat-header-cell>
     <mat-cell *matCellDef="let row; let i=index"> 
       
-      <button (mousedown)="$event.stopPropagation()" (click)="accept(i,$event)" mat-icon-button color="accent" matTooltip="Goedkeuren">
+      <button (mousedown)="$event.stopPropagation()" (click)="accept(i,$event)" mat-icon-button color="primary" matTooltip="Goedkeuren">
         <mat-icon aria-label="Goedkeuren">check</mat-icon>
       </button>
 

@@ -36,7 +36,7 @@
 
       <mat-action-row>
         <button mat-button (click)="prevStep()">Vorige</button>
-        <button mat-button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
+        <button mat-button mat-raised-button color="primary" (click)="nextStep()">Volgende</button>
       </mat-action-row>
     </mat-expansion-panel>
 
@@ -92,7 +92,7 @@
 
       <mat-action-row>
         <button mat-button (click)="prevStep()">Vorige</button>
-        <button mat-button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
+        <button mat-button mat-raised-button color="primary" (click)="nextStep()">Volgende</button>
       </mat-action-row>
     </mat-expansion-panel>
 
@@ -124,7 +124,7 @@
         </ul>
       </div>
 
-      <mat-form-field color="accent" *ngIf="!globals.auth.admin">
+      <mat-form-field *ngIf="!globals.auth.admin">
 
         <button mat-icon-button matPrefix>
           <mat-icon>search</mat-icon>
@@ -143,7 +143,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <button mat-button mat-raised-button color="accent" *ngIf="!globals.auth.admin" (click)="newSnack()">
+      <button mat-button mat-raised-button color="primary" *ngIf="!globals.auth.admin" (click)="newSnack()">
         <mat-icon>add</mat-icon>Nieuwe Snack
       </button>
       <!-- End Content -->

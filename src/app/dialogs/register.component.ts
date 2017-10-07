@@ -10,16 +10,16 @@ import { MatDialogRef } from '@angular/material';
     <h1 mat-dialog-title>Registreer</h1>
     <form #form>
 
-      <mat-form-field color="accent">
+      <mat-form-field>
         <input type="text" [(ngModel)]="name" name="name" required matInput placeholder="Naam">
       </mat-form-field>
 
-      <mat-form-field color="accent">
+      <mat-form-field>
         <input type="email" [(ngModel)]="email" name="email" required matInput placeholder="E-mailadres">
       </mat-form-field>
     
       <div mat-dialog-actions>
-        <button type="submit" (click)="send()" mat-raised-button color="accent">
+        <button type="submit" (click)="send()" mat-raised-button color="primary">
           <mat-icon>send</mat-icon> Verstuur
         </button>
 

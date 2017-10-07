@@ -12,7 +12,7 @@
       [style.backgroundImage]="snack.image?'url('+ snack.image +')':''"
       [matTooltip]="snack.name+' toevoegen'"
       matTooltipPosition="below"
-      color="accent">
+      color="primary">
       <span *ngIf="!snack.image">{{snack.name}}</span>
     </button>
 
@@ -23,7 +23,7 @@
 
 <mat-card class="small search">
   <form>
-    <mat-form-field color="accent" class="full-width">
+    <mat-form-field class="full-width">
 
       <button mat-icon-button matPrefix>
         <mat-icon>search</mat-icon>

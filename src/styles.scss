@@ -4,8 +4,8 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$app-primary: mat-palette($mat-amber);
-$app-accent: mat-palette($mat-brown);
+$app-primary: mat-palette($mat-brown);
+$app-accent: mat-palette($mat-amber);
 $app-warn: mat-palette($mat-red,A700);
 $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
@@ -29,6 +29,14 @@ a:link:hover {
 
 a:visited {
 	color: mat-color($app-accent, A400);
+}
+
+a.dark:link {
+	color: mat-color($app-primary, A700);
+}
+
+a.dark:visited {
+	color: mat-color($app-primary, A400);
 }
 
 mat-card {

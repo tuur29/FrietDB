@@ -12,15 +12,15 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 
       <!-- Login form -->
       <form #form *ngIf="!globals.auth.token">
-        <mat-form-field color="accent">
+        <mat-form-field>
           <input type="email" [(ngModel)]="email" name="email" matInput required placeholder="E-mailadres">
         </mat-form-field>
 
-        <mat-form-field color="accent">
+        <mat-form-field>
           <input type="password" [(ngModel)]="password" name="password" matInput required placeholder="Wachtwoord">
         </mat-form-field>
 
-        <button type="submit" mat-raised-button color="accent" (click)="login()">
+        <button type="submit" mat-raised-button color="primary" (click)="login()">
           <mat-icon>lock_outline</mat-icon> Login
         </button>
 
@@ -31,10 +31,10 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 
       <!-- Edit buttons -->
       <div *ngIf="globals.auth.token">
-        <a *ngIf="!globals.auth.admin" mat-raised-button routerLink="edit/shop">Nieuwe frituur</a>
+        <a *ngIf="!globals.auth.admin" mat-raised-button color="accent" routerLink="edit/shop"><mat-icon>add</mat-icon>Nieuwe frituur</a>
         <button mat-raised-button color="warn" (click)="logout()">Log uit</button>
         
-        <button mat-raised-button color="primary" (click)="globals.auth.admin=!globals.auth.admin">Toggle Admin (Temp)</button>
+        <button mat-raised-button color="primary" (click)="globals.auth.admin=!globals.auth.admin">Toggle Admin</button>
       </div>
 
   `,

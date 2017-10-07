@@ -5,7 +5,7 @@ import { GlobalsService } from 'globals.service';
   selector: 'app-header',
   template: `
   
-    <mat-toolbar color="primary">
+    <mat-toolbar color="accent">
 
       <img src="assets/logo.svg" alt="Logo" width="35" height="35">
       <a routerLink="/">{{title}}</a>

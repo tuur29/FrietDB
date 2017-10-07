@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
   template: `
     
     <form>
-      <mat-form-field color="accent" class="full-width" [floatPlaceholder]="inline?'never':''">
+      <mat-form-field class="full-width" [floatPlaceholder]="inline?'never':''">
 
         <button mat-icon-button matPrefix>
           <mat-icon>search</mat-icon>

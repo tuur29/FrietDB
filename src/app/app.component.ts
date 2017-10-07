@@ -1,7 +1,6 @@
 // TODO: Try AOT compiling faster loading
 // TODO: Gather real testdata & Make data interfaces (default add http to urls)
 // TODO: Loading spinner
-// TODO: Switch material theme primary & accent colors -> remove accent definitions
 
 import { Component } from '@angular/core';
 

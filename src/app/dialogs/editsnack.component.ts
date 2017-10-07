@@ -12,11 +12,11 @@ import { EditsService } from '../edits.service';
     <form #form>
 
       <fieldset [disabled]="editId" >
-        <mat-form-field color="accent">
+        <mat-form-field>
           <input type="text" [(ngModel)]="snack.name" name="name" required matInput placeholder="Naam">
         </mat-form-field>
 
-        <mat-select [disabled]="editId" color="accent" required placeholder="Type" [(ngModel)]="snack.type" name="type">
+        <mat-select [disabled]="editId" required placeholder="Type" [(ngModel)]="snack.type" name="type">
           <mat-option *ngFor="let type of globals.snacktypes" [value]="type">
             {{type}}
           </mat-option>
@@ -24,11 +24,11 @@ import { EditsService } from '../edits.service';
       </fieldset>
 
       <fieldset [disabled]="globals.auth.admin" >
-        <mat-form-field color="accent" class="full">
+        <mat-form-field class="full">
           <input type="url" [(ngModel)]="snack.image" name="image" matInput placeholder="Foto URL">
         </mat-form-field>
 
-        <mat-form-field color="accent" class="full">
+        <mat-form-field class="full">
           <input type="url" [(ngModel)]="snack.link" name="link" matInput placeholder="Meer Info URL">
         </mat-form-field>
       </fieldset>
@@ -42,7 +42,7 @@ import { EditsService } from '../edits.service';
         </ng-container>
 
         <ng-template #savebtn>
-          <button type="submit" (click)="save()" mat-raised-button color="accent">
+          <button type="submit" (click)="save()" mat-raised-button color="primary">
             <mat-icon>save</mat-icon>Opslaan
           </button>
         </ng-template>
