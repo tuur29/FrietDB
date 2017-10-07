@@ -2,11 +2,14 @@
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator, MatSort } from '@angular/material';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
 
 export class Database {
   dataChange: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -32,24 +35,65 @@ export class Database {
 
 // handles pagination, sorting & filtering
 export class EditsDataSource extends DataSource<any> {
-  constructor(private _database: Database, private _paginator: MatPaginator) {
+
+  _filterChange = new BehaviorSubject('');
+  get filter(): string { return this._filterChange.value; }
+  set filter(filter: string) { this._filterChange.next(filter); }
+
+  filteredData: any[] = [];
+  renderedData: any[] = [];
+
+  constructor(private _database: Database,
+              private _paginator: MatPaginator,
+              private _sort: MatSort) {
     super();
+    this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
   }
 
   connect(): Observable<any[]> {
     const displayDataChanges = [
       this._database.dataChange,
+      this._sort.sortChange, 
+      this._filterChange,
       this._paginator.page,
     ];
 
     return Observable.merge(...displayDataChanges).map(() => {
-      const data = this._database.data.slice();
+      // Filter data
+      this.filteredData = this._database.data.slice().filter((item: any) => {
+        let searchStr = (item.user.name + item.item.name).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+      });
 
-      // Grab the page's slice of data.
+      // Sort filtered data
+      const sortedData = this.sortData(this.filteredData.slice());
+
+      // Grab the page's slice of the filtered sorted data.
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-      return data.splice(startIndex, this._paginator.pageSize);
+      this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
+      return this.renderedData;
     });
   }
 
   disconnect() {}
+
+  sortData(data: any[]): any[] {
+    if (!this._sort.active || this._sort.direction == '') { return data; }
+
+    return data.sort((a, b) => {
+      let propertyA: number|string = '';
+      let propertyB: number|string = '';
+
+      switch (this._sort.active) {
+        case 'itemName': [propertyA, propertyB] = [a.item.name, b.item.name]; break;
+        case 'userName': [propertyA, propertyB] = [a.user.name, b.user.name]; break;
+        case 'timestamp': [propertyA, propertyB] = [a.timestamp, b.timestamp]; break;
+      }
+
+      let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      let valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+    });
+  }
 }

@@ -1,16 +1,26 @@
-// TODO: Add filter & sort to table. See: https://stackoverflow.com/questions/45327703/angular-2-material-implementing-sort-filter-and-pagination
-// TODO: Checking or removing item from list should update list
+import { Component, ViewChild, ElementRef, Input, OnInit } from '@angular/core';
+import { Database, EditsDataSource } from './data.provider'
 
-import { Component, ViewChild, Input, OnInit } from '@angular/core';
-import { Database, EditsDataSource } from './data.provider';
-
-import { MatPaginator } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import { MatPaginator, MatSort } from '@angular/material';
 import { EditsService } from '../../../edits.service';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styles: [`
+
+    .header {
+      display: flex;
+      min-height: 64px;
+      padding: 8px 24px 0 50px;
+      background: #fafafa;
+      font-size: 14px;
+    }
+
+    mat-table {
+      border: 2px solid #fafafa;
+    }
 
     [mat-ripple] {
       position: relative;
@@ -31,13 +41,22 @@ export class TableComponent implements OnInit {
   dataSource: EditsDataSource | null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
 
-  constructor(public editsService: EditsService,) {
+  constructor(public editsService: EditsService) {
   }
 
   ngOnInit() {
     this.database = new Database(this.data);
-    this.dataSource = new EditsDataSource(this.database, this.paginator);
+    this.dataSource = new EditsDataSource(this.database, this.paginator, this.sort);
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+      .debounceTime(150)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.dataSource) { return; }
+        this.dataSource.filter = this.filter.nativeElement.value;
+      });
   }
 
   formatDate(timestamp: number) {

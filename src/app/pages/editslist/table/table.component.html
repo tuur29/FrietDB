@@ -1,53 +1,65 @@
-<mat-table #table [dataSource]="dataSource">
+<p *ngIf="database.data.length < 1">Er zijn geen voorgestelde aanpassingen op dit moment.</p>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row mat-ripple
-    *matRowDef="let row; columns: displayedColumns"
-    [routerLink]="'/edit/'+row.type+'/'+row.item.id"
-  ></mat-row>
+<div class="mat-elevation-z2.temp" [style.display]="database.data.length > 0 ? 'block':'none'">
+
+  <div class="header">
+    <mat-input-container floatPlaceholder="never">
+      <input matInput #filter placeholder="Filter...">
+    </mat-input-container>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row mat-ripple
+      *matRowDef="let row; columns: displayedColumns"
+      [routerLink]="'/edit/'+row.type+'/'+row.item.id"
+    ></mat-row>
 
 
-  <!-- itemName Column -->
-  <ng-container matColumnDef="itemName">
-    <mat-header-cell *matHeaderCellDef> Naam frituur </mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <span matTooltip="Bekijk aanpassing">{{row.item.name}}</span>
-    </mat-cell>
-  </ng-container>
+    <!-- itemName Column -->
+    <ng-container matColumnDef="itemName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Naam frituur </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span matTooltip="Bekijk aanpassing">{{row.item.name}}</span>
+      </mat-cell>
+    </ng-container>
 
-  <!-- userName Column -->
-  <ng-container matColumnDef="userName">
-    <mat-header-cell *matHeaderCellDef> Naam gebruiker </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.user.name}} </mat-cell>
-  </ng-container>
+    <!-- userName Column -->
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Naam gebruiker </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.user.name}} </mat-cell>
+    </ng-container>
 
-  <!-- timestamp Column -->
-  <ng-container matColumnDef="timestamp">
-    <mat-header-cell *matHeaderCellDef> Tijdstip </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{formatDate(row.timestamp)}} </mat-cell>
-  </ng-container>
+    <!-- timestamp Column -->
+    <ng-container matColumnDef="timestamp">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Tijdstip </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{formatDate(row.timestamp)}} </mat-cell>
+    </ng-container>
 
-  <!-- buttons Column -->
-  <ng-container matColumnDef="buttons">
-    <mat-header-cell *matHeaderCellDef> Acties </mat-header-cell>
-    <mat-cell *matCellDef="let row; let i=index"> 
-      
-      <button (mousedown)="$event.stopPropagation()" (click)="accept(i,$event)" mat-icon-button color="primary" matTooltip="Goedkeuren">
-        <mat-icon aria-label="Goedkeuren">check</mat-icon>
-      </button>
+    <!-- buttons Column -->
+    <ng-container matColumnDef="buttons">
+      <mat-header-cell *matHeaderCellDef> Acties </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i=index"> 
+        
+        <button (mousedown)="$event.stopPropagation()" (click)="accept(i,$event)" mat-icon-button color="primary" matTooltip="Goedkeuren">
+          <mat-icon aria-label="Goedkeuren">check</mat-icon>
+        </button>
 
-      <button (mousedown)="$event.stopPropagation()" (click)="remove(i,$event)" mat-icon-button color="warn" matTooltip="Verwijderen">
-        <mat-icon aria-label="Verwijderen">delete_forever</mat-icon>
-      </button>
+        <button (mousedown)="$event.stopPropagation()" (click)="remove(i,$event)" mat-icon-button color="warn" matTooltip="Verwijderen">
+          <mat-icon aria-label="Verwijderen">delete_forever</mat-icon>
+        </button>
 
-    </mat-cell>
-  </ng-container>
+      </mat-cell>
+    </ng-container>
 
-</mat-table>
+  </mat-table>
 
-<mat-paginator #paginator
-  [length]="database.data.length"
-  [pageIndex]="0"
-  [pageSize]="10"
-  [pageSizeOptions]="[5, 10, 25, 100]">
-</mat-paginator>
+  <mat-paginator #paginator
+    [length]="database.data.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+
+</div>
