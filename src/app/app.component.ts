@@ -2,11 +2,8 @@
 // TODO: Gather real testdata (default add http to urls)
 // TODO: Loading spinner
 // TODO: Add tests
-// TODO: Implement ngx-router AuthGuard instead of manual auth check
-// TODO: Lint
 // TODO: Improve typing (Returns, HTMLInputElement, Models / data interfaces...)
-// TODO: Cache certain global data? (simple shop list, simple all snacks, auth, snacktypes)
-// TODO: Use @Output?
+// TODO: Implement Backend -> Cache data (simple shop list, simple all snacks, snacktypes)
 
 import { Component } from '@angular/core';
 

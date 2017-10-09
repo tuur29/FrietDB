@@ -9,17 +9,6 @@ import { MaterialModule } from '../material.module';
         CommonModule,
         MaterialModule
     ],
-    exports: [
-
-    ],
-    declarations: [
-
-    ],
-    providers: [
-        MessagesService,
-    ],
-    entryComponents: [
-
-    ],
+    providers: [MessagesService]
 })
 export class MessagesModule { }
