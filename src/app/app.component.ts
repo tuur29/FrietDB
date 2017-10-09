@@ -1,6 +1,8 @@
 // TODO: Try AOT compiling faster loading
 // TODO: Gather real testdata & Make data interfaces (default add http to urls)
 // TODO: Loading spinner
+// TODO: Add tests
+// TODO: Implement ngx-router AuthGuard instead of manual auth check
 
 import { Component } from '@angular/core';
 
