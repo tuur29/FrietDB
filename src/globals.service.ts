@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LocalStorageService } from 'ngx-store';
 
 @Injectable()
 export class GlobalsService {
@@ -7,6 +8,10 @@ export class GlobalsService {
     token: 'temp',
     admin: true,
   };
+
+  constructor(private localStorageService: LocalStorageService) {
+    this.auth = localStorageService.get('auth') || this.auth;
+  }
 
   title: string;
 

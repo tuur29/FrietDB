@@ -3,6 +3,8 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { LocalStorageService } from 'ngx-store';
+
 import { GlobalsService } from 'globals.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 
@@ -34,7 +36,7 @@ import { DialogsService } from '../../dialogs/dialogs.service';
         <a *ngIf="!globals.auth.admin" mat-raised-button color="accent" routerLink="edit/shop"><mat-icon>add</mat-icon>Nieuwe frituur</a>
         <button mat-raised-button color="warn" (click)="logout()">Log uit</button>
 
-        <button mat-raised-button color="primary" (click)="globals.auth.admin=!globals.auth.admin">Toggle Admin</button>
+        <button mat-raised-button color="primary" (click)="toggleAdmin()">Toggle Admin</button>
       </div>
 
   `,
@@ -60,6 +62,7 @@ export class LoginComponent implements OnInit {
   password: string;
 
   constructor(
+    private localStorageService: LocalStorageService,
     public globals: GlobalsService,
     public dialogsService: DialogsService,
     private router: Router
@@ -71,6 +74,7 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.form.nativeElement.checkValidity()) {
       this.globals.auth.token = this.email + this.password;
+      this.saveAuth();
       if (this.redirect)
         this.router.navigate([this.redirect]);
     }
@@ -79,6 +83,16 @@ export class LoginComponent implements OnInit {
   logout() {
     this.globals.auth.token = '';
     this.router.navigate(['']);
+    this.saveAuth();
+  }
+
+  toggleAdmin() {
+    this.globals.auth.admin = !this.globals.auth.admin;
+    this.saveAuth();
+  }
+
+  saveAuth() {
+    this.localStorageService.set('auth', this.globals.auth);
   }
 
 }
