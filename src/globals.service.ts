@@ -1,46 +1,46 @@
 import { Injectable } from '@angular/core';
 
-@Injectable() 
+@Injectable()
 export class GlobalsService {
 
   auth = {
-    token: "temp",
+    token: 'temp',
     admin: true,
-  }
+  };
 
-	title: string;
+  title: string;
 
   defaultLat: number = 51.723858;
   defaultLng: number = 7.895982;
 
   // Temporary static data
   editslist: any[] = [
-    {
-      id: 1,
-      timestamp: 1506881435,
-      type: "shop",
-      item: {
-        id: 5,
-        name: "Frituur Patat"
-      },
-      user: {
-        id: 2,
-        name: "Patrick"
-      }
+  {
+    id: 1,
+    timestamp: 1506881435,
+    type: 'shop',
+    item: {
+      id: 5,
+      name: 'Frituur Patat'
     },
-    {
-      id: 1,
-      timestamp: 15068000,
-      type: "snack",
-      item: {
-        id: 1,
-        name: "KipKorn"
-      },
-      user: {
-        id: 5,
-        name: "Annelore"
-      }
+    user: {
+      id: 2,
+      name: 'Patrick'
     }
+  },
+  {
+    id: 1,
+    timestamp: 15068000,
+    type: 'snack',
+    item: {
+      id: 1,
+      name: 'KipKorn'
+    },
+    user: {
+      id: 5,
+      name: 'Annelore'
+    }
+  }
   ];
 
   snacks: any[] = [
@@ -98,19 +98,19 @@ export class GlobalsService {
   	image: 'http://www.frituurlatem.be/fotos/header.jpg',
   	description: `Frituur Patat serveert een groot assortiment gefrituurde snacks. Wij zijn de enige in Oostakker die bovendien échte Bicky burgers maakt. Bekijk onze frieten en snacks.
 
-Wij hebben in huis:
-- Frieten
-- Snacks
-- Belegde broodjes
-- Warme schotels`,
-  	street: 'Eeenheeelelaaangeestraaatnaaam',
-  	number: '1',
-  	municipality: "Gemeente",
-  	telephone: '04 00 00 00 00',
-  	email: 'friet@shop.be',
-  	website: 'http://www.frituurpatat.be',
-  	lat: 51.4,
-  	lng: 7.9,
+    Wij hebben in huis:
+    - Frieten
+    - Snacks
+    - Belegde broodjes
+    - Warme schotels`,
+    street: 'Eeenheeelelaaangeestraaatnaaam',
+    number: '1',
+    municipality: 'Gemeente',
+    telephone: '04 00 00 00 00',
+    email: 'friet@shop.be',
+    website: 'http://www.frituurpatat.be',
+    lat: 51.4,
+    lng: 7.9,
     snacks: this.snacks,
   },
   {
@@ -118,7 +118,7 @@ Wij hebben in huis:
   	name: 'Frietshop',
   	street: 'Straat2',
   	number: '334',
-  	municipality: "Gemeente",
+  	municipality: 'Gemeente',
   	lat: 51.373858,
   	lng: 7.215982,
   },
@@ -127,7 +127,7 @@ Wij hebben in huis:
   	name: 'Frituur Nadine',
   	street: 'Straat3',
   	number: '2',
-  	municipality: "Gemeente",
+  	municipality: 'Gemeente',
   	lat: 51.723858,
   	lng: 7.895982,
   },
@@ -136,11 +136,11 @@ Wij hebben in huis:
   	name: 'Langs de waterkant',
   	street: 'Straat4',
   	number: '55',
-  	municipality: "Gemeente",
+  	municipality: 'Gemeente',
   	lat: 51.925,
   	lng: 8,
   }];
 
-  snacktypes: string[] = ["Snack","Frieten","Saus","Drank","Andere"];
+  snacktypes: string[] = ['Snack', 'Frieten', 'Saus', 'Drank', 'Andere'];
 
 }

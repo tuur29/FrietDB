@@ -37,8 +37,17 @@ import { EditsService } from '../edits.service';
 
     <div mat-dialog-actions>
       <ng-container *ngIf="globals.auth.admin; else savebtn">
-          <button type="submit" mat-button mat-raised-button color="warn" (click)="editsService.remove(editId); dialogRef.close()"><mat-icon>delete_forever</mat-icon>Verwijderen</button>
-          <button type="submit" mat-button mat-raised-button color="warn" (click)="editsService.accept(editId); dialogRef.close()"><mat-icon>check</mat-icon>Goedkeuren</button>
+          <button type="submit"
+            mat-button mat-raised-button color="warn"
+          (click)="editsService.remove(editId); dialogRef.close()">
+            <mat-icon>delete_forever</mat-icon>Verwijderen
+          </button>
+
+          <button type="submit"
+            mat-button mat-raised-button color="warn"
+            (click)="editsService.accept(editId); dialogRef.close()">
+            <mat-icon>check</mat-icon>Goedkeuren
+          </button>
         </ng-container>
 
         <ng-template #savebtn>

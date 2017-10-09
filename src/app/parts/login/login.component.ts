@@ -70,14 +70,14 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.form.nativeElement.checkValidity()) {
-      this.globals.auth.token = this.email+this.password;
+      this.globals.auth.token = this.email + this.password;
       if (this.redirect)
         this.router.navigate([this.redirect]);
     }
   }
 
   logout() {
-    this.globals.auth.token = "";
+    this.globals.auth.token = '';
     this.router.navigate(['']);
   }
 

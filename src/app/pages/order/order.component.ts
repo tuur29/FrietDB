@@ -14,7 +14,7 @@ import { MatOptionSelectionChange } from '@angular/material';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss',]
+  styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
 
@@ -54,19 +54,19 @@ export class OrderComponent implements OnInit {
 
     if (event === undefined || event.source.selected) {
 
-      let alreadyAddedSnack = this.addedSnacks.find(s=>s.id===id);
+      let alreadyAddedSnack = this.addedSnacks.find((s) => s.id === id);
       if (alreadyAddedSnack) {
-        this.editSnackCount(alreadyAddedSnack.id, alreadyAddedSnack.count+1);
+        this.editSnackCount(alreadyAddedSnack.id, alreadyAddedSnack.count + 1);
       } else {
-        let countedSnack = this.snacks.find(s=>s.id===id);
+        let countedSnack = this.snacks.find((s) => s.id === id);
         countedSnack.count = 1;
         this.addedSnacks.push(countedSnack);
       }
 
       setTimeout(() => {
-        this.snackCtrl.reset({value:"",disabled:true});
+        this.snackCtrl.reset({value:'', disabled:true});
         this.snackCtrl.enable();
-      },1);
+      }, 1);
     }
 
     // todo request and reload filtered shops
@@ -78,15 +78,15 @@ export class OrderComponent implements OnInit {
     this.snackCtrl.reset();
   }
 
-  editSnackCount(id:number, count: number) {
+  editSnackCount(id: number, count: number) {
     if (count <= 0) {
       this.addedSnacks.splice(
         this.addedSnacks.indexOf(
-          this.addedSnacks.find(s=>s.id===id)
+          this.addedSnacks.find( (s) => s.id === id)
         )
       , 1);
     } else {
-      this.addedSnacks.find(s=>s.id===id).count = count;
+      this.addedSnacks.find((s) => s.id === id).count = count;
     }
     this.addedSnacks.save();
   }
@@ -100,10 +100,10 @@ export class OrderComponent implements OnInit {
     let link: string = '\n\n';
 
     this.addedSnacks.forEach((s) => {
-      link += '\t- '+s.count+'x '+s.name+'\n';
+      link += '\t- ' + s.count + 'x ' + s.name + '\n';
     });
 
-    window.open('mailto:?subject=Lijst%20frieten&body='+encodeURIComponent(link+'\n'));
+    window.open('mailto:?subject=Lijst%20frieten&body=' + encodeURIComponent(link + '\n'));
   }
 
 }

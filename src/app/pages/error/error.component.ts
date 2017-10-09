@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessagesService } from '../../messages/messages.service';
 
 @Component({
@@ -20,7 +20,7 @@ import { MessagesService } from '../../messages/messages.service';
 })
 export class ErrorComponent implements OnInit, OnDestroy {
 
-  redirecturl: string = "/";
+  redirecturl: string = '/';
   subroute: any;
 
   constructor(
@@ -33,12 +33,12 @@ export class ErrorComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.subroute = this.route.params.subscribe(params => {
+    this.subroute = this.route.params.subscribe((params) => {
       let status = +params.status; // (+) converts string 'id' to a number
-      if (status != 403) {
+      if (status !== 403) {
 
         let old = this.router.url;
-        this.messagesService.send("Er ging iets fout.","OPNIEUW").subscribe(params => {
+        this.messagesService.send('Er ging iets fout.', 'OPNIEUW').subscribe((params) => {
           this.router.navigate([old]);
         });
         this.router.navigate(['/']);

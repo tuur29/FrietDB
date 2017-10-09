@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Input, OnInit } from '@angular/core';
-import { Database, EditsDataSource } from './data.provider'
+import { Database, EditsDataSource } from './data.provider';
 
 import { Observable } from 'rxjs/Observable';
 import { MatPaginator, MatSort } from '@angular/material';

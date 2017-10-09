@@ -32,25 +32,25 @@ export class EditsListComponent implements OnInit {
     private router: Router,
   ) {
 
-    if (router.url.indexOf("/edit/snack") > -1 && route.snapshot.params['id']) {
+    if (router.url.indexOf('"'/edit/snack'"') > -1 && route.snapshot.params['id']) {
       this.dialogsService.editsnack(route.snapshot.params['id']).subscribe(() => {
         this.router.navigate(['edits']);
       });
     }
 
     this.shopEdits = globals.editslist.filter(edit =>
-      edit.type == "shop"
+      edit.type === 'shop'
     );
 
     this.snackEdits = globals.editslist.filter(edit =>
-      edit.type == "snack"
+      edit.type === 'snack'
     );
 
   }
 
   ngOnInit() {
     if (!this.globals.auth.token || !this.globals.auth.admin)
-      this.router.navigate(['error', 403, "edits"]);
+      this.router.navigate(['error', 403, 'edits']);
   }
 
 }

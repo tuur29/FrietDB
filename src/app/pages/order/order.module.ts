@@ -12,9 +12,9 @@ import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   imports: [
-  	RouterModule,
+    RouterModule,
     CommonModule,
-    
+
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

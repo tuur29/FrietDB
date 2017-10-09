@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { MatSnackBar,MatSnackBarRef,SimpleSnackBar } from '@angular/material';
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class MessagesService {
 
     let messageRef: MatSnackBarRef<SimpleSnackBar>;
 
-    messageRef = this.snackBar.open(message, action?action:"",
+    messageRef = this.snackBar.open(message, action ? action : '',
       { duration: 7500 }
     );
 

@@ -22,7 +22,7 @@ export class Database {
       const copiedData = this.data.slice();
 
       // temporary use same test data
-      for (let i=0;i<50;i++)
+      for (let i = 0; i < 50; i++)
         copiedData.push(d);
       this.dataChange.next(copiedData);
     });
@@ -62,7 +62,7 @@ export class EditsDataSource extends DataSource<any> {
       // Filter data
       this.filteredData = this._database.data.slice().filter((item: any) => {
         let searchStr = (item.user.name + item.item.name).toLowerCase();
-        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
       // Sort filtered data
@@ -78,11 +78,11 @@ export class EditsDataSource extends DataSource<any> {
   disconnect() {}
 
   sortData(data: any[]): any[] {
-    if (!this._sort.active || this._sort.direction == '') { return data; }
+    if (!this._sort.active || this._sort.direction === '') { return data; }
 
     return data.sort((a, b) => {
-      let propertyA: number|string = '';
-      let propertyB: number|string = '';
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
 
       switch (this._sort.active) {
         case 'itemName': [propertyA, propertyB] = [a.item.name, b.item.name]; break;
@@ -93,7 +93,7 @@ export class EditsDataSource extends DataSource<any> {
       let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
       let valueB = isNaN(+propertyB) ? propertyB : +propertyB;
 
-      return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+      return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
     });
   }
 }

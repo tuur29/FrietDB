@@ -25,7 +25,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subroute = this.route.params.subscribe(params => {
        this.reqId = +params['id']; // (+) converts string 'id' to a number
-    })
+    });
   }
 
   ngOnDestroy() {

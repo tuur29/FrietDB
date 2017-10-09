@@ -17,7 +17,7 @@ import { MatDialogRef } from '@angular/material';
       <mat-form-field>
         <input type="email" [(ngModel)]="email" name="email" required matInput placeholder="E-mailadres">
       </mat-form-field>
-    
+
       <div mat-dialog-actions>
         <button type="submit" (click)="send()" mat-raised-button color="primary">
           <mat-icon>send</mat-icon> Verstuur
@@ -63,7 +63,7 @@ export class RegisterDialog implements OnInit {
 
   send() {
     if (this.form.nativeElement.checkValidity()) {
-      console.log("sending",this.name,this.email);
+      console.log('sending', this.name, this.email);
       this.dialogRef.close();
     }
   }

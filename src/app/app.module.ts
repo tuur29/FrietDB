@@ -40,15 +40,15 @@ import { OrderModule } from './pages/order/order.module';
 
     AgmCoreModule.forRoot({
       apiKey: environment.mapskey,
-      libraries: ["visualization"]
+      libraries: ['visualization']
     }),
     MarkdownModule.forRoot(),
 
     DialogsModule,
     MessagesModule,
-    
+
     HeaderModule,
-    
+
     EditsListModule,
     EditShopModule,
     HeatmapModule,

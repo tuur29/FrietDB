@@ -129,7 +129,7 @@ export class MapComponent implements OnInit,OnChanges {
     // Open info window if only one marker displayed
     this.shops.forEach(function(s) { s.infoWindowOpened = false });
 
-    if (this.shops.length == 1) {
+    if (this.shops.length === 1) {
       this.shops[0].infoWindowOpened = true;
       this.lat = this.lat + 0.003;
     }
@@ -142,12 +142,12 @@ export class MapComponent implements OnInit,OnChanges {
 
   clickedMarker(id: number, infoWindow) {
 
-    if( this.infoWindowOpened === infoWindow)
+    if (this.infoWindowOpened === infoWindow)
       return;
-      
-    if(this.infoWindowOpened !== null)
+
+    if (this.infoWindowOpened !== null)
       this.infoWindowOpened.close();
-      
+
     this.infoWindowOpened = infoWindow;
   }
 

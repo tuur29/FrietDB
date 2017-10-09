@@ -40,17 +40,17 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // get propesed edit by id if set
-    this.subroute = this.route.params.subscribe(params => {
+    this.subroute = this.route.params.subscribe((params) => {
       this.editId = params['id'];
-    })
+    });
 
     // deny access
     if (!this.globals.auth.token)
-      this.router.navigate(['error', 403, "edit/shop/"+this.editId]);
+      this.router.navigate(['error', 403, 'edit/shop/' + this.editId]);
 
     // deny admins to make new shops
-    if (this.globals.auth.admin && this.editId == undefined)
-      this.router.navigate(['error', 400, "/edits"]);
+    if (this.globals.auth.admin && this.editId === undefined)
+      this.router.navigate(['error', 400, '/edits']);
 
     this.filteredSnacks = this.snackCtrl.valueChanges
       .startWith(null)
@@ -63,7 +63,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   // filter snacks on search
   filterSnacks(query: string) {
-    return this.snacks.filter(snack =>
+    return this.snacks.filter((snack) =>
       snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1
     );
   }
@@ -71,15 +71,15 @@ export class EditShopComponent implements OnInit, OnDestroy {
   // click snack in search
   pickSnack(id: number, event?) {
     if (event.source.selected) {
-      let alreadyAddedSnack = this.shop.snacks.find(s=>s.id===id);
+      let alreadyAddedSnack = this.shop.snacks.find((s) => s.id === id);
       if (!alreadyAddedSnack) {
-        let newSnack = this.snacks.find(s=>s.id===id);
+        let newSnack = this.snacks.find((s) => s.id === id);
         this.shop.snacks.push(newSnack);
         this.updateSnacksList();
       }
 
       setTimeout(() => {
-        this.snackCtrl.reset({value:"",disabled:true});
+        this.snackCtrl.reset({value:'', disabled:true});
         this.snackCtrl.enable();
       },1);
 
@@ -87,7 +87,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
   }
 
   removeSnack(id: number) {
-    this.shop.snacks = this.shop.snacks.filter(e => {
+    this.shop.snacks = this.shop.snacks.filter((e) => {
       return e.id !== id;
     });
   }
@@ -118,7 +118,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   save() {
     if (this.form.nativeElement.checkValidity())
-      this.editsService.saveedit('shop',this.shop);
+      this.editsService.saveedit('shop', this.shop);
   }
 
   // return to best page based on which user
@@ -126,7 +126,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
     if (this.globals.auth.admin)
       this.router.navigate(['/edits']);
     else
-      this.router.navigate(['/shop/'+this.shop.id]);
+      this.router.navigate(['/shop/' + this.shop.id]);
   }
 
 }

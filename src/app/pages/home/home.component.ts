@@ -26,11 +26,7 @@ import { GlobalsService } from 'globals.service';
     </mat-card>
     
   `,
-  styles: [`
-
-
-    
-  `]
+  styles: []
 })
 export class HomeComponent implements OnInit {
 
