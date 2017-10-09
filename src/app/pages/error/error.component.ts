@@ -12,7 +12,7 @@ import { MessagesService } from '../../messages/messages.service';
       <p><a routerLink="/">Terug naar homepagina</a></p>
       <app-login [redirect]="redirecturl"></app-login>
     </mat-card>
-    
+
   `,
   styles: [`
 
@@ -38,7 +38,7 @@ export class ErrorComponent implements OnInit, OnDestroy {
       if (status !== 403) {
 
         let old = this.router.url;
-        this.messagesService.send('Er ging iets fout.', 'OPNIEUW').subscribe((params) => {
+        this.messagesService.send('Er ging iets fout.', 'OPNIEUW').subscribe(() => {
           this.router.navigate([old]);
         });
         this.router.navigate(['/']);

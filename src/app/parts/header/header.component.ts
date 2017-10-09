@@ -4,7 +4,7 @@ import { GlobalsService } from 'globals.service';
 @Component({
   selector: 'app-header',
   template: `
-  
+
     <mat-toolbar color="accent">
 
       <img src="assets/logo.svg" alt="Logo" width="35" height="35">
@@ -50,7 +50,7 @@ import { GlobalsService } from 'globals.service';
       font-size: 14px !important;
         align-self: flex-end;
     }
-    
+
 `]
 })
 export class HeaderComponent implements OnInit {

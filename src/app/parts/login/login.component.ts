@@ -33,7 +33,7 @@ import { DialogsService } from '../../dialogs/dialogs.service';
       <div *ngIf="globals.auth.token">
         <a *ngIf="!globals.auth.admin" mat-raised-button color="accent" routerLink="edit/shop"><mat-icon>add</mat-icon>Nieuwe frituur</a>
         <button mat-raised-button color="warn" (click)="logout()">Log uit</button>
-        
+
         <button mat-raised-button color="primary" (click)="globals.auth.admin=!globals.auth.admin">Toggle Admin</button>
       </div>
 

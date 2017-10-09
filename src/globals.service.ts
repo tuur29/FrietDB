@@ -89,58 +89,60 @@ export class GlobalsService {
     name: 'Ketchup',
     type: 'Saus',
     favorite: true
-  }];
+  }
+  ];
 
   shops: any[] = [
   {
-  	id: 1,
-  	name: 'Frituur Patat',
-  	image: 'http://www.frituurlatem.be/fotos/header.jpg',
-  	description: `Frituur Patat serveert een groot assortiment gefrituurde snacks. Wij zijn de enige in Oostakker die bovendien échte Bicky burgers maakt. Bekijk onze frieten en snacks.
+   id: 1,
+   name: 'Frituur Patat',
+   image: 'http://www.frituurlatem.be/fotos/header.jpg',
+   description: `Frituur Patat serveert een groot assortiment gefrituurde snacks. Wij zijn de enige in Oostakker die bovendien échte Bicky burgers maakt. Bekijk onze frieten en snacks.
 
-    Wij hebben in huis:
-    - Frieten
-    - Snacks
-    - Belegde broodjes
-    - Warme schotels`,
-    street: 'Eeenheeelelaaangeestraaatnaaam',
-    number: '1',
-    municipality: 'Gemeente',
-    telephone: '04 00 00 00 00',
-    email: 'friet@shop.be',
-    website: 'http://www.frituurpatat.be',
-    lat: 51.4,
-    lng: 7.9,
-    snacks: this.snacks,
-  },
-  {
-  	id: 2,
-  	name: 'Frietshop',
-  	street: 'Straat2',
-  	number: '334',
-  	municipality: 'Gemeente',
-  	lat: 51.373858,
-  	lng: 7.215982,
-  },
-  {
-  	id: 3,
-  	name: 'Frituur Nadine',
-  	street: 'Straat3',
-  	number: '2',
-  	municipality: 'Gemeente',
-  	lat: 51.723858,
-  	lng: 7.895982,
-  },
-  {
-  	id: 4,
-  	name: 'Langs de waterkant',
-  	street: 'Straat4',
-  	number: '55',
-  	municipality: 'Gemeente',
-  	lat: 51.925,
-  	lng: 8,
-  }];
+   Wij hebben in huis:
+   - Frieten
+   - Snacks
+   - Belegde broodjes
+   - Warme schotels`,
+   street: 'Eeenheeelelaaangeestraaatnaaam',
+   number: '1',
+   municipality: 'Gemeente',
+   telephone: '04 00 00 00 00',
+   email: 'friet@shop.be',
+   website: 'http://www.frituurpatat.be',
+   lat: 51.4,
+   lng: 7.9,
+   snacks: this.snacks,
+ },
+ {
+   id: 2,
+   name: 'Frietshop',
+   street: 'Straat2',
+   number: '334',
+   municipality: 'Gemeente',
+   lat: 51.373858,
+   lng: 7.215982,
+ },
+ {
+   id: 3,
+   name: 'Frituur Nadine',
+   street: 'Straat3',
+   number: '2',
+   municipality: 'Gemeente',
+   lat: 51.723858,
+   lng: 7.895982,
+ },
+ {
+   id: 4,
+   name: 'Langs de waterkant',
+   street: 'Straat4',
+   number: '55',
+   municipality: 'Gemeente',
+   lat: 51.925,
+   lng: 8,
+ }
+ ];
 
-  snacktypes: string[] = ['Snack', 'Frieten', 'Saus', 'Drank', 'Andere'];
+ snacktypes: string[] = ['Snack', 'Frieten', 'Saus', 'Drank', 'Andere'];
 
 }

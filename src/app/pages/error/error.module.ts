@@ -9,7 +9,7 @@ import { LoginModule } from '../../parts/login/login.module';
 
 @NgModule({
   imports: [
-  	RouterModule,
+    RouterModule,
     CommonModule,
     MaterialModule,
     LoginModule,

@@ -8,34 +8,34 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DialogsService {
 
-    constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) { }
 
-    public snackinfo(reqId: number): Observable<boolean> {
+  public snackinfo(reqId: number): Observable<boolean> {
 
-        let dialogRef: MatDialogRef<SnackInfoDialog>;
+    let dialogRef: MatDialogRef<SnackInfoDialog>;
 
-        dialogRef = this.dialog.open(SnackInfoDialog);
-        dialogRef.componentInstance.reqId = reqId;
+    dialogRef = this.dialog.open(SnackInfoDialog);
+    dialogRef.componentInstance.reqId = reqId;
 
-        return dialogRef.afterClosed();
-    }
+    return dialogRef.afterClosed();
+  }
 
-    public editsnack(editId: number): Observable<boolean> {
+  public editsnack(editId: number): Observable<boolean> {
 
-        let dialogRef: MatDialogRef<EditSnackDialog>;
+    let dialogRef: MatDialogRef<EditSnackDialog>;
 
-        dialogRef = this.dialog.open(EditSnackDialog);
-        dialogRef.componentInstance.editId = editId;
+    dialogRef = this.dialog.open(EditSnackDialog);
+    dialogRef.componentInstance.editId = editId;
 
-        return dialogRef.afterClosed();
-    }
+    return dialogRef.afterClosed();
+  }
 
-    public register(): Observable<boolean> {
+  public register(): Observable<boolean> {
 
-        let dialogRef: MatDialogRef<RegisterDialog>;
+    let dialogRef: MatDialogRef<RegisterDialog>;
 
-        dialogRef = this.dialog.open(RegisterDialog);
+    dialogRef = this.dialog.open(RegisterDialog);
 
-        return dialogRef.afterClosed();
-    }
+    return dialogRef.afterClosed();
+  }
 }

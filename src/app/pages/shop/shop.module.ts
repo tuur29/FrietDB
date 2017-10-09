@@ -12,7 +12,7 @@ import { RemoveProtocolPipe } from './removeprotocol.pipe';
 
 @NgModule({
   imports: [
-  	RouterModule,
+    RouterModule,
     CommonModule,
     NgPipesModule,
     MarkdownModule,
@@ -21,6 +21,6 @@ import { RemoveProtocolPipe } from './removeprotocol.pipe';
     MapModule,
   ],
   exports: [MarkdownModule],
-  declarations: [ShopComponent,RemoveProtocolPipe],
+  declarations: [ShopComponent, RemoveProtocolPipe],
 })
 export class ShopModule { }

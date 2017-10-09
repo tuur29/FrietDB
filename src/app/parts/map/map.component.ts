@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { GlobalsService } from 'globals.service';
-import { MapsAPILoader,GoogleMapsAPIWrapper } from '@agm/core';
+import { MapsAPILoader, GoogleMapsAPIWrapper } from '@agm/core';
 
 declare let google: any;
 
@@ -39,14 +39,14 @@ declare let google: any;
 
   `]
 })
-export class MapComponent implements OnInit,OnChanges {
+export class MapComponent implements OnInit, OnChanges {
 
   // variables
 
   @Input() shops: any[] = [];
   @Input() markers: boolean = true;
   @Input() heatmap: boolean = false;
-  
+
   @Input() lat: number;
   @Input() lng: number;
   @Input() zoom: number = 8;
@@ -113,7 +113,7 @@ export class MapComponent implements OnInit,OnChanges {
 
     // Ask for location permission
     if (navigator.geolocation && (this.lat === undefined || this.lng === undefined)) {
-      
+
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
@@ -121,13 +121,13 @@ export class MapComponent implements OnInit,OnChanges {
       }, () => {
         this.setDefaultPosition();
       });
-      
+
     } else {
       this.setDefaultPosition();
     }
 
     // Open info window if only one marker displayed
-    this.shops.forEach(function(s) { s.infoWindowOpened = false });
+    this.shops.forEach((s) => { s.infoWindowOpened = false; });
 
     if (this.shops.length === 1) {
       this.shops[0].infoWindowOpened = true;

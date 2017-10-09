@@ -79,9 +79,9 @@ export class EditShopComponent implements OnInit, OnDestroy {
       }
 
       setTimeout(() => {
-        this.snackCtrl.reset({value:'', disabled:true});
+        this.snackCtrl.reset({value: '', disabled: true});
         this.snackCtrl.enable();
-      },1);
+      }, 1);
 
     }
   }

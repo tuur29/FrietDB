@@ -9,7 +9,7 @@ You will have to add 2 files called `/src/environments/environment(.prod).ts` wi
 ```
 export const environment = {
   production: true,
-  mapskey: "<PASTE_PRODUCION_API_KEY>"
+  mapskey: '<PASTE_PRODUCION_API_KEY>'
 };
 ```
 You will need a [Google Maps Javascript API key](https://developers.google.com/maps/documentation/javascript/get-api-key).

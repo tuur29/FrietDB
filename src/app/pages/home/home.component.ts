@@ -24,7 +24,7 @@ import { GlobalsService } from 'globals.service';
       <p>Helaas voeg ik momenteel enkel handmatig nieuwe gebruikers toe.<br>Stuur me een mailtje en dan bezorg ik je zo spoedig mogelijk je inloggegevens.</p>
       <app-login></app-login>
     </mat-card>
-    
+
   `,
   styles: []
 })

@@ -36,7 +36,7 @@ export class TableComponent implements OnInit {
 
   @Input() data: any[];
 
-  displayedColumns = ['itemName', 'userName', 'timestamp','buttons'];
+  displayedColumns = ['itemName', 'userName', 'timestamp', 'buttons'];
   database: Database;
   dataSource: EditsDataSource | null;
 
@@ -60,7 +60,7 @@ export class TableComponent implements OnInit {
   }
 
   formatDate(timestamp: number) {
-    return new Date(timestamp * 1000).toISOString().replace('T',' ').slice(0,-5);
+    return new Date(timestamp * 1000).toISOString().replace('T', ' ').slice(0, -5);
   }
 
   accept(index: number, event) {

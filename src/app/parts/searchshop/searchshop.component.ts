@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { GlobalsService } from 'globals.service';
 
 import { FormControl } from '@angular/forms';
@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Component({
   selector: 'app-searchshop',
   template: `
-    
+
     <form>
       <mat-form-field class="full-width" [floatPlaceholder]="inline?'never':''">
 
@@ -57,7 +57,7 @@ export class SearchShopComponent implements OnInit {
   ngOnInit() {
     this.filteredShops = this.shopCtrl.valueChanges
       .startWith(null)
-      .map(shop => shop ? this.filterShops(shop) : this.shops.slice());
+      .map((shop) => shop ? this.filterShops(shop) : this.shops.slice());
   }
 
   filterShops(query: string) {
@@ -69,7 +69,7 @@ export class SearchShopComponent implements OnInit {
   }
 
   openShop(id: number) {
-    this.router.navigate(['/shop',id]);
+    this.router.navigate(['/shop', id]);
   }
 
 }

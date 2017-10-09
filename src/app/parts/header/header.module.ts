@@ -12,7 +12,7 @@ import { MaterialModule } from '../../material.module';
     CommonModule,
     RouterModule,
     MaterialModule,
-    
+
     SearchShopModule,
   ],
   exports: [HeaderComponent],

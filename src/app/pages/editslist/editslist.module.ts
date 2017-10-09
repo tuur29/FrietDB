@@ -14,8 +14,8 @@ import { TableComponent } from './table/table.component';
     MaterialModule,
   ],
   declarations: [
-  	EditsListComponent,
-  	TableComponent,
+    EditsListComponent,
+    TableComponent,
   ]
 })
 export class EditsListModule { }

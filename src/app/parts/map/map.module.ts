@@ -6,9 +6,9 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 
 @NgModule({
   imports: [
-  	CommonModule,
-  	RouterModule,
-  	AgmCoreModule,
+    CommonModule,
+    RouterModule,
+    AgmCoreModule,
   ],
   exports: [AgmCoreModule, MapComponent],
   providers: [GoogleMapsAPIWrapper],

@@ -53,7 +53,7 @@ export class EditsDataSource extends DataSource<any> {
   connect(): Observable<any[]> {
     const displayDataChanges = [
       this._database.dataChange,
-      this._sort.sortChange, 
+      this._sort.sortChange,
       this._filterChange,
       this._paginator.page,
     ];

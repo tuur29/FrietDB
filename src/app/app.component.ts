@@ -17,17 +17,17 @@ import { Component } from '@angular/core';
     <div class="mat-typography">
 
       <app-header></app-header>
-      
+
       <div class="container">
         <router-outlet></router-outlet>
         <footer>Copyright © 2017 Tuur Lievens.</footer>
       </div>
 
     </div>
-  
+
   `,
   styles: [`
-  
+
     .container {
       max-width: 800px;
       margin: 20px auto;

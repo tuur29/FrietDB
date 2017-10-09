@@ -8,9 +8,9 @@ import { GlobalsService } from 'globals.service';
 
     <img [src]="snack.image" *ngIf="snack.image">
     <h1 mat-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
-    
+
     <div mat-dialog-actions>
-      
+
       <a mat-icon-button *ngIf="snack.link" [href]="snack.link">
         <mat-icon>open_in_new</mat-icon>
         Meer Info

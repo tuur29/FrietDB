@@ -64,7 +64,7 @@ export class OrderComponent implements OnInit {
       }
 
       setTimeout(() => {
-        this.snackCtrl.reset({value:'', disabled:true});
+        this.snackCtrl.reset({value: '', disabled: true});
         this.snackCtrl.enable();
       }, 1);
     }

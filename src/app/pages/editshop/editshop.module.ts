@@ -14,8 +14,8 @@ import { MarkdownModule } from 'angular2-markdown';
     FormsModule,
     NgPipesModule,
     ReactiveFormsModule,
-	MaterialModule,
-	MarkdownModule,
+    MaterialModule,
+    MarkdownModule,
   ],
   declarations: [EditShopComponent]
 })

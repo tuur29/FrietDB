@@ -8,7 +8,7 @@ import { EditsService } from '../edits.service';
   template: `
 
     <h1 mat-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
-    
+
     <form #form>
 
       <fieldset [disabled]="editId" >

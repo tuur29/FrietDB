@@ -10,29 +10,29 @@ import { EditSnackDialog } from './editsnack.component';
 import { RegisterDialog } from './register.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MaterialModule,
-    ],
-    exports: [
-        SnackInfoDialog,
-        EditSnackDialog,
-        RegisterDialog,
-    ],
-    declarations: [
-        SnackInfoDialog,
-        EditSnackDialog,
-        RegisterDialog,
-    ],
-    providers: [
-        DialogsService,
-    ],
-    entryComponents: [
-        SnackInfoDialog,
-        EditSnackDialog,
-        RegisterDialog,
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+  ],
+  exports: [
+    SnackInfoDialog,
+    EditSnackDialog,
+    RegisterDialog,
+  ],
+  declarations: [
+    SnackInfoDialog,
+    EditSnackDialog,
+    RegisterDialog,
+  ],
+  providers: [
+    DialogsService,
+  ],
+  entryComponents: [
+    SnackInfoDialog,
+    EditSnackDialog,
+    RegisterDialog,
+  ],
 })
 export class DialogsModule { }

@@ -12,7 +12,7 @@ import { HomeComponent } from './home.component';
 
 @NgModule({
   imports: [
-  	RouterModule,
+    RouterModule,
     CommonModule,
     MaterialModule,
 
