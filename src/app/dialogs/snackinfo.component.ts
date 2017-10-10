@@ -25,6 +25,7 @@ import { GlobalsService } from 'globals.service';
 
     img {
       max-width: 300px;
+      min-width: 175px;
     }
 
   `]
