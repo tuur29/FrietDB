@@ -17,13 +17,14 @@ You will need a [Google Maps Javascript API key](https://developers.google.com/m
 
 ## Development server
 
-### Frontend
+Run `npm run all` for a full dev server. Navigate to `http://localhost:4200/`. The frontend will automatically reload if you change any of the source files.
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### More options
 
-### Backend
-
-Make sure there is a MongoDB service with a database called 'frietdb' running. go to `./server/` and also execute `npm start` there.
+- `npm start` : runs only frontend Angular 4 app
+- `npm run mongo` : runs backend MongoDB server
+- `npm run express` : runs backend Express.js server
+- `npm run server` : runs all backend servers
 
 ## Build & Deploy
 

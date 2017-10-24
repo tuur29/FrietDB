@@ -4,7 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+
     "start": "ng serve --proxy-config proxy.conf.json",
+    "mongo": "cd server & npm run mongo",
+    "express": "cd server & npm start",
+    "server": "cd server & npm run server",
+    "all": "cd server & start npm run server & cd ../ & npm start",
+
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
