@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 
 import { routes } from './app.routing';
@@ -32,6 +33,7 @@ import { OrderModule } from './pages/order/order.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpModule,
 
     BrowserAnimationsModule,
 

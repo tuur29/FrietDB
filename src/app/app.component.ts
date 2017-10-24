@@ -6,6 +6,8 @@
 // TODO: Implement Backend -> Cache data (simple shop list, simple all snacks, snacktypes)
 
 import { Component } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app',
@@ -38,4 +40,8 @@ import { Component } from '@angular/core';
 
   `],
 })
-export class AppComponent { }
+export class AppComponent {
+  constructor(private http: Http) {
+    this.http.get("http://localhost:4200/api/items").map(res => res.json()).subscribe(data => console.log(data) );
+  }
+}

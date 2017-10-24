@@ -9,6 +9,7 @@ You will have to add 2 files called `/src/environments/environment(.prod).ts` wi
 ```
 export const environment = {
   production: true,
+  backendurl: "https://<URL>:<SERVER_PORT>/<API_PATH>",
   mapskey: '<PASTE_PRODUCION_API_KEY>'
 };
 ```
@@ -16,7 +17,13 @@ You will need a [Google Maps Javascript API key](https://developers.google.com/m
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Frontend
+
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Backend
+
+Make sure there is a MongoDB service with a database called 'frietdb' running. go to `./server/` and also execute `npm start` there.
 
 ## Build & Deploy
 
