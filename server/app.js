@@ -3,26 +3,42 @@ let path = require('path');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
+let mongoose = require('mongoose');
 
-// load routes
-let routes = require('./routes');
+let shopRouter = require('./routers/shop');
+let snackRouter = require('./routers/snack');
+let editRouter = require('./routers/edit');
 
-// load app
+// config
+// TODO: add prod & test env
+const HOST_NAME = 'localhost';
+const DATABASE_NAME = 'frietdb';
+
+// setup
 let app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
-app.use('/', routes);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  let err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+// connecting & load routes
+mongoose.connect('mongodb://'+HOST_NAME+'/'+DATABASE_NAME, { useMongoClient: true }, function(err) {
+  if (err) throw new Error("Cannot connect to MongoDB instance");
+  let admin = new mongoose.mongo.Admin(mongoose.connection.db);
+  admin.buildInfo((err, info) => { console.log("MongoDB version " + info.version) });
 });
+
+// default route to check online
+let router = express.Router();
+router.get('/', function(req, res, next) {
+  res.json({ status: 200 });
+});
+app.use('/api', router);
+
+// load routes
+app.use('/api/shops', shopRouter);
+app.use('/api/snacks', snackRouter);
+app.use('/api/edits', editRouter);
 
 // error handler
 app.use(function(err, req, res, next) {
