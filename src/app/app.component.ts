@@ -1,9 +1,12 @@
-// TODO: Try AOT compiling faster loading
 // TODO: Gather real testdata (default add http to urls)
-// TODO: Loading spinner
-// TODO: Add tests
+// TODO: Check for Observables leaking memory
+// TODO: Add loading spinner
+// TODO: Add unittests
 // TODO: Improve typing (Returns, HTMLInputElement, Models / data interfaces...)
-// TODO: Implement Backend -> Cache data (simple shop list, simple all snacks, snacktypes)
+// TODO: Cache data (simple shop list, simple all snacks, snacktypes)
+// TODO: Redo forms: use ngonsubmit action instead of button onclick
+// TODO: Show native html5 validationMessage 
+// TODO: Use Formbuilder in ts with html5 arguments instead of ngmodel
 
 import { Component } from '@angular/core';
 import { Http, Response } from '@angular/http';
