@@ -1,166 +1,171 @@
-<form #form>
-  <mat-accordion>
 
-    <!-- General Info (title, descr, image) -->
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Informatie
-        </mat-panel-title>
-        <mat-panel-description>
-          Pas de algemene informatie aan
-          <mat-icon>info_outline</mat-icon>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+<ng-container *ngIf="shop">
 
-      <!-- Content -->
-      <fieldset [disabled]="globals.auth.token && globals.auth.admin" >
-        <mat-form-field class="full">
-          <input type="text" required matInput [(ngModel)]="shop.name" name="shop.name" placeholder="Naam">
+  <form (ngSubmit)="save()" #form>
+    <mat-accordion>
+
+      <!-- General Info (title, descr, image) -->
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Informatie
+          </mat-panel-title>
+          <mat-panel-description>
+            Pas de algemene informatie aan
+            <mat-icon>info_outline</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <!-- Content -->
+        <fieldset [disabled]="globals.auth.token && globals.auth.admin" >
+          <mat-form-field class="full">
+            <input type="text" required matInput [(ngModel)]="shop.name" name="shop.name" placeholder="Naam">
+          </mat-form-field>
+
+          <mat-form-field class="half">
+            <textarea matInput [(ngModel)]="shop.description" name="shop.description" placeholder="Beschrijving (in Markdown formaat)"></textarea>
+          </mat-form-field>
+          <div class="preview">
+            <markdown *ngIf="shop.description" matTooltip="Voorbeeld" matTooltipPosition="left" [data]="shop.description"></markdown>
+          </div>
+
+          (<a href="https://en.wikipedia.org/wiki/Markdown#Example" target="_blank">Meer informatie over Markdown</a>)
+
+          <mat-form-field class="full">
+            <input type="url" matInput [(ngModel)]="shop.image" name="shop.image" placeholder="Foto url">
+          </mat-form-field>
+        </fieldset>
+        <!-- End Content -->
+
+        <mat-action-row>
+          <button type="button" mat-button (click)="prevStep()">Vorige</button>
+          <button type="button" mat-button mat-raised-button color="primary" (click)="nextStep()">Volgende</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <!-- More Info (details, map coords) -->
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Details
+          </mat-panel-title>
+          <mat-panel-description>
+            Geef meer details over de frituur
+            <mat-icon>map</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <!-- Content -->
+        <fieldset [disabled]="globals.auth.token && globals.auth.admin" >
+          <div class="full">
+            <mat-form-field>
+              <input type="text" required [(ngModel)]="shop.street" name="shop.street" matInput placeholder="Straat">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="number" required [(ngModel)]="shop.number" name="shop.number" matInput placeholder="Nummer">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="text" required [(ngModel)]="shop.municipality" name="shop.municipality" matInput placeholder="Gemeente">
+            </mat-form-field>
+          </div>
+
+          <div class="full">
+            <mat-form-field>
+              <input type="tel" [(ngModel)]="shop.telephone" name="shop.telephone" matInput placeholder="Telefoon">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="email" [(ngModel)]="shop.email" name="shop.email" matInput placeholder="E-mailadres">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="url" [(ngModel)]="shop.website" name="shop.website" matInput placeholder="Website URL">
+            </mat-form-field>
+          </div>
+
+          <div class="full">
+            <mat-form-field class="small">
+              <input type="number" required step="0.001" min="-90" max="90" [(ngModel)]="shop.lat" name="shop.lat" matInput placeholder="Breedtegraad">
+            </mat-form-field>
+            <mat-form-field class="small">
+              <input type="number" required step="0.001" min="-180" max="180" [(ngModel)]="shop.lng" name="shop.lng" matInput placeholder="Lengtegraad">
+            </mat-form-field>
+            (<a href="https://support.google.com/maps/answer/18539?co=GENIE.Platform%3DDesktop&hl=nl&oco=1" target="_blank">Waar vind ik deze coördinaten?</a>)
+          </div>
+        </fieldset>
+        <!-- End Content -->
+
+        <mat-action-row>
+          <button type="button" mat-button (click)="prevStep()">Vorige</button>
+          <button type="button" mat-button mat-raised-button color="primary" (click)="nextStep()">Volgende</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <!-- Snacks -->
+      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Snacks
+          </mat-panel-title>
+          <mat-panel-description>
+            Welke snacks bied deze frituur aan?
+            <mat-icon>restaurant_menu</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <!-- Content -->
+        <div *ngFor="let group of (shop.snacks | groupBy:'type' | pairs)">
+          <h3>{{group[0]}}</h3>
+          <ul>
+            <li *ngFor="let snack of group[1]">       
+              {{snack.name}}
+              <button type="button" mat-icon-button *ngIf="!globals.auth.admin" (click)="dialogsService.editsnack(snack.id)" aria-label="Aanpassen" matTooltip="Aanpassen">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button type="button" mat-icon-button *ngIf="!globals.auth.admin" (click)="removeSnack(snack.id)" aria-label="Verwijderen" matTooltip="Verwijderen">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <mat-form-field *ngIf="!globals.auth.admin">
+
+          <button type="button" mat-icon-button matPrefix>
+            <mat-icon>search</mat-icon>
+          </button>
+
+          <input matInput placeholder="Snack toevoegen" aria-label="Snack toevoegen" [matAutocomplete]="autocomplete" [formControl]="snackCtrl">
+
+          <button type="button" *ngIf="snackCtrl.value" matSuffix mat-icon-button aria-label="Reset" (click)="snackCtrl.reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+          
+          <mat-autocomplete #autocomplete="matAutocomplete">
+            <mat-option (onSelectionChange)="pickSnack(snack.id,$event)" *ngFor="let snack of (filteredSnacks | async | orderBy: ['name'])" [value]="snack.name">
+                <span>{{snack.name}}</span> | <small>{{snack.type}}</small>
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field class="half">
-          <textarea matInput [(ngModel)]="shop.description" name="shop.description" placeholder="Beschrijving (in Markdown formaat)"></textarea>
-        </mat-form-field>
-        <div class="preview">
-          <markdown matTooltip="Voorbeeld" matTooltipPosition="left" [data]="shop.description"></markdown>
-        </div>
-
-        (<a href="https://en.wikipedia.org/wiki/Markdown#Example" target="_blank">Meer informatie over Markdown</a>)
-
-        <mat-form-field class="full">
-          <input type="url" matInput [(ngModel)]="shop.image" name="shop.image" placeholder="Foto url">
-        </mat-form-field>
-      </fieldset>
-      <!-- End Content -->
-
-      <mat-action-row>
-        <button mat-button (click)="prevStep()">Vorige</button>
-        <button mat-button mat-raised-button color="primary" (click)="nextStep()">Volgende</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-    <!-- More Info (details, map coords) -->
-    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Details
-        </mat-panel-title>
-        <mat-panel-description>
-          Geef meer details over de frituur
-          <mat-icon>map</mat-icon>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <!-- Content -->
-      <fieldset [disabled]="globals.auth.token && globals.auth.admin" >
-        <div class="full">
-          <mat-form-field>
-            <input type="text" required [(ngModel)]="shop.street" name="shop.street" matInput placeholder="Straat">
-          </mat-form-field>
-          <mat-form-field>
-            <input type="number" required [(ngModel)]="shop.number" name="shop.number" matInput placeholder="Nummer">
-          </mat-form-field>
-          <mat-form-field>
-            <input type="text" required [(ngModel)]="shop.municipality" name="shop.municipality" matInput placeholder="Gemeente">
-          </mat-form-field>
-        </div>
-
-        <div class="full">
-          <mat-form-field>
-            <input type="tel" [(ngModel)]="shop.telephone" name="shop.telephone" matInput placeholder="Telefoon">
-          </mat-form-field>
-          <mat-form-field>
-            <input type="email" [(ngModel)]="shop.email" name="shop.email" matInput placeholder="E-mailadres">
-          </mat-form-field>
-          <mat-form-field>
-            <input type="url" [(ngModel)]="shop.website" name="shop.website" matInput placeholder="Website URL">
-          </mat-form-field>
-        </div>
-
-        <div class="full">
-          <mat-form-field class="small">
-            <input type="number" required step="0.001" min="-90" max="90" [(ngModel)]="shop.lat" name="shop.lat" matInput placeholder="Breedtegraad">
-          </mat-form-field>
-          <mat-form-field class="small">
-            <input type="number" required step="0.001" min="-180" max="180" [(ngModel)]="shop.lng" name="shop.lng" matInput placeholder="Lengtegraad">
-          </mat-form-field>
-          (<a href="https://support.google.com/maps/answer/18539?co=GENIE.Platform%3DDesktop&hl=nl&oco=1" target="_blank">Waar vind ik deze coördinaten?</a>)
-        </div>
-      </fieldset>
-      <!-- End Content -->
-
-      <mat-action-row>
-        <button mat-button (click)="prevStep()">Vorige</button>
-        <button mat-button mat-raised-button color="primary" (click)="nextStep()">Volgende</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-    <!-- Snacks -->
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Snacks
-        </mat-panel-title>
-        <mat-panel-description>
-          Welke snacks bied deze frituur aan?
-          <mat-icon>restaurant_menu</mat-icon>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <!-- Content -->
-      <div *ngFor="let group of (shop.snacks | groupBy:'type' | pairs)">
-        <h3>{{group[0]}}</h3>
-        <ul>
-          <li *ngFor="let snack of group[1]">       
-            {{snack.name}}
-            <button mat-icon-button *ngIf="!globals.auth.admin" (click)="dialogsService.editsnack(snack.id)" aria-label="Aanpassen" matTooltip="Aanpassen">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button *ngIf="!globals.auth.admin" (click)="removeSnack(snack.id)" aria-label="Verwijderen" matTooltip="Verwijderen">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      <mat-form-field *ngIf="!globals.auth.admin">
-
-        <button mat-icon-button matPrefix>
-          <mat-icon>search</mat-icon>
+        <button type="button" mat-button mat-raised-button color="primary" *ngIf="!globals.auth.admin" (click)="newSnack()">
+          <mat-icon>add</mat-icon>Nieuwe Snack
         </button>
+        <!-- End Content -->
 
-        <input matInput placeholder="Snack toevoegen" aria-label="Snack toevoegen" [matAutocomplete]="autocomplete" [formControl]="snackCtrl">
+        <mat-action-row>
+          <button type="button" mat-button (click)="prevStep()">Vorige</button>
 
-        <button *ngIf="snackCtrl.value" matSuffix mat-icon-button aria-label="Reset" (click)="snackCtrl.reset()">
-          <mat-icon>close</mat-icon>
-        </button>
-        
-        <mat-autocomplete #autocomplete="matAutocomplete">
-          <mat-option (onSelectionChange)="pickSnack(snack.id,$event)" *ngFor="let snack of (filteredSnacks | async | orderBy: ['name'])" [value]="snack.name">
-              <span>{{snack.name}}</span> | <small>{{snack.type}}</small>
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+          <ng-container *ngIf="globals.auth.token && globals.auth.admin;else savebtn">
+            <button type="button" mat-button mat-raised-button color="warn" (click)="remove(id)"><mat-icon>delete_forever</mat-icon>Verwijderen</button>
+            <button type="button" mat-button mat-raised-button color="warn" (click)="accept(id)"><mat-icon>check</mat-icon>Goedkeuren</button>
+          </ng-container>
 
-      <button mat-button mat-raised-button color="primary" *ngIf="!globals.auth.admin" (click)="newSnack()">
-        <mat-icon>add</mat-icon>Nieuwe Snack
-      </button>
-      <!-- End Content -->
+          <ng-template #savebtn>
+            <button type="submit" mat-button mat-raised-button color="warn"><mat-icon>save</mat-icon>Opslaan</button>
+          </ng-template>
+        </mat-action-row>
+      </mat-expansion-panel>
 
-      <mat-action-row>
-        <button mat-button (click)="prevStep()">Vorige</button>
+    </mat-accordion>
+  </form>
 
-        <ng-container *ngIf="globals.auth.token && globals.auth.admin;else savebtn">
-          <button type="submit" mat-button mat-raised-button color="warn" (click)="editsService.remove(editId); back()"><mat-icon>delete_forever</mat-icon>Verwijderen</button>
-          <button type="submit" mat-button mat-raised-button color="warn" (click)="editsService.accept(editId); back()"><mat-icon>check</mat-icon>Goedkeuren</button>
-        </ng-container>
-
-        <ng-template #savebtn>
-          <button type="submit" mat-button mat-raised-button color="warn" (click)="save(); back()"><mat-icon>save</mat-icon>Opslaan</button>
-        </ng-template>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-  </mat-accordion>
-</form>
+</ng-container>

@@ -13,7 +13,7 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row mat-ripple
       *matRowDef="let row; columns: displayedColumns"
-      [routerLink]="'/edit/'+row.type+'/'+row.item.id"
+      [routerLink]="'/edit/'+type+'/'+row.id"
     ></mat-row>
 
 
@@ -21,14 +21,14 @@
     <ng-container matColumnDef="itemName">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Naam frituur </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span matTooltip="Bekijk aanpassing">{{row.item.name}}</span>
+        <span matTooltip="Bekijk aanpassing">{{row.item}}</span>
       </mat-cell>
     </ng-container>
 
     <!-- userName Column -->
     <ng-container matColumnDef="userName">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Naam gebruiker </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.user.name}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.user}} </mat-cell>
     </ng-container>
 
     <!-- timestamp Column -->
@@ -42,11 +42,11 @@
       <mat-header-cell *matHeaderCellDef> Acties </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index"> 
         
-        <button (mousedown)="$event.stopPropagation()" (click)="accept(i,$event)" mat-icon-button color="primary" matTooltip="Goedkeuren">
+        <button (mousedown)="$event.stopPropagation()" (click)="accept(row.id,i,$event)" mat-icon-button color="primary" matTooltip="Goedkeuren">
           <mat-icon aria-label="Goedkeuren">check</mat-icon>
         </button>
 
-        <button (mousedown)="$event.stopPropagation()" (click)="remove(i,$event)" mat-icon-button color="warn" matTooltip="Verwijderen">
+        <button (mousedown)="$event.stopPropagation()" (click)="remove(row.id,i,$event)" mat-icon-button color="warn" matTooltip="Verwijderen">
           <mat-icon aria-label="Verwijderen">delete_forever</mat-icon>
         </button>
 
@@ -56,6 +56,7 @@
   </mat-table>
 
   <mat-paginator #paginator
+    [hidden]="database.data.length < 6"
     [length]="database.data.length"
     [pageIndex]="0"
     [pageSize]="10"

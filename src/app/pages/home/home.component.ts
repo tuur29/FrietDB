@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalsService } from 'globals.service';
+import { GlobalsService } from 'app/services/globals.service';
+import { ShopDataService } from 'app/services/shopdata.service';
 
 @Component({
   selector: 'app-home',
@@ -33,12 +34,16 @@ export class HomeComponent implements OnInit {
   title: string;
   shops: any[];
 
-  constructor(private globals: GlobalsService) {
-    this.title = globals.title;
-    this.shops = globals.shops;
-  }
+  constructor(
+    private globals: GlobalsService,
+    private shopDataService: ShopDataService,
+  ) {}
 
   ngOnInit() {
+    this.title = this.globals.title;
+    this.shopDataService.getShops().subscribe(shops => {
+      this.shops = shops;
+    });
   }
 
 }

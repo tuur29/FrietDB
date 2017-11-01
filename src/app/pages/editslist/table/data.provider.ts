@@ -16,20 +16,14 @@ export class Database {
   get data(): any[] { return this.dataChange.value; }
 
   constructor(data: any[]) {
-
     // put data into system
-    data.forEach((d) => {
-      const copiedData = this.data.slice();
-
-      // temporary use same test data
-      for (let i = 0; i < 50; i++)
-        copiedData.push(d);
-      this.dataChange.next(copiedData);
-    });
+    this.dataChange.next(data);
   }
 
-  public remove(index: number) {
-    // this.dataChange.splice(index,1);
+  public remove(index) {
+    const copiedData = this.data.slice();
+    copiedData.splice(index, 1);
+    this.dataChange.next(copiedData);
   }
 }
 
@@ -60,8 +54,8 @@ export class EditsDataSource extends DataSource<any> {
 
     return Observable.merge(...displayDataChanges).map(() => {
       // Filter data
-      this.filteredData = this._database.data.slice().filter((item: any) => {
-        let searchStr = (item.user.name + item.item.name).toLowerCase();
+      this.filteredData = this._database.data.slice().filter((row: any) => {
+        let searchStr = (row.user + row.item).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 

@@ -56,6 +56,10 @@ mat-card.search {
 	padding-bottom: 5px;
 }
 
+.mat-form-field.ng-invalid.ng-touched {
+	color: mat-color($app-warn, A400);
+}
+
 .spacer {
   flex: 1 1 auto;
 }

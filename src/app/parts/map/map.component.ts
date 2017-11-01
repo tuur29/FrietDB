@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { GlobalsService } from 'globals.service';
+import { GlobalsService } from 'app/services/globals.service';
 import { MapsAPILoader, GoogleMapsAPIWrapper } from '@agm/core';
 
 declare let google: any;
@@ -8,7 +8,7 @@ declare let google: any;
   selector: 'app-map',
   template: `
 
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="onMapLoad($event)">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="onMapLoad($event)" *ngIf="shops">
 
       <ng-container *ngIf="markers">
         <agm-marker
@@ -111,6 +111,8 @@ export class MapComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
 
+    if (!this.shops) return;
+
     // Ask for location permission
     if (navigator.geolocation && (this.lat === undefined || this.lng === undefined)) {
 
@@ -140,7 +142,7 @@ export class MapComponent implements OnInit, OnChanges {
 
   infoWindowOpened = null;
 
-  clickedMarker(id: number, infoWindow) {
+  clickedMarker(id: string, infoWindow) {
 
     if (this.infoWindowOpened === infoWindow)
       return;

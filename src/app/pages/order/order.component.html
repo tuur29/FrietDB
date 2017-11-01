@@ -4,7 +4,7 @@
 </mat-card>
 
 <!-- Favorite Snacks Image Grid -->
-<mat-grid-list cols="3" rowHeight="5:3" gutterSize="7" class="quickpick">
+<mat-grid-list cols="3" rowHeight="5:3" gutterSize="7" class="quickpick" *ngIf="snacks">
   <mat-grid-tile *ngFor="let snack of (snacks | filterBy: ['favorite']: true | sample: 6) ">
 
     <button mat-raised-button
@@ -62,7 +62,7 @@
             {{snack.count}}x 
 
             <ng-container *ngIf="snack.image || snack.link;else onlyname">
-              <span (click)="dialogsService.snackinfo(snack.id)" class="link" aria-label="Meer info" matTooltip="Meer info">
+              <span (click)="handleMoreInfo(snack)" class="link" aria-label="Meer info" matTooltip="Meer info">
                 {{snack.name}}
                 <mat-icon>open_in_new</mat-icon>
               </span>

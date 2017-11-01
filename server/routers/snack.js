@@ -11,7 +11,7 @@ snackRouter.route('/')
             }
             let subsettedsnacks = snacks.map(function(s) {
                 return {
-                    id: s.id,
+                    id: s._id,
                     name: s.name,
                     type: s.type
                 };
@@ -35,7 +35,7 @@ snackRouter.route('/:snackId')
     .get(function(request, response) {
         let snackId = request.params.snackId;
         Snack.findOne({
-            id: snackId
+            _id: snackId
         }, function(error, snack) {
             if (error) {
                 response.status(500).send(error);

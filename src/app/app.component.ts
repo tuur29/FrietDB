@@ -2,15 +2,26 @@
 // TODO: Check for Observables leaking memory
 // TODO: Add loading spinner
 // TODO: Add unittests
-// TODO: Improve typing (Returns, HTMLInputElement, Models / data interfaces...)
-// TODO: Cache data (simple shop list, simple all snacks, snacktypes)
+// TODO: Improve typing (Method returns)
+// TODO: Cache data (simple shop list, simple all snacks)
+
+// TODO: Order page map doesn't update correctly
+// TODO: Show special error message if server offline
+// TODO: Make all component properties private
+// TODO: Add newly created snack to editing shop list & show popup link on admin page
+
 // TODO: Redo forms: use ngonsubmit action instead of button onclick
 // TODO: Show native html5 validationMessage 
 // TODO: Use Formbuilder in ts with html5 arguments instead of ngmodel
 
+// TODO: Add live preview of edited Shop
+// TODO: Remove starting newlines from files
+
 import { Component } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+
+import { GlobalsService } from 'app/services/globals.service';
 
 @Component({
   selector: 'app',
@@ -20,7 +31,9 @@ import { Observable } from 'rxjs/Observable';
 
       <app-header></app-header>
 
-      <div class="container">
+      <mat-spinner *ngIf="globals.loading"></mat-spinner>
+
+      <div class="container" *ngIf="!globals.loading">
         <router-outlet></router-outlet>
         <footer>Copyright © 2017 Tuur Lievens.</footer>
       </div>
@@ -44,7 +57,5 @@ import { Observable } from 'rxjs/Observable';
   `],
 })
 export class AppComponent {
-  constructor(private http: Http) {
-    this.http.get("http://localhost:4200/api/items").map(res => res.json()).subscribe(data => console.log(data) );
-  }
+  constructor(public globals: GlobalsService) {}
 }

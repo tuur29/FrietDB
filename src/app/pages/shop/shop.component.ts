@@ -1,7 +1,10 @@
-import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { GlobalsService } from 'globals.service';
+import { GlobalsService } from 'app/services/globals.service';
+import { ShopDataService } from 'app/services/shopdata.service';
+
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-shop',
@@ -11,25 +14,36 @@ import { GlobalsService } from 'globals.service';
 export class ShopComponent implements OnInit, OnDestroy {
 
   subroute: any;
-  reqId: any;
+  id: any;
   shop: any;
 
   constructor(
+    private ref: ChangeDetectorRef,
     public globals: GlobalsService,
+    private shopDataservice: ShopDataService,
     private route: ActivatedRoute,
     public dialogsService: DialogsService,
-  ) {
-    this.shop = globals.shops[0];
-  }
+  ) {}
 
   ngOnInit() {
     this.subroute = this.route.params.subscribe(params => {
-       this.reqId = +params['id']; // (+) converts string 'id' to a number
+      this.id = params['id'];
+      this.shopDataservice.getShop(this.id).subscribe(shop => {
+        this.shop = shop;
+        this.ref.detectChanges();
+      });
     });
   }
 
   ngOnDestroy() {
     this.subroute.unsubscribe();
+  }
+
+  handleMoreInfo(snack: any) {
+    if (snack.image != "")
+      this.dialogsService.snackinfo(snack.id);
+    else if (snack.link != "")
+      window.open(snack.link);
   }
 
 }

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { LocalStorageService } from 'ngx-store';
 
-import { GlobalsService } from 'globals.service';
+import { GlobalsService } from 'app/services/globals.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 
 @Component({
@@ -36,7 +36,7 @@ import { DialogsService } from '../../dialogs/dialogs.service';
         <a *ngIf="!globals.auth.admin" mat-raised-button color="accent" routerLink="edit/shop"><mat-icon>add</mat-icon>Nieuwe frituur</a>
         <button mat-raised-button color="warn" (click)="logout()">Log uit</button>
 
-        <button mat-raised-button color="primary" (click)="toggleAdmin()">Toggle Admin</button>
+        <button mat-raised-button color="primary" (click)="toggleAdmin()"><mat-icon *ngIf="globals.auth.admin">check</mat-icon> Admin</button>
       </div>
 
   `,

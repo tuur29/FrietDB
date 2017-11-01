@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { GlobalsService } from 'globals.service';
+import { ShopDataService } from 'app/services/shopdata.service';
 
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -26,8 +26,8 @@ import 'rxjs/add/operator/map';
         </button>
 
         <mat-autocomplete #autocomplete="matAutocomplete">
-          <mat-option (onSelectionChange)="openShop(shop.id)" *ngFor="let shop of filteredShops | async" [value]="shop.name">
-            <span>{{ shop.name }}</span> |
+          <mat-option (onSelectionChange)="openShop(shop.id,$event)" *ngFor="let shop of filteredShops | async" [value]="shop.name">
+            <span>{{shop.name}}</span> |
             <small>{{shop.street}} {{shop.municipality}}</small>
           </mat-option>
         </mat-autocomplete>
@@ -49,15 +49,16 @@ export class SearchShopComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private globals: GlobalsService,
-  ) {
-    this.shops = globals.shops;
-  }
+    private shopDataservice: ShopDataService,
+  ) {}
 
   ngOnInit() {
-    this.filteredShops = this.shopCtrl.valueChanges
-      .startWith(null)
-      .map((shop) => shop ? this.filterShops(shop) : this.shops.slice());
+    this.shopDataservice.getShops().subscribe(shops => {
+      this.shops = shops;
+      this.filteredShops = this.shopCtrl.valueChanges
+        .startWith(null)
+        .map((shop) => shop ? this.filterShops(shop) : this.shops.slice());
+    });
   }
 
   filterShops(query: string) {
@@ -68,8 +69,15 @@ export class SearchShopComponent implements OnInit {
     );
   }
 
-  openShop(id: number) {
-    this.router.navigate(['/shop', id]);
+  openShop(id: string, event?) {
+    if (event === undefined || event.source.selected) {
+      this.router.navigate(['/shop', id]);
+      
+      setTimeout(() => {
+        this.shopCtrl.reset({value: '', disabled: true});
+        this.shopCtrl.enable();
+      }, 1);
+    }
   }
 
 }

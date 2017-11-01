@@ -9,8 +9,9 @@ let shopRouter = require('./routers/shop');
 let snackRouter = require('./routers/snack');
 let editRouter = require('./routers/edit');
 
-// config
 // TODO: add prod & test env
+
+// config
 const HOST_NAME = 'localhost';
 const DATABASE_NAME = 'frietdb';
 
@@ -47,5 +48,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.json({status: (err.status || 500), message: err.message});
 });
+
 
 module.exports = app;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalsService } from 'globals.service';
+import { ShopDataService } from 'app/services/shopdata.service';
 
 @Component({
   selector: 'app-heatmap',
@@ -21,11 +21,12 @@ export class HeatmapComponent implements OnInit {
 
   shops: any[];
 
-  constructor(private globals: GlobalsService) {
-    this.shops = globals.shops;
-  }
+  constructor(private shopDataService: ShopDataService) {}
 
   ngOnInit() {
+    this.shopDataService.getShops().subscribe(shops => {
+      this.shops = shops;
+    });
   }
 
 }

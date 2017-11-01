@@ -10,22 +10,22 @@ export class DialogsService {
 
   constructor(private dialog: MatDialog) { }
 
-  public snackinfo(reqId: number): Observable<boolean> {
+  public snackinfo(id: string): Observable<boolean> {
 
     let dialogRef: MatDialogRef<SnackInfoDialog>;
 
     dialogRef = this.dialog.open(SnackInfoDialog);
-    dialogRef.componentInstance.reqId = reqId;
+    dialogRef.componentInstance.id = id;
 
     return dialogRef.afterClosed();
   }
 
-  public editsnack(editId: number): Observable<boolean> {
+  public editsnack(id: string): Observable<boolean> {
 
     let dialogRef: MatDialogRef<EditSnackDialog>;
 
     dialogRef = this.dialog.open(EditSnackDialog);
-    dialogRef.componentInstance.editId = editId;
+    dialogRef.componentInstance.id = id;
 
     return dialogRef.afterClosed();
   }

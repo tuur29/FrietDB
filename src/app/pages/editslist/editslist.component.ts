@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { GlobalsService } from 'globals.service';
+import { GlobalsService } from 'app/services/globals.service';
+import { EditDataService } from 'app/services/editdata.service';
 
 @Component({
   selector: 'app-editslist',
   template: `
 
-    <mat-card>
+    <mat-card *ngIf="shopEdits">
       <h1>Goed te keuren aanpassingen aan Frituren</h1>
-      <app-table [data]="shopEdits"></app-table>
+      <app-table [data]="shopEdits" type="shop"></app-table>
     </mat-card>
 
-    <mat-card>
+    <mat-card *ngIf="snackEdits">
       <h1>Goed te keuren aanpassingen aan Snacks</h1>
-      <app-table [data]="snackEdits"></app-table>
+      <app-table [data]="snackEdits" type="snack"></app-table>
     </mat-card>
 
   `,
@@ -22,33 +23,34 @@ import { GlobalsService } from 'globals.service';
 })
 export class EditsListComponent implements OnInit {
 
-  shopEdits: any[] = [];
-  snackEdits: any[] = [];
+  shopEdits: any[];
+  snackEdits: any[];
 
   constructor(
     private globals: GlobalsService,
+    private editDataService: EditDataService,
     private route: ActivatedRoute,
     public dialogsService: DialogsService,
     private router: Router,
-  ) {
+  ) {}
 
-    if (router.url.indexOf('/edit/snack') > -1 && route.snapshot.params['id']) {
-      this.dialogsService.editsnack(route.snapshot.params['id']).subscribe(() => {
+  ngOnInit() {
+
+    // show edit snack dialog on router navigate (reload / bookmark)
+    if (this.router.url.indexOf('/edit/snack') > -1 && this.route.snapshot.params['id']) {
+      this.dialogsService.editsnack(this.route.snapshot.params['id']).subscribe(() => {
         this.router.navigate(['edits']);
       });
     }
 
-    this.shopEdits = globals.editslist.filter((edit) =>
-      edit.type === 'shop'
-    );
+    this.editDataService.getShopEdits().subscribe(edits => {
+      this.shopEdits = edits;
+    });
 
-    this.snackEdits = globals.editslist.filter((edit) =>
-      edit.type === 'snack'
-    );
+    this.editDataService.getSnackEdits().subscribe(edits => {
+      this.snackEdits = edits;
+    });
 
-  }
-
-  ngOnInit() {
     if (!this.globals.auth.token || !this.globals.auth.admin)
       this.router.navigate(['error', 403, 'edits']);
   }

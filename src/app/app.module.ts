@@ -9,6 +9,7 @@ import { WebStorageModule } from 'ngx-store';
 import { environment } from '../environments/environment';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 import { MarkdownModule } from 'angular2-markdown';
 import { AgmCoreModule } from '@agm/core';
@@ -16,8 +17,11 @@ import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './parts/header/header.module';
 
-import { GlobalsService } from 'globals.service';
-import { EditsService } from './edits.service';
+import { GlobalsService } from 'app/services/globals.service';
+import { ShopDataService } from './services/shopdata.service';
+import { SnackDataService } from './services/snackdata.service';
+import { EditDataService } from './services/editdata.service';
+
 import { DialogsModule } from './dialogs/dialogs.module';
 import { MessagesModule } from './messages/messages.module';
 
@@ -36,6 +40,7 @@ import { OrderModule } from './pages/order/order.module';
     HttpModule,
 
     BrowserAnimationsModule,
+    MaterialModule,
 
     RouterModule.forRoot(routes),
     WebStorageModule,
@@ -61,7 +66,9 @@ import { OrderModule } from './pages/order/order.module';
   ],
   providers: [
     GlobalsService,
-    EditsService,
+    ShopDataService,
+    SnackDataService,
+    EditDataService,
   ],
   bootstrap: [AppComponent],
 })

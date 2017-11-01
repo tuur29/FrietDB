@@ -1,10 +1,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-// TODO: link shop.snack to Snacks model
-
 const ShopSchema = new Schema({
-	id: { type: Number, unique: true, required: true },
 	name: { type: String, required: true },
 	image: String,
 	description: String,
@@ -16,7 +13,11 @@ const ShopSchema = new Schema({
 	website: String,
 	lat: { type: Number, required: true },
 	lng: { type: Number, required: true },
-	snacks: [Schema.ObjectId],
+	snacks: [{ type: Schema.Types.ObjectId, ref: 'Snack' }]
+});
+
+ShopSchema.set('toJSON', {
+    virtuals: true
 });
 
 module.exports = mongoose.model('Shop', ShopSchema);

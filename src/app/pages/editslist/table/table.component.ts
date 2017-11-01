@@ -3,7 +3,7 @@ import { Database, EditsDataSource } from './data.provider';
 
 import { Observable } from 'rxjs/Observable';
 import { MatPaginator, MatSort } from '@angular/material';
-import { EditsService } from '../../../edits.service';
+import { EditDataService } from '../../../services/editdata.service';
 
 @Component({
   selector: 'app-table',
@@ -16,6 +16,10 @@ import { EditsService } from '../../../edits.service';
       padding: 8px 24px 0 50px;
       background: #fafafa;
       font-size: 14px;
+    }
+
+    .mat-paginator[hidden] {
+      display: none;
     }
 
     mat-table {
@@ -35,6 +39,7 @@ import { EditsService } from '../../../edits.service';
 export class TableComponent implements OnInit {
 
   @Input() data: any[];
+  @Input() type: string;
 
   displayedColumns = ['itemName', 'userName', 'timestamp', 'buttons'];
   database: Database;
@@ -44,8 +49,7 @@ export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
 
-  constructor(public editsService: EditsService) {
-  }
+  constructor(public editDataService: EditDataService) {}
 
   ngOnInit() {
     this.database = new Database(this.data);
@@ -63,16 +67,18 @@ export class TableComponent implements OnInit {
     return new Date(timestamp * 1000).toISOString().replace('T', ' ').slice(0, -5);
   }
 
-  accept(index: number, event) {
+  accept(id: string, index: number, event) {
     event.stopPropagation();
-    this.database.remove(index);
-    this.editsService.accept(index);
+    this.editDataService.accept(id).subscribe((res) => {
+      this.database.remove(index);
+    });
   }
 
-  remove(index: number, event) {
+  remove(id: string, index: number, event) {
     event.stopPropagation();
-    this.database.remove(index);
-    this.editsService.remove(index);
+    this.editDataService.remove(id).subscribe((res) => {
+      this.database.remove(index);
+    });
   }
 
 }

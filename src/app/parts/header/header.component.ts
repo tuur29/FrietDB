@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GlobalsService } from 'globals.service';
+import { GlobalsService } from 'app/services/globals.service';
 
 @Component({
   selector: 'app-header',

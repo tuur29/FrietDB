@@ -1,9 +1,12 @@
+// TODO: Fix placement of more info about markdown link
 // TODO: Improve validation
 
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { GlobalsService } from 'globals.service';
-import { EditsService } from '../../edits.service';
+import { GlobalsService } from 'app/services/globals.service';
+import { EditDataService } from '../../services/editdata.service';
+import { ShopDataService } from '../../services/shopdata.service';
+import { SnackDataService } from '../../services/snackdata.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 
 import { FormControl } from '@angular/forms';
@@ -19,42 +22,60 @@ import 'rxjs/add/operator/map';
 export class EditShopComponent implements OnInit, OnDestroy {
 
   subroute: any;
-  editId: number;
+  id: string;
   step = 0;
-  shop: any;
+  shop: any = {};
   snacks: any[];
   snackCtrl: FormControl = new FormControl();
   filteredSnacks: Observable<any[]>;
   @ViewChild('form') form;
 
   constructor(
+    private ref: ChangeDetectorRef,
     public globals: GlobalsService,
-    public editsService: EditsService,
+    public editDataService: EditDataService,
+    public shopDataService: ShopDataService,
+    public snackDataService: SnackDataService,
     public dialogsService: DialogsService,
     private route: ActivatedRoute,
     private router: Router,
-  ) {
-    this.shop = Object.assign({}, globals.shops[0]);
-    this.snacks = globals.snacks;
-  }
+  ) {}
 
   ngOnInit() {
     // get propesed edit by id if set
     this.subroute = this.route.params.subscribe((params) => {
-      this.editId = params['id'];
+      this.id = params['id'];
+
+      if (this.globals.auth.admin) {
+        this.editDataService.getItem(this.id).subscribe(shop => {
+          this.shop = shop;
+          this.ref.detectChanges();
+        });
+      } else if (this.id) {
+        this.shopDataService.getShop(this.id).subscribe(shop => {
+          this.shop = shop;
+          this.ref.detectChanges();
+        });
+      }
+
+      // deny access
+      if (!this.globals.auth.token)
+        this.router.navigate(['error', 403, 'edit/shop/' + this.id]);
+
+      // deny admins to make new shops
+      if (this.globals.auth.admin && this.id === undefined)
+        this.router.navigate(['error', 403, '/edits']);
+
+
     });
 
-    // deny access
-    if (!this.globals.auth.token)
-      this.router.navigate(['error', 403, 'edit/shop/' + this.editId]);
-
-    // deny admins to make new shops
-    if (this.globals.auth.admin && this.editId === undefined)
-      this.router.navigate(['error', 400, '/edits']);
-
-    this.filteredSnacks = this.snackCtrl.valueChanges
-      .startWith(null)
-      .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
+    this.snackDataService.getSnacks().subscribe(snacks => {
+      this.snacks = snacks;
+      this.filteredSnacks = this.snackCtrl.valueChanges
+        .startWith(null)
+        .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
+      // this.ref.detectChanges();
+    });
   }
 
   ngOnDestroy() {
@@ -69,8 +90,11 @@ export class EditShopComponent implements OnInit, OnDestroy {
   }
 
   // click snack in search
-  pickSnack(id: number, event?) {
+  pickSnack(id: string, event?) {
     if (event.source.selected) {
+
+      if (!this.shop.snacks) this.shop.snacks = [];
+
       let alreadyAddedSnack = this.shop.snacks.find((s) => s.id === id);
       if (!alreadyAddedSnack) {
         let newSnack = this.snacks.find((s) => s.id === id);
@@ -86,7 +110,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
     }
   }
 
-  removeSnack(id: number) {
+  removeSnack(id: string) {
     this.shop.snacks = this.shop.snacks.filter((e) => {
       return e.id !== id;
     });
@@ -106,7 +130,9 @@ export class EditShopComponent implements OnInit, OnDestroy {
   }
 
   newSnack() {
-    this.dialogsService.editsnack(undefined).subscribe(() => {
+    this.dialogsService.editsnack(undefined).subscribe((result) => {
+      if (result)
+        this.shop.snacks.push(result);
       this.updateSnacksList();
     });
   }
@@ -116,17 +142,35 @@ export class EditShopComponent implements OnInit, OnDestroy {
     this.shop.snacks = this.shop.snacks.slice();
   }
 
-  save() {
-    if (this.form.nativeElement.checkValidity())
-      this.editsService.saveedit('shop', this.shop);
-  }
-
   // return to best page based on which user
   back() {
     if (this.globals.auth.admin)
       this.router.navigate(['/edits']);
-    else
+    else if (this.id)
       this.router.navigate(['/shop/' + this.shop.id]);
+    else
+      this.router.navigate(['/']);
+  }
+
+  save() {
+    // if (this.form.nativeElement.checkValidity()) {
+      this.editDataService.saveEdit('shop',this.shop).subscribe((res) => {
+        this.back();
+      });
+    // }
+  }
+
+  // pressing admin buttons
+  accept(id: string) {
+    this.editDataService.accept(id).subscribe((res) => {
+      this.back();
+    });
+  }
+
+  remove(id: string) {
+    this.editDataService.remove(id).subscribe((res) => {
+      this.back();
+    });
   }
 
 }

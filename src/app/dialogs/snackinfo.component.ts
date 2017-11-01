@@ -1,52 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { GlobalsService } from 'globals.service';
+import { SnackDataService } from 'app/services/snackdata.service';
+
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-snackinfo',
   template: `
 
-    <img [src]="snack.image" *ngIf="snack.image">
-    <h1 mat-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
+    <ng-container *ngIf="snack">
 
-    <div mat-dialog-actions>
+      <img [src]="snack.image" *ngIf="snack.image">
+      <h1 mat-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
 
-      <a mat-icon-button *ngIf="snack.link" [href]="snack.link">
-        <mat-icon>open_in_new</mat-icon>
-        Meer Info
-      </a>
+      <div mat-dialog-actions>
 
-      <span class="spacer"></span>
-      <button mat-button mat-dialog-close color="warn">SLUITEN</button>
-    </div>
+        <a mat-icon-button *ngIf="snack.link" [href]="snack.link">
+          <mat-icon>open_in_new</mat-icon>
+          Meer Info
+        </a>
+
+        <span class="spacer"></span>
+        <button mat-button mat-dialog-close color="warn">SLUITEN</button>
+      </div>
+
+    </ng-container>
 
   `,
   styles: [`
 
+    h1 {
+      min-width: 175px;
+    }
+
     img {
       max-width: 300px;
-      min-width: 175px;
     }
 
   `]
 })
 export class SnackInfoDialog implements OnInit {
 
-  reqId: number;
+  id: string;
   snack: any;
 
   constructor(
-    private globals: GlobalsService,
+    private snackDataService: SnackDataService,
     public dialogRef: MatDialogRef<SnackInfoDialog>
-  ) {
-    this.snack = globals.snacks[0];
+  ) {}
+
+  ngOnInit() {
+    this.snackDataService.getSnack(this.id).subscribe(snack => {
+      this.snack = snack;
+    });
   }
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  ngOnInit() {
   }
 
 }
