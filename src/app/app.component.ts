@@ -11,7 +11,6 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Add loading spinner
 // TODO: Add unittests
 // TODO: Improve typing (Method returns)
-// TODO: Cache data (simple shop list, simple all snacks)
 
 // TODO: Order page map doesn't update correctly
 // TODO: Add newly created snack to editing shop list & show popup link on admin page

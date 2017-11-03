@@ -11,7 +11,8 @@ export class ShopDataService {
   
   private url = environment.backendurl+'/shops/';
 
-  private cachedShopsList: any[];
+  private getShopsLock = false;
+  private cachedShops: any[];
   
   constructor(
     private http: Http,
@@ -19,9 +20,36 @@ export class ShopDataService {
   ) {}
 
   public getShops(): Observable<any[]> {
-    return this.http.get(this.url).map((response) =>
-      response.json()
-    );
+
+    // if already cached
+    if (this.cachedShops != null)
+      return new Observable(observer => {
+        observer.next(this.cachedShops);
+        observer.complete();
+      });
+    
+    // if request in process
+    if (this.getShopsLock)
+      return new Observable(observer => {
+        let interval = setInterval(()=>{
+          if (this.cachedShops== null)
+            return;
+
+          observer.next(this.cachedShops);
+          observer.complete();
+          this.getShopsLock = false;
+          clearInterval(interval);
+        }, 100);
+      });
+
+    // get first time
+    this.getShopsLock = true;
+    return this.http.get(this.url).map((response) => {
+      let json = response.json();
+      this.cachedShops = json;
+      return json;
+    });
+
   }
 
   public getShopsBySnacks(snacks: string[]): Observable<any[]> {
