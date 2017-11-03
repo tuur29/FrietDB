@@ -31,8 +31,8 @@ import { ShopDataService } from 'app/services/shopdata.service';
 })
 export class HomeComponent implements OnInit {
 
-  title: string;
-  shops: any[];
+  private title: string;
+  private shops: any[];
 
   constructor(
     private globals: GlobalsService,

@@ -23,8 +23,8 @@ import { EditDataService } from 'app/services/editdata.service';
 })
 export class EditsListComponent implements OnInit {
 
-  shopEdits: any[];
-  snackEdits: any[];
+  private shopEdits: any[];
+  private snackEdits: any[];
 
   constructor(
     private globals: GlobalsService,

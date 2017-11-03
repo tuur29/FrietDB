@@ -15,7 +15,7 @@ export class DialogsService {
     let dialogRef: MatDialogRef<SnackInfoDialog>;
 
     dialogRef = this.dialog.open(SnackInfoDialog);
-    dialogRef.componentInstance.id = id;
+    dialogRef.componentInstance.setId(id);
 
     return dialogRef.afterClosed();
   }
@@ -25,7 +25,7 @@ export class DialogsService {
     let dialogRef: MatDialogRef<EditSnackDialog>;
 
     dialogRef = this.dialog.open(EditSnackDialog);
-    dialogRef.componentInstance.id = id;
+    dialogRef.componentInstance.setId(id);
 
     return dialogRef.afterClosed();
   }

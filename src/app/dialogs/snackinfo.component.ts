@@ -41,18 +41,22 @@ import { Observable } from 'rxjs/Observable';
 })
 export class SnackInfoDialog implements OnInit {
 
-  id: string;
-  snack: any;
+  private id: string;
+  private snack: any;
 
   constructor(
     private snackDataService: SnackDataService,
     public dialogRef: MatDialogRef<SnackInfoDialog>
   ) {}
 
-  ngOnInit() {
+  setId(id: string) {
+    this.id = id;
     this.snackDataService.getSnack(this.id).subscribe(snack => {
       this.snack = snack;
     });
+  }
+
+  ngOnInit() {
   }
 
   onNoClick(): void {

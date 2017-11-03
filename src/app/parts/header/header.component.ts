@@ -55,7 +55,7 @@ import { GlobalsService } from 'app/services/globals.service';
 })
 export class HeaderComponent implements OnInit {
 
-  title: string;
+  private title: string;
 
   constructor(public globals: GlobalsService) {
     this.title = globals.title;

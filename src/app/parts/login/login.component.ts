@@ -54,11 +54,11 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 })
 export class LoginComponent implements OnInit {
 
-  @Input() redirect: string;
-  @ViewChild('form') form;
+  @Input() private redirect: string;
+  @ViewChild('form') private form;
 
-  email: string;
-  password: string;
+  private email: string;
+  private password: string;
 
   constructor(
     private localStorageService: LocalStorageService,

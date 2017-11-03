@@ -13,14 +13,13 @@ import { GlobalsService } from 'app/services/globals.service';
 
 // TODO: Order page map doesn't update correctly
 // TODO: Show special error message if server offline
-// TODO: Make all component properties private
 // TODO: Add newly created snack to editing shop list & show popup link on admin page
+// TODO: Add live preview of edited Shop
 
 // TODO: Redo forms: use ngonsubmit action instead of button onclick
 // TODO: Show native html5 validationMessage 
 // TODO: Use Formbuilder in ts with html5 arguments instead of ngmodel
 
-// TODO: Add live preview of edited Shop
 
 @Component({
   selector: 'app',

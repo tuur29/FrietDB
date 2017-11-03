@@ -13,9 +13,9 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ShopComponent implements OnInit, OnDestroy {
 
-  subroute: any;
-  id: any;
-  shop: any;
+  private subroute: any;
+  private id: any;
+  private shop: any;
 
   constructor(
     private ref: ChangeDetectorRef,

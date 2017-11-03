@@ -19,7 +19,7 @@ import { ShopDataService } from 'app/services/shopdata.service';
 })
 export class HeatmapComponent implements OnInit {
 
-  shops: any[];
+  private shops: any[];
 
   constructor(private shopDataService: ShopDataService) {}
 

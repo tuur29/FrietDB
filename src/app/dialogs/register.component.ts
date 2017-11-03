@@ -50,10 +50,10 @@ import { MatDialogRef } from '@angular/material';
 })
 export class RegisterDialog implements OnInit {
 
-  name: string;
-  email: string;
+  private name: string;
+  private email: string;
 
-  @ViewChild('form') form;
+  @ViewChild('form') private form;
 
   constructor(public dialogRef: MatDialogRef<RegisterDialog>) { }
 

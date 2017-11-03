@@ -39,12 +39,12 @@ import 'rxjs/add/operator/map';
 })
 export class SearchShopComponent implements OnInit {
 
-  @Input() inline: boolean = false;
+  @Input() private inline: boolean = false;
 
-  shopCtrl: FormControl = new FormControl();
-  filteredShops: Observable<any[]>;
+  private shopCtrl: FormControl = new FormControl();
+  private filteredShops: Observable<any[]>;
 
-  shops: any[];
+  private shops: any[];
 
   constructor(
     private router: Router,

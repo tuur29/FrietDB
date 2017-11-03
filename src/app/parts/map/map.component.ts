@@ -43,15 +43,15 @@ export class MapComponent implements OnInit, OnChanges {
 
   // variables
 
-  @Input() shops: any[] = [];
-  @Input() markers: boolean = true;
-  @Input() heatmap: boolean = false;
+  @Input() private shops: any[] = [];
+  @Input() private markers: boolean = true;
+  @Input() private heatmap: boolean = false;
 
-  @Input() lat: number;
-  @Input() lng: number;
-  @Input() zoom: number = 8;
+  @Input() private lat: number;
+  @Input() private lng: number;
+  @Input() private zoom: number = 8;
 
-  waitForBoundsCalc: boolean = false;
+  private waitForBoundsCalc: boolean = false;
 
   constructor(
     private globals: GlobalsService,

@@ -21,14 +21,14 @@ import 'rxjs/add/operator/map';
 })
 export class EditShopComponent implements OnInit, OnDestroy {
 
-  subroute: any;
-  id: string;
-  step = 0;
-  shop: any = {};
-  snacks: any[];
-  snackCtrl: FormControl = new FormControl();
-  filteredSnacks: Observable<any[]>;
-  @ViewChild('form') form;
+  private subroute: any;
+  private id: string;
+  private step = 0;
+  private shop: any = {};
+  private snacks: any[];
+  private snackCtrl: FormControl = new FormControl();
+  private filteredSnacks: Observable<any[]>;
+  @ViewChild('form') private form;
 
   constructor(
     private ref: ChangeDetectorRef,

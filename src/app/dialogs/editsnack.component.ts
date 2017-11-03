@@ -94,11 +94,11 @@ import { SnackDataService } from '../services/snackdata.service';
 })
 export class EditSnackDialog implements OnInit {
 
-  id: string;
-  snack: any = {};
-  types: string[] = [];
+  private id: string;
+  private snack: any = {};
+  private types: string[] = [];
 
-  @ViewChild('form') form;
+  @ViewChild('form') private form;
 
   constructor(
     public globals: GlobalsService,
@@ -107,7 +107,10 @@ export class EditSnackDialog implements OnInit {
     public dialogRef: MatDialogRef<EditSnackDialog>
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  setId(id: string) {
+    this.id = id;
 
     if (this.id) {
 

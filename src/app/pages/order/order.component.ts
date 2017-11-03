@@ -21,13 +21,13 @@ import { MatOptionSelectionChange } from '@angular/material';
 export class OrderComponent implements OnInit {
 
   // variables
-  snacks: any[];
-  snackCtrl: FormControl = new FormControl();
-  filteredSnacks: Observable<any[]>;
+  private snacks: any[];
+  private snackCtrl: FormControl = new FormControl();
+  private filteredSnacks: Observable<any[]>;
 
-  @SessionStorage() addedSnacks: WebstorableArray<any> = <any>[];
+  @SessionStorage() private addedSnacks: WebstorableArray<any> = <any>[];
 
-  filteredShops: any[];
+  private filteredShops: any[];
 
   constructor(
     public globals: GlobalsService,

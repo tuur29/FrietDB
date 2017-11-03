@@ -29,7 +29,7 @@ export class Database {
 // handles pagination, sorting & filtering
 export class EditsDataSource extends DataSource<any> {
 
-  _filterChange = new BehaviorSubject('');
+  private _filterChange = new BehaviorSubject('');
   get filter(): string { return this._filterChange.value; }
   set filter(filter: string) { this._filterChange.next(filter); }
 
