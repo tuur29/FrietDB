@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 
-// TODO: Show error when email field incorrectly formatted
-
 @Component({
   selector: 'app-register',
   template: `
@@ -62,10 +60,10 @@ export class RegisterDialog implements OnInit {
   }
 
   send() {
-    if (this.form.nativeElement.checkValidity()) {
+    // if (this.form.nativeElement.checkValidity()) {
       console.log('sending', this.name, this.email);
       this.dialogRef.close();
-    }
+    // }
   }
 
   ngOnInit() {

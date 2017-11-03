@@ -12,7 +12,6 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
 // TODO: Fix placement of more info about markdown link
-// TODO: Improve validation
 
 @Component({
   selector: 'app-editshop',

@@ -4,8 +4,6 @@ import { GlobalsService } from 'app/services/globals.service';
 import { EditDataService } from '../services/editdata.service';
 import { SnackDataService } from '../services/snackdata.service';
 
-// TODO: Add validation
-
 @Component({
   selector: 'app-editsnack',
   template: `

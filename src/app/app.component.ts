@@ -12,9 +12,8 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Order page map doesn't update correctly
 // TODO: Add newly created snack to editing shop list & show popup link on admin page
 
-// TODO: Redo forms: use ngonsubmit action instead of button onclick
-// TODO: Show native html5 validationMessage 
-// TODO: Use Formbuilder in ts with html5 arguments instead of ngmodel
+// TODO: Redo forms: use ngonsubmit action instead of button onclick (login,register,editsnack,editshop)
+// TODO: Add validation to forms, use native html5 validationMessage 
 
 
 @Component({

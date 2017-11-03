@@ -5,8 +5,6 @@ import { LocalStorageService } from 'ngx-store';
 import { GlobalsService } from 'app/services/globals.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 
-// TODO: Show error when email field incorrectly formatted
-
 @Component({
   selector: 'app-login',
   template: `
