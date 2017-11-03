@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { GlobalsService } from 'app/services/globals.service';

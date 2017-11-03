@@ -1,7 +1,7 @@
-// TODO: Show error when email field incorrectly formatted
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+
+// TODO: Show error when email field incorrectly formatted
 
 @Component({
   selector: 'app-register',

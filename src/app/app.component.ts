@@ -1,3 +1,9 @@
+import { Component } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import { GlobalsService } from 'app/services/globals.service';
+
 // TODO: Gather real testdata (default add http to urls)
 // TODO: Check for Observables leaking memory
 // TODO: Add loading spinner
@@ -15,13 +21,6 @@
 // TODO: Use Formbuilder in ts with html5 arguments instead of ngmodel
 
 // TODO: Add live preview of edited Shop
-// TODO: Remove starting newlines from files
-
-import { Component } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-
-import { GlobalsService } from 'app/services/globals.service';
 
 @Component({
   selector: 'app',

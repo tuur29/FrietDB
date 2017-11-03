@@ -1,6 +1,3 @@
-// TODO: Fix placement of more info about markdown link
-// TODO: Improve validation
-
 import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GlobalsService } from 'app/services/globals.service';
@@ -13,6 +10,9 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
+
+// TODO: Fix placement of more info about markdown link
+// TODO: Improve validation
 
 @Component({
   selector: 'app-editshop',
