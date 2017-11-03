@@ -44,9 +44,11 @@ export class ShopDataService {
 
     // get first time
     this.getShopsLock = true;
+    this.globals.loading = true;
     return this.http.get(this.url).map((response) => {
       let json = response.json();
       this.cachedShops = json;
+      this.globals.loading = false;
       return json;
     });
 
@@ -54,15 +56,19 @@ export class ShopDataService {
 
   public getShopsBySnacks(snacks: string[]): Observable<any[]> {
     const body = { snacks: JSON.stringify(snacks) };
-    return this.http.post(this.url, body).map((response) =>
-      response.json()
-    );
+    this.globals.loading = true;
+    return this.http.post(this.url, body).map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    });
   }
 
   public getShop(id: string): Observable<any> {
-    return this.http.get(this.url+id).map((response) =>
-      response.json()
-    );
+    this.globals.loading = true;
+    return this.http.get(this.url+id).map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    });
   }
 
 }

@@ -68,7 +68,9 @@ export class EditsDataSource extends DataSource<any> {
     });
   }
 
-  disconnect() {}
+  disconnect() {
+    this._filterChange.unsubscribe();
+  }
 
   sortData(data: any[]): any[] {
     if (!this._sort.active || this._sort.direction === '') { return data; }

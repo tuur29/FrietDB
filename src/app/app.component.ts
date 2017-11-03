@@ -7,14 +7,10 @@ import { GlobalsService } from 'app/services/globals.service';
 import { MessagesService } from './messages/messages.service';
 
 // TODO: Gather real testdata (default add http to urls)
-// TODO: Check for Observables leaking memory
-// TODO: Add loading spinner
 // TODO: Add unittests
-// TODO: Improve typing (Method returns)
 
 // TODO: Order page map doesn't update correctly
 // TODO: Add newly created snack to editing shop list & show popup link on admin page
-// TODO: Add live preview of edited Shop
 
 // TODO: Redo forms: use ngonsubmit action instead of button onclick
 // TODO: Show native html5 validationMessage 
@@ -29,9 +25,11 @@ import { MessagesService } from './messages/messages.service';
 
       <app-header></app-header>
 
-      <mat-spinner *ngIf="globals.loading"></mat-spinner>
+      <div class="loader" *ngIf="globals.loading">
+        <mat-spinner></mat-spinner>
+      </div>
 
-      <div class="container" *ngIf="!globals.loading">
+      <div class="container">
         <router-outlet></router-outlet>
         <footer>Copyright © 2017 Tuur Lievens.</footer>
       </div>

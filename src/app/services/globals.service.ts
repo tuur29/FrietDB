@@ -8,6 +8,8 @@ export class GlobalsService {
     this.auth = localStorageService.get('auth') || this.auth;
   }
 
+  loading = false;
+
   auth = {
     token: 'temp',
     admin: true,

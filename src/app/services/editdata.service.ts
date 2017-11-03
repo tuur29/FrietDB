@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { GlobalsService } from 'app/services/globals.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -10,24 +11,33 @@ export class EditDataService {
 
   private url = environment.backendurl+'/edits/';
   
-  constructor(private http: Http) {}
+    constructor(
+      private http: Http,
+      public globals: GlobalsService,
+    ) {}
 
   public getShopEdits(): Observable<any[]> {
-    return this.http.get(this.url+"shops").map((response) =>
-      response.json()
-    );
+    this.globals.loading = true;
+    return this.http.get(this.url+"shops").map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    });
   }
 
   public getSnackEdits(): Observable<any[]> {
-    return this.http.get(this.url+"snacks").map((response) =>
-      response.json()
-    );
+    this.globals.loading = true;
+    return this.http.get(this.url+"snacks").map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    });
   }
 
   public getItem(id: string): Observable<any> {
-    return this.http.get(this.url+id).map((response) =>
-      response.json().item
-    );
+    this.globals.loading = true;
+    return this.http.get(this.url+id).map((response) => {
+      this.globals.loading = false;
+      return response.json().item;
+    });
   }
 
   public saveEdit(type: string, item: any) {
@@ -39,7 +49,7 @@ export class EditDataService {
     if (type == "shop" && item.snacks)
       item.snacks = item.snacks.map((snack) => snack.id);
 
-    return this.http.put(this.url, data).map((response) =>
+    return this.http.put(this.url, data).map((response) => 
       response.json()
     );
   }

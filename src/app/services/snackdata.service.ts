@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { GlobalsService } from 'app/services/globals.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -13,7 +14,10 @@ export class SnackDataService {
   private getSnacksLock = false;
   private cachedSnacks: any[];
   
-  constructor(private http: Http) {}
+  constructor(
+    private http: Http,
+    public globals: GlobalsService,
+  ) {}
 
   public getSnacks(): Observable<any[]> {
 
@@ -40,23 +44,29 @@ export class SnackDataService {
 
     // get first time
     this.getSnacksLock = true;
+    this.globals.loading = true;
     return this.http.get(this.url).map((response) => {
       let json = response.json();
       this.cachedSnacks = json;
+      this.globals.loading = false;
       return json;
     });
   }
 
   public getSnack(id: string): Observable<any> {
-    return this.http.get(this.url+id).map((response) =>
-      response.json()
-    );
+    this.globals.loading = true;
+    return this.http.get(this.url+id).map((response) => {
+        this.globals.loading = false;
+        return response.json();
+      });
   }
 
   public getSnackTypes(): Observable<string[]> {
-    return this.http.get(this.url+"types").map((response) =>
-      response.json()
-    );
+    this.globals.loading = true;
+    return this.http.get(this.url+"types").map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    });
   }
 
 }
