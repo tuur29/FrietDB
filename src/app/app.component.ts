@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
+import { environment } from 'environments/environment';
 import { GlobalsService } from 'app/services/globals.service';
+import { MessagesService } from './messages/messages.service';
 
 // TODO: Gather real testdata (default add http to urls)
 // TODO: Check for Observables leaking memory
@@ -12,7 +14,6 @@ import { GlobalsService } from 'app/services/globals.service';
 // TODO: Cache data (simple shop list, simple all snacks)
 
 // TODO: Order page map doesn't update correctly
-// TODO: Show special error message if server offline
 // TODO: Add newly created snack to editing shop list & show popup link on admin page
 // TODO: Add live preview of edited Shop
 
@@ -54,6 +55,19 @@ import { GlobalsService } from 'app/services/globals.service';
 
   `],
 })
-export class AppComponent {
-  constructor(public globals: GlobalsService) {}
+export class AppComponent implements OnInit{
+  constructor(
+    public globals: GlobalsService,
+    public messagesService: MessagesService,
+    private http: Http
+  ) {}
+
+  ngOnInit() {
+    this.http.get(environment.backendurl).map((response) =>
+      response.json()
+    ).catch((error:any) => {
+      this.messagesService.send("Server is niet bereikbaar!",'Probeer opniew').subscribe(() => window.location.reload());
+      return Observable.throw(error.json().error || 'Server error')
+    }).subscribe();
+  }
 }
