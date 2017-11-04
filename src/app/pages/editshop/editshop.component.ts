@@ -109,6 +109,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
       lng: data.part2.lng,
       snacks: data.snacks.map((snack)=>snack.id)
     }
+    if (this.id) flatdata['_id'] = this.id;
     this.editDataService.saveEdit('shop', flatdata).subscribe((res) => {
       this.back();
     });

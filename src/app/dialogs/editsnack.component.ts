@@ -138,7 +138,6 @@ export class EditSnackDialog implements OnInit {
           this.fillForm(snack);
         });
     }
-    
   }
 
   fillForm(snack: any) {
@@ -151,6 +150,7 @@ export class EditSnackDialog implements OnInit {
   }
 
   onSubmit(data: any) {
+    data._id = this.id;
     this.editDataService.saveEdit('snack', data).subscribe((res) => {
       this.dialogRef.close(res.item);
     });

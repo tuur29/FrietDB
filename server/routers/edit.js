@@ -93,7 +93,6 @@ if (true) {
                 }
 
                 if (edit.type == "shop") {
-
                     let shop = new Shop(edit.item);
                     if (edit.item._id) shop.isNew = false;
                     shop.save(function (error, results) {
@@ -105,16 +104,19 @@ if (true) {
                         response.json(shop);
                     });
                 } else if (edit.type == "snack") {
-                    let snack = new Snack(edit.item);
-                    // TODO: Better way to check is snack is new
-                    if (edit.item._id) snack.isNew = false;
-                    snack.save(function (error, results) {
-                        if (error) {
-                            response.status(500).send(error);
-                            return;
-                        }
-                        edit.remove();
-                        response.json(snack);
+
+                    Snack.count({ _id: edit.item._id }, function(err, count) {
+                        console.log("count" + count);
+                        let snack = new Snack(edit.item);
+                        if (count > 0) snack.isNew = false;
+                        snack.save(function (error, results) {
+                            if (error) {
+                                response.status(500).send(error);
+                                return;
+                            }
+                            edit.remove();
+                            response.json(snack);
+                        });
                     });
                 }
             });
