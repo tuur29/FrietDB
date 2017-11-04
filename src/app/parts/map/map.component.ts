@@ -51,7 +51,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() private lng: number;
   @Input() private zoom: number = 8;
 
-  private waitForBoundsCalc: boolean = false;
+  private map;
 
   constructor(
     private globals: GlobalsService,
@@ -60,82 +60,75 @@ export class MapComponent implements OnInit, OnChanges {
   ) { }
 
   onMapLoad(map) {
+    this.map = map;
 
-    // parse coords to Google Coords
-    let data = this.shops.map((s) => {
-      return new google.maps.LatLng(s.lat, s.lng);
-    });
-
-    // zoom and center map to see all markers
-    if (this.shops.length > 1) {
-
-      let bounds = new google.maps.LatLngBounds();
-      for (let i = 0; i < data.length; i++)
-        bounds.extend(data[i]);
-
-      map.fitBounds(bounds);
-
-    }
-
-    // add heatmap
     if (this.heatmap) {
+      // parse coords to Google Coords
+      let data = this.shops.map((s) =>
+        new google.maps.LatLng(s.lat, s.lng)
+      );
 
+      // add heatmap
       let heatmap = new google.maps.visualization.HeatmapLayer({
         data: data,
-        radius: 35,
+        radius: 85,
         opacity: 0.7,
         map: map
       });
     }
 
-  }
+    this.ngOnChanges();
 
-  setDefaultPosition() {
-    if (this.lat === undefined || this.lng === undefined) {
-
-      if ( (this.markers || this.heatmap) && this.shops.length > 1) {
-        // algorith happens in onMapLoad
-        this.waitForBoundsCalc = true;
-
-      } else {
-        // get default map center when location permission denied & not on shop page & no markers visible
-        this.lat = this.globals.defaultLat;
-        this.lng = this.globals.defaultLng;
-
-      }
-    }
   }
 
   ngOnInit() {
-  }
-
-  ngOnChanges() {
-
-    if (!this.shops) return;
-
     // Ask for location permission
     if (navigator.geolocation && (this.lat === undefined || this.lng === undefined)) {
 
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-
       }, () => {
-        this.setDefaultPosition();
+        this.lat = this.globals.defaultLat;
+        this.lng = this.globals.defaultLng;
       });
 
-    } else {
-      this.setDefaultPosition();
     }
+  }
+
+  ngOnChanges() {
+    if (!this.shops) return;
 
     // Open info window if only one marker displayed
-    this.shops.forEach((s) => { s.infoWindowOpened = false; });
+    this.shops.forEach((s) => s.infoWindowOpened = false );
 
     if (this.shops.length === 1) {
       this.shops[0].infoWindowOpened = true;
       this.lat = this.lat + 0.003;
     }
 
+    if (this.shops.length < 1 || !this.map) return;
+
+    // parse coords to Google Coords
+    let data = this.shops.map((s) =>
+      new google.maps.LatLng(s.lat, s.lng)
+    );
+
+    setTimeout(()=>{
+
+      // zoom and center map to see all markers
+      let bounds = new google.maps.LatLngBounds();
+      for (let i = 0; i < data.length; i++)
+        bounds.extend(data[i]);
+      this.map.fitBounds(bounds);
+
+      // set minimum zoom
+      let listener = google.maps.event.addListener(this.map, "idle", () => { 
+        if (this.map.getZoom() > 16) this.map.setZoom(16); 
+        google.maps.event.removeListener(listener); 
+      });
+      
+    }, 1);
   }
 
   // Open infowindow on marker click

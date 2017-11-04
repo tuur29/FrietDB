@@ -3,6 +3,19 @@ let mongoose = require('mongoose');
 let Shop = require('../models/shop');
 let shopRouter = express.Router();
 
+let subsetShops = function(shops) {
+    return shops.map(function(s) {
+        return {
+            id: s._id,
+            name: s.name,
+            street: s.street,
+            municipality: s.municipality,
+            lat:s.lat,
+            lng:s.lng
+        };
+    });
+}
+
 shopRouter.route('/')
     .get(function(request, response) {
         Shop.find(function(error, shops) {
@@ -10,24 +23,14 @@ shopRouter.route('/')
                 response.status(500).send(error);
                 return;
             }
-            let subsettedshops = shops.map(function(s) {
-                return {
-                    id: s._id,
-                    name: s.name,
-                    street: s.street,
-                    municipality: s.municipality,
-                    lat:s.lat,
-                    lng:s.lng
-                };
-            })
-            response.json(subsettedshops);
+            response.json(subsetShops(shops));
         });
     })
 
     // find shops based on snack offering
     .post(function(request,response) {
         Shop.find({ snacks: {
-            $in: JSON.parse(request.body.snacks).map( (elem) => {
+            $all: JSON.parse(request.body.snacks).map( (elem) => {
                 return mongoose.Types.ObjectId(elem);
             })
          }}, function(error, shops) {
@@ -35,17 +38,7 @@ shopRouter.route('/')
                 response.status(500).send(error);
                 return;
             }
-            let subsettedshops = shops.map(function(s) {
-                return {
-                    id: s._id,
-                    name: s.name,
-                    street: s.street,
-                    municipality: s.municipality,
-                    lat:s.lat,
-                    lng:s.lng
-                };
-            })
-            response.json(subsettedshops);
+            response.json(subsetShops(shops));
         });
     });
 

@@ -9,7 +9,6 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Gather real testdata (default add http to urls)
 // TODO: Add unittests
 
-// TODO: Order page map doesn't update correctly
 // TODO: Add newly created snack to editing shop list & show popup link on admin page
 
 // TODO: Redo forms: use ngonsubmit action instead of button onclick (login,register,editsnack,editshop)
