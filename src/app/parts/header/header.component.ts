@@ -46,6 +46,7 @@ import { GlobalsService } from 'app/services/globals.service';
     }
 
     app-searchshop {
+      width: 250px;
       margin-right: 20px;
       font-size: 14px !important;
         align-self: flex-end;
