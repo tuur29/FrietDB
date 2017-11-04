@@ -11,7 +11,7 @@ import { MessagesService } from './messages/messages.service';
 
 // TODO: Add newly created snack to editing shop list & show popup link on admin page
 
-// TODO: Redo forms: use ngonsubmit action instead of button onclick (register,editsnack,editshop)
+// TODO: Redo forms: use ngonsubmit action instead of button onclick (editsnack,editshop)
 // TODO: Add validation to forms, use native html5 validationMessage 
 
 

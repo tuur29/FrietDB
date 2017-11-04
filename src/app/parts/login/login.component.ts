@@ -64,8 +64,6 @@ export class LoginComponent implements OnInit {
   @Input() private redirect: string;
 
   private form: FormGroup;
-  private emailCtrl: FormControl;
-  private passwordCtrl: FormControl;
 
   constructor(
     private localStorageService: LocalStorageService,
