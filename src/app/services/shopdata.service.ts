@@ -71,4 +71,12 @@ export class ShopDataService {
     });
   }
 
+  public removeShop(id: string): Observable<any> {
+    this.globals.loading = true;
+    return this.http.delete(this.url+id).map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    });
+  }
+
 }

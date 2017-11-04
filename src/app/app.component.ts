@@ -9,7 +9,6 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Gather real testdata (default add http to urls)
 // TODO: Add unittests
 
-// TODO: Add delete shop button when admin
 // TODO: Fix saving snack edits
 // TODO: Newly created snacks in different field -> show info on admin editshop & ignore non existant ids on accept
 

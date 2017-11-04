@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { GlobalsService } from 'app/services/globals.service';
 import { ShopDataService } from 'app/services/shopdata.service';
@@ -21,6 +21,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     private ref: ChangeDetectorRef,
     public globals: GlobalsService,
     private shopDataservice: ShopDataService,
+    private router: Router,
     private route: ActivatedRoute,
     public dialogsService: DialogsService,
   ) {}
@@ -37,6 +38,16 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subroute.unsubscribe();
+  }
+
+  removeShop(event?) {
+    let question = confirm("Bent u zeker dat u "+ this.shop.name +" wilt verwijderen?");
+    if (question)
+      this.shopDataservice.removeShop(this.id).subscribe(data => {
+        if (data.status == 200)
+          this.router.navigate(['/']);
+      });
+    else event.preventDefault();
   }
 
   handleMoreInfo(snack: any) {

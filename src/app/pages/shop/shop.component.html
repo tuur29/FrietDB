@@ -12,6 +12,10 @@
             <a *ngIf="globals.auth.token && !globals.auth.admin" [routerLink]="'/edit/shop/'+shop.id" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
                 <mat-icon>edit</mat-icon>
               </a>
+
+              <span [routerLink]="" *ngIf="globals.auth.token && globals.auth.admin" (click)="removeShop($event)" class="link" aria-label="Verwijderen" matTooltip="Verwijderen">
+                <mat-icon>delete_forever</mat-icon>
+              </span>
           </h1>
           <markdown>{{shop.description}}</markdown>
         </div>

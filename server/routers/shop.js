@@ -53,6 +53,20 @@ shopRouter.route('/:shopId')
             }
             response.json(shop);
         });
+    })
+
+    // TODO: Add user validation
+    .delete(function(request,response){
+        Shop.findOne({
+            _id: request.params.shopId
+        }, function(error, shop) {
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+            shop.remove();
+            response.json({status: 200});
+        });
     });
 
 module.exports = shopRouter;
