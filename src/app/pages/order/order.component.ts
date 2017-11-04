@@ -85,7 +85,7 @@ export class OrderComponent implements OnInit {
 
   refreshShops() {
     if (this.addedSnacks.length > 0)
-      this.shopDataService.getShopsBySnacks(this.addedSnacks.map(snack => snack._id)).subscribe(shops => {
+      this.shopDataService.getShopsBySnacks(this.addedSnacks.map(snack => snack.id)).subscribe(shops => {
         this.filteredShops = shops;
       });
   }

@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   selector: 'app-editsnack',
   template: `
 
-    <form [formGroup]="form" (ngSubmit)='onSubmit(form.value)' *ngIf="true">
+    <form [formGroup]="form" (ngSubmit)='onSubmit(form.value)'>
 
       <fieldset [disabled]="id">
         <mat-form-field>
@@ -38,7 +38,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
         <mat-form-field class="full">
           <input type="url" formControlName="link" matInput placeholder="Meer Info URL">
           <mat-error *ngIf="form.hasError('pattern', 'link') && form.get('link').touched">
-            Gelieve een gelidge link in te vullen.
+            Gelieve een geldige url in te vullen.
           </mat-error>
         </mat-form-field>
       </fieldset>
@@ -151,10 +151,9 @@ export class EditSnackDialog implements OnInit {
   }
 
   onSubmit(data: any) {
-    console.log(data);
-    // this.editDataService.saveEdit('snack',data).subscribe((res) => {
-    //   this.dialogRef.close(res.item);
-    // });
+    this.editDataService.saveEdit('snack', data).subscribe((res) => {
+      this.dialogRef.close(res.item);
+    });
   }
 
   // pressing admin buttons

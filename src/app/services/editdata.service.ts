@@ -46,9 +46,6 @@ export class EditDataService {
       item: item
     };
 
-    if (type == "shop" && item.snacks)
-      item.snacks = item.snacks.map((snack) => snack.id);
-
     return this.http.put(this.url, data).map((response) => 
       response.json()
     );

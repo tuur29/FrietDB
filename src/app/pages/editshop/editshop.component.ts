@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GlobalsService } from 'app/services/globals.service';
 import { EditDataService } from '../../services/editdata.service';
@@ -6,12 +6,11 @@ import { ShopDataService } from '../../services/shopdata.service';
 import { SnackDataService } from '../../services/snackdata.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
-
-// TODO: Fix placement of more info about markdown link
 
 @Component({
   selector: 'app-editshop',
@@ -21,16 +20,15 @@ import 'rxjs/add/operator/map';
 export class EditShopComponent implements OnInit, OnDestroy {
 
   private subroute: any;
+  private form: FormGroup;
   private id: string;
   private step = 0;
-  private shop: any = {};
-  private snacks: any[];
-  private snackCtrl: FormControl = new FormControl();
+
+  private allSnacks: any[];
+  private snackSearchCtrl: FormControl = new FormControl();
   private filteredSnacks: Observable<any[]>;
-  @ViewChild('form') private form;
 
   constructor(
-    private ref: ChangeDetectorRef,
     public globals: GlobalsService,
     public editDataService: EditDataService,
     public shopDataService: ShopDataService,
@@ -38,25 +36,32 @@ export class EditShopComponent implements OnInit, OnDestroy {
     public dialogsService: DialogsService,
     private route: ActivatedRoute,
     private router: Router,
-  ) {}
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      part1: this.fb.group({
+        name: ["", Validators.required],
+        image: ["", Validators.pattern('^https?:\/\/.+$')],
+        description: ""
+      }),
+      part2: this.fb.group({
+        street: ["", Validators.required],
+        number: ["", [Validators.required, Validators.min(1), Validators.max(10000)]],
+        municipality: ["", Validators.required],
+        telephone: ["", Validators.pattern('^[\+\.\ \/0-9]+$')],
+        email: ["", this.nonRequiredEmailValidator],
+        website: ["", Validators.pattern('^https?:\/\/.+$')],
+        lat: ["", [Validators.required, Validators.min(-90), Validators.max(90)]],
+        lng: ["", [Validators.required, Validators.min(-90), Validators.max(90)]],
+      }),
+      snacks: this.fb.array([])
+    });
+  }
 
   ngOnInit() {
-    // get propesed edit by id if set
+    // get proposed edit by id if set
     this.subroute = this.route.params.subscribe((params) => {
       this.id = params['id'];
-
-      if (this.globals.auth.admin) {
-        this.editDataService.getItem(this.id).subscribe(shop => {
-          this.shop = shop;
-          this.ref.detectChanges();
-        });
-      } else if (this.id) {
-        this.shopDataService.getShop(this.id).subscribe(shop => {
-          this.shop = shop;
-          this.ref.detectChanges();
-        });
-      }
-
       // deny access
       if (!this.globals.auth.token)
         this.router.navigate(['error', 403, 'edit/shop/' + this.id]);
@@ -65,15 +70,23 @@ export class EditShopComponent implements OnInit, OnDestroy {
       if (this.globals.auth.admin && this.id === undefined)
         this.router.navigate(['error', 403, '/edits']);
 
-
+      // load data
+      if (this.globals.auth.admin) {
+        this.editDataService.getItem(this.id).subscribe(shop => {
+          this.fillForm(shop);
+        });
+      } else if (this.id) {
+        this.shopDataService.getShop(this.id).subscribe(shop => {
+          this.fillForm(shop);
+        });
+      }
     });
 
     this.snackDataService.getSnacks().subscribe(snacks => {
-      this.snacks = snacks;
-      this.filteredSnacks = this.snackCtrl.valueChanges
+      this.allSnacks = snacks;
+      this.filteredSnacks = this.snackSearchCtrl.valueChanges
         .startWith(null)
-        .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
-      // this.ref.detectChanges();
+        .map(snack => snack ? this.filterSnacks(snack) : this.allSnacks.slice());
     });
   }
 
@@ -81,38 +94,86 @@ export class EditShopComponent implements OnInit, OnDestroy {
     this.subroute.unsubscribe();
   }
 
-  // filter snacks on search
-  filterSnacks(query: string) {
-    return this.snacks.filter((snack) =>
-      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1
-    );
+  onSubmit(data: any) {
+    let flatdata = {
+      name: data.part1.name,
+      image: data.part1.image,
+      description: data.part1.description,
+      street: data.part2.street,
+      number: data.part2.number,
+      municipality: data.part2.municipality,
+      telephone: data.part2.telephone,
+      email: data.part2.email,
+      website: data.part2.website,
+      lat: data.part2.lat,
+      lng: data.part2.lng,
+      snacks: data.snacks.map((snack)=>snack.id)
+    }
+    this.editDataService.saveEdit('shop', flatdata).subscribe((res) => {
+      this.back();
+    });
   }
 
-  // click snack in search
+  fillForm(shop: any) {
+    this.form.patchValue({
+      part1: {
+        name: shop.name,
+        image: shop.image,
+        description: shop.description
+      },
+      part2: {
+        street: shop.street,
+        number: shop.number,
+        municipality: shop.municipality,
+        telephone: shop.telephone,
+        email: shop.email,
+        website: shop.website,
+        lat: shop.lat,
+        lng: shop.lng
+      }
+    });
+
+    this.form.setControl('snacks', this.fb.array(
+      shop.snacks.map((snack) => this.createSnackGroup(snack))
+    ));
+  }
+
+  createSnackGroup(snack?: any) : FormGroup {
+    return this.fb.group({
+      id: snack ? snack.id : '',
+      name: snack ? snack.name : '',
+      type: snack ? snack.type : ''
+    });
+  }
+
+  // editing snacks
   pickSnack(id: string, event?) {
     if (event.source.selected) {
-
-      if (!this.shop.snacks) this.shop.snacks = [];
-
-      let alreadyAddedSnack = this.shop.snacks.find((s) => s.id === id);
+      const control = <FormArray> this.form.controls['snacks'];
+      let alreadyAddedSnack = control.controls.find((c) => c.value.id === id);
       if (!alreadyAddedSnack) {
-        let newSnack = this.snacks.find((s) => s.id === id);
-        this.shop.snacks.push(newSnack);
-        this.updateSnacksList();
+        let newSnack = this.allSnacks.find((s) => s.id === id);
+        control.push(this.createSnackGroup(newSnack));
       }
 
       setTimeout(() => {
-        this.snackCtrl.reset({value: '', disabled: true});
-        this.snackCtrl.enable();
+        this.snackSearchCtrl.reset({value: '', disabled: true});
+        this.snackSearchCtrl.enable();
       }, 1);
-
     }
   }
 
-  removeSnack(id: string) {
-    this.shop.snacks = this.shop.snacks.filter((e) => {
-      return e.id !== id;
+  newSnack() {
+    this.dialogsService.editsnack().subscribe((snack) => {
+      const control = <FormArray> this.form.controls['snacks'];
+      control.push(this.createSnackGroup(snack));
     });
+  }
+
+  filterSnacks(query: string) {
+    return this.allSnacks.filter((snack) =>
+      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+    );
   }
 
   // stepper functions
@@ -128,48 +189,32 @@ export class EditShopComponent implements OnInit, OnDestroy {
     this.step--;
   }
 
-  newSnack() {
-    this.dialogsService.editsnack().subscribe((result) => {
-      if (result)
-        this.shop.snacks.push(result);
-      this.updateSnacksList();
-    });
-  }
-
-  // force update shop.snacks
-  updateSnacksList() {
-    this.shop.snacks = this.shop.snacks.slice();
-  }
-
   // return to best page based on which user
   back() {
     if (this.globals.auth.admin)
       this.router.navigate(['/edits']);
     else if (this.id)
-      this.router.navigate(['/shop/' + this.shop.id]);
+      this.router.navigate(['/shop/' + this.id]);
     else
       this.router.navigate(['/']);
   }
 
-  save() {
-    // if (this.form.nativeElement.checkValidity()) {
-      this.editDataService.saveEdit('shop',this.shop).subscribe((res) => {
-        this.back();
-      });
-    // }
-  }
-
   // pressing admin buttons
-  accept(id: string) {
-    this.editDataService.accept(id).subscribe((res) => {
+  accept() {
+    this.editDataService.accept(this.id).subscribe((res) => {
       this.back();
     });
   }
 
-  remove(id: string) {
-    this.editDataService.remove(id).subscribe((res) => {
+  remove() {
+    this.editDataService.remove(this.id).subscribe((res) => {
       this.back();
     });
+  }
+
+  private nonRequiredEmailValidator(control: AbstractControl): ValidationErrors {
+    if (!control.value) return null;
+    return Validators.email(control);
   }
 
 }

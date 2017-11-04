@@ -8,7 +8,7 @@ let editRouter = express.Router();
 // TODO: Add user validation
 
 let handleGetAll = function(type, request, response) {
-    Edit.find({ type: type }, function(error, edits) {
+    Edit.find({ type: type }).sort([['timestamp', -1]]).exec(function(error, edits) {
         if (error) {
             response.status(500).send(error);
             return;
@@ -75,6 +75,7 @@ if (true) {
                     response.status(500).send(error);
                     return;
                 }
+                edit.item.id = edit.item._id;
                 response.json(edit);
             });
         });

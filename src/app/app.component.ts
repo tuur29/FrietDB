@@ -9,11 +9,9 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Gather real testdata (default add http to urls)
 // TODO: Add unittests
 
-// TODO: Add newly created snack to editing shop list & show popup link on admin page
-
-// TODO: Redo forms: use ngonsubmit action instead of button onclick (editsnack,editshop)
-// TODO: Add validation to forms, use native html5 validationMessage 
-
+// TODO: Add delete shop button when admin
+// TODO: Fix saving snack edits
+// TODO: Newly created snacks in different field -> show info on admin editshop & ignore non existant ids on accept
 
 @Component({
   selector: 'app',
