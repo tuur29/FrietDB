@@ -5,6 +5,7 @@ import { EditDataService } from '../../services/editdata.service';
 import { ShopDataService } from '../../services/shopdata.service';
 import { SnackDataService } from '../../services/snackdata.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
+import { MessagesService } from '../../messages/messages.service';
 
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
 
@@ -34,6 +35,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
     public shopDataService: ShopDataService,
     public snackDataService: SnackDataService,
     public dialogsService: DialogsService,
+    public messagesService: MessagesService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
@@ -111,6 +113,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
     }
     if (this.id) flatdata['_id'] = this.id;
     this.editDataService.saveEdit('shop', flatdata).subscribe((res) => {
+      this.messagesService.send("Success! Je aanpassing moet wel eerst goedgekeurd worden.");
       this.back();
     });
   }

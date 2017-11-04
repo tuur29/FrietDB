@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { GlobalsService } from 'app/services/globals.service';
 import { EditDataService } from '../services/editdata.service';
 import { SnackDataService } from '../services/snackdata.service';
+import { MessagesService } from '../messages/messages.service';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
@@ -106,6 +107,7 @@ export class EditSnackDialog implements OnInit {
     public globals: GlobalsService,
     public editDataService: EditDataService,
     public snackDataService: SnackDataService,
+    public messagesService: MessagesService,
     public dialogRef: MatDialogRef<EditSnackDialog>,
     private fb: FormBuilder
   ) {
@@ -152,6 +154,7 @@ export class EditSnackDialog implements OnInit {
   onSubmit(data: any) {
     data._id = this.id;
     this.editDataService.saveEdit('snack', data).subscribe((res) => {
+      this.messagesService.send("Success! Je aanpassing moet wel eerst goedgekeurd worden.");
       this.dialogRef.close(res.item);
     });
   }
