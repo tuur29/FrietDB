@@ -129,7 +129,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
   }
 
   newSnack() {
-    this.dialogsService.editsnack(undefined).subscribe((result) => {
+    this.dialogsService.editsnack().subscribe((result) => {
       if (result)
         this.shop.snacks.push(result);
       this.updateSnacksList();

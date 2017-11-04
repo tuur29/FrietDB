@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '../material.module';
-// TODO: Remove FormsModule
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SnackInfoDialog } from './snackinfo.component';
 import { EditSnackDialog } from './editsnack.component';
@@ -13,18 +12,18 @@ import { RegisterDialog } from './register.component';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,ReactiveFormsModule,
-    MaterialModule,
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports: [
     SnackInfoDialog,
     EditSnackDialog,
-    RegisterDialog,
+    RegisterDialog
   ],
   declarations: [
     SnackInfoDialog,
     EditSnackDialog,
-    RegisterDialog,
+    RegisterDialog
   ],
   providers: [
     DialogsService,
@@ -32,7 +31,7 @@ import { RegisterDialog } from './register.component';
   entryComponents: [
     SnackInfoDialog,
     EditSnackDialog,
-    RegisterDialog,
+    RegisterDialog
   ],
 })
 export class DialogsModule { }
