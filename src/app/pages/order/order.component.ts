@@ -4,6 +4,7 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 import { ShopDataService } from 'app/services/shopdata.service';
 import { SnackDataService } from 'app/services/snackdata.service';
 
+import { SlicePipe } from '@angular/common';
 import { SessionStorage, WebstorableArray } from 'ngx-store';
 
 import { FormControl } from '@angular/forms';
@@ -68,6 +69,9 @@ export class OrderComponent implements OnInit {
           this.addedSnacks.push(countedSnack);
           this.refreshShops();
         });
+
+        // update usage
+        this.snackDataService.increaseSnackUsage(id).subscribe();
       }
 
       setTimeout(() => {

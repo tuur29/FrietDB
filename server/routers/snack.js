@@ -4,7 +4,7 @@ let snackRouter = express.Router();
 
 snackRouter.route('/')
     .get(function(request, response) {
-        Snack.find(function(error, snacks) {
+        Snack.find({}).sort([['usage', -1]]).exec(function(error, snacks) {
             if (error) {
                 response.status(500).send(error);
                 return;
@@ -13,6 +13,7 @@ snackRouter.route('/')
                 return {
                     id: s._id,
                     name: s.name,
+                    usage: s.usage,
                     type: s.type
                 };
             })
@@ -41,6 +42,21 @@ snackRouter.route('/:snackId')
                 response.status(500).send(error);
                 return;
             }
+            response.json(snack);
+        });
+    })
+
+    .post(function(request, response) {
+        let snackId = request.params.snackId;
+        Snack.findOne({
+            _id: snackId
+        }, function(error, snack) {
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+            snack.usage++;
+            snack.save();
             response.json(snack);
         });
     });

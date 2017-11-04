@@ -6,6 +6,7 @@ const SnackSchema = new Schema({
     type: { type: String, required: true },
     image: String,
     link: String,
+    usage: {type: Number, default: 0}
 });
 
 SnackSchema.set('toJSON', {

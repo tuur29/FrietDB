@@ -3,9 +3,35 @@
   <p>Met deze tool kan je makkelijk de dichtste frituur vinden waar ze al jouw favoriete snacks hebben. Als extraatje kan je ook een handig briefje afdrukken om mee te nemen naar de frituur!</p>
 </mat-card>
 
+<!-- Autocomplete snack search box -->
+
+<mat-card class="small search">
+  <form>
+    <mat-form-field class="full-width">
+
+      <button mat-icon-button matPrefix>
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <input matInput placeholder="Snack toevoegen" aria-label="Snack toevoegen" [matAutocomplete]="autocomplete" [formControl]="snackCtrl">
+
+      <button *ngIf="snackCtrl.value" matSuffix mat-icon-button aria-label="Reset" (click)="snackCtrl.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+      
+      <mat-autocomplete #autocomplete="matAutocomplete">
+        <mat-option (onSelectionChange)="pickSnack(snack.id,$event)" *ngFor="let snack of filteredSnacks | async" [value]="snack.name">
+            <span>{{snack.name}}</span> | <small>{{snack.type}}</small>
+        </mat-option>
+      </mat-autocomplete>
+
+    </mat-form-field>
+  </form>
+</mat-card>
+
 <!-- Favorite Snacks Image Grid -->
 <mat-grid-list cols="3" rowHeight="5:3" gutterSize="7" class="quickpick" *ngIf="snacks">
-  <mat-grid-tile *ngFor="let snack of (snacks | filterBy: ['favorite']: true | sample: 6) ">
+  <mat-grid-tile *ngFor="let snack of (snacks | slice: 0:3) ">
 
     <button mat-raised-button
       (click)="pickSnack(snack.id)"
@@ -18,32 +44,6 @@
 
   </mat-grid-tile>
 </mat-grid-list>
-
-<!-- Autocomplete snack search box -->
-
-<mat-card class="small search">
-  <form>
-    <mat-form-field class="full-width">
-
-      <button mat-icon-button matPrefix>
-        <mat-icon>search</mat-icon>
-      </button>
-
-      <input matInput placeholder="Snack" aria-label="Snack" [matAutocomplete]="autocomplete" [formControl]="snackCtrl">
-
-      <button *ngIf="snackCtrl.value" matSuffix mat-icon-button aria-label="Reset" (click)="snackCtrl.reset()">
-      <mat-icon>close</mat-icon>
-    </button>
-      
-      <mat-autocomplete #autocomplete="matAutocomplete">
-        <mat-option (onSelectionChange)="pickSnack(snack.id,$event)" *ngFor="let snack of filteredSnacks | async | orderBy: ['name']" [value]="snack.name">
-            <span>{{snack.name}}</span> | <small>{{snack.type}}</small>
-        </mat-option>
-      </mat-autocomplete>
-
-    </mat-form-field>
-  </form>
-</mat-card>
 
 <ng-container *ngIf="addedSnacks.length">
 

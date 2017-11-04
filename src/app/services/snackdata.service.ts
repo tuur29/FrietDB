@@ -61,6 +61,12 @@ export class SnackDataService {
       });
   }
 
+  public increaseSnackUsage(id: string): Observable<any> {
+    return this.http.post(this.url+id,{}).map((response) => {
+      return response.json();
+    });
+  }
+
   public getSnackTypes(): Observable<string[]> {
     this.globals.loading = true;
     return this.http.get(this.url+"types").map((response) => {
