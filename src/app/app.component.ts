@@ -9,7 +9,6 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Gather real testdata
 // TODO: Add unittests?
 
-// TODO: Improve seachshop algoritm
 // TODO: refresh shop list when accepting edit shop & deleting shop, refresh snacks on accept snackedit
 // TODO: Newly created snacks in different field -> show message & links on admin editshop & ignore non existant ids on accept & remove snack edits when removed from edit page
 

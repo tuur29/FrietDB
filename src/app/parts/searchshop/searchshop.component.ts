@@ -61,10 +61,18 @@ export class SearchShopComponent implements OnInit {
   }
 
   filterShops(query: string) {
-    return this.shops.filter(shop =>
-      shop.name.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
-      shop.street.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
-      shop.municipality.toLowerCase().indexOf(query.toLowerCase()) > -1
+    if (query.length < 3) return this.shops;
+
+    let start = '(?=.*';
+    let end = ')';
+    let parts = query.split(' ');
+    let regex = new RegExp( start+parts.join(end+start)+end ,"ig" );
+
+    return this.shops.filter(shop => {
+        let str = shop.name+' '+shop.street+' '+shop.municipality;
+        if ( str.match(regex) )
+          return true;
+      }
     );
   }
 
