@@ -6,11 +6,12 @@ import { environment } from 'environments/environment';
 import { GlobalsService } from 'app/services/globals.service';
 import { MessagesService } from './messages/messages.service';
 
-// TODO: Gather real testdata (default add http to urls)
-// TODO: Add unittests
+// TODO: Gather real testdata
+// TODO: Add unittests?
 
 // TODO: Fix saving snack edits
-// TODO: Newly created snacks in different field -> show info on admin editshop & ignore non existant ids on accept
+// TODO: refresh shop list when accepting edit shop & deleting shop, refresh snacks on accept snackedit
+// TODO: Newly created snacks in different field -> show message & links on admin editshop & ignore non existant ids on accept & remove snack edits when removed from edit page
 
 @Component({
   selector: 'app',
