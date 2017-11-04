@@ -50,6 +50,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() private lat: number;
   @Input() private lng: number;
   @Input() private zoom: number = 8;
+  private maxZoom: number = 14;
 
   private map;
 
@@ -124,7 +125,7 @@ export class MapComponent implements OnInit, OnChanges {
 
       // set minimum zoom
       let listener = google.maps.event.addListener(this.map, "idle", () => { 
-        if (this.map.getZoom() > 16) this.map.setZoom(16); 
+        if (this.map.getZoom() > this.maxZoom) this.map.setZoom(this.maxZoom); 
         google.maps.event.removeListener(listener); 
       });
       
