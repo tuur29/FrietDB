@@ -106,7 +106,7 @@
 
   <!-- Map -->
 
-  <mat-card class="full">
+  <mat-card class="full" *ngIf="filteredShops?.length">
     <app-map [shops]="filteredShops"></app-map>
   </mat-card>
 

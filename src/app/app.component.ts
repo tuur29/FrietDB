@@ -9,7 +9,6 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Gather real testdata
 // TODO: Add unittests?
 
-// TODO: Add message when order page doesn't find any shops
 // TODO: refresh shop list when accepting edit shop & deleting shop, refresh snacks on accept snackedit
 // TODO: snackbar over loading spinner overlay
 
