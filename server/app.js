@@ -10,6 +10,7 @@ let snackRouter = require('./routers/snack');
 let editRouter = require('./routers/edit');
 
 // TODO: add prod & test env
+// TODO: never crash server
 
 // config
 const HOST_NAME = 'localhost';
