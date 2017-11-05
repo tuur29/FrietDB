@@ -11,6 +11,7 @@ let editRouter = require('./routers/edit');
 
 // TODO: add prod & test env
 // TODO: never crash server
+// TODO: properly close mongoose connection?
 
 // config
 const HOST_NAME = 'localhost';
