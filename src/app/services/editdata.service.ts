@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { GlobalsService } from 'app/services/globals.service';
+import { ShopDataService } from 'app/services/shopdata.service';
+import { SnackDataService } from 'app/services/snackdata.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -14,6 +16,8 @@ export class EditDataService {
     constructor(
       private http: Http,
       public globals: GlobalsService,
+      public shopDataService: ShopDataService,
+      public snackDataService: SnackDataService,
     ) {}
 
   public getShopEdits(): Observable<any[]> {
@@ -59,14 +63,21 @@ export class EditDataService {
     );
   }
 
-
   public accept(id: any): Observable<any> {
-    return this.http.post(this.url+id,'').map((response) =>
-      response.json()
-    );
+
+    return this.http.post(this.url+id,'').map((response) => {
+      if (response) {
+        if (response.json().snacks) // is shop
+          this.shopDataService.resetCache();
+        else if (response.json().usage) // is snack
+          this.snackDataService.resetCache();
+      }
+
+      return response.json();
+    });
   }
 
-  public remove(id: any): Observable<any> {
+  public remove(id: any): Observable<any> {    
     return this.http.delete(this.url+id).map((response) =>
       response.json()
     );

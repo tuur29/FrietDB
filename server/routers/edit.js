@@ -145,7 +145,6 @@ if (true) {
                             response.json(shop);
                         });
                     });
-                    return;
                 } else if (edit.type == "snack") {
 
                     Snack.count({ _id: edit.item._id }, function(err, count) {

@@ -77,6 +77,7 @@ export class TableComponent implements OnInit {
   remove(id: string, index: number, event) {
     event.stopPropagation();
     this.editDataService.remove(id).subscribe((res) => {
+      if (this.type == "shop") window.location.reload();
       this.database.remove(index);
     });
   }

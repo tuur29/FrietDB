@@ -19,6 +19,10 @@ export class SnackDataService {
     public globals: GlobalsService,
   ) {}
 
+  public resetCache() {
+    this.cachedSnacks = null;
+  }
+
   public getSnacks(): Observable<any[]> {
 
     // if already cached
@@ -48,6 +52,7 @@ export class SnackDataService {
     return this.http.get(this.url).map((response) => {
       let json = response.json();
       this.cachedSnacks = json;
+      this.getSnacksLock = false;
       this.globals.loading = false;
       return json;
     });

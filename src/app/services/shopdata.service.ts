@@ -19,6 +19,10 @@ export class ShopDataService {
     public globals: GlobalsService,
   ) {}
 
+  public resetCache() {
+    this.cachedShops = null;
+  }
+
   public getShops(): Observable<any[]> {
 
     // if already cached
@@ -48,6 +52,7 @@ export class ShopDataService {
     return this.http.get(this.url).map((response) => {
       let json = response.json();
       this.cachedShops = json;
+      this.getShopsLock = false;
       this.globals.loading = false;
       return json;
     });
@@ -73,6 +78,7 @@ export class ShopDataService {
 
   public removeShop(id: string): Observable<any> {
     this.globals.loading = true;
+    this.resetCache();
     return this.http.delete(this.url+id).map((response) => {
       this.globals.loading = false;
       return response.json();

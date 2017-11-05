@@ -9,9 +9,6 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Gather real testdata
 // TODO: Add unittests?
 
-// TODO: refresh shop list when accepting edit shop & deleting shop, refresh snacks on accept snackedit
-// TODO: snackbar over loading spinner overlay
-
 @Component({
   selector: 'app',
   template: `
