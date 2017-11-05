@@ -13,7 +13,7 @@
                 <mat-icon>edit</mat-icon>
               </a>
 
-              <span [routerLink]="" *ngIf="globals.auth.token && globals.auth.admin" (click)="removeShop($event)" class="link" aria-label="Verwijderen" matTooltip="Verwijderen">
+              <span [routerLink]="" *ngIf="globals.auth.token && globals.auth.admin" (click)="removeShop($event)" class="link color-warn" aria-label="Verwijderen" matTooltip="Verwijderen">
                 <mat-icon>delete_forever</mat-icon>
               </span>
           </h1>

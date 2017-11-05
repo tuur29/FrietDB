@@ -60,6 +60,18 @@ mat-card.search {
 	color: mat-color($app-warn, A400);
 }
 
+.color-primary {
+	color: mat-color($app-primary, A400);
+}
+
+.color-accent {
+	color: mat-color($app-accent, A400);
+}
+
+.color-warn {
+	color: mat-color($app-warn, A700);
+}
+
 .loader {
 	position: fixed;
 	background: rgba(255,255,255,0.5);
