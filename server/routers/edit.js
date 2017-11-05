@@ -129,18 +129,23 @@ if (true) {
                 }
 
                 if (edit.type == "shop") {
-                    getPendingSnacks(edit.item.snacks,request,response,"remove");
-                    // TODO: strip snack ids that don't exist
-                    let shop = new Shop(edit.item);
-                    if (edit.item._id) shop.isNew = false;
-                    shop.save(function (error, results) {
-                        if (error) {
-                            response.status(500).send(error);
-                            return;
-                        }
-                        edit.remove();
-                        response.json(shop);
+                    // strip snack ids that don't exist
+                    Snack.find({ _id: { $in: edit.item.snacks } }, function(err, snacks) {
+                        // remove shopedit
+                        let shop = new Shop(edit.item);
+                        shop.snacks = snacks.map((snack) => snack._id);
+                        if (edit.item._id) shop.isNew = false;
+                        shop.save(function (error, results) {
+                            if (error) {
+                                response.status(500).send(error);
+                                return;
+                            }
+                            getPendingSnacks(edit.item.snacks,request,response,"remove");
+                            edit.remove();
+                            response.json(shop);
+                        });
                     });
+                    return;
                 } else if (edit.type == "snack") {
 
                     Snack.count({ _id: edit.item._id }, function(err, count) {
