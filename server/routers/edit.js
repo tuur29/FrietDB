@@ -101,6 +101,7 @@ if (true) {
                 item._id = mongoose.Types.ObjectId();
 
             let edit = new Edit({
+                timestamp: Math.round(new Date().getTime() /1000),
                 type: request.body.type,
                 item: item,
                 user: { name: "Tuur" }
