@@ -32,6 +32,14 @@ export class EditDataService {
     });
   }
 
+  public getPendingSnacks(id: string): Observable<any[]> {
+    this.globals.loading = true;
+    return this.http.get(this.url+"snacks/"+id).map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    });
+  }
+
   public getItem(id: string): Observable<any> {
     this.globals.loading = true;
     return this.http.get(this.url+id).map((response) => {

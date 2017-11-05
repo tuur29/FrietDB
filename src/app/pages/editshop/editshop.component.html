@@ -1,3 +1,15 @@
+<mat-card *ngIf="pendingSnacks.length > 0 && globals.auth.token && globals.auth.admin">
+  <h2>Nog niet goedgekeurde snacks die bij deze frituur horen:</h2>
+  <ul>
+    <li *ngFor="let edit of pendingSnacks; let i = index">
+      {{ edit.item.name }} ({{ edit.item.type }})
+      <button type="button" mat-icon-button (click)="updatePendingSnack(i)" aria-label="Bekijken" matTooltip="Bekijken">
+        <mat-icon>open_in_new</mat-icon>
+      </button>
+    </li>
+  </ul>
+</mat-card>
+
 <form [formGroup]="form" (ngSubmit)='onSubmit(form.value)'>
   <mat-accordion>
 

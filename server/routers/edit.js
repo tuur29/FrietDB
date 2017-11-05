@@ -27,6 +27,41 @@ let handleGetAll = function(type, request, response) {
 editRouter.route('/shops').get(function(req,res) { handleGetAll('shop',req,res) });
 editRouter.route('/snacks').get(function(req,res) { handleGetAll('snack',req,res) });
 
+// get pendingsnacks
+let getPendingSnacks = function(snackIds, request, response, action = "query") {
+    Edit.find({
+        type: 'snack'
+    }, function(error, snacks) {
+        if (error) {
+            response.status(500).send(error);
+            return;
+        }
+        let pending = snacks.filter((snack) =>
+            snack.item.hasOwnProperty('_id') &&
+            snackIds.indexOf(snack.item._id.toString()) > -1
+        );
+        if (action == "remove") {
+            pending.forEach((snack) => snack.remove());
+        } else {
+            response.json(pending);
+        }
+    });
+}
+
+editRouter.route('/snacks/:editId')
+    .get(function(request, response) {
+        Edit.findOne({
+            _id: request.params.editId,
+            type: 'shop'
+        }, function(error, edit) {
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+            getPendingSnacks(edit.item.snacks, request, response);
+        });
+    });
+
 editRouter.route('/:editId')
     .get(function(request, response) {
         Edit.findOne({
@@ -93,6 +128,8 @@ if (true) {
                 }
 
                 if (edit.type == "shop") {
+                    getPendingSnacks(edit.item.snacks,request,response,"remove");
+                    // TODO: strip snack ids that don't exist
                     let shop = new Shop(edit.item);
                     if (edit.item._id) shop.isNew = false;
                     shop.save(function (error, results) {
@@ -106,7 +143,6 @@ if (true) {
                 } else if (edit.type == "snack") {
 
                     Snack.count({ _id: edit.item._id }, function(err, count) {
-                        console.log("count" + count);
                         let snack = new Snack(edit.item);
                         if (count > 0) snack.isNew = false;
                         snack.save(function (error, results) {
@@ -124,7 +160,6 @@ if (true) {
 
         // reject edit
         .delete(function(request,response){
-
             Edit.findOne({
                 _id: request.params.editId
             }, function(error, edit) {
@@ -132,6 +167,10 @@ if (true) {
                     response.status(500).send(error);
                     return;
                 }
+
+                if (edit.type == "shop")
+                    getPendingSnacks(edit.item.snacks,request,response,"remove");
+
                 edit.remove();
                 response.json({status: 200});
             });

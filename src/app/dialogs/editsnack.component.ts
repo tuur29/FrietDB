@@ -162,13 +162,13 @@ export class EditSnackDialog implements OnInit {
   // pressing admin buttons
   accept() {
     this.editDataService.accept(this.id).subscribe((res) => {
-      this.dialogRef.close();
+      this.dialogRef.close("accepted");
     });
   }
 
   remove() {
     this.editDataService.remove(this.id).subscribe((res) => {
-      this.dialogRef.close();
+      this.dialogRef.close("removed");
     });
   }
 

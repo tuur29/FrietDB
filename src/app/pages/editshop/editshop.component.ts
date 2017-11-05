@@ -25,6 +25,8 @@ export class EditShopComponent implements OnInit, OnDestroy {
   private id: string;
   private step = 0;
 
+  private pendingSnacks: any[] = [];
+
   private allSnacks: any[];
   private snackSearchCtrl: FormControl = new FormControl();
   private filteredSnacks: Observable<any[]>;
@@ -77,6 +79,11 @@ export class EditShopComponent implements OnInit, OnDestroy {
         this.editDataService.getItem(this.id).subscribe(shop => {
           this.fillForm(shop);
         });
+        // get pending snacks
+        this.editDataService.getPendingSnacks(this.id).subscribe(snacks => {
+          this.pendingSnacks = snacks;
+          console.log(snacks);
+        });
       } else if (this.id) {
         this.shopDataService.getShop(this.id).subscribe(shop => {
           this.fillForm(shop);
@@ -89,6 +96,13 @@ export class EditShopComponent implements OnInit, OnDestroy {
       this.filteredSnacks = this.snackSearchCtrl.valueChanges
         .startWith(null)
         .map(snack => snack ? this.filterSnacks(snack) : this.allSnacks.slice());
+    });
+  }
+
+  updatePendingSnack(i: number) {
+    this.dialogsService.editsnack(this.pendingSnacks[i]._id).subscribe((data)=>{
+      if (data)
+        window.location.reload();
     });
   }
 
@@ -169,8 +183,10 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   newSnack() {
     this.dialogsService.editsnack().subscribe((snack) => {
-      const control = <FormArray> this.form.controls['snacks'];
-      control.push(this.createSnackGroup(snack));
+      if (snack) {
+        const control = <FormArray> this.form.controls['snacks'];
+        control.push(this.createSnackGroup(snack));
+      }
     });
   }
 
