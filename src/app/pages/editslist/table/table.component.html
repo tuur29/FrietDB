@@ -13,7 +13,7 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row mat-ripple
       *matRowDef="let row; columns: displayedColumns"
-      [routerLink]="'/edit/'+type+'/'+row.id"
+      (click)="handleClick(row,row.id)"
     ></mat-row>
 
 

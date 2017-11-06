@@ -1,8 +1,10 @@
 import { Component, ViewChild, ElementRef, Input, OnInit } from '@angular/core';
 import { Database, EditsDataSource } from './data.provider';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { MatPaginator, MatSort } from '@angular/material';
+import { DialogsService } from '../../../dialogs/dialogs.service';
 import { EditDataService } from '../../../services/editdata.service';
 
 @Component({
@@ -49,7 +51,11 @@ export class TableComponent implements OnInit {
   @ViewChild(MatSort) private sort: MatSort;
   @ViewChild('filter') private filter: ElementRef;
 
-  constructor(public editDataService: EditDataService) {}
+  constructor(
+    private router: Router,
+    public editDataService: EditDataService,
+    public dialogsService: DialogsService
+  ) {}
 
   ngOnInit() {
     this.database = new Database(this.data);
@@ -65,6 +71,16 @@ export class TableComponent implements OnInit {
 
   formatDate(timestamp: number) {
     return new Date(timestamp * 1000).toISOString().replace('T', ' ').slice(0, -5);
+  }
+
+  handleClick(index: number, id: string) {
+    if (this.type == "snack") {
+      this.dialogsService.editsnack(id).subscribe(() => {
+        this.database.remove(index);
+      });
+    } else {
+      this.router.navigate(["/edit/"+this.type+"/"+id]);
+    }
   }
 
   accept(id: string, index: number, event) {
