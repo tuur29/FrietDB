@@ -17,7 +17,7 @@ export class GlobalsService {
 
   title: string;
 
-  defaultLat: number = 51.723858;
-  defaultLng: number = 7.895982;
+  defaultLat: number = 50.5039;
+  defaultLng: number = 4.4699;
 
 }
