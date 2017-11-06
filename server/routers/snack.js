@@ -28,7 +28,7 @@ snackRouter.route('/types')
                 response.status(500).send(error);
                 return;
             }
-            response.json(types);
+            response.json(types.concat(["Frieten","Snack","Saus","Andere"]));
         });
     });
 
