@@ -102,7 +102,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
   updatePendingSnack(i: number) {
     this.dialogsService.editsnack(this.pendingSnacks[i]._id).subscribe((data)=>{
       if (data)
-        window.location.reload();
+        this.pendingSnacks.splice(i,1);
     });
   }
 

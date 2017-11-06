@@ -35,18 +35,23 @@ export class ErrorComponent implements OnInit, OnDestroy {
 
     this.subroute = this.route.params.subscribe((params) => {
       let status = +params.status; // (+) converts string 'id' to a number
-      if (status !== 403) {
+      if (status == 403) {
+        // add redirect link for after login
+        this.redirecturl = params.redirect;
 
+      } else if (status == 302) {
+        // redirect to page
+        this.router.navigate([''+params.redirect]);
+
+      } else {
+        // general error with retry
         let old = this.router.url;
         this.messagesService.send('Er ging iets fout.', 'OPNIEUW').subscribe(() => {
           this.router.navigate([old]);
         });
         this.router.navigate(['/']);
-
-      } else {
-        this.redirecturl = params.redirect;
+        
       }
-
     });
 
   }
