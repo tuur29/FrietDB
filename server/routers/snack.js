@@ -28,7 +28,12 @@ snackRouter.route('/types')
                 response.status(500).send(error);
                 return;
             }
-            response.json(types.concat(["Frieten","Snack","Saus","Andere"]));
+
+            response.json(
+                types.concat(["Frieten","Snack","Saus","Andere"].filter(function (item) {
+                    return types.indexOf(item) < 0;
+                }))
+            );
         });
     });
 
