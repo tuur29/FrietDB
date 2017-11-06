@@ -7,10 +7,15 @@ import { GlobalsService } from 'app/services/globals.service';
 import { MessagesService } from './messages/messages.service';
 
 // TODO: Gather real testdata
-// TODO: Add unittests?
+// TODO: Add unittests to backend
 
 // TODO: Don't store complete snacks in localstorage
 // TODO: Add timeout to snacks & shops cache
+// TODO: Check when making new snack if snack name already exists
+// TODO: Lazy load modules! & prefetch public modules
+// TODO: Show snackbar error if http requests failed
+// TODO: Add shopIds field to snack -> on shop remove: remove snack if shopIds < 2
+// TODO: Use Mongoose .pre() instead of in router + dual link between snack & shop ?
 // TODO: Hide _id field from frontend (now used in editshop & editsnack components)
 
 @Component({
