@@ -9,6 +9,10 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Gather real testdata
 // TODO: Add unittests?
 
+// TODO: Don't store complete snacks in localstorage
+// TODO: Add timeout to snacks & shops cache
+// TODO: Hide _id field from frontend (now used in editshop & editsnack components)
+
 @Component({
   selector: 'app',
   template: `
