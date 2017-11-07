@@ -119,7 +119,12 @@ export class EditSnackDialog implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.form.valueChanges.subscribe(value => {
+      if (this.form.dirty)
+        this.dialogRef.disableClose = true;
+    });
+  }
 
   setId(id: string) {
     this.id = id;
