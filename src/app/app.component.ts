@@ -12,9 +12,9 @@ import { MessagesService } from './messages/messages.service';
 // TODO: prevent navigation when editshop / editsnack form dirty
 // TODO: Add shopIds field to snack -> on shop remove: remove snack if shopIds < 2
 // TODO: Use Mongoose .pre() instead of in router + dual link between snack & shop ?
-// TODO: Hide _id field from frontend (now used in editshop & editsnack components)
-// TODO: use chips for menu in shop & editshop
-
+// TODO: dont remove snack from editlist when just closing dialog
+// TODO: link to shopedits in editslist fails
+// TODO: Adding new snack doesnt make editshop form dirty
 // TODO: Check when making new snack if snack name already exists
 
 @Component({

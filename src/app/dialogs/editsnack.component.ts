@@ -157,7 +157,6 @@ export class EditSnackDialog implements OnInit {
   }
 
   onSubmit(data: any) {
-    data._id = this.id;
     this.editDataService.saveEdit('snack', data).subscribe((res) => {
       this.messagesService.send("Success! Je aanpassing moet wel eerst goedgekeurd worden.");
       this.dialogRef.close(res.item);

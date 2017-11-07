@@ -121,6 +121,7 @@ if (true) {
         .put(function(request,response){
             try {
                 let item = request.body.item;
+                if (item.id && !item._id) item._id = item.id;
                 if (item.id) delete item.id;
                 if (item.__v) delete item.__v;
 
