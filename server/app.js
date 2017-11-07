@@ -9,8 +9,7 @@ let shopRouter = require('./routers/shop');
 let snackRouter = require('./routers/snack');
 let editRouter = require('./routers/edit');
 
-// TODO: add prod & test env
-// TODO: never crash server
+// TODO: add backend unit tests
 
 // config
 const HOST_NAME = 'localhost';
@@ -35,7 +34,7 @@ process.on('SIGINT', function() {
     console.log('Mongoose default connection disconnected through app termination'); 
     process.exit(0); 
   }); 
-}); 
+});
 
 // default route to check online
 let router = express.Router();

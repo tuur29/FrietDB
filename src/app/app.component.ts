@@ -7,7 +7,6 @@ import { GlobalsService } from 'app/services/globals.service';
 import { MessagesService } from './messages/messages.service';
 
 // TODO: Gather real testdata
-// TODO: Add unittests to backend
 
 // TODO: Don't store complete snacks in localstorage
 // TODO: Add timeout to snacks & shops cache

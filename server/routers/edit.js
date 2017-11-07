@@ -36,14 +36,17 @@ let getPendingSnacks = function(snackIds, request, response, action = "query") {
             response.status(500).send(error);
             return;
         }
-        let pending = snacks.filter((snack) =>
-            snack.item.hasOwnProperty('_id') &&
-            snackIds.indexOf(snack.item._id.toString()) > -1
-        );
-        if (action == "remove") {
-            pending.forEach((snack) => snack.remove());
-        } else {
-            response.json(pending);
+        try {
+            let pending = snacks.filter((snack) =>
+                snack.item.hasOwnProperty('_id') &&
+                snackIds.indexOf(snack.item._id.toString()) > -1
+            );
+            if (action == "remove")
+                pending.forEach((snack) => snack.remove());
+            else
+                response.json(pending);
+        } catch (e) {
+            response.status(500).send(e);
         }
     });
 }
@@ -93,27 +96,31 @@ if (true) {
     // make new edit
     editRouter.route('/')
         .put(function(request,response){
-            let item = request.body.item;
-            if (item.id) delete item.id;
-            if (item.__v) delete item.__v;
+            try {
+                let item = request.body.item;
+                if (item.id) delete item.id;
+                if (item.__v) delete item.__v;
 
-            if (request.body.type == "snack" && !item._id)
-                item._id = mongoose.Types.ObjectId();
+                if (request.body.type == "snack" && !item._id)
+                    item._id = mongoose.Types.ObjectId();
 
-            let edit = new Edit({
-                timestamp: Math.round(new Date().getTime() /1000),
-                type: request.body.type,
-                item: item,
-                user: { name: "Tuur" }
-            });
-            edit.save(function (error, results) {
-                if (error) {
-                    response.status(500).send(error);
-                    return;
-                }
-                edit.item.id = edit.item._id;
-                response.json(edit);
-            });
+                let edit = new Edit({
+                    timestamp: Math.round(new Date().getTime() /1000),
+                    type: request.body.type,
+                    item: item,
+                    user: { name: "Tuur" }
+                });
+                edit.save(function (error, results) {
+                    if (error) {
+                        response.status(500).send(error);
+                        return;
+                    }
+                    edit.item.id = edit.item._id;
+                    response.json(edit);
+                });
+            } catch (e) {
+                response.status(500).send(e);
+            }
         });
 
     editRouter.route('/:editId')
@@ -128,37 +135,43 @@ if (true) {
                     return;
                 }
 
-                if (edit.type == "shop") {
-                    // strip snack ids that don't exist
-                    Snack.find({ _id: { $in: edit.item.snacks } }, function(err, snacks) {
-                        // remove shopedit
-                        let shop = new Shop(edit.item);
-                        shop.snacks = snacks.map((snack) => snack._id);
-                        if (edit.item._id) shop.isNew = false;
-                        shop.save(function (error, results) {
-                            if (error) {
-                                response.status(500).send(error);
-                                return;
-                            }
-                            getPendingSnacks(edit.item.snacks,request,response,"remove");
-                            edit.remove();
-                            response.json(shop);
-                        });
-                    });
-                } else if (edit.type == "snack") {
+                try {
 
-                    Snack.count({ _id: edit.item._id }, function(err, count) {
-                        let snack = new Snack(edit.item);
-                        if (count > 0) snack.isNew = false;
-                        snack.save(function (error, results) {
-                            if (error) {
-                                response.status(500).send(error);
-                                return;
-                            }
-                            edit.remove();
-                            response.json(snack);
+                    if (edit.type == "shop") {
+                        // strip snack ids that don't exist
+                        Snack.find({ _id: { $in: edit.item.snacks } }, function(err, snacks) {
+                            // remove shopedit
+                            let shop = new Shop(edit.item);
+                            shop.snacks = snacks.map((snack) => snack._id);
+                            if (edit.item._id) shop.isNew = false;
+                            shop.save(function (error, results) {
+                                if (error) {
+                                    response.status(500).send(error);
+                                    return;
+                                }
+                                getPendingSnacks(edit.item.snacks,request,response,"remove");
+                                edit.remove();
+                                response.json(shop);
+                            });
                         });
-                    });
+                    } else if (edit.type == "snack") {
+
+                        Snack.count({ _id: edit.item._id }, function(err, count) {
+                            let snack = new Snack(edit.item);
+                            if (count > 0) snack.isNew = false;
+                            snack.save(function (error, results) {
+                                if (error) {
+                                    response.status(500).send(error);
+                                    return;
+                                }
+                                edit.remove();
+                                response.json(snack);
+                            });
+                        });
+                    }
+                    
+                } catch (e) {
+                    response.status(500).send(e);
                 }
             });
         })
