@@ -175,13 +175,13 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   // editing snacks
   pickSnack(id: string, event?) {
-    this.form.markAsDirty();
     if (event.source.selected) {
       const control = <FormArray> this.form.controls['snacks'];
       let alreadyAddedSnack = control.controls.find((c) => c.value.id === id);
       if (!alreadyAddedSnack) {
         let newSnack = this.allSnacks.find((s) => s.id === id);
         this.pushSnackGroup(newSnack);
+        this.form.markAsDirty();
       }
 
       setTimeout(() => {
@@ -201,8 +201,10 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   newSnack() {
     this.dialogsService.editsnack().subscribe((snack) => {
-      if (snack)
+      if (snack) {
         this.pushSnackGroup(snack, true);
+        this.form.markAsDirty();
+      }
     });
   }
 
