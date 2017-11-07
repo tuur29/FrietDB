@@ -75,8 +75,9 @@ export class TableComponent implements OnInit {
 
   handleClick(index: number, id: string) {
     if (this.type == "snack") {
-      this.dialogsService.editsnack(id).subscribe(() => {
-        this.database.remove(index);
+      this.dialogsService.editsnack(id).subscribe((data) => {
+        if (data)
+          this.database.remove(index);
       });
     } else {
       this.router.navigate(["/edit/"+id]);
