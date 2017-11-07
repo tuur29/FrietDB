@@ -9,10 +9,9 @@ import { MessagesService } from './messages/messages.service';
 // TODO: Gather real testdata
 
 // TODO: Add route guards
-// TODO: prevent navigation when editshop / editsnack form dirty
+// TODO: prevent navigation when editshop
 // TODO: Add shopIds field to snack -> on shop remove: remove snack if shopIds < 2
-// TODO: Use Mongoose .pre() instead of in router + dual link between snack & shop ?
-// TODO: Check when making new snack if snack name already exists
+// TODO: Use Mongoose .pre() instead of in router + dual link between snack & shop?
 
 @Component({
   selector: 'app',
