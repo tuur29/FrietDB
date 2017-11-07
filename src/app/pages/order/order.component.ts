@@ -5,7 +5,7 @@ import { ShopDataService } from 'app/services/shopdata.service';
 import { SnackDataService } from 'app/services/snackdata.service';
 
 import { SlicePipe } from '@angular/common';
-import { SessionStorage, WebstorableArray } from 'ngx-store';
+import { LocalStorage, WebstorableArray } from 'ngx-store';
 
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -26,7 +26,8 @@ export class OrderComponent implements OnInit {
   private snackCtrl: FormControl = new FormControl();
   private filteredSnacks: Observable<any[]>;
 
-  @SessionStorage() private addedSnacks: WebstorableArray<any> = <any>[];
+  private fullAddedSnacks: any[] = <any>[];
+  @LocalStorage() private addedSnacks: WebstorableArray<any> = <any>[];
 
   private filteredShops: any[];
 
@@ -36,22 +37,24 @@ export class OrderComponent implements OnInit {
     private snackDataService: SnackDataService,
     public dialogsService: DialogsService) {}
 
-  // filter snacks on search
-  filterSnacks(query: string) {
-    return this.snacks.filter(snack =>
-      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1
-    );
-  }
-
   ngOnInit() {
     this.snackDataService.getSnacks().subscribe(snacks => {
       this.snacks = snacks;
+      this.refreshAddedSnacks();
       this.filteredSnacks = this.snackCtrl.valueChanges
         .startWith(null)
         .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
     });
 
+
     if (this.addedSnacks) this.refreshShops();
+  }
+
+  // filter snacks on search
+  filterSnacks(query: string) {
+    return this.snacks.filter(snack =>
+      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+    );
   }
 
   // click snack in search or fav grid list
@@ -63,16 +66,15 @@ export class OrderComponent implements OnInit {
       if (alreadyAddedSnack) {
         this.editSnackCount(alreadyAddedSnack.id, alreadyAddedSnack.count + 1);
       } else {
-        this.snackDataService.getSnack(id).subscribe(snack => {
-          let countedSnack = snack;
-          countedSnack.count = 1;
-          this.addedSnacks.push(countedSnack);
-          this.refreshShops();
-        });
+        let countedSnack = {id: id, count: 1};
+        this.addedSnacks.push(countedSnack);
+        this.refreshShops();
 
         // update usage
         this.snackDataService.increaseSnackUsage(id).subscribe();
       }
+
+      this.refreshAddedSnacks();
 
       setTimeout(() => {
         this.snackCtrl.reset({value: '', disabled: true});
@@ -83,6 +85,15 @@ export class OrderComponent implements OnInit {
 
   }
 
+  refreshAddedSnacks() {
+    this.fullAddedSnacks = this.addedSnacks
+      .map(snack => {
+        let fullsnack = this.snacks.find(s => s.id == snack.id);
+        fullsnack.count = snack.count;
+        return fullsnack;
+      });
+  }
+
   refreshShops() {
     if (this.addedSnacks.length > 0)
       this.shopDataService.getShopsBySnacks(this.addedSnacks.map(snack => snack.id)).subscribe(shops => {
@@ -90,13 +101,9 @@ export class OrderComponent implements OnInit {
       });
   }
 
-  resetOrder() {
-    this.addedSnacks = <any>[];
-    this.snackCtrl.reset();
-  }
-
   editSnackCount(id: string, count: number) {
     if (count <= 0) {
+      // remove item
       this.addedSnacks.splice(
         this.addedSnacks.indexOf(
           this.addedSnacks.find( (s) => s.id === id)
@@ -107,6 +114,13 @@ export class OrderComponent implements OnInit {
       this.addedSnacks.find((s) => s.id === id).count = count;
     }
     this.addedSnacks.save();
+    this.refreshAddedSnacks();
+  }
+
+  resetOrder() {
+    this.addedSnacks = <any>[];
+    this.fullAddedSnacks = <any>[];
+    this.snackCtrl.reset();
   }
 
   handleMoreInfo(snack: any) {
@@ -124,7 +138,7 @@ export class OrderComponent implements OnInit {
   email() {
     let link: string = '\n\n';
 
-    this.addedSnacks.forEach((s) => {
+    this.fullAddedSnacks.forEach((s) => {
       link += '\t- ' + s.count + 'x ' + s.name + '\n';
     });
 

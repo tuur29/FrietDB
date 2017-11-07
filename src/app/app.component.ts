@@ -8,7 +8,6 @@ import { MessagesService } from './messages/messages.service';
 
 // TODO: Gather real testdata
 
-// TODO: Don't store complete snacks in localstorage
 // TODO: Add timeout to snacks & shops cache
 // TODO: Check when making new snack if snack name already exists
 // TODO: Lazy load modules! & prefetch public modules

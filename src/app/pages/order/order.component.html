@@ -45,7 +45,7 @@
   </mat-grid-tile>
 </mat-grid-list>
 
-<ng-container *ngIf="addedSnacks.length">
+<ng-container *ngIf="fullAddedSnacks.length">
 
   <!-- Order List -->
 
@@ -53,7 +53,7 @@
     <h2>Bestelling</h2>
     <mat-list>
 
-      <ng-container *ngFor="let group of (addedSnacks | groupBy:'type' | pairs) ; let last = last">
+      <ng-container *ngFor="let group of (fullAddedSnacks | groupBy:'type' | pairs) ; let last = last">
         <h3 mat-subheader>{{group[0]}}</h3>
         <mat-list-item *ngFor="let snack of group[1]">
 
