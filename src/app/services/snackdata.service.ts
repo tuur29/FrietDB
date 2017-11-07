@@ -11,6 +11,7 @@ export class SnackDataService {
   
   private url = environment.backendurl+'/snacks/';
 
+  private getSnacksLastUpdate = 0;
   private getSnacksLock = false;
   private cachedSnacks: any[];
   
@@ -26,7 +27,7 @@ export class SnackDataService {
   public getSnacks(): Observable<any[]> {
 
     // if already cached
-    if (this.cachedSnacks != null)
+    if (this.cachedSnacks != null && Date.now() - this.getSnacksLastUpdate < 1000*60*5)
       return new Observable(observer => {
         observer.next(this.cachedSnacks);
         observer.complete();
@@ -53,6 +54,7 @@ export class SnackDataService {
       let json = response.json();
       this.cachedSnacks = json;
       this.getSnacksLock = false;
+      this.getSnacksLastUpdate = Date.now();
       this.globals.loading = false;
       return json;
     });

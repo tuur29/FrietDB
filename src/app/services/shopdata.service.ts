@@ -11,6 +11,7 @@ export class ShopDataService {
   
   private url = environment.backendurl+'/shops/';
 
+  private getShopsLastUpdate = 0;
   private getShopsLock = false;
   private cachedShops: any[];
   
@@ -26,7 +27,7 @@ export class ShopDataService {
   public getShops(): Observable<any[]> {
 
     // if already cached
-    if (this.cachedShops != null)
+    if (this.cachedShops != null && Date.now() - this.getShopsLastUpdate < 1000*60*5)
       return new Observable(observer => {
         observer.next(this.cachedShops);
         observer.complete();
@@ -53,10 +54,10 @@ export class ShopDataService {
       let json = response.json();
       this.cachedShops = json;
       this.getShopsLock = false;
+      this.getShopsLastUpdate = Date.now();
       this.globals.loading = false;
       return json;
     });
-
   }
 
   public getShopsBySnacks(snacks: string[]): Observable<any[]> {
