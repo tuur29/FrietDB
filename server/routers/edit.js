@@ -51,10 +51,11 @@ let getPendingSnacks = function(snackIds, request, response, action = "query") {
     });
 }
 
-editRouter.route('/snacks/:editId')
+// get all pending snacks of shop
+editRouter.route('/snacks/:shopId')
     .get(function(request, response) {
         Edit.findOne({
-            _id: request.params.editId,
+            _id: request.params.shopId,
             type: 'shop'
         }, function(error, edit) {
             if (error) {
@@ -92,6 +93,28 @@ editRouter.route('/:editId')
 // toggle destructive routes
 if (true) {
 // if (false) {
+
+    // remove edit by item id
+    editRouter.route('/snack/:snackId')
+        .delete(function(request,response){
+            Edit.find({
+                type: 'snack'
+            }, function(error, edits) {
+                if (error) {
+                    response.status(500).send(error);
+                    return;
+                }
+
+                for (var i = 0; i < edits.length; i++) {
+                    if (edits[i].item._id == request.params.snackId) {
+                        edits[i].remove();
+                        break;
+                    }
+                }
+
+                response.json({status: 200});
+            });
+        });
 
     // make new edit
     editRouter.route('/')

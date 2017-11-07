@@ -106,4 +106,13 @@ export class EditDataService {
     });
   }
 
+  public removeByItemID(id: any): Observable<any> {    
+    return this.http.delete(this.url+"snack/"+id).map((response) =>
+      response.json()
+    ).catch((error:any) => {
+      this.messagesService.sendServerError(true).subscribe();
+      return Observable.throw(error.json().error || 'Server error');
+    });
+  }
+
 }
