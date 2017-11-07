@@ -79,7 +79,7 @@ export class TableComponent implements OnInit {
         this.database.remove(index);
       });
     } else {
-      this.router.navigate(["/edit/"+this.type+"/"+id]);
+      this.router.navigate(["/edit/"+id]);
     }
   }
 
