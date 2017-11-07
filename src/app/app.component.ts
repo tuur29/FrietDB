@@ -8,12 +8,13 @@ import { MessagesService } from './messages/messages.service';
 
 // TODO: Gather real testdata
 
-// TODO: Check when making new snack if snack name already exists
 // TODO: Lazy load modules! & prefetch public modules
-// TODO: Show snackbar error if http requests failed
 // TODO: Add shopIds field to snack -> on shop remove: remove snack if shopIds < 2
 // TODO: Use Mongoose .pre() instead of in router + dual link between snack & shop ?
 // TODO: Hide _id field from frontend (now used in editshop & editsnack components)
+// TODO: use chips for menu in shop & editshop
+
+// TODO: Check when making new snack if snack name already exists
 
 @Component({
   selector: 'app',
@@ -23,8 +24,12 @@ import { MessagesService } from './messages/messages.service';
 
       <app-header></app-header>
 
-      <div class="loader" *ngIf="globals.loading">
-        <mat-spinner></mat-spinner>
+      <div class="loader cdk-overlay-container" *ngIf="globals.loading">
+        <div class="cdk-overlay-backdrop cdk-overlay-backdrop-showing">
+        </div>
+        <div class="cdk-global-overlay-wrapper">
+          <mat-spinner></mat-spinner>
+        </div>
       </div>
 
       <div class="container">
@@ -57,12 +62,5 @@ export class AppComponent implements OnInit{
     private http: Http
   ) {}
 
-  ngOnInit() {
-    this.http.get(environment.backendurl).map((response) =>
-      response.json()
-    ).catch((error:any) => {
-      this.messagesService.send("Server is niet bereikbaar!",'Probeer opniew').subscribe(() => window.location.reload());
-      return Observable.throw(error.json().error || 'Server error')
-    }).subscribe();
-  }
+  ngOnInit() {}
 }

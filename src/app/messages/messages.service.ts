@@ -7,14 +7,17 @@ export class MessagesService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  public send(message: string, action?: string): Observable<void> {
+  public send(message: string, action?: string, duration?: number): Observable<void> {
 
     let messageRef: MatSnackBarRef<SimpleSnackBar>;
-
     messageRef = this.snackBar.open(message, action ? action : '',
-      { duration: 7500 }
+      { duration: duration || 7500 }
     );
-
     return messageRef.onAction();
   }
+
+  public sendServerError(noAction?: boolean): Observable<void> {
+    return this.send("Server is niet bereikbaar!", noAction ? '' : 'HERLADEN', 1000*60*60);
+  }
+
 }

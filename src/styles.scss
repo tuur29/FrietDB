@@ -73,14 +73,11 @@ mat-card.search {
 }
 
 .loader {
-	position: fixed;
-	background: rgba(255,255,255,0.5);
-	z-index: 1001;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	animation: 0.5s ease-in fadeIn;
+	animation: 0.75s ease-in-out fadeIn;
+}
+
+.loader .cdk-overlay-backdrop {
+	background: white;
 }
 
 @keyframes fadeIn {
@@ -92,14 +89,14 @@ mat-card.search {
    }
 }
 
-.loader mat-spinner {
+.loader.cdk-overlay-container mat-spinner {
 	position: relative;
 	top: calc( 50% - 50px );
 	left: calc( 50% - 50px );
 }
 
 .spacer {
-  flex: 1 1 auto;
+	flex: 1 1 auto;
 }
 
 .full-width {

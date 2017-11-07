@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { GlobalsService } from 'app/services/globals.service';
+import { MessagesService } from '../messages/messages.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -18,6 +19,7 @@ export class ShopDataService {
   constructor(
     private http: Http,
     public globals: GlobalsService,
+    public messagesService: MessagesService,
   ) {}
 
   public resetCache() {
@@ -57,6 +59,9 @@ export class ShopDataService {
       this.getShopsLastUpdate = Date.now();
       this.globals.loading = false;
       return json;
+    }).catch((error:any) => {
+      this.messagesService.sendServerError().subscribe(() => window.location.reload());
+      return Observable.throw(error.json().error || 'Server error');
     });
   }
 
@@ -66,6 +71,9 @@ export class ShopDataService {
     return this.http.post(this.url, body).map((response) => {
       this.globals.loading = false;
       return response.json();
+    }).catch((error:any) => {
+      this.messagesService.sendServerError().subscribe(() => window.location.reload());
+      return Observable.throw(error.json().error || 'Server error');
     });
   }
 
@@ -74,6 +82,9 @@ export class ShopDataService {
     return this.http.get(this.url+id).map((response) => {
       this.globals.loading = false;
       return response.json();
+    }).catch((error:any) => {
+      this.messagesService.sendServerError().subscribe(() => window.location.reload());
+      return Observable.throw(error.json().error || 'Server error');
     });
   }
 
@@ -83,6 +94,9 @@ export class ShopDataService {
     return this.http.delete(this.url+id).map((response) => {
       this.globals.loading = false;
       return response.json();
+    }).catch((error:any) => {
+      this.messagesService.sendServerError(true).subscribe();
+      return Observable.throw(error.json().error || 'Server error');
     });
   }
 
