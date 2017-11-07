@@ -154,10 +154,10 @@
 
           {{ snack.controls.name.value }} ({{ snack.controls.type.value }})
 
-          <button type="button" mat-icon-button *ngIf="!globals.auth.admin" (click)="dialogsService.editsnack(snack.controls.id.value)" aria-label="Aanpassen" matTooltip="Aanpassen">
+          <button type="button" mat-icon-button *ngIf="!globals.auth.admin && !snack.controls.isnew.value" (click)="dialogsService.editsnack(snack.controls.id.value)" aria-label="Aanpassen" matTooltip="Aanpassen">
             <mat-icon>edit</mat-icon>
           </button>
-          <button type="button" mat-icon-button *ngIf="!globals.auth.admin" (click)="form.get('snacks').removeAt(i)" aria-label="Verwijderen" matTooltip="Verwijderen">
+          <button type="button" mat-icon-button *ngIf="!globals.auth.admin" (click)="removeSnack(i,snack.controls.id.value,snack.controls.isnew.value)" aria-label="Verwijderen" matTooltip="Verwijderen">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -201,7 +201,7 @@
         </ng-container>
 
         <ng-template #savebtn>
-          <button type="submit" [disabled]="!form.valid" mat-button mat-raised-button color="warn">
+          <button type="submit" [disabled]="!form.valid || form.pristine" mat-button mat-raised-button color="warn">
             <mat-icon>save</mat-icon>Opslaan
           </button>
         </ng-template>

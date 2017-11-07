@@ -62,7 +62,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
           </ng-container>
 
           <ng-template #savebtn>
-            <button [disabled]='!form.valid' type="submit" mat-raised-button color="primary">
+            <button [disabled]='!form.valid || form.pristine' type="submit" mat-raised-button color="primary">
               <mat-icon>save</mat-icon>Opslaan
             </button>
           </ng-template>

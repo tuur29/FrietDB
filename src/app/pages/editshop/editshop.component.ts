@@ -82,7 +82,6 @@ export class EditShopComponent implements OnInit, OnDestroy {
         // get pending snacks
         this.editDataService.getPendingSnacks(this.id).subscribe(snacks => {
           this.pendingSnacks = snacks;
-          console.log(snacks);
         });
       } else if (this.id) {
         this.shopDataService.getShop(this.id).subscribe(shop => {
@@ -151,27 +150,30 @@ export class EditShopComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.form.setControl('snacks', this.fb.array(
-      shop.snacks.map((snack) => this.createSnackGroup(snack))
-    ));
+    shop.snacks.forEach((snack) => {
+      this.pushSnackGroup(snack);
+    });
   }
 
-  createSnackGroup(snack?: any) : FormGroup {
-    return this.fb.group({
+  pushSnackGroup(snack?: any, isnew?: boolean) {
+    const control = <FormArray> this.form.controls['snacks'];
+    control.push( this.fb.group({
       id: snack ? snack.id : '',
       name: snack ? snack.name : '',
-      type: snack ? snack.type : ''
-    });
+      type: snack ? snack.type : '',
+      isnew: isnew ? isnew : false
+    }) );
   }
 
   // editing snacks
   pickSnack(id: string, event?) {
+    this.form.markAsDirty();
     if (event.source.selected) {
       const control = <FormArray> this.form.controls['snacks'];
       let alreadyAddedSnack = control.controls.find((c) => c.value.id === id);
       if (!alreadyAddedSnack) {
         let newSnack = this.allSnacks.find((s) => s.id === id);
-        control.push(this.createSnackGroup(newSnack));
+        this.pushSnackGroup(newSnack);
       }
 
       setTimeout(() => {
@@ -181,12 +183,16 @@ export class EditShopComponent implements OnInit, OnDestroy {
     }
   }
 
+  removeSnack(index: number, id: string, isnew: boolean) {
+    this.form.markAsDirty();
+    const control = <FormArray> this.form.controls['snacks'];
+    control.removeAt(index);
+  }
+
   newSnack() {
     this.dialogsService.editsnack().subscribe((snack) => {
-      if (snack) {
-        const control = <FormArray> this.form.controls['snacks'];
-        control.push(this.createSnackGroup(snack));
-      }
+      if (snack)
+        this.pushSnackGroup(snack, true);
     });
   }
 
