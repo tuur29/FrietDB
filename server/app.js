@@ -11,7 +11,6 @@ let editRouter = require('./routers/edit');
 
 // TODO: add prod & test env
 // TODO: never crash server
-// TODO: properly close mongoose connection?
 
 // config
 const HOST_NAME = 'localhost';
@@ -30,6 +29,13 @@ mongoose.connect('mongodb://'+HOST_NAME+'/'+DATABASE_NAME, { useMongoClient: tru
   let admin = new mongoose.mongo.Admin(mongoose.connection.db);
   admin.buildInfo((err, info) => { console.log("MongoDB version " + info.version) });
 });
+
+process.on('SIGINT', function() {  
+  mongoose.connection.close(function () { 
+    console.log('Mongoose default connection disconnected through app termination'); 
+    process.exit(0); 
+  }); 
+}); 
 
 // default route to check online
 let router = express.Router();
