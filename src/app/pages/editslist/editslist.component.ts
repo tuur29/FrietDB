@@ -36,13 +36,6 @@ export class EditsListComponent implements OnInit {
 
   ngOnInit() {
 
-    // show edit snack dialog on router navigate (reload / bookmark)
-    if (this.router.url.indexOf('/edit/snack') > -1 && this.route.snapshot.params['id']) {
-      this.dialogsService.editsnack(this.route.snapshot.params['id']).subscribe(() => {
-        this.router.navigate(['edits']);
-      });
-    }
-
     this.editDataService.getShopEdits().subscribe(edits => {
       this.shopEdits = edits;
     });

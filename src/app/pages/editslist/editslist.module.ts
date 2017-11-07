@@ -9,8 +9,10 @@ import { TableComponent } from './table/table.component';
 
 @NgModule({
   imports: [
+    RouterModule.forChild([
+      { path: '', component: EditsListComponent, pathMatch: 'full' },
+    ]),
     CommonModule,
-    RouterModule,
     MaterialModule,
   ],
   declarations: [

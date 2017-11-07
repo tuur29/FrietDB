@@ -8,7 +8,7 @@ import { MessagesService } from '../../messages/messages.service';
 
     <mat-card>
       <h1>Error</h1>
-      <p>Het ziet er naar uit dat je geen toegang hebt tot deze pagina, gelieve je hieronder eerst in te loggen.</p>
+      <p>Het ziet er naar uit dat je geen toegang hebt tot deze pagina of deze niet bestaat, je kan proberen om je hieronder eerst in te loggen.</p>
       <p><a routerLink="/">Terug naar homepagina</a></p>
       <app-login [redirect]="redirecturl"></app-login>
     </mat-card>
@@ -43,13 +43,13 @@ export class ErrorComponent implements OnInit, OnDestroy {
         // redirect to page
         this.router.navigate([''+params.redirect]);
 
-      } else {
-        // general error with retry
-        let old = this.router.url;
-        this.messagesService.send('Er ging iets fout.', 'OPNIEUW').subscribe(() => {
-          this.router.navigate([old]);
-        });
-        this.router.navigate(['/']);
+      // } else {
+      //   // general error with retry
+      //   let old = this.router.url;
+      //   this.messagesService.send('Er ging iets fout.', 'OPNIEUW').subscribe(() => {
+      //     this.router.navigate([old]);
+      //   });
+      //   this.router.navigate(['/']);
         
       }
     });

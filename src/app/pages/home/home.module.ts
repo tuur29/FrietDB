@@ -12,7 +12,9 @@ import { HomeComponent } from './home.component';
 
 @NgModule({
   imports: [
-    RouterModule,
+    RouterModule.forChild([
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+    ]),
     CommonModule,
     MaterialModule,
 

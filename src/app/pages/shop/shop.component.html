@@ -9,7 +9,7 @@
         <div>
           <h1>
             {{shop.name}}
-            <a *ngIf="globals.auth.token && !globals.auth.admin" [routerLink]="'/edit/shop/'+shop.id" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
+            <a *ngIf="globals.auth.token && !globals.auth.admin" [routerLink]="'/edit/'+shop.id" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
                 <mat-icon>edit</mat-icon>
               </a>
 

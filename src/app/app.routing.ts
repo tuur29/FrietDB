@@ -1,64 +1,25 @@
-import { Routes } from '@angular/router';
-
+import { Routes, Route, PreloadingStrategy } from '@angular/router';
 import { ErrorComponent } from './pages/error/error.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ShopComponent } from './pages/shop/shop.component';
-import { OrderComponent } from './pages/order/order.component';
-import { HeatmapComponent } from './pages/heatmap/heatmap.component';
-import { EditShopComponent } from './pages/editshop/editshop.component';
-import { EditsListComponent } from './pages/editslist/editslist.component';
+
+import { Observable } from 'rxjs/Observable';
 
 export const routes: Routes = [
 
-  {
-   path: 'shop/:id',
-   component : ShopComponent
-  },
+  { path: 'shop', loadChildren: './pages/shop/shop.module#ShopModule', data: {preload: true} },
+  { path: 'order', loadChildren: './pages/order/order.module#OrderModule', data: {preload: true} },
+  { path: 'heatmap', loadChildren: './pages/heatmap/heatmap.module#HeatmapModule', data: {preload: false} },
 
-  {
-   path: 'order',
-   component : OrderComponent
-  },
+  { path: 'edit', loadChildren: './pages/editshop/editshop.module#EditShopModule', data: {preload: false} },
+  { path: 'edits', loadChildren: './pages/editslist/editslist.module#EditsListModule', data: {preload: false} },
 
-  {
-   path: 'heatmap',
-   component : HeatmapComponent
-  },
-
-  {
-   path: 'edit/shop',
-   component : EditShopComponent,
-  },
-  {
-   path: 'edit/shop/:id',
-   component : EditShopComponent,
-  },
-  {
-   path: 'edit/snack',
-   component : EditsListComponent,
-  },
-  {
-   path: 'edit/snack/:id',
-   component : EditsListComponent
-  },
-
-  {
-   path: 'edits',
-   component : EditsListComponent
-  },
-
-  {
-    path: '',
-    component : HomeComponent
-  },
-
-  {
-    path: 'error/:status/:redirect',
-    component: ErrorComponent
-  },
-  {
-    path: '**',
-    component: ErrorComponent
-  }
+  { path: 'error/:status/:redirect', component: ErrorComponent },
+  { path: '', loadChildren: './pages/home/home.module#HomeModule', data: {preload: true} },
+  { path: '**', component: ErrorComponent }
 
 ];
+
+export class PreloadSelectedModulesList implements PreloadingStrategy {
+  preload(route: Route, load: Function): Observable<any> {
+    return route.data && route.data.preload ? load() : typeof(null);
+  }
+}

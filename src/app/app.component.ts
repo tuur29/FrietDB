@@ -8,7 +8,8 @@ import { MessagesService } from './messages/messages.service';
 
 // TODO: Gather real testdata
 
-// TODO: Lazy load modules! & prefetch public modules
+// TODO: Add route guards
+// TODO: prevent navigation when editshop / editsnack form dirty
 // TODO: Add shopIds field to snack -> on shop remove: remove snack if shopIds < 2
 // TODO: Use Mongoose .pre() instead of in router + dual link between snack & shop ?
 // TODO: Hide _id field from frontend (now used in editshop & editsnack components)

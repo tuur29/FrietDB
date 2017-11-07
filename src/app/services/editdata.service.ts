@@ -6,6 +6,7 @@ import { ShopDataService } from 'app/services/shopdata.service';
 import { SnackDataService } from 'app/services/snackdata.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch'
 
 import { environment } from 'environments/environment';
 

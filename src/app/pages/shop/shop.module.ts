@@ -11,12 +11,13 @@ import { MaterialModule } from '../../material.module';
 
 @NgModule({
   imports: [
-    RouterModule,
+    RouterModule.forChild([
+      { path: ':id', component: ShopComponent },
+    ]),
     CommonModule,
     NgPipesModule,
     MarkdownModule,
     MaterialModule,
-
     MapModule,
   ],
   exports: [MarkdownModule],

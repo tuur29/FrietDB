@@ -63,12 +63,20 @@ export class EditShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    // show edit snack dialog on router navigate (reload / bookmark)
+    if (this.router.url.indexOf('/edit/snack') > -1) {
+      this.dialogsService.editsnack(this.route.snapshot.params['id']).subscribe(() => {
+        this.router.navigate(['edits']);
+      });
+    }
+
     // get proposed edit by id if set
     this.subroute = this.route.params.subscribe((params) => {
       this.id = params['id'];
       // deny access
       if (!this.globals.auth.token)
-        this.router.navigate(['error', 403, 'edit/shop/' + this.id]);
+        this.router.navigate(['error', 403, 'edit/' + this.id]);
 
       // deny admins to make new shops
       if (this.globals.auth.admin && this.id === undefined)
