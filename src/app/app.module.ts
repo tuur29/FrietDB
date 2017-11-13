@@ -56,8 +56,4 @@ import { MessagesModule } from './messages/messages.module';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(private globals: GlobalsService) {
-    globals.title = window.document.title;
-  }
-}
+export class AppModule {}

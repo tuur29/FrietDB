@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalsService } from 'app/services/globals.service';
 import { ShopDataService } from 'app/services/shopdata.service';
 
 @Component({
@@ -34,13 +33,10 @@ export class HomeComponent implements OnInit {
   private title: string;
   private shops: any[];
 
-  constructor(
-    private globals: GlobalsService,
-    private shopDataService: ShopDataService,
-  ) {}
+  constructor( private shopDataService: ShopDataService ) {}
 
   ngOnInit() {
-    this.title = this.globals.title;
+    this.title = window.document.title;
     this.shopDataService.getShops().subscribe(shops => {
       this.shops = shops;
     });

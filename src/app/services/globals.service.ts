@@ -3,8 +3,7 @@ import { LocalStorageService } from 'ngx-store';
 
 @Injectable()
 export class GlobalsService {
-
-  title: string;
+  
   loading = false;
 
   constructor(private localStorageService: LocalStorageService) {

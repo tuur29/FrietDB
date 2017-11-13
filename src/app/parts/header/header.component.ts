@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
   private title: string;
 
   constructor(public globals: GlobalsService) {
-    this.title = globals.title;
+    this.title = window.document.title;
   }
 
   ngOnInit() {
