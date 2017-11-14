@@ -4,7 +4,7 @@ This web app shows the menu and more info about 'frituren' in the Ghent area.
 
 ## API Keys
 
-You will have to add 2 files called `/src/environments/environment(.prod).ts` with the necessary api keys. The files should look like this:
+You will have to add 3 files, 2 are called `/src/environments/environment(.prod).ts` with the necessary api keys and should look like this:
 
 ```
 export const environment = {
@@ -14,6 +14,17 @@ export const environment = {
 };
 ```
 You will need a [Google Maps Javascript API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+
+The third file should be called `/server/.env` and looks like this:
+
+```
+
+HOST_NAME=localhost
+DATABASE_NAME=frietdb
+
+JWT_SECRET=-e,aj(ef,X$X>F6'^uDH8;u\uDDz)"9`
+
+```
 
 ## Development server
 

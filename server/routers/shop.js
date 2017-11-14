@@ -3,6 +3,10 @@ let mongoose = require('mongoose');
 let Shop = require('../models/shop');
 let shopRouter = express.Router();
 
+let jwt = require('express-jwt');
+let auth = jwt({secret: process.env.JWT_SECRET, userProperty: 'user'});
+let authadmin = require('../adminguard');
+
 let subsetShops = function(shops) {
     return shops.map(function(s) {
         return {
@@ -55,8 +59,7 @@ shopRouter.route('/:shopId')
         });
     })
 
-    // TODO: Add user validation
-    .delete(function(request,response){
+    .delete(auth, authadmin, function(request,response){
         Shop.findOne({
             _id: request.params.shopId
         }, function(error, shop) {
