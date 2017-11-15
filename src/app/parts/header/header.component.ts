@@ -12,7 +12,7 @@ import { GlobalsService } from 'app/services/globals.service';
 
       <span class="spacer"></span>
 
-      <app-searchshop [inline]="true"></app-searchshop>
+      <app-searchshop [inheader]="true"></app-searchshop>
       <a routerLink="order">Bestelling</a>
       <a routerLink="heatmap">Heatmap</a>
       <a routerLink="edits" *ngIf="globals.auth.admin && globals.auth.token">Aanpassingen</a>

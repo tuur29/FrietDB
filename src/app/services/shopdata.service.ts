@@ -24,7 +24,6 @@ export class ShopDataService {
   ) {}
 
   public resetCache() {
-    // TODO: resetting shopcache doesn't update header
     this.cachedShops = null;
   }
 

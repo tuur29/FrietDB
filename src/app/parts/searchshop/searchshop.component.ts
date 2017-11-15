@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { ShopDataService } from 'app/services/shopdata.service';
 
 import { FormControl } from '@angular/forms';
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
   template: `
 
     <form>
-      <mat-form-field class="full-width" [floatPlaceholder]="inline?'never':''">
+      <mat-form-field class="full-width" [floatPlaceholder]="inheader?'never':''">
 
         <button mat-icon-button matPrefix>
           <mat-icon>search</mat-icon>
@@ -39,7 +39,7 @@ import 'rxjs/add/operator/map';
 })
 export class SearchShopComponent implements OnInit {
 
-  @Input() private inline: boolean = false;
+  @Input() private inheader: boolean = false;
 
   private shopCtrl: FormControl = new FormControl();
   private filteredShops: Observable<any[]>;
@@ -52,6 +52,16 @@ export class SearchShopComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (this.inheader)
+      this.router.events.subscribe((val) => {
+        if (val instanceof NavigationEnd)
+          this.getShops();
+      });
+    else
+      this.getShops();
+  }
+
+  getShops() {
     this.shopDataservice.getShops().subscribe(shops => {
       this.shops = shops;
       this.filteredShops = this.shopCtrl.valueChanges
