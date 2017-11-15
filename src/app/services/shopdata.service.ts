@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { GlobalsService } from 'app/services/globals.service';
 import { MessagesService } from '../messages/messages.service';
 import { Observable } from 'rxjs/Observable';
@@ -24,6 +24,7 @@ export class ShopDataService {
   ) {}
 
   public resetCache() {
+    // TODO: resetting shopcache doesn't update header
     this.cachedShops = null;
   }
 
@@ -92,7 +93,9 @@ export class ShopDataService {
   public removeShop(id: string): Observable<any> {
     this.globals.loading = true;
     this.resetCache();
-    return this.http.delete(this.url+id).map((response) => {
+    return this.http.delete(this.url+id, {
+      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
+    }).map((response) => {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {

@@ -73,7 +73,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
     // get proposed edit by id if set
     this.subroute = this.route.params.subscribe((params) => {
-      this.id = params['id'];
+      this.id = params['id'] == "shop" ? null : params['id'];
       // deny access
       if (!this.globals.auth.token)
         this.router.navigate(['error', 403, 'edit/' + this.id]);

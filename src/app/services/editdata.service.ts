@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { GlobalsService } from 'app/services/globals.service';
 import { MessagesService } from '../messages/messages.service';
 import { ShopDataService } from 'app/services/shopdata.service';
@@ -25,7 +25,9 @@ export class EditDataService {
 
   public getShopEdits(): Observable<any[]> {
     this.globals.loading = true;
-    return this.http.get(this.url+"shops").map((response) => {
+    return this.http.get(this.url+"shops", {
+      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
+    }).map((response) => {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
@@ -36,7 +38,9 @@ export class EditDataService {
 
   public getSnackEdits(): Observable<any[]> {
     this.globals.loading = true;
-    return this.http.get(this.url+"snacks").map((response) => {
+    return this.http.get(this.url+"snacks", {
+      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
+    }).map((response) => {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
@@ -47,7 +51,9 @@ export class EditDataService {
 
   public getPendingSnacks(id: string): Observable<any[]> {
     this.globals.loading = true;
-    return this.http.get(this.url+"snacks/"+id).map((response) => {
+    return this.http.get(this.url+"snacks/"+id, {
+      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
+    }).map((response) => {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
@@ -58,7 +64,9 @@ export class EditDataService {
 
   public getItem(id: string): Observable<any> {
     this.globals.loading = true;
-    return this.http.get(this.url+id).map((response) => {
+    return this.http.get(this.url+id, {
+      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
+    }).map((response) => {
       this.globals.loading = false;
       return response.json().item;
     }).catch((error:any) => {
@@ -73,7 +81,9 @@ export class EditDataService {
       item: item
     };
 
-    return this.http.put(this.url, data).map((response) => 
+    return this.http.put(this.url, data, {
+      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
+    }).map((response) => 
       response.json()
     ).catch((error:any) => {
       this.messagesService.sendServerError(true).subscribe();
@@ -83,7 +93,9 @@ export class EditDataService {
 
   public accept(id: any): Observable<any> {
 
-    return this.http.post(this.url+id,'').map((response) => {
+    return this.http.post(this.url+id,'', {
+      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
+    }).map((response) => {
       if (response) {
         if (response.json().snacks) // is shop
           this.shopDataService.resetCache();
@@ -99,7 +111,9 @@ export class EditDataService {
   }
 
   public remove(id: any): Observable<any> {    
-    return this.http.delete(this.url+id).map((response) =>
+    return this.http.delete(this.url+id, {
+      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
+    }).map((response) =>
       response.json()
     ).catch((error:any) => {
       this.messagesService.sendServerError(true).subscribe();
@@ -108,7 +122,9 @@ export class EditDataService {
   }
 
   public removeByItemID(id: any): Observable<any> {    
-    return this.http.delete(this.url+"snack/"+id).map((response) =>
+    return this.http.delete(this.url+"snack/"+id, {
+      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
+    }).map((response) =>
       response.json()
     ).catch((error:any) => {
       this.messagesService.sendServerError(true).subscribe();

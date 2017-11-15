@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { GlobalsService } from 'app/services/globals.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,34 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
         <mat-error *ngIf="form.hasError('email', 'email') && form.get('email').touched">
           Gelieve een geldig e-mailadres in te vullen.
         </mat-error>
+        <mat-error *ngIf="form.hasError('inuse', 'email')">
+          Dit e-mailadres is al in gebruik.
+        </mat-error>
       </mat-form-field>
+
+      <ng-container formGroupName="passwordGroup">
+
+        <mat-form-field>
+          <input type="password" matInput placeholder="Wachtwoord" required formControlName="password">
+          <mat-error *ngIf="form.controls.passwordGroup.hasError('required', 'password') && form.controls.passwordGroup.get('password').touched">
+            Gelieve een wachtwoord in te vullen.
+          </mat-error>
+
+          <mat-error *ngIf="form.controls.passwordGroup.hasError('minlength', 'password') && form.controls.passwordGroup.get('password').touched">
+            Dit wachtwoord is te kort.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="password" matInput placeholder="Herhaal wachtwoord" required formControlName="password2">
+
+          <mat-hint class="color-warn" *ngIf="form.controls.passwordGroup.hasError('different') && form.controls.passwordGroup.touched">
+            De wachtwoorden komen niet overeen.
+          </mat-hint>
+        </mat-form-field>
+
+
+      </ng-container>
 
       <div mat-dialog-actions>
         <button type="submit" [disabled]='!form.valid' mat-raised-button color="primary">
@@ -49,7 +77,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
     mat-form-field:not(:first-of-type) {
       display: block;
-      margin: 20px 0;
+      margin-bottom: 20px;
     }
 
   `]
@@ -59,25 +87,42 @@ export class RegisterDialog implements OnInit {
   private form: FormGroup;
 
   constructor(
+    public globals: GlobalsService,
     public dialogRef: MatDialogRef<RegisterDialog>,
     private fb: FormBuilder
   ) {
     this.form = fb.group({
       name: ['', Validators.required],
-      email: ['', Validators.email]
+      email: ['', Validators.email],
+      passwordGroup: fb.group({
+        password: ['', [Validators.required, Validators.minLength(4)]],
+        password2: ['', Validators.required]
+      }, { validator: this.comparePasswords })
     });
   }
+
+  ngOnInit() {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onSubmit(data: any) {
-      console.log('sending', data.name, data.email);
+    this.globals.register(data.email, data.name, data.passwordGroup.password).subscribe(()=>{
       this.dialogRef.close();
+    },
+    (err) => {
+      if (err.indexOf("E11000") > -1)
+        this.form.controls.email.setErrors({ inuse: true });
+      else
+        alert("Er ging iets mis tijdens de registratie");
+    });
   }
 
-  ngOnInit() {
+  private comparePasswords(control: AbstractControl): { [key: string]: any } {
+    let password = control.get('password').value;
+    let confirmPassword = control.get('password2').value;
+    return password === confirmPassword ? null : { 'different': true };
   }
 
 }

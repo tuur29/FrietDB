@@ -19,6 +19,10 @@ import { DialogsService } from '../../dialogs/dialogs.service';
           <mat-error *ngIf="form.hasError('email', 'email') && form.get('email').touched">
             Gelieve een geldig e-mailadres in te vullen.
           </mat-error>
+
+          <mat-hint class="color-warn" *ngIf="wronglogin">
+            Verkeerd e-mail / wachwoord!
+          </mat-hint>
         </mat-form-field>
 
         <mat-form-field>
@@ -34,15 +38,12 @@ import { DialogsService } from '../../dialogs/dialogs.service';
         <button type="button" mat-raised-button (click)="dialogsService.register()">Registreer</button>
       </form>
 
-      <!-- Edit buttons -->
+      <!-- logged in buttons -->
       <div *ngIf="globals.auth.token">
+        <button mat-raised-button color="warn" (click)="logout()">Log uit</button>
         <a *ngIf="!globals.auth.admin" mat-raised-button color="accent" routerLink="edit/shop">
           <mat-icon>add</mat-icon>Nieuwe frituur
         </a>
-        <button mat-raised-button color="warn" (click)="logout()">Log uit</button>
-        <button mat-raised-button color="primary" (click)="toggleAdmin()">
-          <mat-icon *ngIf="globals.auth.admin">check</mat-icon> Admin
-        </button>
       </div>
 
   `,
@@ -64,9 +65,9 @@ export class LoginComponent implements OnInit {
   @Input() private redirect: string;
 
   private form: FormGroup;
+  private wronglogin = false;
 
   constructor(
-    private localStorageService: LocalStorageService,
     public globals: GlobalsService,
     public dialogsService: DialogsService,
     private router: Router,
@@ -76,31 +77,29 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.email],
       password: ['', Validators.required]
     });
-}
 
-  ngOnInit() {
+    this.form.valueChanges.subscribe(()=>{
+      this.wronglogin = false;
+    });
   }
 
+  ngOnInit() {}
+
   onSubmit(data: any) {
-    this.globals.auth.token = data.email + data.password;
-    this.saveAuth();
-    if (this.redirect)
-      this.router.navigate([this.redirect]);
+    this.globals.login(data.email, data.password).subscribe(()=>{
+      if (this.redirect)
+        this.router.navigate([this.redirect]);
+    },
+    (err) => {
+      setTimeout(()=>{
+        this.wronglogin = true;
+      });
+    });
   }
 
   logout() {
-    this.globals.auth.token = '';
+    this.globals.logout();
     this.router.navigate(['']);
-    this.saveAuth();
-  }
-
-  toggleAdmin() {
-    this.globals.auth.admin = !this.globals.auth.admin;
-    this.saveAuth();
-  }
-
-  saveAuth() {
-    this.localStorageService.set('auth', this.globals.auth);
   }
 
 }
