@@ -5,6 +5,10 @@ let userRouter = express.Router();
 let passport = require('passport');
 require('../passport');
 
+let jwt = require('express-jwt');
+let auth = jwt({secret: process.env.JWT_SECRET, userProperty: 'user'});
+let authadmin = require('../adminguard');
+
 userRouter.route('/login')
     .post(function(req, res, next){
         if ( !req.body.email || !req.body.password )
@@ -38,5 +42,59 @@ userRouter.route('/register')
             return res.json({token: user.generateJWT()})
         });
   });
+
+userRouter.route('/:userId')
+    .post(auth, authadmin, function(request, response) {
+        let userId = request.params.userId;
+        User.findOne({
+            _id: userId
+        }, function(error, user) {
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+            user.status = 'ACTIVE';
+            user.save();
+            response.json(user);
+        });
+    })
+
+    .delete(auth, authadmin, function(request, response) {
+        let userId = request.params.userId;
+        User.findOne({
+            _id: userId
+        }, function(error, user) {
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+            user.status = 'DISABLED';
+            user.save();
+            response.json(user);
+        });
+    });
+
+let subsetUsers = function(users) {
+    return users.map(function(u) {
+        return {
+            id: u._id,
+            name: u.name,
+            email: u.email,
+            admin: u.admin,
+            status: u.status
+        };
+    });
+}
+
+userRouter.route('/')
+    .get(auth, authadmin, function(request, response) {
+        User.find(function(error, users) {
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+            response.json(subsetUsers(users));
+        });
+    });
 
 module.exports = userRouter;

@@ -5,6 +5,7 @@ let jwt = require('jsonwebtoken');
 
 const UserSchema = new Schema({
 	name: String,
+  status: { type: String, enum: ['ACTIVE','DISABLED'], default: 'DISABLED' },
 	email: { type: String, lowercase: true, unique: true },
 	admin: { type: Boolean, default: false },
 	hash: String,
@@ -19,6 +20,10 @@ UserSchema.methods.setPassword = function (password) {
 UserSchema.methods.validPassword = function (password) {
 	let hash = crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('hex');
   return this.hash === hash;
+};
+
+UserSchema.methods.isActive = function () {
+  return this.status == 'ACTIVE';
 };
 
 UserSchema.methods.generateJWT = function () {
