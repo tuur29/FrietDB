@@ -28,7 +28,7 @@
     <!-- userName Column -->
     <ng-container matColumnDef="userName">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Naam gebruiker </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.user}} </mat-cell>
+      <mat-cell *matCellDef="let row" [matTooltip]="row.user.email"> {{row.user.name}} </mat-cell>
     </ng-container>
 
     <!-- timestamp Column -->

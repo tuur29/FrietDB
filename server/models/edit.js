@@ -5,9 +5,7 @@ const EditSchema = new Schema({
 	timestamp: { type: Number, required: true },
     type: { type: String, required: true },
     item: Schema.Types.Mixed,
-    user: {
-    	name: String
-    }
+    user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 EditSchema.set('toJSON', {

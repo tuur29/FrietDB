@@ -54,7 +54,7 @@ export class EditsDataSource extends DataSource<any> {
     return Observable.merge(...displayDataChanges).map(() => {
       // Filter data
       this.filteredData = this._database.data.slice().filter((row: any) => {
-        let searchStr = (row.user + row.item).toLowerCase();
+        let searchStr = (row.user.name + row.item.name).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 

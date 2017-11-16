@@ -10,7 +10,7 @@ let auth = jwt({secret: process.env.JWT_SECRET, userProperty: 'user'});
 let authadmin = require('../adminguard');
 
 let handleGetAll = function(type, request, response) {
-    Edit.find({ type: type }).sort([['timestamp', -1]]).exec(function(error, edits) {
+    Edit.find({ type: type }).populate('user').sort([['timestamp', -1]]).exec(function(error, edits) {
         if (error) {
             response.status(500).send(error);
             return;
@@ -20,7 +20,10 @@ let handleGetAll = function(type, request, response) {
                 id: e._id,
                 timestamp: e.timestamp,
                 item: e.item.name,
-                user: e.user.name
+                user: {
+                    name: e.user.name,
+                    email: e.user.email
+                }
             };
         })
         response.json(subsettededits);
@@ -33,7 +36,7 @@ editRouter.route('/snacks').get(auth,authadmin,function(req,res) { handleGetAll(
 let getPendingSnacks = function(snackIds, request, response, action = "query") {
     Edit.find({
         type: 'snack'
-    }, function(error, snacks) {
+    }).populate('user').exec(function(error, snacks) {
         if (error) {
             response.status(500).send(error);
             return;
@@ -72,7 +75,7 @@ editRouter.route('/:editId')
     .get(auth, authadmin, function(request, response) {
         Edit.findOne({
             _id: request.params.editId
-        }, function(error, edit) {
+        }).populate('user').exec(function(error, edit) {
             if (error) {
                 response.status(500).send(error);
                 return;
@@ -132,7 +135,7 @@ editRouter.route('/')
                 timestamp: Math.round(new Date().getTime() /1000),
                 type: request.body.type,
                 item: item,
-                user: { name: "Tuur" }
+                user: request.user.id
             });
             edit.save(function (error, results) {
                 if (error) {
