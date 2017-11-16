@@ -16,6 +16,7 @@ import { GlobalsService } from 'app/services/globals.service';
       <a routerLink="order">Bestelling</a>
       <a routerLink="heatmap">Heatmap</a>
       <a routerLink="edits" *ngIf="globals.auth.admin && globals.auth.token">Aanpassingen</a>
+      <a routerLink="users" *ngIf="globals.auth.admin && globals.auth.token">Gebruikers</a>
     </mat-toolbar>
 
   `,

@@ -22,6 +22,7 @@ import { GlobalsService } from './services/globals.service';
 import { ShopDataService } from './services/shopdata.service';
 import { SnackDataService } from './services/snackdata.service';
 import { EditDataService } from './services/editdata.service';
+import { UserDataService } from './services/userdata.service';
 
 import { DialogsModule } from './dialogs/dialogs.module';
 import { MessagesModule } from './messages/messages.module';
@@ -55,6 +56,7 @@ import { MessagesModule } from './messages/messages.module';
     ShopDataService,
     SnackDataService,
     EditDataService,
+    UserDataService
   ],
   bootstrap: [AppComponent],
 })

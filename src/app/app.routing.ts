@@ -12,6 +12,8 @@ export const routes: Routes = [
   { path: 'edit', loadChildren: './pages/editshop/editshop.module#EditShopModule', data: {preload: false} },
   { path: 'edits', loadChildren: './pages/editslist/editslist.module#EditsListModule', data: {preload: false} },
 
+  { path: 'users', loadChildren: './pages/users/users.module#UsersModule', data: {preload: false} },
+
   { path: 'error/:status/:redirect', component: ErrorComponent },
   { path: '', loadChildren: './pages/home/home.module#HomeModule', data: {preload: true} },
   { path: '**', component: ErrorComponent }
