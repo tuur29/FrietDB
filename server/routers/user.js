@@ -46,30 +46,32 @@ userRouter.route('/register')
 userRouter.route('/:userId')
     .post(auth, authadmin, function(request, response) {
         let userId = request.params.userId;
-        User.findOne({
-            _id: userId
-        }, function(error, user) {
+        User.findOneAndUpdate({
+            _id: userId,
+            admin: false
+        },{
+            status: 'ACTIVE'
+        }, {new: true}, function(error, user) {
             if (error) {
                 response.status(500).send(error);
                 return;
             }
-            user.status = 'ACTIVE';
-            user.save();
             response.json(user);
         });
     })
 
     .delete(auth, authadmin, function(request, response) {
         let userId = request.params.userId;
-        User.findOne({
-            _id: userId
-        }, function(error, user) {
+        User.findOneAndUpdate({
+            _id: userId,
+            admin: false
+        },{
+            status: 'DISABLED'
+        }, {new: true}, function(error, user) {
             if (error) {
                 response.status(500).send(error);
                 return;
             }
-            user.status = 'DISABLED';
-            user.save();
             response.json(user);
         });
     });

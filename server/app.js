@@ -19,7 +19,7 @@ let userRouter = require('./routers/user');
 // TODO: add backend unit tests
 // TODO: link user to edit in backend
 // TODO: send user email when requesting edits
-// TODO: disallow admins to disable admins
+// TODO: check for crash on invalid findOne method
 
 // setup
 let app = express();
