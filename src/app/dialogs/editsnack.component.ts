@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { GlobalsService } from 'app/services/globals.service';
 import { EditDataService } from '../services/editdata.service';
@@ -68,7 +68,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
           </ng-template>
 
         <span class="spacer"></span>
-        <button type="button" mat-button mat-dialog-close color="warn">SLUITEN</button>
+        <button type="button" mat-button mat-dialog-close color="warn">ANNULEER</button>
       </div>
 
     </form>
@@ -117,6 +117,11 @@ export class EditSnackDialog implements OnInit {
       image: ["", Validators.pattern('^https?:\/\/.+$')],
       link: ["", Validators.pattern('^https?:\/\/.+$')]
     });
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeUnload($event) {
+    return !this.form.dirty;
   }
 
   ngOnInit() {
