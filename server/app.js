@@ -17,6 +17,9 @@ let userRouter = require('./routers/user');
 
 
 // TODO: add backend unit tests
+// TODO: link user to edit in backend
+// TODO: send user email when requesting edits
+// TODO: disallow admins to disable admins
 
 // setup
 let app = express();
