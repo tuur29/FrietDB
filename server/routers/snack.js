@@ -56,8 +56,8 @@ snackRouter.route('/:snackId')
         Snack.findOne({
             _id: snackId
         }, function(error, snack) {
-            if (error) {
-                response.status(500).send(error);
+            if (error || snack==null) {
+                response.status(500).send(error || null);
                 return;
             }
             snack.usage++;

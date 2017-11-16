@@ -63,8 +63,8 @@ editRouter.route('/snacks/:shopId')
             _id: request.params.shopId,
             type: 'shop'
         }, function(error, edit) {
-            if (error) {
-                response.status(500).send(error);
+            if (error || edit==null) {
+                response.status(500).send(error || null);
                 return;
             }
             getPendingSnacks(edit.item.snacks, request, response);
@@ -76,8 +76,8 @@ editRouter.route('/:editId')
         Edit.findOne({
             _id: request.params.editId
         }).populate('user').exec(function(error, edit) {
-            if (error) {
-                response.status(500).send(error);
+            if (error || edit==null) {
+                response.status(500).send(error || null);
                 return;
             }
             if (edit.type == 'shop') {
@@ -97,6 +97,7 @@ editRouter.route('/:editId')
 
 // destructive routes
 
+// TODO: not safe! (removeByItemID)
 // remove edit by item id
 editRouter.route('/snack/:snackId')
     .delete(auth, authadmin, function(request,response){
@@ -157,8 +158,8 @@ editRouter.route('/:editId')
         Edit.findOne({
             _id: request.params.editId
         }, function(error, edit) {
-            if (error) {
-                response.status(500).send(error);
+            if (error || edit==null) {
+                response.status(500).send(error || null);
                 return;
             }
 
@@ -208,8 +209,8 @@ editRouter.route('/:editId')
         Edit.findOne({
             _id: request.params.editId
         }, function(error, edit) {
-            if (error) {
-                response.status(500).send(error);
+            if (error || edit==null) {
+                response.status(500).send(error || null);
                 return;
             }
 

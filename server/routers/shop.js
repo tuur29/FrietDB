@@ -63,8 +63,8 @@ shopRouter.route('/:shopId')
         Shop.findOne({
             _id: request.params.shopId
         }, function(error, shop) {
-            if (error) {
-                response.status(500).send(error);
+            if (error || shop==null) {
+                response.status(500).send(error || null);
                 return;
             }
             shop.remove();

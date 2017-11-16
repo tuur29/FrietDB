@@ -16,7 +16,6 @@ let editRouter = require('./routers/edit');
 let userRouter = require('./routers/user');
 
 // TODO: Add backend unit tests
-// TODO: Check for crash on invalid findOne method
 // TODO: Add shopIds field to snack -> on shop remove: remove snack if shopIds < 2
 // TODO: Use Mongoose .pre() instead of in router + dual link between snack & shop?
 
