@@ -2,12 +2,12 @@ import { MessagesService } from './messages.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MaterialModule } from '../material.module';
+import { LightMaterialModule } from '../lightmaterial.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        MaterialModule
+        LightMaterialModule
     ],
     providers: [MessagesService]
 })

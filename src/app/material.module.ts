@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LightMaterialModule } from './lightmaterial.module';
 
 import { NoConflictStyleCompatibilityMode } from '@angular/material';
-import { MatToolbarModule, MatExpansionModule, MatListModule, MatGridListModule, MatSnackBarModule, MatDialogModule, MatTableModule, MatPaginatorModule, MatTooltipModule, MatRippleModule, MatIconModule, MatButtonModule, MatCardModule, MatAutocompleteModule, MatInputModule, MatSelectModule, MatSortModule, MatProgressSpinnerModule
+import { MatExpansionModule, MatGridListModule, MatTableModule, MatPaginatorModule, MatRippleModule,  MatSelectModule, MatSortModule
 } from '@angular/material';
 
 @NgModule({
-  imports: [ NoConflictStyleCompatibilityMode,
-    MatToolbarModule, MatExpansionModule, MatListModule, MatGridListModule, MatSnackBarModule, MatDialogModule, MatTableModule, MatPaginatorModule, MatTooltipModule, MatRippleModule, MatIconModule, MatButtonModule, MatCardModule, MatAutocompleteModule, MatInputModule, MatSelectModule, MatSortModule, MatProgressSpinnerModule
+  imports: [ MatExpansionModule, MatGridListModule, MatTableModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule
   ],
   exports: [
-    MatToolbarModule, MatExpansionModule, MatListModule, MatGridListModule, MatSnackBarModule, MatDialogModule, MatTableModule, MatPaginatorModule, MatTooltipModule, MatRippleModule, MatIconModule, MatButtonModule, MatCardModule, MatAutocompleteModule, MatInputModule, MatSelectModule, MatSortModule, MatProgressSpinnerModule
+    LightMaterialModule, MatExpansionModule, MatGridListModule, MatTableModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule
   ],
 })
 export class MaterialModule { }

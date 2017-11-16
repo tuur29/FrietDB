@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeatmapComponent } from './heatmap.component';
 
-import { MaterialModule } from '../../material.module';
+import { LightMaterialModule } from '../../lightmaterial.module';
 
 import { MapModule } from '../../parts/map/map.module';
 
@@ -13,7 +13,7 @@ import { MapModule } from '../../parts/map/map.module';
       { path: '', component: HeatmapComponent, pathMatch: 'full' },
     ]),
     CommonModule,
-    MaterialModule,
+    LightMaterialModule,
     MapModule,
   ],
   declarations: [HeatmapComponent]

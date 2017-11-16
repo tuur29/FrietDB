@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { OrderComponent } from './order.component';
 import { MapModule } from '../../parts/map/map.module';
 
-import { MaterialModule } from '../../material.module';
+import { LightMaterialModule } from '../../lightmaterial.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgPipesModule } from 'ngx-pipes';
 
@@ -15,7 +15,7 @@ import { NgPipesModule } from 'ngx-pipes';
       { path: '', component: OrderComponent, pathMatch: 'full' },
     ]),
     CommonModule,
-    MaterialModule,
+    LightMaterialModule,
     FormsModule,
     ReactiveFormsModule,
     NgPipesModule,

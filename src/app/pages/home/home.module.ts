@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { MaterialModule } from '../../material.module';
+import { LightMaterialModule } from '../../lightmaterial.module';
 
 import { MapModule } from '../../parts/map/map.module';
 import { LoginModule } from '../../parts/login/login.module';
@@ -16,7 +16,7 @@ import { HomeComponent } from './home.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
     ]),
     CommonModule,
-    MaterialModule,
+    LightMaterialModule,
 
     LoginModule,
     MapModule,

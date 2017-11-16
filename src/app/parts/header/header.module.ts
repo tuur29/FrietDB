@@ -5,13 +5,13 @@ import { HeaderComponent } from './header.component';
 
 import { SearchShopModule } from '../searchshop/searchshop.module';
 
-import { MaterialModule } from '../../material.module';
+import { LightMaterialModule } from '../../lightmaterial.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule,
+    LightMaterialModule,
 
     SearchShopModule,
   ],

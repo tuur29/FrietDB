@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ErrorComponent } from './error.component';
 
-import { MaterialModule } from '../../material.module';
+import { LightMaterialModule } from '../../lightmaterial.module';
 
 import { LoginModule } from '../../parts/login/login.module';
 
@@ -11,7 +11,7 @@ import { LoginModule } from '../../parts/login/login.module';
   imports: [
     RouterModule,
     CommonModule,
-    MaterialModule,
+    LightMaterialModule,
     LoginModule,
   ],
   declarations: [ErrorComponent]

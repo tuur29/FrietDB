@@ -9,7 +9,7 @@ import { WebStorageModule } from 'ngx-store';
 import { environment } from '../environments/environment';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
+import { LightMaterialModule } from './lightmaterial.module';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -40,7 +40,7 @@ import { MessagesModule } from './messages/messages.module';
     }),
 
     BrowserAnimationsModule,
-    MaterialModule,
+    LightMaterialModule,
 
     DialogsModule,
     MessagesModule,

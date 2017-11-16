@@ -7,7 +7,7 @@ import { MapModule } from '../../parts/map/map.module';
 
 import { MarkdownModule } from 'angular2-markdown';
 import { NgPipesModule } from 'ngx-pipes';
-import { MaterialModule } from '../../material.module';
+import { LightMaterialModule } from '../../lightmaterial.module';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { MaterialModule } from '../../material.module';
     CommonModule,
     NgPipesModule,
     MarkdownModule,
-    MaterialModule,
+    LightMaterialModule,
     MapModule,
   ],
   exports: [MarkdownModule],
