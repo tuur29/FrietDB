@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { GlobalsService } from 'app/services/globals.service';
@@ -101,7 +101,17 @@ export class RegisterDialog implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeUnload($event) {
+    return !this.form.dirty;
+  }
+
+  ngOnInit() {
+    this.form.valueChanges.subscribe(value => {
+      if (this.form.dirty)
+        this.dialogRef.disableClose = true;
+    });
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
