@@ -6,9 +6,6 @@ import { environment } from 'environments/environment';
 import { GlobalsService } from 'app/services/globals.service';
 import { MessagesService } from './messages/messages.service';
 
-// TODO: Add shopIds field to snack -> on shop remove: remove snack if shopIds < 2
-// TODO: Use Mongoose .pre() instead of in router + dual link between snack & shop?
-
 @Component({
   selector: 'app',
   template: `
