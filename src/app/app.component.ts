@@ -8,8 +8,9 @@ import { MessagesService } from './messages/messages.service';
 
 // TODO: Gather real testdata
 
+
+// TODO: Split MaterialModule
 // TODO: Add route guards
-// TODO: show alert on navigation when editshop/editsnack dirty
 // TODO: Add shopIds field to snack -> on shop remove: remove snack if shopIds < 2
 // TODO: Use Mongoose .pre() instead of in router + dual link between snack & shop?
 

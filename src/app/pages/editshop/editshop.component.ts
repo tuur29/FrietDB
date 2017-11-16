@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import { GlobalsService } from 'app/services/globals.service';
 import { EditDataService } from '../../services/editdata.service';
 import { ShopDataService } from '../../services/shopdata.service';
@@ -60,6 +60,18 @@ export class EditShopComponent implements OnInit, OnDestroy {
       }),
       snacks: this.fb.array([])
     });
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeUnload($event) {
+    return !this.form.dirty;
+  }
+
+  canDeactivate() {
+    if (this.form.dirty) {
+      return confirm("Bent u zeker dat uw edit geannuleerd mag worden?");
+    }
+    return true;
   }
 
   ngOnInit() {

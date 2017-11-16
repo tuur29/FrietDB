@@ -17,7 +17,8 @@ import { AppComponent } from './app.component';
 import { ErrorModule } from './pages/error/error.module';
 import { HeaderModule } from './parts/header/header.module';
 
-import { GlobalsService } from 'app/services/globals.service';
+import { CanDeactivateGuard } from './services/candeactivate-guard.service';
+import { GlobalsService } from './services/globals.service';
 import { ShopDataService } from './services/shopdata.service';
 import { SnackDataService } from './services/snackdata.service';
 import { EditDataService } from './services/editdata.service';
@@ -49,6 +50,7 @@ import { MessagesModule } from './messages/messages.module';
   ],
   providers: [
     PreloadSelectedModulesList,
+    CanDeactivateGuard,
     GlobalsService,
     ShopDataService,
     SnackDataService,
