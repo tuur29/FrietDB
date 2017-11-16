@@ -24,6 +24,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
   private form: FormGroup;
   private id: string;
   private step = 0;
+  private isSaved = false;
 
   private pendingSnacks: any[] = [];
 
@@ -68,7 +69,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate() {
-    if (this.form.dirty) {
+    if (this.form.dirty && !this.isSaved) {
       return confirm("Bent u zeker dat uw edit geannuleerd mag worden?");
     }
     return true;
@@ -144,6 +145,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
       lng: data.part2.lng,
       snacks: data.snacks.map((snack)=>snack.id)
     }
+
     if (this.id) flatdata['_id'] = this.id;
     this.editDataService.saveEdit('shop', flatdata).subscribe((res) => {
       this.messagesService.send("Success! Je aanpassing moet wel eerst goedgekeurd worden.");
@@ -241,6 +243,8 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   // return to best page based on which user
   back() {
+    this.isSaved = true;
+
     if (this.globals.auth.admin)
       this.router.navigate(['/edits']);
     else if (this.id)
