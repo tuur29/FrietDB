@@ -48,13 +48,13 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  approve(id: string, i: int) {
+  approve(id: string, i: number) {
     this.userDataService.approveUser(id).subscribe(user => {
       this.users[i].status = user.status;
     }); 
   }
 
-  block(id: string, i: int) {
+  block(id: string, i: number) {
     this.userDataService.disableUser(id).subscribe(user => {
       this.users[i].status = user.status;
     }); 
