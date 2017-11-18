@@ -45,6 +45,7 @@ process.on('SIGINT', function() {
 // allow cors from production domain
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", process.env.FRONTEND_DOMAIN);
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
   res.header("Access-Control-Allow-Headers", "*");
   next();
 });
