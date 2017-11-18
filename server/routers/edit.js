@@ -21,8 +21,8 @@ let handleGetAll = function(type, request, response) {
                 timestamp: e.timestamp,
                 item: e.item.name,
                 user: {
-                    name: e.user.name,
-                    email: e.user.email
+                    name: e.user ? e.user.name : "",
+                    email: e.user ? e.user.email : ""
                 }
             };
         })
