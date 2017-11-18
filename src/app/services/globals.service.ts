@@ -3,6 +3,7 @@ import { LocalStorageService } from 'ngx-store';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorage } from 'ngx-store';
+import { MessagesService } from '../messages/messages.service';
 
 import { environment } from 'environments/environment';
 
@@ -33,7 +34,10 @@ export class GlobalsService {
 
   private url = environment.backendurl+'/users/';
 
-  constructor(private http: Http) {
+  constructor(
+    private http: Http,
+    public messagesService: MessagesService
+  ) {
     // check if current token expired
     if (this.auth.exp > Date.now())
       this.logout();
@@ -51,7 +55,7 @@ export class GlobalsService {
       }
       return false;
 
-    });
+    }).catch((err: Response) => Observable.throw(err.json()) );
   }
 
   register(email: string, name: string, password: string): Observable<boolean> {
@@ -59,14 +63,9 @@ export class GlobalsService {
       email: email,
       name: name,
       password: password
-      }).map(res => res.json()).map(res => {
-
-        if (res.token) {
-          this._authtoken = res.token;
-          return true;
-        }
-        return false;
-
+      }).map((res) => {
+        this.messagesService.send("Je account moet eerst goedgekeurd worden").subscribe();
+        return res.json();
       }).catch((err: Response) => {
         return Observable.throw(err.text());
       });

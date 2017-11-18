@@ -39,7 +39,7 @@ userRouter.route('/register')
                 res.status(500).send(error.errmsg);
                 return;
             }
-            return res.json({token: user.generateJWT()})
+            return res.send({status: 200});
         });
   });
 

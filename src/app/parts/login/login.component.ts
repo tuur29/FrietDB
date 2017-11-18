@@ -20,8 +20,8 @@ import { DialogsService } from '../../dialogs/dialogs.service';
             Gelieve een geldig e-mailadres in te vullen.
           </mat-error>
 
-          <mat-hint class="color-warn" *ngIf="wronglogin">
-            Verkeerd e-mail / wachwoord!
+          <mat-hint class="color-warn" *ngIf="loginerror">
+            {{ loginerror }}
           </mat-hint>
         </mat-form-field>
 
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
   @Input() private redirect: string;
 
   private form: FormGroup;
-  private wronglogin = false;
+  private loginerror = null;
 
   constructor(
     public globals: GlobalsService,
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.form.valueChanges.subscribe(()=>{
-      this.wronglogin = false;
+      this.loginerror = null;
     });
   }
 
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
     },
     (err) => {
       setTimeout(()=>{
-        this.wronglogin = true;
+        this.loginerror = err.message;
       });
     });
   }

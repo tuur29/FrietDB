@@ -11,13 +11,13 @@ passport.use(new LocalStrategy({
 		if (err) return done(err);
 
 		if (!user)
-			return done(null, false, { message: 'Incorrect email.' });
+			return done(null, false, { message: 'E-mailadres niet gekend.' });
 
 		if (!user.validPassword(password))
-			return done(null, false, { message: 'Incorrect password.' });
+			return done(null, false, { message: 'Verkeerd wachtwoord.' });
 
 		if (!user.isActive())
-			return done(null, false, { message: 'Account not active.' });
+			return done(null, false, { message: 'Account is niet actief.' });
 		
 		return done(null, user);
 	});
