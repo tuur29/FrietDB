@@ -4,7 +4,7 @@
   <mat-card>
 
     <img mat-card-image *ngIf="shop.image" [src]="shop.image" alt="Foto frituur" />
-    <mat-card-content class="floaty-grid">
+    <mat-card-content class="floaty-grid sidebar">
 
         <div>
           <h1>
@@ -26,15 +26,15 @@
             <mat-icon>map</mat-icon>
             {{shop.street}} {{shop.number}}, {{shop.municipality}}
           </mat-list-item>
-          <mat-list-item>
+          <mat-list-item *ngIf="shop.telephone">
             <mat-icon>phone</mat-icon>
             {{shop.telephone}}
           </mat-list-item>
-          <mat-list-item>
+          <mat-list-item *ngIf="shop.email">
             <mat-icon>email</mat-icon>
             <a href="mailto:{{shop.email}}">{{shop.email}}</a>
           </mat-list-item>
-          <mat-list-item>
+          <mat-list-item *ngIf="shop.website">
             <mat-icon>link</mat-icon>
             <a [href]="shop.website">{{shop.website}}</a>
           </mat-list-item>
@@ -52,39 +52,37 @@
   <!-- Availible snacks -->
   <mat-card>
     <h2>Aanbod</h2>
-    <div class="floaty-grid">
 
-      <div *ngFor="let group of (shop.snacks | groupBy:'type' | pairs)">
+    <div *ngFor="let group of (shop.snacks | groupBy:'type' | pairs)">
 
-        <h2 mat-subheader>{{group[0]}}</h2>
+      <h2 mat-subheader>{{group[0]}}</h2>
 
-        <mat-list>
-          <mat-list-item *ngFor="let snack of group[1]">
-            <div class="link">          
-              <ng-container *ngIf="snack.image || snack.link;else onlyname">
-                <span (click)="handleMoreInfo(snack)" class="link" aria-label="Meer info" matTooltip="Meer info">
-                  {{snack.name}}
-                  <mat-icon>open_in_new</mat-icon>
-                </span>
-              </ng-container>
-
-              <ng-template #onlyname>
+      <ul class="floaty-grid">
+        <li *ngFor="let snack of group[1]">
+          <div class="link">          
+            <ng-container *ngIf="snack.image || snack.link;else onlyname">
+              <span (click)="handleMoreInfo(snack)" class="link" aria-label="Meer info" matTooltip="Meer info">
                 {{snack.name}}
-              </ng-template>
-
-              <span *ngIf="globals.auth.token && !globals.auth.admin" (click)="dialogsService.editsnack(snack.id)" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
-                <mat-icon>edit</mat-icon>
+                <mat-icon>open_in_new</mat-icon>
               </span>
+            </ng-container>
 
-            </div>
-          </mat-list-item>
-        </mat-list>
+            <ng-template #onlyname>
+              {{snack.name}}
+            </ng-template>
 
-      </div>
+            <span *ngIf="globals.auth.token && !globals.auth.admin" (click)="dialogsService.editsnack(snack.id)" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">
+              <mat-icon>edit</mat-icon>
+            </span>
 
-      <p *ngIf="shop.snacks.length < 1">Er zijn nog geen snacks toegevoegd aan deze frituur.</p>
+          </div>
+        </li>
+      </ul>
 
     </div>
+
+    <p *ngIf="shop.snacks.length < 1">Er zijn nog geen snacks toegevoegd aan deze frituur.</p>
+
   </mat-card>
 
 </ng-container>
