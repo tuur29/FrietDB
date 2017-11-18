@@ -30,8 +30,8 @@ import { ShopDataService } from 'app/services/shopdata.service';
 })
 export class HomeComponent implements OnInit {
 
-  private title: string;
-  private shops: any[];
+  title: string;
+  shops: any[];
 
   constructor( private shopDataService: ShopDataService ) {}
 

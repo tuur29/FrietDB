@@ -41,8 +41,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class SnackInfoDialog implements OnInit {
 
-  private id: string;
-  private snack: any;
+  id: string;
+  snack: any;
 
   constructor(
     private snackDataService: SnackDataService,

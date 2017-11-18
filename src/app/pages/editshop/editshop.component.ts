@@ -20,17 +20,17 @@ import 'rxjs/add/operator/map';
 })
 export class EditShopComponent implements OnInit, OnDestroy {
 
-  private subroute: any;
-  private form: FormGroup;
-  private id: string;
-  private step = 0;
-  private isSaved = false;
+  subroute: any;
+  form: FormGroup;
+  id: string;
+  step = 0;
+  isSaved = false;
 
-  private pendingSnacks: any[] = [];
+  pendingSnacks: any[] = [];
 
-  private allSnacks: any[];
-  private snackSearchCtrl: FormControl = new FormControl();
-  private filteredSnacks: Observable<any[]>;
+  allSnacks: any[];
+  snackSearchCtrl: FormControl = new FormControl();
+  filteredSnacks: Observable<any[]>;
 
   constructor(
     public globals: GlobalsService,

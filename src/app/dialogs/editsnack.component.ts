@@ -99,9 +99,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class EditSnackDialog implements OnInit {
 
-  private form: FormGroup;
-  private types: string[] = [];
-  private id;
+  form: FormGroup;
+  types: string[] = [];
+  id;
 
   constructor(
     public globals: GlobalsService,

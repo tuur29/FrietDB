@@ -20,8 +20,8 @@ import { MessagesService } from '../../messages/messages.service';
 })
 export class ErrorComponent implements OnInit, OnDestroy {
 
-  private redirecturl: string = '/';
-  private subroute: any;
+  redirecturl: string = '/';
+  subroute: any;
 
   constructor(
     private router: Router,

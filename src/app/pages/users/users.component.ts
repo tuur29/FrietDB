@@ -38,7 +38,7 @@ import { UserDataService } from 'app/services/userdata.service';
 })
 export class UsersComponent implements OnInit {
 
-  private users: any[];
+  users: any[];
 
   constructor( private userDataService: UserDataService ) {}
 

@@ -84,7 +84,7 @@ import { GlobalsService } from 'app/services/globals.service';
 })
 export class RegisterDialog implements OnInit {
 
-  private form: FormGroup;
+  form: FormGroup;
 
   constructor(
     public globals: GlobalsService,

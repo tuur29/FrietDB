@@ -40,16 +40,16 @@ import { EditDataService } from '../../../services/editdata.service';
 })
 export class TableComponent implements OnInit {
 
-  @Input() private data: any[];
-  @Input() private type: string;
+  @Input() data: any[];
+  @Input() type: string;
 
-  private displayedColumns = ['itemName', 'userName', 'timestamp', 'buttons'];
-  private database: Database;
-  private dataSource: EditsDataSource | null;
+  displayedColumns = ['itemName', 'userName', 'timestamp', 'buttons'];
+  database: Database;
+  dataSource: EditsDataSource | null;
 
-  @ViewChild(MatPaginator) private paginator: MatPaginator;
-  @ViewChild(MatSort) private sort: MatSort;
-  @ViewChild('filter') private filter: ElementRef;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
 
   constructor(
     private router: Router,

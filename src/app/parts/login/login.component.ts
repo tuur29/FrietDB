@@ -65,10 +65,10 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 })
 export class LoginComponent implements OnInit {
 
-  @Input() private redirect: string;
+  @Input() redirect: string;
 
-  private form: FormGroup;
-  private loginerror = null;
+  form: FormGroup;
+  loginerror = null;
 
   constructor(
     public globals: GlobalsService,
