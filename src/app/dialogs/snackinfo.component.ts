@@ -8,10 +8,12 @@ import { Observable } from 'rxjs/Observable';
   selector: 'app-snackinfo',
   template: `
 
-    <ng-container *ngIf="snack">
+    <div *ngIf="snack" class="popup">
 
       <img [src]="snack.image" *ngIf="snack.image">
       <h1 mat-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
+
+      <small>Enkel ter illustratie. Snacks in de frituur kunnen verschillen van wat je hier ziet.</small>
 
       <div mat-dialog-actions>
 
@@ -24,17 +26,22 @@ import { Observable } from 'rxjs/Observable';
         <button mat-button mat-dialog-close color="warn">SLUITEN</button>
       </div>
 
-    </ng-container>
+    </div>
 
   `,
   styles: [`
 
-    h1 {
-      min-width: 175px;
+    img {
+      width: 100%;
     }
 
-    img {
+    small { margin: 5px 0; }
+
+    .popup {
+      min-width: 175px;
       max-width: 300px;
+      min-height: 300px;
+      max-height: 600px;
     }
 
   `]
