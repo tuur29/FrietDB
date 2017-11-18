@@ -42,6 +42,13 @@ process.on('SIGINT', function() {
   }); 
 });
 
+// allow cors from production domain
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_DOMAIN);
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // default route to check online
 let router = express.Router();
 router.get('/', function(req, res, next) {
