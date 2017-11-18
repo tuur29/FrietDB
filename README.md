@@ -19,9 +19,7 @@ The third file should be called `/server/.env` and looks like this:
 
 ```
 
-HOST_NAME=localhost
-DATABASE_NAME=frietdb
-
+MONGODB_URI=mongodb://localhost/frietdb
 JWT_SECRET=-e,aj(ef,X$X>F6'^uDH8;u\uDDz)"9`
 
 ```

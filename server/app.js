@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 // connecting & load routes
-mongoose.connect('mongodb://'+process.env.HOST_NAME+'/'+process.env.DATABASE_NAME, { useMongoClient: true }, function(err) {
+mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true }, function(err) {
   if (err) throw new Error("Cannot connect to MongoDB instance");
   let admin = new mongoose.mongo.Admin(mongoose.connection.db);
   admin.buildInfo((err, info) => { console.log("MongoDB version " + info.version) });
