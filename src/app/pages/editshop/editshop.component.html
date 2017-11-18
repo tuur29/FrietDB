@@ -29,7 +29,7 @@
       <fieldset [disabled]="globals.auth.token && globals.auth.admin" >
         <mat-form-field class="full">
           <input type="text" required matInput formControlName="name" placeholder="Naam">
-          <mat-error *ngIf="form.controls.part1.hasError('required', 'name') && form.controls.part1.get('name').touched">
+          <mat-error *ngIf="form.controls.part1.hasError('required', ['name']) && form.controls.part1.get('name').touched">
             Gelieve een naam in te vullen.
           </mat-error>
         </mat-form-field>
@@ -42,7 +42,7 @@
 
         <mat-form-field class="full">
           <input type="url" matInput formControlName="image" placeholder="Foto url">
-          <mat-error *ngIf="form.controls.part1.hasError('pattern', 'image') && form.controls.part1.get('image').touched">
+          <mat-error *ngIf="form.controls.part1.hasError('pattern', ['image']) && form.controls.part1.get('image').touched">
             Gelieve een geldige url in te vullen.
           </mat-error>
         </mat-form-field>
@@ -72,19 +72,19 @@
         <div class="full">
           <mat-form-field>
             <input type="text" required formControlName="street" matInput placeholder="Straat">
-            <mat-error *ngIf="form.controls.part2.hasError('required', 'street') && form.controls.part2.get('street').touched">
+            <mat-error *ngIf="form.controls.part2.hasError('required', ['street']) && form.controls.part2.get('street').touched">
               Gelieve een straatnaam in te vullen.
           </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input type="number" required formControlName="number" matInput placeholder="Nummer">
-            <mat-error *ngIf="form.controls.part2.hasError('required', 'number') && form.controls.part2.get('number').touched">
+            <mat-error *ngIf="form.controls.part2.hasError('required', ['number']) && form.controls.part2.get('number').touched">
               Gelieve een huisnummer in te vullen.
           </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input type="text" required formControlName="municipality" matInput placeholder="Gemeente">
-            <mat-error *ngIf="form.controls.part2.hasError('required', 'municipality') && form.controls.part2.get('municipality').touched">
+            <mat-error *ngIf="form.controls.part2.hasError('required', ['municipality']) && form.controls.part2.get('municipality').touched">
               Gelieve een gemeente in te vullen.
           </mat-error>
           </mat-form-field>
@@ -93,19 +93,19 @@
         <div class="full">
           <mat-form-field>
             <input type="tel" formControlName="telephone" matInput placeholder="Telefoon">
-            <mat-error *ngIf="form.controls.part2.hasError('pattern', 'telephone') && form.controls.part2.get('telephone').touched">
+            <mat-error *ngIf="form.controls.part2.hasError('pattern', ['telephone']) && form.controls.part2.get('telephone').touched">
               Gelieve een geldig telefoonnummer in te vullen.
             </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input type="email" formControlName="email" matInput placeholder="E-mailadres">
-            <mat-error *ngIf="form.controls.part2.hasError('email', 'email') && form.controls.part2.get('email').touched">
+            <mat-error *ngIf="form.controls.part2.hasError('email', ['email']) && form.controls.part2.get('email').touched">
               Gelieve een geldig e-mailadres in te vullen.
             </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input type="url" formControlName="website" matInput placeholder="Website URL">
-            <mat-error *ngIf="form.controls.part2.hasError('pattern', 'website') && form.controls.part2.get('website').touched">
+            <mat-error *ngIf="form.controls.part2.hasError('pattern', ['website']) && form.controls.part2.get('website').touched">
               Gelieve een geldige url in te vullen.
             </mat-error>
           </mat-form-field>
@@ -114,13 +114,13 @@
         <div class="full">
           <mat-form-field class="small">
             <input type="number" required step="0.001" min="-90" max="90" formControlName="lat" matInput placeholder="Breedtegraad">
-            <mat-error *ngIf="!form.controls.part2.controls.lat.valid && form.controls.part2.get('lat').touched">
+            <mat-error *ngIf="!form.controls.part2['controls'].lat.valid && form.controls.part2.get('lat').touched">
               Gelieve een geldige coordinaat in te vullen.
             </mat-error>
           </mat-form-field>
           <mat-form-field class="small">
             <input type="number" required step="0.001" min="-180" max="180" formControlName="lng" matInput placeholder="Lengtegraad">
-            <mat-error *ngIf="!form.controls.part2.controls.lng.valid && form.controls.part2.get('lng').touched">
+            <mat-error *ngIf="!form.controls.part2['controls'].lng.valid && form.controls.part2.get('lng').touched">
               Gelieve een geldige coordinaat in te vullen.
             </mat-error>
           </mat-form-field>
@@ -150,7 +150,7 @@
       <!-- Content -->
       <ul>
         <li formArrayName="snacks"
-          *ngFor="let snack of form.get('snacks').controls; let i = index;">
+          *ngFor="let snack of form.get('snacks')['controls']; let i = index;">
 
           {{ snack.controls.name.value }} ({{ snack.controls.type.value }})
 

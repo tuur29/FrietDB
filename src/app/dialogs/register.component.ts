@@ -12,17 +12,17 @@ import { GlobalsService } from 'app/services/globals.service';
 
       <mat-form-field>
         <input type="text" matInput placeholder="Naam" required formControlName="name">
-        <mat-error *ngIf="form.hasError('required', 'name') && form.get('name').touched">
+        <mat-error *ngIf="form.hasError('required', ['name']) && form.get('name').touched">
           Gelieve een naam in te vullen.
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input type="email" matInput placeholder="E-mailadres" required formControlName="email">
-        <mat-error *ngIf="form.hasError('email', 'email') && form.get('email').touched">
+        <mat-error *ngIf="form.hasError('email', ['email']) && form.get('email').touched">
           Gelieve een geldig e-mailadres in te vullen.
         </mat-error>
-        <mat-error *ngIf="form.hasError('inuse', 'email')">
+        <mat-error *ngIf="form.hasError('inuse', ['email'])">
           Dit e-mailadres is al in gebruik.
         </mat-error>
       </mat-form-field>
@@ -31,11 +31,11 @@ import { GlobalsService } from 'app/services/globals.service';
 
         <mat-form-field>
           <input type="password" matInput placeholder="Wachtwoord" required formControlName="password">
-          <mat-error *ngIf="form.controls.passwordGroup.hasError('required', 'password') && form.controls.passwordGroup.get('password').touched">
+          <mat-error *ngIf="form.controls.passwordGroup.hasError('required', ['password']) && form.controls.passwordGroup.get('password').touched">
             Gelieve een wachtwoord in te vullen.
           </mat-error>
 
-          <mat-error *ngIf="form.controls.passwordGroup.hasError('minlength', 'password') && form.controls.passwordGroup.get('password').touched">
+          <mat-error *ngIf="form.controls.passwordGroup.hasError('minlength', ['password']) && form.controls.passwordGroup.get('password').touched">
             Het wachtwoord moet minstens 10 tekens lang zijn
           </mat-error>
         </mat-form-field>

@@ -16,7 +16,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
       <fieldset [disabled]="id">
         <mat-form-field>
           <input type="text" required matInput formControlName="name" placeholder="Naam">
-          <mat-error *ngIf="form.hasError('required', 'name') && form.get('name').touched">
+          <mat-error *ngIf="form.hasError('required', ['name']) && form.get('name').touched">
             Gelieve een naam in te vullen.
           </mat-error>
         </mat-form-field>
@@ -31,14 +31,14 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
       <fieldset [disabled]="globals.auth.admin" >
         <mat-form-field class="full">
           <input type="url" formControlName="image" matInput placeholder="Foto URL">
-          <mat-error *ngIf="form.hasError('pattern', 'image') && form.get('image').touched">
+          <mat-error *ngIf="form.hasError('pattern', ['image']) && form.get('image').touched">
             Gelieve een geldige url in te vullen.
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full">
           <input type="url" formControlName="link" matInput placeholder="Meer Info URL">
-          <mat-error *ngIf="form.hasError('pattern', 'link') && form.get('link').touched">
+          <mat-error *ngIf="form.hasError('pattern', ['link']) && form.get('link').touched">
             Gelieve een geldige url in te vullen.
           </mat-error>
         </mat-form-field>

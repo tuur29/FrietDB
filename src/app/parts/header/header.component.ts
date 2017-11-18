@@ -57,7 +57,7 @@ import { GlobalsService } from 'app/services/globals.service';
 })
 export class HeaderComponent implements OnInit {
 
-  private title: string;
+  title: string;
 
   constructor(public globals: GlobalsService) {
     this.title = window.document.title;
