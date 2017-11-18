@@ -21,9 +21,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
           </mat-error>
         </mat-form-field>
 
-        <mat-select [disabled]="id !=''" required formControlName="type" placeholder="Type">
+        <mat-select required formControlName="type" placeholder="Type">
           <mat-option *ngFor="let type of types" [value]="type">
-            {{type}}
+            {{ type }}
           </mat-option>
         </mat-select>
       </fieldset>
@@ -92,7 +92,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
     }
 
     mat-select {
-      margin-bottom: 15px;
+      max-width: 200px;
     }
 
   `]
@@ -101,7 +101,7 @@ export class EditSnackDialog implements OnInit {
 
   form: FormGroup;
   types: string[] = [];
-  id;
+  id: string;
 
   constructor(
     public globals: GlobalsService,
@@ -113,7 +113,7 @@ export class EditSnackDialog implements OnInit {
   ) {
     this.form = this.fb.group({
       name: ["", Validators.required],
-      type: ["", Validators.required],
+      type: ["Snack", Validators.required],
       image: ["", Validators.pattern('^https?:\/\/.+$')],
       link: ["", Validators.pattern('^https?:\/\/.+$')]
     });
@@ -141,14 +141,16 @@ export class EditSnackDialog implements OnInit {
 
     // get data
     if (this.id) {
-      if (this.globals.auth.admin)
+      this.form.controls['type'].disable();
+      if (this.globals.auth.admin) {
         this.editDataService.getItem(this.id).subscribe(snack => {
           this.fillForm(snack);
         });
-      else
+      } else {
         this.snackDataService.getSnack(this.id).subscribe(snack => {
           this.fillForm(snack);
         });
+      }
     }
   }
 
