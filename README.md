@@ -53,6 +53,24 @@ Lastly undo the edit in `.gitignore` and reset your master branch with `git rese
 
 [More Info](http://clontz.org/blog/2014/05/08/git-subtree-push-for-deployment/)
 
+### Heroku
+
+Navigate to the root of the project and add your heroku app to the repo by running:
+
+```
+$ heroku git:remote -a frietdb
+```
+
+Next you can install mongodb by running `heroku addons:create mongolab`. Lastely push the server to your heroku dyno with:
+
+```
+$ git subtree push --prefix server heroku master
+```
+
+You will only need to repeat the previous command when you wish to update the dyno.
+
+[More Info](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
