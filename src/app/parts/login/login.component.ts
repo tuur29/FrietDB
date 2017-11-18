@@ -30,6 +30,9 @@ import { DialogsService } from '../../dialogs/dialogs.service';
           <mat-error *ngIf="form.hasError('required', 'password') && form.get('password').touched">
             Gelieve een wachtwoord in te vullen.
           </mat-error>
+          <mat-error *ngIf="form.hasError('minlength', 'password') && form.get('password').touched">
+            Het wachtwoord moet minstens 10 tekens lang zijn
+          </mat-error>
         </mat-form-field>
 
         <button type="submit" [disabled]='!form.valid' mat-raised-button color="primary">
@@ -75,7 +78,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.form = fb.group({
       email: ['', Validators.email],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(10)]]
     });
 
     this.form.valueChanges.subscribe(()=>{

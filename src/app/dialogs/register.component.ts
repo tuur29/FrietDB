@@ -36,7 +36,7 @@ import { GlobalsService } from 'app/services/globals.service';
           </mat-error>
 
           <mat-error *ngIf="form.controls.passwordGroup.hasError('minlength', 'password') && form.controls.passwordGroup.get('password').touched">
-            Dit wachtwoord is te kort.
+            Het wachtwoord moet minstens 10 tekens lang zijn
           </mat-error>
         </mat-form-field>
 
@@ -95,7 +95,7 @@ export class RegisterDialog implements OnInit {
       name: ['', Validators.required],
       email: ['', Validators.email],
       passwordGroup: fb.group({
-        password: ['', [Validators.required, Validators.minLength(4)]],
+        password: ['', [Validators.required, Validators.minLength(10)]],
         password2: ['', Validators.required]
       }, { validator: this.comparePasswords })
     });

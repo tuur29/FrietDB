@@ -29,6 +29,9 @@ userRouter.route('/register')
         if ( !req.body.name || !req.body.email || !req.body.password )
             return res.status(400).json({message: 'Please fill out all fields'});
 
+        if ( req.body.password.length < 10 )
+            return res.status(400).json({message: 'Password too short'});
+
         let user = new User();
         user.email = req.body.email;
         user.name = req.body.name;
