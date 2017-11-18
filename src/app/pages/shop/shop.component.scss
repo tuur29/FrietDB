@@ -25,6 +25,11 @@ mat-icon {
   margin-right: 10px;
 }
 
+img {
+  object-fit: cover;
+  max-height: 300px;
+}
+
 .link  {
   cursor: pointer;
 }
