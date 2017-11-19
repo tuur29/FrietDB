@@ -41,7 +41,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ### Github Pages
 
-When building for Github Pages you should build with add: `--base-href "https://USERNAME.github.io/REPOSITORY_NAME/"`. Next, rename the index.html file to `404.html`
+When building for Github Pages you should build with add: `--base-href "https://USERNAME.github.io/REPOSITORY_NAME/"`. Next, duplicate the `index.html` file and name it `404.html `.
 
 To publish it, remove `/dist` from `.gitignore`, make a local commit and push to the gh-pages branch with:
 
