@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalsService } from 'app/services/globals.service';
 import { ShopDataService } from 'app/services/shopdata.service';
 
 @Component({
@@ -20,8 +21,18 @@ import { ShopDataService } from 'app/services/shopdata.service';
     </mat-card>
 
     <mat-card>
-      <h2>Wil je deze database helpen uitbreiden?</h2>
-      <p>Helaas voeg ik momenteel enkel handmatig nieuwe gebruikers toe.<br>Stuur me een mailtje en dan bezorg ik je zo spoedig mogelijk je inloggegevens.</p>
+      <ng-container *ngIf="!globals.auth.token;else loggedin">
+        <h2>Wil je deze database helpen uitbreiden?</h2>
+        <p>Helaas voeg ik momenteel enkel handmatig nieuwe gebruikers toe.<br>Stuur me een mailtje en dan bezorg ik je zo spoedig mogelijk je inloggegevens.</p>
+      </ng-container>
+      <ng-template #loggedin>
+        <h2>Help deze database uit te breiden</h2>
+        <p>Met de knop hieronder kan je frituren toevoegen. Naast elke frituur of snack staat ook telkens een knopje om aanpassingen voor te stellen. Eens die aanpassingen (of toevoegingen) goedgekeurd zijn worden ze zichtbaar voor iedereen.</p>
+        <p>Het toevoegen van snacks gebeurd tijdens het aanpassen van een frituur, eens beide zijn goedgekeurd worden ze ook zichtbaar op de 'Bestelling' pagina.</p>
+        <p><a *ngIf="!globals.auth.admin" mat-raised-button color="accent" routerLink="edit/shop">
+          <mat-icon>add</mat-icon>Nieuwe frituur
+        </a></p>
+      </ng-template>
       <app-login></app-login>
     </mat-card>
 
@@ -33,7 +44,10 @@ export class HomeComponent implements OnInit {
   title: string;
   shops: any[];
 
-  constructor( private shopDataService: ShopDataService ) {}
+  constructor(
+    public globals: GlobalsService,
+    private shopDataService: ShopDataService
+  ) {}
 
   ngOnInit() {
     this.title = window.document.title;

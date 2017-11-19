@@ -44,9 +44,6 @@ import { DialogsService } from '../../dialogs/dialogs.service';
       <!-- logged in buttons -->
       <div *ngIf="globals.auth.token">
         <button mat-raised-button color="warn" (click)="logout()">Log uit</button>
-        <a *ngIf="!globals.auth.admin" mat-raised-button color="accent" routerLink="edit/shop">
-          <mat-icon>add</mat-icon>Nieuwe frituur
-        </a>
       </div>
 
   `,
