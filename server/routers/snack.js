@@ -13,6 +13,8 @@ snackRouter.route('/')
                 return {
                     id: s._id,
                     name: s.name,
+                    image: s.image,
+                    link: s.link,
                     usage: s.usage,
                     type: s.type
                 };
