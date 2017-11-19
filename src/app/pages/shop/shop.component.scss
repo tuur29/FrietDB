@@ -1,7 +1,15 @@
+.mat-list.small {
+  line-height: 1em;
+}
+
+.mat-list.small .mat-list-item-content {
+  height: initial !important;
+  padding-bottom: 5px !important;
+}
+
 .floaty-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -9,11 +17,12 @@
 
 .floaty-grid > * {
   align-items: flex-start;
-  padding: 10px 20px;
+  padding: 5px 10px;
 }
 
 .floaty-grid.sidebar > * {
   flex: 1 1 200px;
+  padding: 10px 20px;
 }
 
 .floaty-grid > .small {
