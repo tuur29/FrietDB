@@ -72,7 +72,7 @@ export class MapComponent implements OnInit, OnChanges {
       // add heatmap
       let heatmap = new google.maps.visualization.HeatmapLayer({
         data: data,
-        radius: 85,
+        radius: 60,
         opacity: 0.7,
         map: map
       });
