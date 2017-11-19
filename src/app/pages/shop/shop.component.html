@@ -51,11 +51,11 @@
 
   <!-- Availible snacks -->
   <mat-card>
-    <h2>Aanbod</h2>
+    <h2>Aanbod <small>({{shop.snacks.length}})</small></h2>
 
     <div *ngFor="let group of (shop.snacks | groupBy:'type' | pairs)">
 
-      <h2 mat-subheader>{{group[0]}}</h2>
+      <h2 mat-subheader>{{group[0]}}&nbsp;<small>({{group[1].length}})</small></h2>
 
       <ul class="floaty-grid">
         <li *ngFor="let snack of group[1]">
