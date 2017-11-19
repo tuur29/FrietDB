@@ -29,11 +29,7 @@ snackRouter.route('/types')
                 return;
             }
 
-            response.json(
-                types.concat(["Snacks","Burgers","Andere"].filter(function (item) {
-                    return types.indexOf(item) < 0;
-                }))
-            );
+            response.json(types);
         });
     });
 

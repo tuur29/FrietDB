@@ -21,11 +21,19 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
           </mat-error>
         </mat-form-field>
 
-        <mat-select required formControlName="type" placeholder="Type">
-          <mat-option *ngFor="let type of types" [value]="type">
+        <mat-form-field>
+           <input type="text" matInput required formControlName="type" placeholder="Type" [matAutocomplete]="auto">
+           <mat-error *ngIf="form.hasError('required', ['type']) && form.get('type').touched">
+            Gelieve een type te selecteren.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-autocomplete #auto="matAutocomplete">
+           <mat-option *ngFor="let type of types" [value]="type">
             {{ type }}
           </mat-option>
-        </mat-select>
+        </mat-autocomplete>
+
       </fieldset>
 
       <fieldset [disabled]="globals.auth.admin" >
@@ -91,10 +99,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
       min-width: 400px;
     }
 
-    mat-select {
-      max-width: 200px;
-    }
-
   `]
 })
 export class EditSnackDialog implements OnInit {
@@ -113,7 +117,7 @@ export class EditSnackDialog implements OnInit {
   ) {
     this.form = this.fb.group({
       name: ["", Validators.required],
-      type: ["Snack", Validators.required],
+      type: ["", Validators.required],
       image: ["", Validators.pattern('^https?:\/\/.+$')],
       link: ["", Validators.pattern('^https?:\/\/.+$')]
     });
