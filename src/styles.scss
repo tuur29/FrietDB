@@ -61,15 +61,15 @@ mat-card.search {
 }
 
 .color-primary {
-	color: mat-color($app-primary, A400);
+	color: mat-color($app-primary, A400) !important;
 }
 
 .color-accent {
-	color: mat-color($app-accent, A400);
+	color: mat-color($app-accent, A400) !important;
 }
 
 .color-warn {
-	color: mat-color($app-warn, A700);
+	color: mat-color($app-warn, A700) !important;
 }
 
 .loader {
