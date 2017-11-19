@@ -50,6 +50,7 @@ $ git push origin `git subtree split --prefix dist master`:gh-pages --force
 ```
 
 Lastly undo the edit in `.gitignore` and reset your master branch with `git reset HEAD~`.
+Don't forget to re-enable your custom domain if you are using one.
 
 [More Info](http://clontz.org/blog/2014/05/08/git-subtree-push-for-deployment/)
 
