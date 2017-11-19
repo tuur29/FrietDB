@@ -30,20 +30,19 @@
 </mat-card>
 
 <!-- Favorite Snacks Image Grid -->
-<mat-grid-list cols="3" rowHeight="5:3" gutterSize="7" class="quickpick" *ngIf="snacks">
-  <mat-grid-tile *ngFor="let snack of (snacks | slice: 0:3) ">
+<ul class="quickpick" *ngIf="snacks">
+  <li *ngFor="let snack of (snacks | slice: 0:6) ">
 
     <button mat-raised-button
       (click)="pickSnack(snack.id)"
-      [style.backgroundImage]="snack.image?'url('+ snack.image +')':''"
       [matTooltip]="snack.name+' toevoegen'"
       matTooltipPosition="below"
       color="primary">
-      <span *ngIf="!snack.image">{{snack.name}}</span>
+      <span>{{snack.name}}</span>
     </button>
 
-  </mat-grid-tile>
-</mat-grid-list>
+  </li>
+</ul>
 
 <ng-container *ngIf="fullAddedSnacks.length">
 
