@@ -22,7 +22,7 @@ export class GlobalsService {
   }
 
   public getCoordsByAddress(address: string): Observable<any> {
-    return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key="+environment.mapskey).map((response) => {
+    return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address).map((response) => {
       return response.json();
     }).catch((error:any) => {
       this.messagesService.send("Kon de coordinaten niet ophalen.").subscribe();
