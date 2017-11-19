@@ -7,8 +7,10 @@ import { GlobalsService } from 'app/services/globals.service';
 
     <mat-toolbar color="accent">
 
-      <img src="assets/logo.svg" alt="Logo" width="35" height="35">
-      <a routerLink="/">{{title}}</a>
+      <a routerLink="/">
+        <img src="assets/logo.svg" alt="Logo" width="35" height="35">
+        <span class="title">{{title}}</span>
+      </a>
 
       <span class="spacer"></span>
 
@@ -22,10 +24,25 @@ import { GlobalsService } from 'app/services/globals.service';
   `,
   styles: [`
 
-    @media (max-width: 550px) {
+    @media (max-width: 600px) {
       app-searchshop {
         display: none;
       }
+    }
+
+    @media (max-width: 400px) {
+      a .title {
+        display: none;
+      }
+    }
+
+    mat-toolbar {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    img {
+      vertical-align: middle;
     }
 
     mat-toolbar a {

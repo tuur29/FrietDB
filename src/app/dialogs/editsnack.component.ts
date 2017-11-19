@@ -96,7 +96,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
     }
 
     form, .full {
-      min-width: 400px;
+      min-width: 100%;
     }
 
   `]

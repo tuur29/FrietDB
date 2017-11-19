@@ -24,7 +24,7 @@ import { MessagesService } from './messages/messages.service';
 
       <div class="container">
         <router-outlet></router-outlet>
-        <footer>Made by <a class="color-primary" href="https://www.tuurlievens.net/">Tuur Lievens</a>. Source code is hosted on <a class="color-primary" href="https://github.com/tuur29/FrietDB">Github</a>.</footer>
+        <footer>Made by <a class="color-primary" href="https://www.tuurlievens.net/">Tuur Lievens</a>.<br> Source code is hosted on <a class="color-primary" href="https://github.com/tuur29/FrietDB">Github</a>.</footer>
       </div>
 
     </div>
