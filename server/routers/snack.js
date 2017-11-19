@@ -30,7 +30,7 @@ snackRouter.route('/types')
             }
 
             response.json(
-                types.concat(["Frieten","Snack","Saus","Andere"].filter(function (item) {
+                types.concat(["Snacks","Burgers","Andere"].filter(function (item) {
                     return types.indexOf(item) < 0;
                 }))
             );
