@@ -1,5 +1,5 @@
 @media print {
-  mat-card:not(.list), mat-card.list mat-card-actions, mat-card.list button, .link mat-icon, mat-grid-list {
+  mat-card:not(.list), mat-card.list mat-card-actions, mat-card.list button, .link mat-icon, .quickpick {
     display: none;
   }
 }
