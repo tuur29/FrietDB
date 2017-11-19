@@ -12,8 +12,26 @@ export class GlobalsService {
   
   public loading = false;
 
-  // Authentication
+  constructor(
+    private http: Http,
+    public messagesService: MessagesService
+  ) {
+    // check if current token expired
+    if (this.auth.exp > Date.now())
+      this.logout();
+  }
 
+  public getCoordsByAddress(address: string): Observable<any> {
+    return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key="+environment.mapskey).map((response) => {
+      return response.json();
+    }).catch((error:any) => {
+      this.messagesService.send("Kon de coordinaten niet ophalen.").subscribe();
+      return Observable.throw(error.json().error || 'Error');
+    });
+  }
+
+  // Authentication
+  private url = environment.backendurl+'/users/';
   private readonly defaultAuth = {
     email: '',
     token: '',
@@ -30,17 +48,6 @@ export class GlobalsService {
       return ob;
     }
     return this.defaultAuth;
-  }
-
-  private url = environment.backendurl+'/users/';
-
-  constructor(
-    private http: Http,
-    public messagesService: MessagesService
-  ) {
-    // check if current token expired
-    if (this.auth.exp > Date.now())
-      this.logout();
   }
 
   login(email: string, password: string): Observable<boolean> {

@@ -115,16 +115,20 @@
           <mat-form-field class="small">
             <input type="number" required step="0.001" min="-90" max="90" formControlName="lat" matInput placeholder="Breedtegraad">
             <mat-error *ngIf="!form.controls.part2['controls'].lat.valid && form.controls.part2.get('lat').touched">
-              Gelieve een geldige coordinaat in te vullen.
+              Gelieve een geldige coördinaat in te vullen.
             </mat-error>
           </mat-form-field>
           <mat-form-field class="small">
             <input type="number" required step="0.001" min="-180" max="180" formControlName="lng" matInput placeholder="Lengtegraad">
             <mat-error *ngIf="!form.controls.part2['controls'].lng.valid && form.controls.part2.get('lng').touched">
-              Gelieve een geldige coordinaat in te vullen.
+              Gelieve een geldige coördinaat in te vullen.
             </mat-error>
           </mat-form-field>
-          (<a href="https://support.google.com/maps/answer/18539?co=GENIE.Platform%3DDesktop&hl=nl&oco=1" target="_blank">Waar vind ik deze coördinaten?</a>)
+
+          <button type="button" mat-button color="primary" *ngIf="!globals.auth.admin" (click)="lookupCoords()" [disabled]="!form.controls.part2['controls'].street.valid || !form.controls.part2['controls'].number.valid || !form.controls.part2['controls'].municipality.valid">
+            <mat-icon>search</mat-icon>Vul coördinaten
+          </button>
+          <small>(<a href="https://support.google.com/maps/answer/18539?co=GENIE.Platform%3DDesktop&hl=nl&oco=1" target="_blank">Waar vind ik deze coördinaten?</a>)</small>
         </div>
       </fieldset>
       <!-- End Content -->

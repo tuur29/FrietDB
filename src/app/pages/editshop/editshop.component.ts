@@ -177,6 +177,29 @@ export class EditShopComponent implements OnInit, OnDestroy {
     });
   }
 
+  lookupCoords() {
+
+    var address = this.form.value.part2.street + " " + this.form.value.part2.number + ", " + this.form.value.part2.municipality + " Belgium ";
+
+    this.globals.getCoordsByAddress(encodeURI(address)).subscribe((data) => {
+      if (data.results.length < 1) {
+        this.messagesService.send("Er werden geen coördinaten voor dit adres gevonden");
+        return;
+      }
+
+      var loc = data.results[0].geometry.location;
+
+      // check if in belgium
+      if (loc.lat > 51.5 || loc.lat < 50 || loc.lng > 6.5 || loc.lng < 2.5 ) {
+        this.messagesService.send("Deze coördinaten liggen niet in België");
+        return;
+      }
+
+      this.form.controls.part2.get("lat").setValue(loc.lat.toFixed(4));
+      this.form.controls.part2.get("lng").setValue(loc.lng.toFixed(4));
+    });
+  }
+
   pushSnackGroup(snack?: any, isnew?: boolean) {
     const control = <FormArray> this.form.controls['snacks'];
     control.push( this.fb.group({
