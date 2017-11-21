@@ -19,7 +19,10 @@ let handleGetAll = function(type, request, response) {
             return {
                 id: e._id,
                 timestamp: e.timestamp,
-                item: e.item.name,
+                item: {
+                    id: e.item._id,
+                    name: e.item.name
+                },
                 user: {
                     name: e.user ? e.user.name : "",
                     email: e.user ? e.user.email : ""

@@ -19,9 +19,10 @@
 
     <!-- itemName Column -->
     <ng-container matColumnDef="itemName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Naam frituur </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Naam item </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span matTooltip="Bekijk aanpassing">{{row.item}}</span>
+        <a *ngIf="type=='shop' && row.item.id" routerLink="/shop/{{row.item.id}}" matTooltip="Bekijk huidig"><mat-icon>link</mat-icon></a>
+        <span matTooltip="Bekijk aanpassing">{{row.item.name}}</span>
       </mat-cell>
     </ng-container>
 

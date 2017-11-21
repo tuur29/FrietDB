@@ -28,6 +28,10 @@ import { EditDataService } from '../../../services/editdata.service';
       border: 2px solid #fafafa;
     }
 
+    mat-icon {
+      vertical-align: middle;
+    }
+
     [mat-ripple] {
       position: relative;
     }
