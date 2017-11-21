@@ -31,6 +31,7 @@ export class EditDataService {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
+      this.globals.failed = true;
       this.messagesService.sendServerError().subscribe(() => window.location.reload());
       return Observable.throw(error.json().error || 'Server error');
     });
@@ -44,6 +45,7 @@ export class EditDataService {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
+      this.globals.failed = true;
       this.messagesService.sendServerError().subscribe(() => window.location.reload());
       return Observable.throw(error.json().error || 'Server error');
     });
@@ -70,6 +72,7 @@ export class EditDataService {
       this.globals.loading = false;
       return response.json().item;
     }).catch((error:any) => {
+      this.globals.failed = true;
       this.messagesService.sendServerError().subscribe(() => window.location.reload());
       return Observable.throw(error.json().error || 'Server error');
     });
@@ -80,23 +83,26 @@ export class EditDataService {
       type: type,
       item: item
     };
-
+    this.globals.loading = true;
     return this.http.put(this.url, data, {
       headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
-    }).map((response) => 
-      response.json()
-    ).catch((error:any) => {
+    }).map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    }).catch((error:any) => {
+      this.globals.loading = false;
       this.messagesService.sendServerError(true).subscribe();
       return Observable.throw(error.json().error || 'Server error');
     });
   }
 
   public accept(id: any): Observable<any> {
-
+    this.globals.loading = true;
     return this.http.post(this.url+id,'', {
       headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
     }).map((response) => {
       if (response) {
+        this.globals.loading = false;
         if (response.json().snacks) // is shop
           this.shopDataService.resetCache();
         else if (response.json().usage) // is snack
@@ -105,28 +111,35 @@ export class EditDataService {
 
       return response.json();
     }).catch((error:any) => {
+      this.globals.loading = false;
       this.messagesService.sendServerError(true).subscribe();
       return Observable.throw(error.json().error || 'Server error');
     });
   }
 
-  public remove(id: any): Observable<any> {    
+  public remove(id: any): Observable<any> {
+    this.globals.loading = true;
     return this.http.delete(this.url+id, {
       headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
-    }).map((response) =>
-      response.json()
-    ).catch((error:any) => {
+    }).map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    }).catch((error:any) => {
+      this.globals.loading = false;
       this.messagesService.sendServerError(true).subscribe();
       return Observable.throw(error.json().error || 'Server error');
     });
   }
 
   public removeByItemID(id: any): Observable<any> {    
+    this.globals.loading = true;
     return this.http.delete(this.url+"snack/"+id, {
       headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
-    }).map((response) =>
-      response.json()
-    ).catch((error:any) => {
+    }).map((response) => {
+      this.globals.loading = false;
+      return response.json();
+    }).catch((error:any) => {
+      this.globals.loading = false;
       this.messagesService.sendServerError(true).subscribe();
       return Observable.throw(error.json().error || 'Server error');
     });

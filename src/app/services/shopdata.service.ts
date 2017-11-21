@@ -61,6 +61,7 @@ export class ShopDataService {
       this.globals.loading = false;
       return json;
     }).catch((error:any) => {
+      this.globals.failed = true;
       this.messagesService.sendServerError().subscribe(() => window.location.reload());
       return Observable.throw(error.json().error || 'Server error');
     });
@@ -73,6 +74,7 @@ export class ShopDataService {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
+      this.globals.failed = true;
       this.messagesService.sendServerError().subscribe(() => window.location.reload());
       return Observable.throw(error.json().error || 'Server error');
     });
@@ -84,6 +86,7 @@ export class ShopDataService {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
+      this.globals.failed = true;
       this.messagesService.sendServerError().subscribe(() => window.location.reload());
       return Observable.throw(error.json().error || 'Server error');
     });
@@ -98,6 +101,7 @@ export class ShopDataService {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
+      this.globals.loading = false;
       this.messagesService.sendServerError(true).subscribe();
       return Observable.throw(error.json().error || 'Server error');
     });

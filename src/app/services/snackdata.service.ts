@@ -61,6 +61,7 @@ export class SnackDataService {
       this.globals.loading = false;
       return json;
     }).catch((error:any) => {
+      this.globals.failed = true;
       this.messagesService.sendServerError().subscribe(() => window.location.reload());
       return Observable.throw(error.json().error || 'Server error');
     });
@@ -72,6 +73,7 @@ export class SnackDataService {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
+      this.globals.failed = true;
       this.messagesService.sendServerError().subscribe(() => window.location.reload());
       return Observable.throw(error.json().error || 'Server error');
     });
@@ -84,9 +86,7 @@ export class SnackDataService {
   }
 
   public getSnackTypes(): Observable<string[]> {
-    this.globals.loading = true;
     return this.http.get(this.url+"types").map((response) => {
-      this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
       this.messagesService.sendServerError(true).subscribe();

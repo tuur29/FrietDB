@@ -11,6 +11,7 @@ import { environment } from 'environments/environment';
 export class GlobalsService {
   
   public loading = false;
+  public failed = false;
 
   constructor(
     private http: Http,

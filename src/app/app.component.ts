@@ -18,7 +18,7 @@ import { MessagesService } from './messages/messages.service';
         <div class="cdk-overlay-backdrop cdk-overlay-backdrop-showing">
         </div>
         <div class="cdk-global-overlay-wrapper">
-          <mat-spinner></mat-spinner>
+          <mat-spinner *ngIf="!globals.failed"></mat-spinner>
         </div>
       </div>
 
