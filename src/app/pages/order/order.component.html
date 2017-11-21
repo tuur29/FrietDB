@@ -31,7 +31,7 @@
 
 <!-- Favorite Snacks Image Grid -->
 <ul class="quickpick" *ngIf="snacks">
-  <li *ngFor="let snack of (snacks | slice: 0:6) ">
+  <li *ngFor="let snack of (snacks | slice: 0:(windowwidth > 1000 ? 6:3)) ">
 
     <button mat-raised-button
       (click)="pickSnack(snack.id)"

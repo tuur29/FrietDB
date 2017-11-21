@@ -25,6 +25,7 @@ export class OrderComponent implements OnInit {
   snacks: any[];
   snackCtrl: FormControl = new FormControl();
   filteredSnacks: Observable<any[]>;
+  windowwidth = window.innerWidth;
 
   fullAddedSnacks: any[] = <any>[];
   @LocalStorage() addedSnacks: WebstorableArray<any> = <any>[];
