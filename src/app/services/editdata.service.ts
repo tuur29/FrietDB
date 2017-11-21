@@ -131,18 +131,4 @@ export class EditDataService {
     });
   }
 
-  public removeByItemID(id: any): Observable<any> {    
-    this.globals.loading = true;
-    return this.http.delete(this.url+"snack/"+id, {
-      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
-    }).map((response) => {
-      this.globals.loading = false;
-      return response.json();
-    }).catch((error:any) => {
-      this.globals.loading = false;
-      this.messagesService.sendServerError(true).subscribe();
-      return Observable.throw(error.json().error || 'Server error');
-    });
-  }
-
 }

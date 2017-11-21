@@ -97,29 +97,6 @@ editRouter.route('/:editId')
 
 // destructive routes
 
-// TODO: not safe! (removeByItemID)
-// remove edit by item id
-editRouter.route('/snack/:snackId')
-    .delete(auth, authadmin, function(request,response){
-        Edit.find({
-            type: 'snack'
-        }, function(error, edits) {
-            if (error) {
-                response.status(500).send(error);
-                return;
-            }
-
-            for (var i = 0; i < edits.length; i++) {
-                if (edits[i].item._id == request.params.snackId) {
-                    edits[i].remove();
-                    break;
-                }
-            }
-
-            response.json({status: 200});
-        });
-    });
-
 // make new edit
 editRouter.route('/')
     .put(auth, function(request,response){

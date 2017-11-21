@@ -232,8 +232,6 @@ export class EditShopComponent implements OnInit, OnDestroy {
     this.form.markAsDirty();
     const control = <FormArray> this.form.controls['snacks'];
     control.removeAt(index);
-    if (isnew)
-      this.editDataService.removeByItemID(id).subscribe();
   }
 
   newSnack() {
