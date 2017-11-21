@@ -10,10 +10,11 @@ You will have to add 3 files, 2 are called `/src/environments/environment(.prod)
 export const environment = {
   production: true,
   backendurl: "https://<URL>:<SERVER_PORT>/<API_PATH>",
+  imgurapikey: "<PASTE_PRODUCTION_API_KEY>",
   mapskey: '<PASTE_PRODUCION_API_KEY>'
 };
 ```
-You will need a [Google Maps Javascript API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+You will need a [Google Maps Javascript API key](https://developers.google.com/maps/documentation/javascript/get-api-key) and a [Imgur API key](https://apidocs.imgur.com/).
 
 The third file should be called `/server/.env` and looks like this:
 
