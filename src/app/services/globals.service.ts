@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'ngx-store';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorage } from 'ngx-store';
 import { MessagesService } from '../messages/messages.service';
@@ -27,6 +27,34 @@ export class GlobalsService {
       return response.json();
     }).catch((error:any) => {
       this.messagesService.send("Kon de coordinaten niet ophalen.").subscribe();
+      return Observable.throw(error.json().error || 'Error');
+    });
+  }
+
+  public uploadToImgur(payload): Observable<any> {
+    this.loading = true;
+    return this.http.post("https://api.imgur.com/3/image", {
+      image: payload,
+      type: "base64"
+    },
+    { headers: new Headers({Authorization: 'Client-ID '+ environment.imgurapikey }) }
+    ).map((response) => {
+      this.loading = false;
+      return response.json();
+    }).catch((error:any) => {
+      this.loading = false;
+      this.messagesService.send("Kon de foto niet uploaden.").subscribe();
+      return Observable.throw(error.json().error || 'Error');
+    });
+  }
+
+  public deleteFromImgur(hash: string): Observable<any> {
+    return this.http.delete("https://api.imgur.com/3/image/"+hash,
+      { headers: new Headers({Authorization: 'Client-ID '+ environment.imgurapikey }) }
+    ).map((response) => {
+      return response.json();
+    }).catch((error:any) => {
+      this.messagesService.send("Kon de foto niet verwijderen.").subscribe();
       return Observable.throw(error.json().error || 'Error');
     });
   }

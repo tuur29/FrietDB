@@ -26,6 +26,9 @@ export class EditShopComponent implements OnInit, OnDestroy {
   step = 0;
   isSaved = false;
 
+  @ViewChild('file') file;
+  deleteHash: string;
+
   pendingSnacks: any[] = [];
 
   allSnacks: any[];
@@ -174,6 +177,43 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
     shop.snacks.forEach((snack) => {
       this.pushSnackGroup(snack);
+    });
+  }
+
+  onImageUpload(event) {
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        let payload = reader.result.split(',')[1];
+        this.globals.uploadToImgur(payload).subscribe((data) => {
+          console.log(data);
+          if (!data.success) {
+            this.messagesService.send("Probleem bij het uploaden van de foto.");
+            return;
+          }
+
+          this.deleteHash = data.data.deletehash;
+          this.form.controls.part1.get("image").disable();
+          this.form.controls.part1.get("image").setValue(data.data.link);
+        });
+      };
+
+    }
+  }
+
+  deleteImgurImg(hash: string) {
+    this.globals.deleteFromImgur(hash).subscribe((data) => {
+      if (!data.success) {
+        this.messagesService.send("Probleem bij het verwijderen van de foto.");
+        return;
+      }
+
+      this.deleteHash = "";
+      this.form.controls.part1.get("image").enable();
+      this.form.controls.part1.get("image").setValue("");
     });
   }
 
