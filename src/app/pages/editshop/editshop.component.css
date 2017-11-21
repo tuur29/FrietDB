@@ -23,6 +23,35 @@ fieldset {
   max-width: 140px;
 }
 
+.snacklist {
+  min-height: 350px;
+  max-height: 55vh;
+  overflow-y: auto;
+}
+
+.snack {
+  display: inline-block;
+  margin: 10px;
+  padding: 5px 10px;
+  width: calc( 50% - 40px );
+  vertical-align: top;
+  overflow-x: auto;
+}
+
+.snack span {
+  float: left;
+}
+
+@media (max-width: 600px) {
+  .snack {
+    width: calc( 100% - 40px);
+  }  
+}
+
+.snack button {
+  float: right;
+}
+
 mat-form-field {
   margin-right: 10px;
 }

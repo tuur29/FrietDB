@@ -152,21 +152,21 @@
       </mat-expansion-panel-header>
 
       <!-- Content -->
-      <ul>
-        <li formArrayName="snacks"
+      <div class="snacklist">
+        <mat-card formArrayName="snacks" class="snack"
           *ngFor="let snack of form.get('snacks')['controls']; let i = index;">
 
-          {{ snack.controls.name.value }} ({{ snack.controls.type.value }})
+          <span>{{ snack.controls.name.value }} ({{ snack.controls.type.value }})</span>
 
-          <button type="button" mat-icon-button *ngIf="!globals.auth.admin && !snack.controls.isnew.value" (click)="dialogsService.editsnack(snack.controls.id.value)" aria-label="Aanpassen" matTooltip="Aanpassen">
-            <mat-icon>edit</mat-icon>
-          </button>
           <button type="button" mat-icon-button *ngIf="!globals.auth.admin" (click)="removeSnack(i,snack.controls.id.value,snack.controls.isnew.value)" aria-label="Verwijderen" matTooltip="Verwijderen">
             <mat-icon>delete</mat-icon>
           </button>
+          <button type="button" mat-icon-button *ngIf="!globals.auth.admin && !snack.controls.isnew.value" (click)="dialogsService.editsnack(snack.controls.id.value)" aria-label="Aanpassen" matTooltip="Aanpassen">
+            <mat-icon>edit</mat-icon>
+          </button>
 
-        </li>
-      </ul>
+        </mat-card>
+      </div>
 
       <mat-form-field *ngIf="!globals.auth.admin">
 
