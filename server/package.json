@@ -8,6 +8,7 @@
     "server": "start npm run mongo & ping 127.0.0.1 -n 7 >nul & npm start"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
     "compression": "^1.7.1",
     "cookie-parser": "~1.4.3",
