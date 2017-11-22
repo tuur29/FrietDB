@@ -79,7 +79,6 @@ import 'rxjs/add/operator/map';
 
     mat-list-item span {
       cursor: pointer;
-      margin: 5px;
     }
 
     .right {
