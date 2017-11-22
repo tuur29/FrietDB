@@ -285,7 +285,8 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   filterSnacks(query: string) {
     return this.allSnacks.filter((snack) =>
-      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1 || 
+      snack.type.toLowerCase().indexOf(query.toLowerCase()) > -1
     );
   }
 

@@ -54,7 +54,8 @@ export class OrderComponent implements OnInit {
   // filter snacks on search
   filterSnacks(query: string) {
     return this.snacks.filter(snack =>
-      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1 || 
+      snack.type.toLowerCase().indexOf(query.toLowerCase()) > -1
     );
   }
 
