@@ -54,7 +54,7 @@
 
   <!-- Availible snacks -->
   <mat-card>
-    <button mat-button class="right" mat-raised-button color="primary" [routerLink]="'/order/'+id">Maak een bestelling bij deze frituur.</button>
+    <button *ngIf="shop.snacks.length > 0" mat-button class="right" mat-raised-button color="primary" [routerLink]="'/order/'+id">Maak een bestelling bij deze frituur.</button>
     <h2>Aanbod <small>({{shop.snacks.length}})</small></h2>
 
     <div *ngFor="let group of (shop.snacks | groupBy:'type' | pairs)">
