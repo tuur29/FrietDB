@@ -174,6 +174,7 @@ export class EditSnackDialog implements OnInit {
   }
 
   onSubmit(data: any) {
+    data.id = this.id;
     if (data.name) data.name = data.name.replace(/^\s+|\s+$/g, "");
     if (data.type) data.type = data.type.replace(/^\s+|\s+$/g, "");
     this.editDataService.saveEdit('snack', data).subscribe((res) => {
