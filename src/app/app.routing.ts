@@ -7,7 +7,8 @@ export const routes: Routes = [
 
   { path: 'shop', loadChildren: './pages/shop/shop.module#ShopModule', data: {preload: true} },
   { path: 'order', loadChildren: './pages/order/order.module#OrderModule', data: {preload: true} },
-  { path: 'heatmap', loadChildren: './pages/heatmap/heatmap.module#HeatmapModule', data: {preload: false} },
+  { path: 'heatmap', loadChildren: './pages/heatmap/heatmap.module#HeatmapModule', data: {preload: true} },
+  { path: 'snacks', loadChildren: './pages/snacks/snacks.module#SnacksModule', data: {preload: true} },
 
   { path: 'edit', loadChildren: './pages/editshop/editshop.module#EditShopModule', data: {preload: false} },
   { path: 'edits', loadChildren: './pages/editslist/editslist.module#EditsListModule', data: {preload: false} },
