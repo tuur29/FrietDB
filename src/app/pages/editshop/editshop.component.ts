@@ -135,12 +135,12 @@ export class EditShopComponent implements OnInit, OnDestroy {
 
   onSubmit(data: any) {
     let flatdata = {
-      name: data.part1.name,
+      name: data.part1.name.replace(/^\s+|\s+$/g, ""),
       image: data.part1.image,
       description: data.part1.description,
-      street: data.part2.street,
+      street: data.part2.street.replace(/^\s+|\s+$/g, ""),
       number: data.part2.number,
-      municipality: data.part2.municipality,
+      municipality: data.part2.municipality.replace(/^\s+|\s+$/g, ""),
       telephone: data.part2.telephone,
       email: data.part2.email,
       website: data.part2.website,
