@@ -26,7 +26,7 @@ import 'rxjs/add/operator/map';
 
         <mat-autocomplete #autocomplete="matAutocomplete">
           <mat-option (onSelectionChange)="openShop(shop.id,$event)" *ngFor="let shop of filteredShops | async" [value]="shop.name">
-            <span>{{shop.name}}</span> |
+            <span>{{shop.name}} <mat-icon class="color-green" *ngIf="shop.vegi">check_circle</mat-icon></span> |
             <small>{{shop.street}} {{shop.municipality}}</small>
           </mat-option>
         </mat-autocomplete>
@@ -35,7 +35,15 @@ import 'rxjs/add/operator/map';
     </form>
 
   `,
-  styles: []
+  styles: [`
+
+    mat-option mat-icon {
+      margin: 0;
+      font-size: 1em;
+      vertical-align: sub;
+    }
+
+  `]
 })
 export class SearchShopComponent implements OnInit {
 
