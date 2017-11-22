@@ -71,6 +71,10 @@ $ git subtree push --prefix server heroku master
 
 You will only need to repeat the previous command when you wish to update the dyno.
 
+### Automated deploy
+
+The script `deploy.sh` should do all the above actions automatically. Just make sure you change the domainname in the script. You should have completed the process manually first before you use the script.
+
 [More Info](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 
 ## Further help
