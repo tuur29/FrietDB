@@ -6,7 +6,7 @@
 
 $app-primary: mat-palette($mat-brown);
 $app-accent: mat-palette($mat-amber);
-$app-warn: mat-palette($mat-red,A700);
+$app-warn: mat-palette($mat-red, 800);
 $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
 @include angular-material-theme($app-theme);
@@ -19,7 +19,7 @@ body {
 }
 
 a:link {
-	color: mat-color($app-accent, A700);
+	color: mat-color($app-accent, 700);
 	text-decoration: none;
 }
 
@@ -28,15 +28,15 @@ a:link:hover {
 }
 
 a:visited {
-	color: mat-color($app-accent, A400);
+	color: mat-color($app-accent, 400);
 }
 
 a.dark:link {
-	color: mat-color($app-primary, A700);
+	color: mat-color($app-primary, 700);
 }
 
 a.dark:visited {
-	color: mat-color($app-primary, A400);
+	color: mat-color($app-primary, 400);
 }
 
 mat-card {
@@ -57,19 +57,23 @@ mat-card.search {
 }
 
 .mat-form-field.ng-invalid.ng-touched {
-	color: mat-color($app-warn, A400);
+	color: mat-color($app-warn, 600);
 }
 
 .color-primary {
-	color: mat-color($app-primary, A400) !important;
+	color: mat-color($app-primary, 400) !important;
 }
 
 .color-accent {
-	color: mat-color($app-accent, A400) !important;
+	color: mat-color($app-accent, 400) !important;
 }
 
 .color-warn {
-	color: mat-color($app-warn, A700) !important;
+	color: mat-color($app-warn, 800) !important;
+}
+
+.color-green {
+	color: mat-color($mat-green, 800) !important;
 }
 
 .loader {
@@ -101,6 +105,10 @@ mat-card.search {
 
 .full-width {
 	width: 100%;
+}
+
+mat-icon {
+	vertical-align: middle;
 }
 
 @media print {
