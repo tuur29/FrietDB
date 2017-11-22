@@ -11,7 +11,7 @@ import { ShopDataService } from 'app/services/shopdata.service';
     </mat-card>
 
     <mat-card class="full">
-      <app-map [heatmap]="true" [markers]="false" [shops]="shops"></app-map>
+      <app-map [heatmap]="true" [markers]="false" [shops]="shops" height="60vh"></app-map>
     </mat-card>
 
   `,

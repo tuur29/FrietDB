@@ -8,7 +8,7 @@ declare let google: any;
   selector: 'app-map',
   template: `
 
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="onMapLoad($event)" *ngIf="shops">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="onMapLoad($event)" *ngIf="shops" [style.height]="height">
 
       <ng-container *ngIf="markers">
         <agm-marker
@@ -34,7 +34,7 @@ declare let google: any;
   styles: [`
 
     agm-map {
-      height: 300px;
+      min-height: 300px;
     }
 
   `]
@@ -50,6 +50,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() lat: number;
   @Input() lng: number;
   @Input() zoom: number = 8;
+  @Input() height: string = '300px';
   maxZoom: number = 14;
 
   map;
