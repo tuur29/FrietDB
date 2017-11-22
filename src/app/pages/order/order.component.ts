@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { GlobalsService } from 'app/services/globals.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { ShopDataService } from 'app/services/shopdata.service';
@@ -22,6 +23,9 @@ import { MatOptionSelectionChange } from '@angular/material';
 export class OrderComponent implements OnInit {
 
   // variables
+  subroute: any;
+  shopId = "";
+  shopName = "";
   snacks: any[];
   snackCtrl: FormControl = new FormControl();
   filteredSnacks: Observable<any[]>;
@@ -33,20 +37,38 @@ export class OrderComponent implements OnInit {
   filteredShops: any[];
 
   constructor(
+    private route: ActivatedRoute,
     public globals: GlobalsService,
     private shopDataService: ShopDataService,
     private snackDataService: SnackDataService,
-    public dialogsService: DialogsService) {}
+    public dialogsService: DialogsService
+  ) {}
 
   ngOnInit() {
-    this.snackDataService.getSnacks().subscribe(snacks => {
-      this.snacks = snacks;
-      this.refreshAddedSnacks();
-      this.filteredSnacks = this.snackCtrl.valueChanges
-        .startWith(null)
-        .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
-    });
+    this.subroute = this.route.params.subscribe((params) => {
+      this.shopId = params['id'] ? params['id'] : "";
 
+      if (this.shopId == "") {
+        this.snackDataService.getSnacks().subscribe(snacks => {
+          this.snacks = snacks;
+          this.refreshAddedSnacks();
+          this.filteredSnacks = this.snackCtrl.valueChanges
+            .startWith(null)
+            .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
+        });
+      } else {
+        this.resetOrder();
+        this.shopDataService.getShop(this.shopId).subscribe(shop => {
+          this.snacks = shop.snacks;
+          this.shopName = shop.name;
+          this.refreshAddedSnacks();
+          this.filteredSnacks = this.snackCtrl.valueChanges
+            .startWith(null)
+            .map(snack => snack ? this.filterSnacks(snack) : this.snacks.slice());
+        });
+      }
+
+    });
 
     if (this.addedSnacks) this.refreshShops();
   }

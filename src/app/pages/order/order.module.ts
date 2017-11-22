@@ -12,6 +12,7 @@ import { NgPipesModule } from 'ngx-pipes';
 @NgModule({
   imports: [
     RouterModule.forChild([
+      { path: ':id', component: OrderComponent, pathMatch: 'full' },
       { path: '', component: OrderComponent, pathMatch: 'full' },
     ]),
     CommonModule,

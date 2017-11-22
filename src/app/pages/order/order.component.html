@@ -1,5 +1,5 @@
 <mat-card class="small">
-  <h1>Maak je bestelling</h1>
+  <h1>Maak je bestelling <a *ngIf="shopId" [routerLink]="'/shop/'+shopId"> bij {{ shopName }}</a></h1>
   <p>Met deze tool kan je makkelijk de dichtste frituur vinden waar ze al jouw favoriete snacks hebben. Als extraatje kan je ook een handig briefje afdrukken om mee te nemen naar de frituur!</p>
 </mat-card>
 
