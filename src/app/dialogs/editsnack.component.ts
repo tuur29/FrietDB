@@ -174,13 +174,12 @@ export class EditSnackDialog implements OnInit {
   }
 
   onSubmit(data: any) {
-    console.log(data);
-    // if (data.name) data.name = data.name.replace(/^\s+|\s+$/g, "");
-    // if (data.type) data.type = data.type.replace(/^\s+|\s+$/g, "");
-    // this.editDataService.saveEdit('snack', data).subscribe((res) => {
-    //   this.messagesService.send("Success! Je aanpassing moet wel eerst goedgekeurd worden.");
-    //   this.dialogRef.close(res.item);
-    // });
+    if (data.name) data.name = data.name.replace(/^\s+|\s+$/g, "");
+    if (data.type) data.type = data.type.replace(/^\s+|\s+$/g, "");
+    this.editDataService.saveEdit('snack', data).subscribe((res) => {
+      this.messagesService.send("Success! Je aanpassing moet wel eerst goedgekeurd worden.");
+      this.dialogRef.close(res.item);
+    });
   }
 
   // pressing admin buttons
