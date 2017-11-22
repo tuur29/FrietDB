@@ -50,8 +50,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
             Gelieve een geldige url in te vullen.
           </mat-error>
         </mat-form-field>
-      </fieldset>
 
+        <mat-checkbox color="primary" formControlName="vegi">Vegetarisch</mat-checkbox>
+      </fieldset>
 
       <div mat-dialog-actions>
 
@@ -99,6 +100,10 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
       min-width: 100%;
     }
 
+    fieldset {
+      margin: 10px 0;
+    }
+
   `]
 })
 export class EditSnackDialog implements OnInit {
@@ -119,7 +124,8 @@ export class EditSnackDialog implements OnInit {
       name: ["", Validators.required],
       type: ["", Validators.required],
       image: ["", Validators.pattern('^https?:\/\/.+$')],
-      link: ["", Validators.pattern('^https?:\/\/.+$')]
+      link: ["", Validators.pattern('^https?:\/\/.+$')],
+      vegi: [ false ]
     });
   }
 
@@ -163,13 +169,14 @@ export class EditSnackDialog implements OnInit {
       name: snack.name,
       type: snack.type,
       image: snack.image,
+      vegi: snack.vegi,
       link: snack.link
     });
   }
 
   onSubmit(data: any) {
-    data.name = data.name.replace(/^\s+|\s+$/g, "");
-    data.type = data.type.replace(/^\s+|\s+$/g, "");
+    if (data.name) data.name = data.name.replace(/^\s+|\s+$/g, "");
+    if (data.type) data.type = data.type.replace(/^\s+|\s+$/g, "");
     this.editDataService.saveEdit('snack', data).subscribe((res) => {
       this.messagesService.send("Success! Je aanpassing moet wel eerst goedgekeurd worden.");
       this.dialogRef.close(res.item);

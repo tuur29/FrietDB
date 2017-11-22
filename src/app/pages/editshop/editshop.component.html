@@ -41,6 +41,13 @@
         <p>(<a href="https://en.wikipedia.org/wiki/Markdown#Example" target="_blank">Meer informatie over Markdown</a>)</p>
 
         <mat-form-field class="full">
+          <input type="text" matInput formControlName="vegi" placeholder="Vegitarische opmerking (laat leeg als niet vegitarisch)">
+          <mat-error *ngIf="form.controls.part1.hasError('maxlength', ['vegi']) && form.controls.part1.get('vegi').touched">
+            Deze tekst mag niet langer dan 40 tekens zijn.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full">
           <input type="url" matInput formControlName="image" placeholder="Foto url">
           <mat-error *ngIf="form.controls.part1.hasError('pattern', ['image']) && form.controls.part1.get('image').touched">
             Gelieve een geldige url in te vullen.
@@ -166,7 +173,7 @@
         <mat-card formArrayName="snacks" class="snack"
           *ngFor="let snack of form.get('snacks')['controls']; let i = index;">
 
-          <span>{{ snack.controls.name.value }} ({{ snack.controls.type.value }})</span>
+          <span>{{ snack.controls.name.value }} <mat-icon class="color-green" matTooltip="Vegetarisch" *ngIf="snack.controls.vegi.value">check_circle</mat-icon> ({{ snack.controls.type.value }})</span>
 
           <button type="button" mat-icon-button *ngIf="!globals.auth.admin" (click)="removeSnack(i,snack.controls.id.value,snack.controls.isnew.value)" aria-label="Verwijderen" matTooltip="Verwijderen">
             <mat-icon>delete</mat-icon>
@@ -192,7 +199,7 @@
         
         <mat-autocomplete #autocomplete="matAutocomplete">
           <mat-option (onSelectionChange)="pickSnack(snack.id,$event)" *ngFor="let snack of (filteredSnacks | async | orderBy: ['name'])" [value]="snack.name">
-              <span>{{snack.name}}</span> | <small>{{snack.type}}</small>
+              <span>{{snack.name}} <mat-icon class="color-green" *ngIf="snack.vegi">check_circle</mat-icon></span> | <small>{{snack.type}}</small>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>

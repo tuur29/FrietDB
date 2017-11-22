@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 
       <img [src]="snack.image" *ngIf="snack.image" alt="Foto kon niet geladen worden">
       <h1 mat-dialog-title>{{snack.name}} | <small>{{snack.type}}</small></h1>
+      <p *ngIf="snack.vegi" class="color-green"><mat-icon>check_circle</mat-icon> Vegetarisch</p>
 
       <small>Enkel ter illustratie. Snacks in de frituur kunnen verschillen van wat je hier ziet.</small>
 

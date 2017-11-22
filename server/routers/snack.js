@@ -16,6 +16,7 @@ snackRouter.route('/')
                     image: s.image,
                     link: s.link,
                     usage: s.usage,
+                    vegi: s.vegi,
                     type: s.type
                 };
             })

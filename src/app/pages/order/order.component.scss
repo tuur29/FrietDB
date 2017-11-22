@@ -39,6 +39,12 @@ mat-list-item span {
   margin: 5px;
 }
 
+mat-option mat-icon {
+  margin: 0;
+  font-size: 1em;
+  vertical-align: sub;
+}
+
 .right {
   float: right;
 }

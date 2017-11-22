@@ -49,13 +49,13 @@ import 'rxjs/add/operator/map';
             <span>
               <ng-container *ngIf="snack.image || snack.link;else onlyname">
                 <span (click)="handleMoreInfo(snack)" class="link" aria-label="Meer info" matTooltip="Meer info">
-                  {{snack.name}}
+                  {{snack.name}} <mat-icon class="color-green" matTooltip="Vegetarisch" *ngIf="snack.vegi">check_circle</mat-icon>
                   <mat-icon>open_in_new</mat-icon>
                 </span>
               </ng-container>
 
               <ng-template #onlyname>
-                {{snack.name}}
+                {{snack.name}} <mat-icon class="color-green" matTooltip="Vegetarisch" *ngIf="snack.vegi">check_circle</mat-icon>
               </ng-template>
 
               <span *ngIf="globals.auth.token && !globals.auth.admin" (click)="dialogsService.editsnack(snack.id)" class="link" aria-label="Aanpassen" matTooltip="Aanpassen">

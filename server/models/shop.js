@@ -13,6 +13,7 @@ const ShopSchema = new Schema({
 	website: String,
 	lat: { type: Number, required: true },
 	lng: { type: Number, required: true },
+	vegi: { type: String, default: "" },
 	snacks: [{ type: Schema.Types.ObjectId, ref: 'Snack' }]
 });
 

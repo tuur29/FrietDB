@@ -49,6 +49,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       part1: this.fb.group({
         name: ["", Validators.required],
+        vegi: ["", Validators.maxLength(40)],
         image: ["", Validators.pattern('^https?:\/\/.+$')],
         description: ""
       }),
@@ -136,6 +137,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
   onSubmit(data: any) {
     let flatdata = {
       name: data.part1.name.replace(/^\s+|\s+$/g, ""),
+      vegi: data.part1.vegi.replace(/^\s+|\s+$/g, ""),
       image: data.part1.image,
       description: data.part1.description,
       street: data.part2.street.replace(/^\s+|\s+$/g, ""),
@@ -160,6 +162,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
     this.form.patchValue({
       part1: {
         name: shop.name,
+        vegi: shop.vegi,
         image: shop.image,
         description: shop.description
       },
@@ -245,6 +248,7 @@ export class EditShopComponent implements OnInit, OnDestroy {
     control.push( this.fb.group({
       id: snack ? snack.id : '',
       name: snack ? snack.name : '',
+      vegi: snack ? snack.vegi : false,
       type: snack ? snack.type : '',
       isnew: isnew ? isnew : false
     }) );

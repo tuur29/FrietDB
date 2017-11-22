@@ -14,6 +14,7 @@ let subsetShops = function(shops) {
             name: s.name,
             street: s.street,
             municipality: s.municipality,
+            vegi: s.vegi,
             lat:s.lat,
             lng:s.lng
         };
