@@ -23,7 +23,7 @@ let subsetShops = function(shops) {
 
 shopRouter.route('/')
     .get(function(request, response) {
-        Shop.find(function(error, shops) {
+        Shop.find({}).sort([['name',1]]).exec(function(error, shops) {
             if (error) {
                 response.status(500).send(error);
                 return;
