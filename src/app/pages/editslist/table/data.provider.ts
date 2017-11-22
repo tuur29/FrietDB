@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { MatPaginator, MatSort } from '@angular/material';
 
+import { removeDiacritics } from 'removeDiacritics';
+
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/fromEvent';
@@ -54,8 +56,8 @@ export class EditsDataSource extends DataSource<any> {
     return Observable.merge(...displayDataChanges).map(() => {
       // Filter data
       this.filteredData = this._database.data.slice().filter((row: any) => {
-        let searchStr = (row.user.name + row.item.name).toLowerCase();
-        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+        let searchStr = (removeDiacritics(row.user.name + row.item.name)).toLowerCase();
+        return searchStr.indexOf(removeDiacritics(this.filter).toLowerCase()) !== -1;
       });
 
       // Sort filtered data

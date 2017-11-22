@@ -8,6 +8,7 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 import { MessagesService } from '../../messages/messages.service';
 
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
+import { removeDiacritics } from 'removeDiacritics';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -287,10 +288,14 @@ export class EditShopComponent implements OnInit, OnDestroy {
     });
   }
 
+  private normalize(s: string) {
+    return removeDiacritics(s.toLowerCase());
+  }
+
   filterSnacks(query: string) {
     return this.allSnacks.filter((snack) =>
-      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1 || 
-      snack.type.toLowerCase().indexOf(query.toLowerCase()) > -1
+      this.normalize(snack.name).indexOf(this.normalize(query)) > -1 || 
+      this.normalize(snack.type).indexOf(this.normalize(query)) > -1
     );
   }
 

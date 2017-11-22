@@ -3,6 +3,8 @@ import { GlobalsService } from 'app/services/globals.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { SnackDataService } from 'app/services/snackdata.service';
 
+import { removeDiacritics } from 'removeDiacritics';
+
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -117,11 +119,15 @@ export class SnacksComponent implements OnInit {
     });
   }
 
+  private normalize(s: string) {
+    return removeDiacritics(s.toLowerCase());
+  }
+
   // filter snacks on search
   filterSnacks(query: string) {
     return this.snacks.filter(snack =>
-      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1 || 
-      snack.type.toLowerCase().indexOf(query.toLowerCase()) > -1
+      this.normalize(snack.name).indexOf(this.normalize(query)) > -1 || 
+      this.normalize(snack.type).indexOf(this.normalize(query)) > -1
     );
   }
 

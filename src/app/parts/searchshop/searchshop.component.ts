@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { ShopDataService } from 'app/services/shopdata.service';
 
+import { removeDiacritics } from 'removeDiacritics';
+
+
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -84,11 +87,12 @@ export class SearchShopComponent implements OnInit {
     let start = '(?=.*';
     let end = ')';
     let parts = query.split(' ');
+    parts = parts.map((e) => removeDiacritics(e));
     let regex = new RegExp( start+parts.join(end+start)+end ,"ig" );
 
     return this.shops.filter(shop => {
         let str = shop.name+' '+shop.street+' '+shop.municipality;
-        if ( str.match(regex) )
+        if ( removeDiacritics(str).match(regex) )
           return true;
       }
     );

@@ -7,6 +7,7 @@ import { SnackDataService } from 'app/services/snackdata.service';
 
 import { SlicePipe } from '@angular/common';
 import { LocalStorage, WebstorableArray } from 'ngx-store';
+import { removeDiacritics } from 'removeDiacritics';
 
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -73,11 +74,15 @@ export class OrderComponent implements OnInit {
     if (this.addedSnacks) this.refreshShops();
   }
 
+  private normalize(s: string) {
+    return removeDiacritics(s.toLowerCase());
+  }
+
   // filter snacks on search
   filterSnacks(query: string) {
     return this.snacks.filter(snack =>
-      snack.name.toLowerCase().indexOf(query.toLowerCase()) > -1 || 
-      snack.type.toLowerCase().indexOf(query.toLowerCase()) > -1
+      this.normalize(snack.name).indexOf(this.normalize(query)) > -1 || 
+      this.normalize(snack.type).indexOf(this.normalize(query)) > -1
     );
   }
 
