@@ -13,9 +13,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
     <form [formGroup]="form" (ngSubmit)='onSubmit(form.value)'>
 
-      <fieldset [disabled]="id">
+      <fieldset>
         <mat-form-field>
-          <input type="text" required matInput formControlName="name" placeholder="Naam">
+          <input [disabled]="id" type="text" required matInput formControlName="name" placeholder="Naam">
           <mat-error *ngIf="form.hasError('required', ['name']) && form.get('name').touched">
             Gelieve een naam in te vullen.
           </mat-error>
@@ -151,7 +151,6 @@ export class EditSnackDialog implements OnInit {
 
     // get data
     if (this.id) {
-      this.form.controls['type'].disable();
       if (this.globals.auth.admin) {
         this.editDataService.getItem(this.id).subscribe(snack => {
           this.fillForm(snack);
@@ -175,12 +174,13 @@ export class EditSnackDialog implements OnInit {
   }
 
   onSubmit(data: any) {
-    if (data.name) data.name = data.name.replace(/^\s+|\s+$/g, "");
-    if (data.type) data.type = data.type.replace(/^\s+|\s+$/g, "");
-    this.editDataService.saveEdit('snack', data).subscribe((res) => {
-      this.messagesService.send("Success! Je aanpassing moet wel eerst goedgekeurd worden.");
-      this.dialogRef.close(res.item);
-    });
+    console.log(data);
+    // if (data.name) data.name = data.name.replace(/^\s+|\s+$/g, "");
+    // if (data.type) data.type = data.type.replace(/^\s+|\s+$/g, "");
+    // this.editDataService.saveEdit('snack', data).subscribe((res) => {
+    //   this.messagesService.send("Success! Je aanpassing moet wel eerst goedgekeurd worden.");
+    //   this.dialogRef.close(res.item);
+    // });
   }
 
   // pressing admin buttons
