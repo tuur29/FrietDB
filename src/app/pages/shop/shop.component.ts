@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { GlobalsService } from 'app/services/globals.service';
@@ -18,7 +18,6 @@ export class ShopComponent implements OnInit, OnDestroy {
   shop: any;
 
   constructor(
-    private ref: ChangeDetectorRef,
     public globals: GlobalsService,
     private shopDataservice: ShopDataService,
     private router: Router,
@@ -31,7 +30,6 @@ export class ShopComponent implements OnInit, OnDestroy {
       this.id = params['id'];
       this.shopDataservice.getShop(this.id).subscribe(shop => {
         this.shop = shop;
-        this.ref.detectChanges();
       });
     });
   }
