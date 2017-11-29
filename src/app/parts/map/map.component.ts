@@ -91,8 +91,8 @@ export class MapComponent implements OnInit, OnChanges {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
       }, () => {
-        this.lat = 50.5039;
-        this.lng = 4.4699;
+        this.lat = 51.0543;
+        this.lng = 3.7174;
       });
 
     }
