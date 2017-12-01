@@ -7,7 +7,6 @@ import { GlobalsService } from 'app/services/globals.service';
   selector: 'app-register',
   template: `
 
-    <h1 mat-dialog-title>Registreer</h1>
     <form [formGroup]="form" (ngSubmit)='onSubmit(form.value)'>
 
       <mat-form-field>
@@ -20,7 +19,7 @@ import { GlobalsService } from 'app/services/globals.service';
       <mat-form-field>
         <input type="email" matInput placeholder="E-mailadres" required formControlName="email">
         <mat-error *ngIf="form.hasError('email', ['email']) && form.get('email').touched">
-          Gelieve een geldig e-mailadres in te vullen.
+          Gelieve een geldig adres in te vullen.
         </mat-error>
         <mat-error *ngIf="form.hasError('inuse', ['email'])">
           Dit e-mailadres is al in gebruik.
@@ -53,7 +52,7 @@ import { GlobalsService } from 'app/services/globals.service';
 
       <div mat-dialog-actions>
         <button type="submit" [disabled]='!form.valid' mat-raised-button color="primary">
-          <mat-icon>send</mat-icon> Verstuur
+          <mat-icon>send</mat-icon> Registreer
         </button>
 
         <span class="spacer"></span>
@@ -77,7 +76,6 @@ import { GlobalsService } from 'app/services/globals.service';
 
     mat-form-field:not(:first-of-type) {
       display: block;
-      margin-bottom: 20px;
     }
 
   `]

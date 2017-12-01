@@ -23,7 +23,7 @@ import { ShopDataService } from 'app/services/shopdata.service';
     <mat-card>
       <ng-container *ngIf="!globals.auth.token;else loggedin">
         <h2>Wil je deze database helpen uitbreiden?</h2>
-        <p>Helaas voeg ik momenteel enkel handmatig nieuwe gebruikers toe.<br>Stuur me een mailtje en dan bezorg ik je zo spoedig mogelijk je inloggegevens.</p>
+        <p>Druk dan op de registreer en vul je gegevens in. Alle accounts worden eerst handmatig goedgekeurd. Helaas aanvaard ik momenteel enkel familie en kennissen. </p>
       </ng-container>
       <ng-template #loggedin>
         <h2>Help deze database uit te breiden</h2>
