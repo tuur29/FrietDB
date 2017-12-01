@@ -53,17 +53,20 @@
             Gelieve een geldige url in te vullen.
           </mat-error>
 
+          <div matSuffix>
+            <input #fileinput type="file" color="primary" (change)="onImageUpload($event)">
+            <button type="button" mat-button (click)="fileinput.click()">
+              <mat-icon>attach_file</mat-icon> Upload with Imgur
+            </button>
+            <button type="button" mat-icon-button color="warn" *ngIf="deleteHash" (click)="deleteImgurImg(deleteHash);" matTooltip="Verwijder van Imgur">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
         </mat-form-field>
 
-        <div>
-          <span>Select an image to upload with Imgur: </span>
-          <input type="file" (change)="onImageUpload($event)">
-          <button type="button" mat-button color="primary" *ngIf="deleteHash" (click)="deleteImgurImg(deleteHash);" matTooltip="Verwijder van Imgur">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-
       </fieldset>
+
       <!-- End Content -->
 
       <mat-action-row>
