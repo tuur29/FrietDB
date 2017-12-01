@@ -8,7 +8,7 @@ declare let google: any;
   selector: 'app-map',
   template: `
 
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="onMapLoad($event)" *ngIf="shops" [style.height]="height">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="onMapLoad($event)" *ngIf="shops" [style.height]="height" [clickableIcons]="false">
 
       <ng-container *ngIf="markers">
         <agm-marker
