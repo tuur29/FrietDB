@@ -159,6 +159,11 @@ export class EditShopComponent implements OnInit, OnDestroy {
     });
   }
 
+  onEnter(event) {
+    if (event.target.hasAttribute('autocomplete'))
+      event.preventDefault();
+  }
+
   fillForm(shop: any) {
     this.form.patchValue({
       part1: {

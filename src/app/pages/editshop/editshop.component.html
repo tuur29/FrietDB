@@ -10,7 +10,7 @@
   </ul>
 </mat-card>
 
-<form [formGroup]="form" (ngSubmit)='onSubmit(form.value)'>
+<form [formGroup]="form" (ngSubmit)='onSubmit(form.value)' (keydown.enter)="onEnter($event)">
   <mat-accordion>
 
     <!-- General Info (title, descr, image) -->
