@@ -25,6 +25,10 @@ JWT_SECRET=-e,aj(ef,X$X>F6'^uDH8;u\uDDz)"9`
 
 ```
 
+## Testing
+
+There are tests for the backend server. go to `/server/` in your terminal and execute the command `npm run testsetup`, for subsequent runs you should use `npm run test`.
+
 ## Development server
 
 Run `npm run all` for a full dev server. Navigate to `http://localhost:4200/`. The frontend will automatically reload if you change any of the source files.
