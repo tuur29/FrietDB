@@ -1,5 +1,5 @@
 var Request = require("request");
-var database = require("./database.js");
+var database = require("./helpers/database.js");
 
 // TODO: test user routes
 

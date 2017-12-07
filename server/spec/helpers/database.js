@@ -2,10 +2,10 @@ let mongoose = require('mongoose');
 let crypto = require('crypto');
 require('dotenv').config();
 
-let Edit = require('../models/edit');
-let Shop = require('../models/shop');
-let Snack = require('../models/snack');
-let User = require('../models/user');
+let Edit = require('../../models/edit');
+let Shop = require('../../models/shop');
+let Snack = require('../../models/snack');
+let User = require('../../models/user');
 
 function database() {}
 
