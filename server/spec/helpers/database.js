@@ -60,23 +60,18 @@ database.fill = function(callback) {
     }),
 
     // add proposed edits
-    // TODO: add edit data
     new Promise(function(resolve, reject) {
       Edit.collection.insertMany([
         { _id: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d20'), timestamp: 1510516146, type: 'Snack', user: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d16'), item: {
-          name: 'e1'
+            _id: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d17'), name: 'Bitterballes', type: 'Snacks', image: '', site: ''
         }},
         { _id: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d21'), timestamp: 1511742734, type: 'Snack', user: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d16'), item: {
-          name: 'e2'
+            _id: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d1e'), name: 'Frietshopje', street: 'Walloniestraat', number: '234', municipality: 'Destelbergen', email: 'frietshop@domain.com', vegi: '', lat: 62.7429, lng: 73.1283, snacks: [
+              mongoose.Types.ObjectId('5a25ac5d0feeef4258064d1c')
+            ]
         }},
         { _id: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d22'), timestamp: 1512032877, type: 'Snack', user: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d16'), item: {
-          name: 'e3'
-        }},
-        { _id: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d23'), timestamp: 1512411791, type: 'Snack', user: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d16'), item: {
-          name: 'e4'
-        }},
-        { _id: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d24'), timestamp: 1512414266, type: 'Snack', user: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d16'), item: {
-          name: 'e5'
+            _id: mongoose.Types.ObjectId('5a25ac5d0feeef4258064d17'), name: 'Bitterballen', type: 'Snacks', image: 'http://test.com/test.jpg', site: ''
         }}
        ], () => { resolve(); })
     }),
