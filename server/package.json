@@ -5,7 +5,10 @@
   "scripts": {
     "start": "node ./bin/www",
     "mongo": "md MongoDB & \"C:/Program Files/MongoDb/Server/3.4/bin/mongod.exe\" --dbpath MongoDB",
-    "server": "start npm run mongo & ping 127.0.0.1 -n 7 >nul & npm start"
+    "server": "start npm run mongo & ping 127.0.0.1 -n 7 >nul & npm start",
+    "test": "node ./node_modules/jasmine/bin/jasmine.js",
+    "testsetup": "start npm run testmongo & ping 127.0.0.1 -n 7 >nul & start npm start & ping 127.0.0.1 -n 3 >nul & npm run test",
+    "testmongo": "md MongoDBTest & \"C:/Program Files/MongoDb/Server/3.4/bin/mongod.exe\" --dbpath MongoDBTest"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
@@ -21,5 +24,9 @@
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0",
+    "request": "^2.83.0"
   }
 }

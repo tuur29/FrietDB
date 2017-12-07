@@ -15,7 +15,6 @@ let snackRouter = require('./routers/snack');
 let editRouter = require('./routers/edit');
 let userRouter = require('./routers/user');
 
-// TODO: Add backend unit tests
 // TODO: Send mails when user registered/activated, edit posted/accepted
 
 // setup
