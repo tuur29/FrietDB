@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { APP_BASE_HREF } from '@angular/common';
 
+import { AppModule } from '../../app.module';
+import { ErrorModule } from './error.module';
 import { ErrorComponent } from './error.component';
 
 describe('ErrorComponent', () => {
@@ -8,7 +11,8 @@ describe('ErrorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorComponent ]
+      imports: [ AppModule, ErrorModule ],
+      providers: [{provide: APP_BASE_HREF, useValue : '/' }]
     })
     .compileComponents();
   }));

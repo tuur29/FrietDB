@@ -1,5 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { APP_BASE_HREF } from '@angular/common';
+
+import { AppModule } from '../../app.module';
+import { EditsListModule } from './editslist.module';
 import { EditsListComponent } from './editslist.component';
 
 describe('EditsListComponent', () => {
@@ -8,7 +12,8 @@ describe('EditsListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditsListComponent ]
+      imports: [ AppModule, EditsListModule ],
+      providers: [{provide: APP_BASE_HREF, useValue : '/' }]
     })
     .compileComponents();
   }));
