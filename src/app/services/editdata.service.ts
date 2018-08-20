@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch'
 @Injectable()
 export class EditDataService {
 
-  private url = '/api/edits/';
+  private url = '/FrietDB/api/edits/';
   
   constructor(
     private http: Http,

@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch'
 @Injectable()
 export class SnackDataService {
   
-  private url = '/api/snacks/';
+  private url = '/FrietDB/api/snacks/';
 
   private getSnacksLastUpdate = 0;
   private getSnacksLock = false;

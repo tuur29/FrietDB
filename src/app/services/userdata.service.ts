@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch'
 @Injectable()
 export class UserDataService {
   
-  private url = '/api/users/';
+  private url = '/FrietDB/api/users/';
   
   constructor(
     private http: Http,

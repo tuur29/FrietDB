@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch'
 @Injectable()
 export class ShopDataService {
   
-  private url = '/api/shops/';
+  private url = '/FrietDB/api/shops/';
 
   private getShopsLastUpdate = 0;
   private getShopsLock = false;
