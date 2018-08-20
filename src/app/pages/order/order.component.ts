@@ -100,7 +100,7 @@ export class OrderComponent implements OnInit {
         this.refreshShops();
 
         // update usage
-        this.snackDataService.increaseSnackUsage(id).subscribe();
+        // this.snackDataService.increaseSnackUsage(id).subscribe();
       }
 
       this.refreshAddedSnacks();

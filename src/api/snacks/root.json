@@ -1,0 +1,731 @@
+[
+  {
+    "id": "5a11a79a4a84b00014495881",
+    "name": "Bicky burger",
+    "image": "https://bicky.be/app/uploads/2017/05/120330-Bicky-original_508x306.png",
+    "link": "https://bicky.be/bicky-burgers",
+    "usage": 56,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a11b7564a84b00014495898",
+    "name": "Julientje",
+    "image": "",
+    "link": "https://www.google.com/maps/place/De+gouden+sat%C3%A9/@51.041536,3.7254943,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipNzyK08bniY0lCEuFrrFW1JEZhpyZEv9sUAaDt4!2e10!3e12!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipNzyK08bniY0lCEuFrrFW1JEZhpyZEv9sUAaDt4%3Dw203-h152-k-no!7i4032!8i3024!4m5!3m4!1s0x47c37159fdfcfe8f:0x104dceda92549c94!8m2!3d51.0415052!4d3.7255555",
+    "usage": 50,
+    "vegi": false,
+    "type": "Andere"
+  },
+  {
+    "id": "5a109a65a29a770014c6b621",
+    "name": "Boulette",
+    "image": "",
+    "link": "",
+    "usage": 41,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109a46a29a770014c6b61f",
+    "name": "Frikandel",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/da/Patat_met.jpg",
+    "link": "",
+    "usage": 34,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109ab5a29a770014c6b629",
+    "name": "Zigeunerstick",
+    "image": "https://www.mora.nl/media/image/003782_afbeelding-zigeunerstick-27.gif",
+    "link": "https://www.mora.nl/896/horeca-producten/aanprikproducten/zigeunerstick.html",
+    "usage": 29,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109a83a29a770014c6b625",
+    "name": "Viandel",
+    "image": "https://www.mora.nl/media/image/003982_afbeelding-viandel270x3.gif",
+    "link": "https://www.mora.nl/826/horeca-producten/frikandellen/viandel.html",
+    "usage": 26,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109a9ba29a770014c6b627",
+    "name": "Kipcorn",
+    "image": "https://www.mora.nl/media/image/007203_1030838-kipkorn-10st-r.png",
+    "link": "https://www.mora.nl/622/producten/snacks/kip/kipkorn-originals.html",
+    "usage": 10,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109a6da29a770014c6b623",
+    "name": "Lookworst",
+    "image": "",
+    "link": "",
+    "usage": 7,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109bbca29a770014c6b634",
+    "name": "Loempia",
+    "image": "https://www.voedingswaardetabel.nl/_lib/img/prod/big/loempia.jpg",
+    "link": "",
+    "usage": 1,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a076a29a770014c6b667",
+    "name": "Picknicker",
+    "image": "https://www.mora.nl/media/image/003777_afbeelding-zeestick-270x320.gif",
+    "link": "https://www.mora.nl/888/horeca-producten/aanprikproducten/zeestick.html",
+    "usage": 1,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109eb3a29a770014c6b64d",
+    "name": "Vleeskroket",
+    "image": "",
+    "link": "",
+    "usage": 1,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109da3a29a770014c6b646",
+    "name": "Frikandel Speciaal",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109d9aa29a770014c6b644",
+    "name": "Mammoet",
+    "image": "https://static.mijnwebwinkel.nl/winkel/friethuis/image/cache/full/e80d539b5dfcc6caa5f00c8ae7c3e42512b15e7e.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109d5ba29a770014c6b642",
+    "name": "Kippenvingers",
+    "image": "https://www.mora.nl/media/image/003508_kipfingers-afbeelding-270x3.gif",
+    "link": "https://www.mora.nl/868/horeca-producten/mini-snacks/kipfingers.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a219be55297ef0014691f82",
+    "name": "Cheeseburger",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a109d07a29a770014c6b63e",
+    "name": "Mozzarella Fingers",
+    "image": "http://www.pizzapanoldham.co.uk/wp-content/uploads/2014/06/sides-mozzarella-fingers.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109cc9a29a770014c6b63c",
+    "name": "Drumstick",
+    "image": "http://www.frituurhetkevertje.be/webshop/images/drumstick.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109c66a29a770014c6b63a",
+    "name": "Mini Loempia",
+    "image": "https://www.voedingswaardetabel.nl/_lib/img/prod/big/loempia.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109c49a29a770014c6b638",
+    "name": "Mexicano",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Mexicano.jpg/1280px-Mexicano.jpg",
+    "link": "https://nl.wikipedia.org/wiki/Mexicano",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109b76a29a770014c6b632",
+    "name": "Kippets",
+    "image": "https://static.mijnwebwinkel.nl/winkel/friethuis/image/cache/full/922f40f82d0b90f2982a970d19473ff96340da63.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109c07a29a770014c6b636",
+    "name": "Crizly",
+    "image": "http://vanreusel.eu/nl/wp-content/uploads/sites/3/2015/03/Crizly1.jpg",
+    "link": "http://vanreusel.eu/nl/snacks/waanzinnig-lekkere-snacks",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109b5ca29a770014c6b630",
+    "name": "Apollo Stick",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109b05a29a770014c6b62e",
+    "name": "Saté",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109fcca29a770014c6b65b",
+    "name": "Mixsaté",
+    "image": "https://www.order-speedysnack.be/image/cache/catalog/snacks/Ardeense-sat%C3%A9_180px-500x500.png",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a00ea29a770014c6b65f",
+    "name": "Vuurvreter",
+    "image": "https://topking.nl/img/cache/430120%20Vuurvreters%20-%20productfoto%20bijgesneden.jpg_310x240.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109ff2a29a770014c6b65d",
+    "name": "Taco",
+    "image": "https://www.mora.nl/media/image/004013_afbeelding-taco-bocado.gif",
+    "link": "https://www.mora.nl/992/horeca-producten/specialiteiten/taco-bocado.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a16ca29a770014c6b675",
+    "name": "Stache",
+    "image": "https://www.mora.nl/media/image/006900_mora-stache-cora.jpg",
+    "link": "https://www.mora.nl/3333/horeca-producten/kipproducten/stache.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a151a29a770014c6b673",
+    "name": "Chick-in Chili",
+    "image": "http://www.horeca-messiaen.be/images/photolib/5162_pdl.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a107a29a770014c6b671",
+    "name": "Spicy Viandel",
+    "image": "https://www.mora.nl/media/image/003985_afbeelding-spicyviandel-270.gif",
+    "link": "https://www.mora.nl/1115/horeca-producten/frikandellen/spicy-viandel.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a0f3a29a770014c6b66f",
+    "name": "Kipkaaspunt",
+    "image": "https://f.jwwb.nl/public/m/l/a/temp-dmzlnzyjxmpgmgpivjkx/kipkaaspunt.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a0c5a29a770014c6b66d",
+    "name": "Kipknots",
+    "image": "https://www.mora.nl/media/image/004033_afbeelding-kipknots.gif",
+    "link": "https://www.mora.nl/874/horeca-producten/kipproducten/kipknots.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a0b0a29a770014c6b66b",
+    "name": "Sito",
+    "image": "https://www.mora.nl/media/image/003764_afbeelding-sitogold-270x320.gif",
+    "link": "https://www.mora.nl/878/horeca-producten/aanprikproducten/sito-gold.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a09aa29a770014c6b669",
+    "name": "Bockworst",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bockwurst_.jpg/1200px-Bockwurst_.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a047a29a770014c6b665",
+    "name": "Paardenlookworst",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109eaaa29a770014c6b64b",
+    "name": "Kaaskroket",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": true,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a03ca29a770014c6b663",
+    "name": "Lucifer",
+    "image": "https://www.mora.nl/media/image/003539_mora-lucifer-website.gif",
+    "link": "https://www.mora.nl/1366/horeca-producten/kipproducten/lucifer.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a10a024a29a770014c6b661",
+    "name": "Ragoezi",
+    "image": "https://www.mora.nl/media/image/003993_afbeelding-ragoezie270x320.gif",
+    "link": "https://www.mora.nl/830/horeca-producten/specialiteiten/ragoezi.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109ecaa29a770014c6b64f",
+    "name": "Goulashkroket",
+    "image": "https://www.mora.nl/media/image/002253_mora-goulash-kroket-5-stuks-d.png",
+    "link": "https://www.mora.nl/450/producten/snacks/kroketten/goulash-kroket-voor-fijnproevers.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109f05a29a770014c6b651",
+    "name": "Chicken Tenders",
+    "image": "https://s3-eu-west-1.amazonaws.com/img.easyorderapp.com/product/35302/medium/T5r2gJ7cY6saHG9pCoifSck7NetdsWZoabSLSVwj.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109f12a29a770014c6b653",
+    "name": "Garnaalkroket",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109f2ea29a770014c6b655",
+    "name": "Bitterballen",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109f39a29a770014c6b657",
+    "name": "Hamburger",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a109fa7a29a770014c6b659",
+    "name": "Frankfurter",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109e9fa29a770014c6b649",
+    "name": "Berenpoot",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Berehap-1484675823.jpeg/1280px-Berehap-1484675823.jpeg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a2f64a84b00014495858",
+    "name": "Philadelphia balletjes",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a3244a84b0001449585a",
+    "name": "Groetenkroket",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a3454a84b0001449585c",
+    "name": "Kaassouffle",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Kaassouffle.JPG/350px-Kaassouffle.JPG",
+    "link": "",
+    "usage": 0,
+    "vegi": true,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a3774a84b0001449585e",
+    "name": "Calamari",
+    "image": "http://www.barnaclebill.com.au/system/foods/images/000/000/061/large/food-calamari-snack-pack.png",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a3d64a84b00014495860",
+    "name": "Kipsaté",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a41c4a84b00014495862",
+    "name": "Shashlik brochet",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a4734a84b00014495864",
+    "name": "Krokodel",
+    "image": "https://pbs.twimg.com/media/C1uv1KNXUAEYsNC.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a4aa4a84b00014495866",
+    "name": "Kaasballetjes",
+    "image": "https://www.mora.nl/media/image/008186_1030901-oven-kaasballetjes-r.png",
+    "link": "https://www.mora.nl/3852/producten/oven/oven-goudse-kaasballetjes.html",
+    "usage": 0,
+    "vegi": true,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a4c74a84b00014495868",
+    "name": "Macho",
+    "image": "https://www.mora.nl/media/image/004062_afbeelding-macho.gif",
+    "link": "https://www.mora.nl/876/horeca-producten/kipproducten/macho.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a90f4a84b00014495891",
+    "name": "Bicky burger brazil",
+    "image": "https://igx.4sqi.net/img/general/558x200/6194011_YV1l30WtsjZnA9zQaRGF9XUhSr1GcZuoPbKbZ0v4qz4.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a11a8c44a84b0001449588f",
+    "name": "Bacon burger",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a11a8954a84b0001449588d",
+    "name": "Bicky wrap",
+    "image": "https://bicky.be/app/uploads/2017/05/142530-Bicky-Wrap_508x306.png",
+    "link": "https://bicky.be/bicky-burgers",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a86c4a84b0001449588b",
+    "name": "Bicky burger vegi",
+    "image": "https://bicky.be/app/uploads/2017/05/137330-Bicky-Vegi_508x306.png",
+    "link": "https://bicky.be/bicky-burgers",
+    "usage": 0,
+    "vegi": true,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a11a8494a84b00014495889",
+    "name": "Bicky burger royal",
+    "image": "https://bicky.be/app/uploads/2017/05/145610-Bicky-Royal_508x306.png",
+    "link": "https://bicky.be/bicky-burgers",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a11a82e4a84b00014495887",
+    "name": "Bicky burger rib",
+    "image": "http://www.vanrossem-snacks.be/images/assortiment/groot/10510-0000000138360.jpg",
+    "link": "https://bicky.be/bicky-burgers",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a11a7ee4a84b00014495885",
+    "name": "Bicky burger cheese",
+    "image": "",
+    "link": "https://bicky.be/bicky-burgers",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a11a7b24a84b00014495883",
+    "name": "Bicky burger fish",
+    "image": "https://bicky.be/app/uploads/2017/05/148910-Bicky-Fish-508x306.png",
+    "link": "https://bicky.be/bicky-burgers",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a15d16984acd500141f8a0e",
+    "name": "Kipburger",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a15d17884acd500141f8a10",
+    "name": "Visburger",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a11a7474a84b0001449587d",
+    "name": "Chili Cheese Nuggets",
+    "image": "https://img.youtube.com/vi/auRPk2HtAUg/0.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11b58a4a84b00014495894",
+    "name": "Hamburger huis",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a219c285297ef0014691f84",
+    "name": "Mosselen",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a66c4a84b00014495877",
+    "name": "Bouletsaté",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a6a14a84b00014495879",
+    "name": "Ambiorix",
+    "image": "https://static.mijnwebwinkel.nl/winkel/friethuis/image/cache/full/5359fbc27f2a2c1e8ab40288d67d70e52da2dcee.jpg",
+    "link": "https://www.friethuisonline.be/a-39452354/frituursnacks/viking/",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a6064a84b00014495873",
+    "name": "Kalkoenstick",
+    "image": "https://www.zelst.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/a/vanreusel-kalkoenstick-135-gram-1.jpg",
+    "link": "http://www.beckers.nl/assortiment/exclusief-in-de-cafetaria/kipkalkoenstick",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a5d54a84b00014495871",
+    "name": "Pikanto",
+    "image": "https://www.mora.nl/media/image/006932_1030809-pikanto-r.png",
+    "link": "https://www.mora.nl/3343/producten/snacks/originals/pikanto-originals.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a5b04a84b0001449586f",
+    "name": "Mega mix",
+    "image": "https://www.mora.nl/media/image/007520_1030881-megamix-r.jpg",
+    "link": "https://www.mora.nl/3480/producten/mini-snacks/mixen/mega-mix.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a58b4a84b0001449586d",
+    "name": "Ribster",
+    "image": "https://www.mora.nl/media/image/003794_afbeelding-ribster270x320.gif",
+    "link": "https://www.mora.nl/902/horeca-producten/gehaktproducten/ribster.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a5744a84b0001449586b",
+    "name": "Hot Twister",
+    "image": "http://www.horeca-messiaen.be/images/photolib/7747_pds.png",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a11a6da4a84b0001449587b",
+    "name": "Kibbeling",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Kibbeling_001.JPG/1280px-Kibbeling_001.JPG",
+    "link": "https://nl.wikipedia.org/wiki/Kibbeling",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a3685f3bf93d600141afd00",
+    "name": "Apirio Stick",
+    "image": "http://www.hofkip.com/img/hofkip-snack-apiriostick.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a36863fbf93d600141afd02",
+    "name": "Visstick",
+    "image": "https://s3-eu-west-1.amazonaws.com/img.easyorderapp.com/product/4906/medium/M6BEPobEPnsCBwcYLg69b6noXgvOjl2WlG6OPyRJ.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a15d15584acd500141f8a0c",
+    "name": "Bicky burger chicken",
+    "image": "https://bicky.be/app/uploads/2017/05/137410-Bicky-Chicken_508x306.png",
+    "link": "https://bicky.be/bicky-burgers",
+    "usage": 0,
+    "vegi": false,
+    "type": "Burgers"
+  },
+  {
+    "id": "5a219e365297ef0014691f90",
+    "name": "Ardeense saté",
+    "image": "https://www.mora.nl/media/image/003769_afbeelding-ardeense-sate205.gif",
+    "link": "https://www.mora.nl/880/horeca-producten/aanprikproducten/ardeense-sate.html",
+    "usage": 0,
+    "vegi": false,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a109d1ea29a770014c6b640",
+    "name": "Bamischijf",
+    "image": "https://www.mora.nl/media/image/004254_mora-bami-270x320.gif",
+    "link": "https://www.mora.nl/926/horeca-producten/specialiteiten/bamischijf.html",
+    "usage": 0,
+    "vegi": true,
+    "type": "Snacks"
+  },
+  {
+    "id": "5a219e245297ef0014691f8e",
+    "name": "Smullbox",
+    "image": "http://www.cafetariahoogland.nl/images/Smulbox.jpg",
+    "link": "",
+    "usage": 0,
+    "vegi": false,
+    "type": "Andere"
+  },
+  {
+    "id": "5a219e3d5297ef0014691f92",
+    "name": "Kabeljauwschijf",
+    "image": "",
+    "link": "",
+    "usage": 0,
+    "vegi": true,
+    "type": "Snacks"
+  }
+]

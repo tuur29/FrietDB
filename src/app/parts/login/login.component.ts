@@ -74,8 +74,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.form = fb.group({
-      email: ['', Validators.email],
-      password: ['', [Validators.required, Validators.minLength(10)]]
+      email: ['user@domain.com', Validators.email],
+      password: ['password12', [Validators.required, Validators.minLength(10)]]
     });
 
     this.form.valueChanges.subscribe(()=>{

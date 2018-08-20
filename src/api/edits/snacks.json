@@ -1,0 +1,14 @@
+[
+  {
+    "id": "5b7ab2b9fa30de00143ebc2c",
+    "timestamp": 1534767801,
+    "item": { "id": "5a109eaaa29a770014c6b64b", "name": "Kaaskroket" },
+    "user": { "name": "User", "email": "user@domain.com" }
+  },
+  {
+    "id": "5b7ab29afa30de00143ebc2b",
+    "timestamp": 1534767771,
+    "item": { "id": "5a109a46a29a770014c6b61f", "name": "Frikandellen" },
+    "user": { "name": "User", "email": "user@domain.com" }
+  }
+]

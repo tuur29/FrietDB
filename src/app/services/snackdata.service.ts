@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { GlobalsService } from 'app/services/globals.service';
 import { MessagesService } from '../messages/messages.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch'
 
-import { environment } from 'environments/environment';
-
 @Injectable()
 export class SnackDataService {
   
-  private url = environment.backendurl+'/snacks/';
+  private url = '/api/snacks/';
 
   private getSnacksLastUpdate = 0;
   private getSnacksLock = false;
@@ -53,7 +51,7 @@ export class SnackDataService {
     // get first time
     this.getSnacksLock = true;
     this.globals.loading = true;
-    return this.http.get(this.url).map((response) => {
+    return this.http.get(this.url+"root.json").map((response) => {
       let json = response.json();
       this.cachedSnacks = json;
       this.getSnacksLock = false;
@@ -62,34 +60,33 @@ export class SnackDataService {
       return json;
     }).catch((error:any) => {
       this.globals.failed = true;
-      this.messagesService.sendServerError().subscribe(() => window.location.reload());
+      this.messagesService.sendServerError();
       return Observable.throw(error.json().error || 'Server error');
     });
   }
 
   public getSnack(id: string): Observable<any> {
     this.globals.loading = true;
-    return this.http.get(this.url+id).map((response) => {
+    return this.http.get(this.url+id+".json").map((response) => {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
       this.globals.failed = true;
-      this.messagesService.sendServerError().subscribe(() => window.location.reload());
+      this.messagesService.sendServerError();
       return Observable.throw(error.json().error || 'Server error');
     });
   }
 
   public increaseSnackUsage(id: string): Observable<any> {
-    return this.http.post(this.url+id,{}).map((response) => {
-      return response.json();
-    });
+    this.messagesService.sendRemovedActionError();
+    throw new Error("Action no longer supported");
   }
 
   public getSnackTypes(): Observable<string[]> {
-    return this.http.get(this.url+"types").map((response) => {
+    return this.http.get(this.url+"types.json").map((response) => {
       return response.json();
     }).catch((error:any) => {
-      this.messagesService.sendServerError(true).subscribe();
+      this.messagesService.sendServerError(true);
       return Observable.throw(error.json().error || 'Server error');
     });
   }

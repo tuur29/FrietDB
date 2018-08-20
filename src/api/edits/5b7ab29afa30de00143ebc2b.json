@@ -1,0 +1,23 @@
+{
+  "_id": "5b7ab29afa30de00143ebc2b",
+  "timestamp": 1534767771,
+  "type": "snack",
+  "item": {
+    "name": "Frikandellen",
+    "type": "Snacks",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/da/Patat_met.jpg",
+    "link": "",
+    "vegi": false,
+    "_id": "5a109a46a29a770014c6b61f"
+  },
+  "user": {
+    "_id": "5a108ca915fa1f00145e450d",
+    "name": "User",
+    "email": "user@domain.com",
+    "__v": 0,
+    "admin": false,
+    "status": "ACTIVE"
+  },
+  "__v": 0,
+  "id": "5b7ab29afa30de00143ebc2b"
+}

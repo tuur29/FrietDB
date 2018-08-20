@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from 'ngx-store';
-import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 import { LocalStorage } from 'ngx-store';
 import { MessagesService } from '../messages/messages.service';
 
-import { environment } from 'environments/environment';
 
 @Injectable()
 export class GlobalsService {
@@ -14,57 +12,41 @@ export class GlobalsService {
   public failed = false;
 
   constructor(
-    private http: Http,
     public messagesService: MessagesService
-  ) {
-    // check if current token expired
-    if (this.auth.exp > Date.now())
-      this.logout();
-  }
+  ) { }
 
   public getCoordsByAddress(address: string): Observable<any> {
-    return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address).map((response) => {
-      return response.json();
-    }).catch((error:any) => {
-      this.messagesService.send("Kon de coordinaten niet ophalen.").subscribe();
-      return Observable.throw(error.json().error || 'Error');
-    });
+    this.messagesService.sendRemovedActionError();
+    throw new Error("Action no longer supported");
   }
 
   public uploadToImgur(payload): Observable<any> {
-    this.loading = true;
-    return this.http.post("https://api.imgur.com/3/image", {
-      image: payload,
-      type: "base64"
-    },
-    { headers: new Headers({Authorization: 'Client-ID '+ environment.imgurapikey }) }
-    ).map((response) => {
-      this.loading = false;
-      return response.json();
-    }).catch((error:any) => {
-      this.loading = false;
-      this.messagesService.send("Kon de foto niet uploaden.").subscribe();
-      return Observable.throw(error.json().error || 'Error');
-    });
+    this.messagesService.sendRemovedActionError();
+    throw new Error("Action no longer supported");
   }
 
   public deleteFromImgur(hash: string): Observable<any> {
-    return this.http.delete("https://api.imgur.com/3/image/"+hash,
-      { headers: new Headers({Authorization: 'Client-ID '+ environment.imgurapikey }) }
-    ).map((response) => {
-      return response.json();
-    }).catch((error:any) => {
-      this.messagesService.send("Kon de foto niet verwijderen.").subscribe();
-      return Observable.throw(error.json().error || 'Error');
-    });
+    this.messagesService.sendRemovedActionError();
+    throw new Error("Action no longer supported");
   }
 
   // Authentication
-  private url = environment.backendurl+'/users/';
   private readonly defaultAuth = {
     email: '',
     token: '',
     admin: false
+  };
+
+  private readonly userAuth = {
+    email: 'user@domain.com',
+    token: 'token',
+    admin: false
+  };
+
+  private readonly adminAuth = {
+    email: 'admin@domain.com',
+    token: 'token',
+    admin: true
   };
 
   @LocalStorage()
@@ -72,39 +54,26 @@ export class GlobalsService {
 
   get auth() {
     if (this._authtoken) {
-      let ob = this.parseJwt(this._authtoken);
-      ob.token = this._authtoken;
-      return ob;
+      if (this._authtoken == "user") return this.userAuth;
+      else return this.adminAuth;
     }
     return this.defaultAuth;
   }
 
   login(email: string, password: string): Observable<boolean> {
-    return this.http.post(this.url+'login', {
-      email: email,
-      password: password
-    }).map(res => res.json()).map(res => {
-
-      if (res.token) {
-        this._authtoken = res.token;
-        return true;
-      }
-      return false;
-
-    }).catch((err: Response) => Observable.throw(err.json()) );
+    if (email == "admin@domain.com" && password=="password12") {
+      this._authtoken = 'admin';
+      return Observable.of(true);
+    } else if (email == "user@domain.com" && password=="password12") {
+      this._authtoken = 'user';
+      return Observable.of(true);
+    }
+    return Observable.throw({message: "Verkeerd e-mailadres of wachtwoord"});
   }
 
   register(email: string, name: string, password: string): Observable<boolean> {
-    return this.http.post(this.url+'register', {
-      email: email,
-      name: name,
-      password: password
-      }).map((res) => {
-        this.messagesService.send("Je account moet eerst goedgekeurd worden").subscribe();
-        return res.json();
-      }).catch((err: Response) => {
-        return Observable.throw(err.text());
-      });
+    this.messagesService.sendRemovedActionError();
+    throw new Error("Action no longer supported");
   }
 
   logout() {

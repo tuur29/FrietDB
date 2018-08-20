@@ -14,7 +14,7 @@ import { MessagesService } from './messages/messages.service';
 
       <app-header></app-header>
 
-      <div class="loader cdk-overlay-container" *ngIf="globals.loading">
+      <div class="loader cdk-overlay-container" *ngIf="globals.loading && !globals.failed">
         <div class="cdk-overlay-backdrop cdk-overlay-backdrop-showing">
         </div>
         <div class="cdk-global-overlay-wrapper">

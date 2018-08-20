@@ -1,0 +1,20 @@
+[
+  {
+    "id": "5a109827a29a770014c6b61b",
+    "name": "Frituur St Jacobs Sympa",
+    "street": "Bij Sint-Jacobs",
+    "municipality": "9000 Gent",
+    "vegi": "",
+    "lat": 51.056,
+    "lng": 3.7275
+  },
+  {
+    "id": "5a11bd064a84b000144958a0",
+    "name": "New Frietshop",
+    "street": "Schooldreef",
+    "municipality": "9050 Gentbrugge",
+    "vegi": "",
+    "lat": 51.0321,
+    "lng": 3.7611
+  }
+]

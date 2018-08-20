@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import { GlobalsService } from 'app/services/globals.service';
 import { MessagesService } from '../messages/messages.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
 
-import { environment } from 'environments/environment';
 
 @Injectable()
 export class ShopDataService {
   
-  private url = environment.backendurl+'/shops/';
+  private url = '/api/shops/';
 
   private getShopsLastUpdate = 0;
   private getShopsLock = false;
@@ -24,7 +23,6 @@ export class ShopDataService {
   ) {}
 
   public resetCache() {
-    this.cachedShops = null;
   }
 
   public getShops(): Observable<any[]> {
@@ -53,7 +51,7 @@ export class ShopDataService {
     // get first time
     this.getShopsLock = true;
     this.globals.loading = true;
-    return this.http.get(this.url).map((response) => {
+    return this.http.get(this.url+"root.json").map((response) => {
       let json = response.json();
       this.cachedShops = json;
       this.getShopsLock = false;
@@ -62,7 +60,7 @@ export class ShopDataService {
       return json;
     }).catch((error:any) => {
       this.globals.failed = true;
-      this.messagesService.sendServerError().subscribe(() => window.location.reload());
+      this.messagesService.sendServerError();
       return Observable.throw(error.json().error || 'Server error');
     });
   }
@@ -70,41 +68,31 @@ export class ShopDataService {
   public getShopsBySnacks(snacks: string[]): Observable<any[]> {
     const body = { snacks: JSON.stringify(snacks) };
     this.globals.loading = true;
-    return this.http.post(this.url, body).map((response) => {
+    return this.http.get(this.url+"searchBySnack.json").map((response) => {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
       this.globals.failed = true;
-      this.messagesService.sendServerError().subscribe(() => window.location.reload());
+      this.messagesService.sendServerError();
       return Observable.throw(error.json().error || 'Server error');
     });
   }
 
   public getShop(id: string): Observable<any> {
     this.globals.loading = true;
-    return this.http.get(this.url+id).map((response) => {
+    return this.http.get(this.url+id+".json").map((response) => {
       this.globals.loading = false;
       return response.json();
     }).catch((error:any) => {
       this.globals.failed = true;
-      this.messagesService.sendServerError().subscribe(() => window.location.reload());
+      this.messagesService.sendServerError();
       return Observable.throw(error.json().error || 'Server error');
     });
   }
 
   public removeShop(id: string): Observable<any> {
-    this.globals.loading = true;
-    this.resetCache();
-    return this.http.delete(this.url+id, {
-      headers: new Headers({Authorization: 'Bearer '+ this.globals.auth.token })
-    }).map((response) => {
-      this.globals.loading = false;
-      return response.json();
-    }).catch((error:any) => {
-      this.globals.loading = false;
-      this.messagesService.sendServerError(true).subscribe();
-      return Observable.throw(error.json().error || 'Server error');
-    });
+    this.messagesService.sendRemovedActionError();
+    throw new Error("Action no longer supported");
   }
 
 }

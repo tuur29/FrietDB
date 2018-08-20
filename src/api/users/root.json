@@ -1,0 +1,23 @@
+[
+  {
+    "id": "5a108c6c15fa1f00145e450c",
+    "name": "Admin",
+    "email": "admin@domain.com",
+    "admin": true,
+    "status": "ACTIVE"
+  },
+  {
+    "id": "5a108ca915fa1f00145e450d",
+    "name": "User",
+    "email": "user@domain.com",
+    "admin": false,
+    "status": "ACTIVE"
+  },
+  {
+    "id": "5a108ca994fa1j00145g450d",
+    "name": "Test",
+    "email": "test@domain.com",
+    "admin": false,
+    "status": "DISABLED"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "_id": "5b7ab2b9fa30de00143ebc2c",
+  "timestamp": 1534767801,
+  "type": "snack",
+  "item": {
+    "name": "Kaaskroket",
+    "type": "Snacks",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Broodje_kroket.jpg/1024px-Broodje_kroket.jpg",
+    "link": "",
+    "vegi": true,
+    "_id": "5a109eaaa29a770014c6b64b"
+  },
+  "user": {
+    "_id": "5a108ca915fa1f00145e450d",
+    "name": "User",
+    "email": "user@domain.com",
+    "__v": 0,
+    "admin": false,
+    "status": "ACTIVE"
+  },
+  "__v": 0,
+  "id": "5b7ab2b9fa30de00143ebc2c"
+}

@@ -23,7 +23,12 @@ import { ShopDataService } from 'app/services/shopdata.service';
     <mat-card>
       <ng-container *ngIf="!globals.auth.token;else loggedin">
         <h2>Wil je deze database helpen uitbreiden?</h2>
-        <p>Druk dan op de registreer en vul je gegevens in. Alle accounts worden eerst handmatig goedgekeurd. Helaas aanvaard ik momenteel enkel familie en kennissen. </p>
+        <p>Helaas draait deze website enkel nog in een <b>demo modus</b>. Je kan dus geen nieuwe accounts of aanpassingen maken.<br>Je kan wel alles eens bekijken met deze 2 accounts:</p>
+        <ul>
+          <li>Admin: admin@domain.com : password12</li>
+          <li>User: user@domain.com : password12</li>
+        </ul>
+        <p>De 'Bestelling' pagina werkt ook niet meer en toont altijd dezelfde frituren.</p>
       </ng-container>
       <ng-template #loggedin>
         <h2>Help deze database uit te breiden</h2>
